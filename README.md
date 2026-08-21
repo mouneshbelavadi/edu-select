@@ -1,6 +1,6 @@
-# College Discovery Platform
+# Edu Select Platform
 
-**College Discovery Platform** is a full-stack web application designed to help students discover, filter, compare, and bookmark higher education institutions across India. Built with Next.js 14 App Router, TypeScript, TailwindCSS, PostgreSQL, and Prisma ORM, it delivers clean RESTful search APIs, URL-driven filtering, side-by-side college comparisons, and secure user authentication.
+**Edu Select Platform** is a full-stack web application designed to help students discover, filter, compare, and bookmark higher education institutions across India. Built with Next.js 14 App Router, TypeScript, TailwindCSS, PostgreSQL, and Prisma ORM, it delivers clean RESTful search APIs, URL-driven filtering, side-by-side college comparisons, and secure user authentication.
 
 ---
 
