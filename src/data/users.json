@@ -1,0 +1,42 @@
+[
+  {
+    "id": "usr-admin-1",
+    "name": "Platform Administrator",
+    "email": "admin@collegediscovery.com",
+    "passwordHash": "$2a$10$hHFyaxsYnS9/STqAD1kQEeKm/Fa6sZiUTEeJrAuSTDOpxXfxizHUG",
+    "role": "ADMIN",
+    "createdAt": "2026-08-20T19:24:53.335Z",
+    "lastLoginAt": "2026-08-21T12:33:36.300Z",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "usr-student-1",
+    "name": "Aarav Sharma",
+    "email": "aarav.sharma@example.com",
+    "passwordHash": "$2a$10$mXxwJZPNMJfPPL842mRAqeupvwvJcXQvjYl6dQy.zmBUjlclcq0BO",
+    "role": "USER",
+    "createdAt": "2026-08-20T19:24:53.335Z",
+    "lastLoginAt": "2026-08-21T10:46:43.548Z",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "usr-1787255632719",
+    "name": "Mounesh Belavadi",
+    "email": "admin@kavach.ai",
+    "passwordHash": "$2a$10$JmLcDsnpJya3oKOke7czq.Swtps4ECTgXgpid3VbOZVwpzfniXQkO",
+    "role": "USER",
+    "createdAt": "2026-08-20T19:53:48.605Z",
+    "lastLoginAt": "2026-08-20T19:53:56.988Z",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "usr-1787258727066",
+    "name": "Mounesh Belavadi",
+    "email": "mouneshbelavadi15@gmail.com",
+    "passwordHash": "$2a$10$4ycBHUA9Sx4V6sEIOfIdWOQhrAZX7ccemLIsP23SKCRdus8hGp9cW",
+    "role": "USER",
+    "createdAt": "2026-08-20T20:45:22.966Z",
+    "lastLoginAt": "2026-08-21T12:32:08.390Z",
+    "status": "ACTIVE"
+  }
+]

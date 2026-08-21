@@ -1,0 +1,34 @@
+{
+  "colleges": [
+    {
+      "id": "save-1787315465603-1znzj",
+      "userId": "guest-user-1",
+      "collegeId": "col-167",
+      "createdAt": "2026-08-21T12:31:05.603Z"
+    },
+    {
+      "id": "save-1787258412703-ahj00",
+      "userId": "usr-admin-1",
+      "collegeId": "col-167",
+      "createdAt": "2026-08-20T20:40:12.703Z"
+    },
+    {
+      "id": "save-1787257277341-m0asz",
+      "userId": "usr-admin-1",
+      "collegeId": "col-303",
+      "createdAt": "2026-08-20T20:21:17.341Z"
+    }
+  ],
+  "comparisons": [
+    {
+      "id": "comp-1787315556897-44712",
+      "userId": "usr-1787258727066",
+      "name": "clg 1",
+      "collegeIds": [
+        "col-167",
+        "col-173"
+      ],
+      "createdAt": "2026-08-21T12:32:36.897Z"
+    }
+  ]
+}

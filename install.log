@@ -1,0 +1,70 @@
+npm warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat 'C:\Users\moune\OneDrive\Desktop\project_new\college-discovery\node_modules\next\dist\compiled\react-dom-experimental'
+npm warn cleanup Failed to remove some directories [
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Users\\moune\\OneDrive\\Desktop\\project_new\\college-discovery\\node_modules\\unrs-resolver',
+npm warn cleanup     [Error: EBUSY: resource busy or locked, rmdir 'C:\Users\moune\OneDrive\Desktop\project_new\college-discovery\node_modules\unrs-resolver'] {
+npm warn cleanup       errno: -4082,
+npm warn cleanup       code: 'EBUSY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\moune\\OneDrive\\Desktop\\project_new\\college-discovery\\node_modules\\unrs-resolver'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Users\\moune\\OneDrive\\Desktop\\project_new\\college-discovery\\node_modules\\@prisma',
+npm warn cleanup     [Error: EBUSY: resource busy or locked, rmdir 'C:\Users\moune\OneDrive\Desktop\project_new\college-discovery\node_modules\@prisma\engines'] {
+npm warn cleanup       errno: -4082,
+npm warn cleanup       code: 'EBUSY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\moune\\OneDrive\\Desktop\\project_new\\college-discovery\\node_modules\\@prisma\\engines'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Users\\moune\\OneDrive\\Desktop\\project_new\\college-discovery\\node_modules\\@prisma\\client',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir 'C:\Users\moune\OneDrive\Desktop\project_new\college-discovery\node_modules\@prisma\client\runtime'] {
+npm warn cleanup       errno: -4051,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\moune\\OneDrive\\Desktop\\project_new\\college-discovery\\node_modules\\@prisma\\client\\runtime'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Users\\moune\\OneDrive\\Desktop\\project_new\\college-discovery\\node_modules\\next',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir 'C:\Users\moune\OneDrive\Desktop\project_new\college-discovery\node_modules\next\dist\build\webpack\alias'] {
+npm warn cleanup       errno: -4051,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\moune\\OneDrive\\Desktop\\project_new\\college-discovery\\node_modules\\next\\dist\\build\\webpack\\alias'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Users\\moune\\OneDrive\\Desktop\\project_new\\college-discovery\\node_modules',
+npm warn cleanup     [Error: ENOTEMPTY: directory not empty, rmdir 'C:\Users\moune\OneDrive\Desktop\project_new\college-discovery\node_modules\next\dist\compiled\react-dom-experimental\cjs'] {
+npm warn cleanup       errno: -4051,
+npm warn cleanup       code: 'ENOTEMPTY',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Users\\moune\\OneDrive\\Desktop\\project_new\\college-discovery\\node_modules\\next\\dist\\compiled\\react-dom-experimental\\cjs'
+npm warn cleanup     }
+npm warn cleanup   ]
+npm warn cleanup ]
+npm error code 1
+npm error path C:\Users\moune\OneDrive\Desktop\project_new\college-discovery\node_modules\@prisma\client
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c node scripts/postinstall.js
+npm error node:internal/modules/cjs/loader:1459
+npm error   throw err;
+npm error   ^
+npm error
+npm error Error: Cannot find module 'C:\Users\moune\OneDrive\Desktop\project_new\college-discovery\node_modules\@prisma\client\scripts\postinstall.js'
+npm error     at Module._resolveFilename (node:internal/modules/cjs/loader:1456:15)
+npm error     at defaultResolveImpl (node:internal/modules/cjs/loader:1066:19)
+npm error     at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1071:22)
+npm error     at Module._load (node:internal/modules/cjs/loader:1242:25)
+npm error     at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+npm error     at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+npm error     at node:internal/main/run_main_module:33:47 {
+npm error   code: 'MODULE_NOT_FOUND',
+npm error   requireStack: []
+npm error }
+npm error
+npm error Node.js v24.14.0
+npm error A complete log of this run can be found in: C:\Users\moune\AppData\Local\npm-cache\_logs\2026-08-20T07_06_57_200Z-debug-0.log
