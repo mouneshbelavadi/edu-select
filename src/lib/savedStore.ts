@@ -1,18 +1,14 @@
-import fs from 'fs';
-import path from 'path';
 import { db } from './db';
-import { getCollegeByIdOrSlug } from './collegeRepository';
+import { getCollegeByIdOrSlug, CollegeDetail } from './collegeRepository';
 
-const SAVED_FILE = path.join(process.cwd(), 'src', 'data', 'saved.json');
-
-interface SavedRecord {
+interface DevSavedRecord {
   id: string;
   userId: string;
   collegeId: string;
   createdAt: string;
 }
 
-interface SavedComparisonRecord {
+interface DevSavedComparison {
   id: string;
   userId: string;
   name: string;
@@ -20,183 +16,225 @@ interface SavedComparisonRecord {
   createdAt: string;
 }
 
-interface SavedStoreState {
-  colleges: SavedRecord[];
-  comparisons: SavedComparisonRecord[];
-}
+// In-memory store for local development only
+const devSavedStore: {
+  colleges: DevSavedRecord[];
+  comparisons: DevSavedComparison[];
+} = {
+  colleges: [],
+  comparisons: [],
+};
 
-function loadSavedData(): SavedStoreState {
-  try {
-    if (fs.existsSync(SAVED_FILE)) {
-      const raw = fs.readFileSync(SAVED_FILE, 'utf-8');
-      return JSON.parse(raw);
-    }
-  } catch (e) {
-    console.warn('Failed to load saved.json, initializing empty state:', e);
-  }
-  return { colleges: [], comparisons: [] };
-}
-
-function writeSavedData(state: SavedStoreState) {
-  try {
-    const dir = path.dirname(SAVED_FILE);
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(SAVED_FILE, JSON.stringify(state, null, 2), 'utf-8');
-  } catch (e) {
-    console.warn('Failed to write saved.json:', e);
-  }
-}
-
-export async function getSavedCollegesForUser(userId: string) {
-  // 1. Try PostgreSQL
-  try {
-    const saved = await db.savedCollege.findMany({
-      where: { userId },
-      include: { college: true },
-      orderBy: { createdAt: 'desc' },
-    });
-    if (saved && saved.length > 0) {
-      return saved.map((s) => s.college);
-    }
-  } catch {}
-
-  // 2. Fallback to local store
-  const state = loadSavedData();
-  const userSaved = state.colleges.filter((c) => c.userId === userId);
-  const results = [];
-
-  for (const item of userSaved) {
-    const college = await getCollegeByIdOrSlug(item.collegeId);
-    if (college) {
-      results.push({
-        id: college.id,
-        name: college.name,
-        slug: college.slug,
-        city: college.city,
-        state: college.state,
-        type: college.type,
-        rating: college.rating,
-        fees: college.fees,
-        feesDisplay: college.feesDisplay,
-        imageUrl: college.imageUrl,
-        establishedYear: 1980,
+export async function getSavedCollegesForUser(userId: string): Promise<CollegeDetail[]> {
+  if (process.env.DATABASE_URL) {
+    try {
+      const saved = await db.savedCollege.findMany({
+        where: { userId },
+        orderBy: { createdAt: 'desc' },
       });
+
+      const colleges: CollegeDetail[] = [];
+      for (const item of saved) {
+        const college = await getCollegeByIdOrSlug(item.collegeId);
+        if (college) {
+          colleges.push(college);
+        }
+      }
+      return colleges;
+    } catch (err) {
+      console.warn('Database query failed in getSavedCollegesForUser:', err);
     }
   }
-  return results;
+
+  // Development in-memory fallback
+  if (process.env.NODE_ENV !== 'production') {
+    const userSaved = devSavedStore.colleges.filter((c) => c.userId === userId);
+    const colleges: CollegeDetail[] = [];
+    for (const item of userSaved) {
+      const college = await getCollegeByIdOrSlug(item.collegeId);
+      if (college) {
+        colleges.push(college);
+      }
+    }
+    return colleges;
+  }
+
+  return [];
 }
 
 export async function saveCollegeForUser(userId: string, collegeId: string) {
-  // 1. Verify college exists in Excel repo
+  if (process.env.NODE_ENV === 'production' && !process.env.DATABASE_URL) {
+    const err = new Error('Database not configured');
+    (err as any).statusCode = 503;
+    throw err;
+  }
+
   const college = await getCollegeByIdOrSlug(collegeId);
   if (!college) {
     throw new Error('College not found in database');
   }
 
-  // 2. Try PostgreSQL
-  try {
-    await db.savedCollege.upsert({
-      where: {
-        userId_collegeId: {
+  if (process.env.DATABASE_URL) {
+    try {
+      await db.savedCollege.upsert({
+        where: {
+          userId_collegeId: {
+            userId,
+            collegeId: college.id,
+          },
+        },
+        create: {
           userId,
           collegeId: college.id,
         },
-      },
-      create: {
-        userId,
-        collegeId: college.id,
-      },
-      update: {},
-    });
-  } catch {}
+        update: {},
+      });
+      return { success: true, college };
+    } catch (err) {
+      if (process.env.NODE_ENV === 'production') {
+        throw err;
+      }
+    }
+  }
 
-  // 3. Update local store
-  const state = loadSavedData();
-  const exists = state.colleges.some(
+  // Development in-memory fallback
+  const exists = devSavedStore.colleges.some(
     (c) => c.userId === userId && (c.collegeId === college.id || c.collegeId === collegeId || c.collegeId === college.slug)
   );
-
   if (!exists) {
-    state.colleges.unshift({
+    devSavedStore.colleges.unshift({
       id: `save-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
       userId,
       collegeId: college.id,
       createdAt: new Date().toISOString(),
     });
-    writeSavedData(state);
   }
 
   return { success: true, college };
 }
 
 export async function removeSavedCollegeForUser(userId: string, collegeId: string) {
-  try {
-    await db.savedCollege.deleteMany({
-      where: { userId, collegeId },
-    });
-  } catch {}
+  if (process.env.NODE_ENV === 'production' && !process.env.DATABASE_URL) {
+    const err = new Error('Database not configured');
+    (err as any).statusCode = 503;
+    throw err;
+  }
 
-  const state = loadSavedData();
   const college = await getCollegeByIdOrSlug(collegeId);
   const targetId = college?.id || collegeId;
 
-  state.colleges = state.colleges.filter(
+  if (process.env.DATABASE_URL) {
+    try {
+      await db.savedCollege.deleteMany({
+        where: {
+          userId,
+          collegeId: targetId,
+        },
+      });
+      return { success: true };
+    } catch (err) {
+      if (process.env.NODE_ENV === 'production') {
+        throw err;
+      }
+    }
+  }
+
+  // Development in-memory fallback
+  devSavedStore.colleges = devSavedStore.colleges.filter(
     (c) => !(c.userId === userId && (c.collegeId === targetId || c.collegeId === collegeId || c.collegeId === college?.slug))
   );
-  writeSavedData(state);
+
   return { success: true };
 }
 
 export async function getSavedComparisonsForUser(userId: string) {
-  try {
-    const saved = await db.savedComparison.findMany({
-      where: { userId },
-      orderBy: { createdAt: 'desc' },
-    });
-    if (saved && saved.length > 0) {
-      return saved.map((s) => ({
-        id: s.id,
-        name: s.name,
-        collegeIds: s.collegeIds,
-        createdAt: s.createdAt.toISOString(),
-      }));
+  if (process.env.DATABASE_URL) {
+    try {
+      const saved = await db.savedComparison.findMany({
+        where: { userId },
+        orderBy: { createdAt: 'desc' },
+      });
+      if (saved && saved.length > 0) {
+        return saved.map((s) => ({
+          id: s.id,
+          name: s.name,
+          collegeIds: s.collegeIds,
+          createdAt: s.createdAt.toISOString(),
+        }));
+      }
+    } catch (err) {
+      console.warn('Database query failed in getSavedComparisonsForUser:', err);
     }
-  } catch {}
+  }
 
-  const state = loadSavedData();
-  return state.comparisons.filter((c) => c.userId === userId);
+  if (process.env.NODE_ENV !== 'production') {
+    return devSavedStore.comparisons.filter((c) => c.userId === userId);
+  }
+
+  return [];
 }
 
 export async function saveComparisonForUser(userId: string, name: string, collegeIds: string[]) {
-  try {
-    const saved = await db.savedComparison.create({
-      data: { userId, name, collegeIds },
-    });
-    return saved;
-  } catch {}
+  if (process.env.NODE_ENV === 'production' && !process.env.DATABASE_URL) {
+    const err = new Error('Database not configured');
+    (err as any).statusCode = 503;
+    throw err;
+  }
 
-  const state = loadSavedData();
-  const record: SavedComparisonRecord = {
+  if (process.env.DATABASE_URL) {
+    try {
+      const saved = await db.savedComparison.create({
+        data: { userId, name, collegeIds },
+      });
+      return {
+        id: saved.id,
+        name: saved.name,
+        collegeIds: saved.collegeIds,
+        createdAt: saved.createdAt.toISOString(),
+      };
+    } catch (err) {
+      if (process.env.NODE_ENV === 'production') {
+        throw err;
+      }
+    }
+  }
+
+  // Development in-memory fallback
+  const record: DevSavedComparison = {
     id: `comp-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
     userId,
     name,
     collegeIds,
     createdAt: new Date().toISOString(),
   };
-  state.comparisons.unshift(record);
-  writeSavedData(state);
+  devSavedStore.comparisons.unshift(record);
   return record;
 }
 
 export async function removeSavedComparisonForUser(userId: string, id: string) {
-  try {
-    await db.savedComparison.deleteMany({
-      where: { userId, id },
-    });
-  } catch {}
+  if (process.env.NODE_ENV === 'production' && !process.env.DATABASE_URL) {
+    const err = new Error('Database not configured');
+    (err as any).statusCode = 503;
+    throw err;
+  }
 
-  const state = loadSavedData();
-  state.comparisons = state.comparisons.filter((c) => !(c.userId === userId && c.id === id));
-  writeSavedData(state);
+  if (process.env.DATABASE_URL) {
+    try {
+      await db.savedComparison.deleteMany({
+        where: { userId, id },
+      });
+      return { success: true };
+    } catch (err) {
+      if (process.env.NODE_ENV === 'production') {
+        throw err;
+      }
+    }
+  }
+
+  // Development in-memory fallback
+  devSavedStore.comparisons = devSavedStore.comparisons.filter(
+    (c) => !(c.userId === userId && c.id === id)
+  );
+
   return { success: true };
 }

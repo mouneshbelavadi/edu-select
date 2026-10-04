@@ -35,6 +35,10 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  if (process.env.NODE_ENV === 'production' && !process.env.DATABASE_URL) {
+    return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+  }
+
   try {
     const session = await getSession();
     const userId = session?.user?.id || 'guest-user-1';
@@ -52,7 +56,10 @@ export async function POST(request: NextRequest) {
     const comparison = await saveComparisonForUser(userId, name, collegeIds);
 
     return NextResponse.json({ data: comparison }, { status: 201 });
-  } catch (error) {
+  } catch (error: any) {
+    if (error.message === 'Database not configured' || error.statusCode === 503) {
+      return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+    }
     console.error('Error saving comparison:', error);
     return NextResponse.json(
       { error: { message: 'Failed to save comparison' } },
@@ -62,6 +69,9 @@ export async function POST(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
+  if (process.env.NODE_ENV === 'production' && !process.env.DATABASE_URL) {
+    return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+  }
   try {
     const session = await getSession();
     const userId = session?.user?.id || 'guest-user-1';

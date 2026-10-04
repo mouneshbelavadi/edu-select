@@ -1,7 +1,5 @@
 import { db } from '@/lib/db';
 import bcrypt from 'bcryptjs';
-import * as fs from 'fs';
-import * as path from 'path';
 
 export interface UserRecord {
   id: string;
@@ -14,67 +12,40 @@ export interface UserRecord {
   status: 'ACTIVE' | 'SUSPENDED';
 }
 
-const LOCAL_USERS_FILE = path.join(process.cwd(), 'src', 'data', 'users.json');
+// In-memory demo users for local development when DATABASE_URL is not set
+const devUsersStore: UserRecord[] = [];
 
-// Ensure initial users file exists with verified default accounts
-function getInitialUsers(): UserRecord[] {
-  const hashAdmin = bcrypt.hashSync('Admin@123456', 10);
-  const hashUser = bcrypt.hashSync('password123', 10);
-
-  return [
-    {
-      id: 'usr-admin-1',
-      name: 'Platform Administrator',
-      email: 'admin@collegediscovery.com',
-      passwordHash: hashAdmin,
-      role: 'ADMIN',
-      createdAt: new Date().toISOString(),
-      lastLoginAt: new Date().toISOString(),
-      status: 'ACTIVE',
-    },
-    {
-      id: 'usr-student-1',
-      name: 'Aarav Sharma',
-      email: 'aarav.sharma@example.com',
-      passwordHash: hashUser,
-      role: 'USER',
-      createdAt: new Date().toISOString(),
-      lastLoginAt: null,
-      status: 'ACTIVE',
-    },
-  ];
-}
-
-function loadLocalUsers(): UserRecord[] {
-  try {
-    if (!fs.existsSync(LOCAL_USERS_FILE)) {
-      const initial = getInitialUsers();
-      saveLocalUsers(initial);
-      return initial;
-    }
-    const raw = fs.readFileSync(LOCAL_USERS_FILE, 'utf-8');
-    const users = JSON.parse(raw);
-    if (!Array.isArray(users) || users.length === 0) {
-      const initial = getInitialUsers();
-      saveLocalUsers(initial);
-      return initial;
-    }
-    return users;
-  } catch {
-    return getInitialUsers();
+function getDevUsers(): UserRecord[] {
+  if (process.env.NODE_ENV === 'production') {
+    return [];
   }
-}
-
-function saveLocalUsers(users: UserRecord[]) {
-  try {
-    const dir = path.dirname(LOCAL_USERS_FILE);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-    fs.writeFileSync(LOCAL_USERS_FILE, JSON.stringify(users, null, 2), 'utf-8');
-  } catch (err) {
-    console.error('Failed to write local users store:', err);
+  if (devUsersStore.length === 0) {
+    const adminPassword = process.env.SEED_ADMIN_PASSWORD || 'Admin@123456';
+    const demoPassword = process.env.SEED_DEMO_PASSWORD || 'password123';
+    devUsersStore.push(
+      {
+        id: 'usr-admin-1',
+        name: 'Platform Administrator',
+        email: 'admin@collegediscovery.com',
+        passwordHash: bcrypt.hashSync(adminPassword, 10),
+        role: 'ADMIN',
+        createdAt: new Date().toISOString(),
+        lastLoginAt: new Date().toISOString(),
+        status: 'ACTIVE',
+      },
+      {
+        id: 'usr-student-1',
+        name: 'Aarav Sharma',
+        email: 'aarav.sharma@example.com',
+        passwordHash: bcrypt.hashSync(demoPassword, 10),
+        role: 'USER',
+        createdAt: new Date().toISOString(),
+        lastLoginAt: null,
+        status: 'ACTIVE',
+      }
+    );
   }
+  return devUsersStore;
 }
 
 /**
@@ -83,31 +54,36 @@ function saveLocalUsers(users: UserRecord[]) {
 export async function findUserByEmail(email: string): Promise<UserRecord | null> {
   const normalizedEmail = email.trim().toLowerCase();
 
-  try {
-    const user = await db.user.findUnique({
-      where: { email: normalizedEmail },
-    });
+  if (process.env.DATABASE_URL) {
+    try {
+      const user = await db.user.findUnique({
+        where: { email: normalizedEmail },
+      });
 
-    if (user) {
-      return {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        passwordHash: user.passwordHash,
-        role: (user.role as 'USER' | 'ADMIN') || 'USER',
-        createdAt: user.createdAt.toISOString(),
-        lastLoginAt: user.lastLoginAt ? user.lastLoginAt.toISOString() : null,
-        status: 'ACTIVE',
-      };
+      if (user) {
+        return {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          passwordHash: user.passwordHash,
+          role: (user.role as 'USER' | 'ADMIN') || 'USER',
+          createdAt: user.createdAt.toISOString(),
+          lastLoginAt: user.lastLoginAt ? user.lastLoginAt.toISOString() : null,
+          status: 'ACTIVE',
+        };
+      }
+    } catch (err) {
+      console.warn('Database query failed in findUserByEmail:', err);
     }
-  } catch {
-    // Database is offline or unreachable
   }
 
-  // Fallback to local store
-  const users = loadLocalUsers();
-  const found = users.find((u) => u.email.toLowerCase() === normalizedEmail);
-  return found || null;
+  // Development in-memory fallback
+  if (process.env.NODE_ENV !== 'production') {
+    const users = getDevUsers();
+    return users.find((u) => u.email.toLowerCase() === normalizedEmail) || null;
+  }
+
+  return null;
 }
 
 /**
@@ -120,6 +96,13 @@ export async function createUser(data: {
   role?: 'USER' | 'ADMIN';
 }): Promise<UserRecord> {
   const normalizedEmail = data.email.trim().toLowerCase();
+
+  if (process.env.NODE_ENV === 'production' && !process.env.DATABASE_URL) {
+    const error = new Error('Database not configured');
+    (error as any).statusCode = 503;
+    throw error;
+  }
+
   const existing = await findUserByEmail(normalizedEmail);
   if (existing) {
     throw new Error('An account with this email address already exists');
@@ -127,38 +110,47 @@ export async function createUser(data: {
 
   const passwordHash = await bcrypt.hash(data.password, 10);
   const role = data.role || 'USER';
-  const now = new Date().toISOString();
 
-  let dbUser = null;
-  try {
-    dbUser = await db.user.create({
-      data: {
-        name: data.name.trim(),
-        email: normalizedEmail,
-        passwordHash,
-        role: role as any,
-      },
-    });
-  } catch {
-    // Database is offline, fallback to local store
+  if (process.env.DATABASE_URL) {
+    try {
+      const dbUser = await db.user.create({
+        data: {
+          name: data.name.trim(),
+          email: normalizedEmail,
+          passwordHash,
+          role: role as any,
+        },
+      });
+
+      return {
+        id: dbUser.id,
+        name: dbUser.name,
+        email: dbUser.email,
+        passwordHash: dbUser.passwordHash,
+        role: (dbUser.role as 'USER' | 'ADMIN') || 'USER',
+        createdAt: dbUser.createdAt.toISOString(),
+        lastLoginAt: null,
+        status: 'ACTIVE',
+      };
+    } catch (err) {
+      if (process.env.NODE_ENV === 'production') {
+        throw err;
+      }
+    }
   }
 
+  // Development in-memory creation
   const newUser: UserRecord = {
-    id: dbUser ? dbUser.id : `usr-${Date.now()}`,
+    id: `usr-${Date.now()}`,
     name: data.name.trim(),
     email: normalizedEmail,
     passwordHash,
     role,
-    createdAt: now,
+    createdAt: new Date().toISOString(),
     lastLoginAt: null,
     status: 'ACTIVE',
   };
-
-  // Always keep local store in sync
-  const users = loadLocalUsers();
-  users.push(newUser);
-  saveLocalUsers(users);
-
+  getDevUsers().push(newUser);
   return newUser;
 }
 
@@ -169,20 +161,22 @@ export async function updateLastLogin(email: string): Promise<void> {
   const normalizedEmail = email.trim().toLowerCase();
   const now = new Date();
 
-  try {
-    await db.user.update({
-      where: { email: normalizedEmail },
-      data: { lastLoginAt: now },
-    });
-  } catch {
-    // Database offline
+  if (process.env.DATABASE_URL) {
+    try {
+      await db.user.update({
+        where: { email: normalizedEmail },
+        data: { lastLoginAt: now },
+      });
+      return;
+    } catch {}
   }
 
-  const users = loadLocalUsers();
-  const idx = users.findIndex((u) => u.email.toLowerCase() === normalizedEmail);
-  if (idx !== -1) {
-    users[idx].lastLoginAt = now.toISOString();
-    saveLocalUsers(users);
+  if (process.env.NODE_ENV !== 'production') {
+    const users = getDevUsers();
+    const idx = users.findIndex((u) => u.email.toLowerCase() === normalizedEmail);
+    if (idx !== -1) {
+      users[idx].lastLoginAt = now.toISOString();
+    }
   }
 }
 
@@ -190,45 +184,50 @@ export async function updateLastLogin(email: string): Promise<void> {
  * List all users for the Admin Dashboard (sanitized without passwords)
  */
 export async function listAllUsers() {
-  try {
-    const dbUsers = await db.user.findMany({
-      orderBy: { createdAt: 'desc' },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        role: true,
-        createdAt: true,
-        lastLoginAt: true,
-      },
-    });
+  if (process.env.DATABASE_URL) {
+    try {
+      const dbUsers = await db.user.findMany({
+        orderBy: { createdAt: 'desc' },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          createdAt: true,
+          lastLoginAt: true,
+        },
+      });
 
-    if (dbUsers && dbUsers.length > 0) {
-      return dbUsers.map((u) => ({
+      if (dbUsers && dbUsers.length > 0) {
+        return dbUsers.map((u) => ({
+          id: u.id,
+          name: u.name,
+          email: u.email,
+          role: (u.role as string) || 'USER',
+          createdAt: u.createdAt.toISOString(),
+          lastLoginAt: u.lastLoginAt ? u.lastLoginAt.toISOString() : null,
+          status: 'ACTIVE' as const,
+        }));
+      }
+    } catch (err) {
+      console.warn('Database query failed in listAllUsers:', err);
+    }
+  }
+
+  if (process.env.NODE_ENV !== 'production') {
+    const users = getDevUsers();
+    return users
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+      .map((u) => ({
         id: u.id,
         name: u.name,
         email: u.email,
-        role: (u.role as string) || 'USER',
-        createdAt: u.createdAt.toISOString(),
-        lastLoginAt: u.lastLoginAt ? u.lastLoginAt.toISOString() : null,
-        status: 'ACTIVE',
+        role: u.role,
+        createdAt: u.createdAt,
+        lastLoginAt: u.lastLoginAt,
+        status: u.status,
       }));
-    }
-  } catch {
-    // Database offline
   }
 
-  // Fallback to local store
-  const users = loadLocalUsers();
-  return users
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-    .map((u) => ({
-      id: u.id,
-      name: u.name,
-      email: u.email,
-      role: u.role,
-      createdAt: u.createdAt,
-      lastLoginAt: u.lastLoginAt,
-      status: u.status,
-    }));
+  return [];
 }

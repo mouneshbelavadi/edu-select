@@ -12,6 +12,10 @@ const signupSchema = z.object({
 });
 
 export async function POST(request: NextRequest) {
+  if (process.env.NODE_ENV === 'production' && !process.env.DATABASE_URL) {
+    return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+  }
+
   try {
     const ip = request.headers.get('x-forwarded-for') || '127.0.0.1';
     const rateLimit = checkRateLimit(ip, 20, 10 * 60 * 1000); // 20 attempts per 10 mins
@@ -63,6 +67,9 @@ export async function POST(request: NextRequest) {
         { status: 201 }
       );
     } catch (err: any) {
+      if (err.message === 'Database not configured' || err.statusCode === 503) {
+        return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+      }
       if (err.message.includes('already exists')) {
         return NextResponse.json(
           { error: { message: 'An account with this email address already exists' } },

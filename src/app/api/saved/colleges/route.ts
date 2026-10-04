@@ -32,6 +32,10 @@ export async function GET() {
 
 // POST: Save a college for the current user
 export async function POST(request: NextRequest) {
+  if (process.env.NODE_ENV === 'production' && !process.env.DATABASE_URL) {
+    return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+  }
+
   try {
     const session = await getSession();
     const userId = session?.user?.id || 'guest-user-1';
@@ -50,6 +54,9 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ data: result, message: 'College saved successfully' }, { status: 201 });
   } catch (error: any) {
+    if (error.message === 'Database not configured' || error.statusCode === 503) {
+      return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+    }
     console.error('Error saving college:', error);
     return NextResponse.json(
       { error: { message: error.message || 'Failed to save college' } },
@@ -60,6 +67,9 @@ export async function POST(request: NextRequest) {
 
 // DELETE: Remove a saved college record for the current user
 export async function DELETE(request: NextRequest) {
+  if (process.env.NODE_ENV === 'production' && !process.env.DATABASE_URL) {
+    return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+  }
   try {
     const session = await getSession();
     const userId = session?.user?.id || 'guest-user-1';

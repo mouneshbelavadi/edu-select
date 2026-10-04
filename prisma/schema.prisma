@@ -1,10 +1,12 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 enum CollegeType {
@@ -52,7 +54,6 @@ model College {
   courses         Course[]
   placements      Placement[]
   reviews         Review[]
-  savedBy          SavedCollege[]
 
   @@index([city])
   @@index([state])
@@ -97,7 +98,6 @@ model SavedCollege {
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   collegeId String
-  college   College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
 
   @@unique([userId, collegeId])
@@ -110,4 +110,11 @@ model SavedComparison {
   name       String
   collegeIds String[]
   createdAt  DateTime @default(now())
+}
+
+model CollegeOverride {
+  id        String   @id @default(cuid())
+  collegeId String   @unique
+  data      Json
+  updatedAt DateTime @updatedAt
 }

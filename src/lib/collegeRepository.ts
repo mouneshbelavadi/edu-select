@@ -1,5 +1,3 @@
-import fs from 'fs';
-import path from 'path';
 import collegesData from '@/data/colleges28States.json';
 import { CollegeQueryInput } from './validation/college';
 import { db } from './db';
@@ -35,28 +33,35 @@ export interface CollegeDetail {
   imageUrl: string;
 }
 
-const DATA_FILE = path.join(process.cwd(), 'src', 'data', 'colleges28States.json');
+// In-memory overrides cache for development or when DB is unreachable
+const devOverrides = new Map<string, Partial<CollegeDetail>>();
 
-function getLiveDataset(): CollegeDetail[] {
+async function getOverridesMap(): Promise<Map<string, Partial<CollegeDetail>>> {
+  const map = new Map<string, Partial<CollegeDetail>>(devOverrides);
+  if (!process.env.DATABASE_URL) {
+    return map;
+  }
   try {
-    if (fs.existsSync(DATA_FILE)) {
-      const raw = fs.readFileSync(DATA_FILE, 'utf-8');
-      return JSON.parse(raw);
+    const overrides = await db.collegeOverride.findMany();
+    for (const ov of overrides) {
+      map.set(ov.collegeId, ov.data as Partial<CollegeDetail>);
     }
   } catch (err) {
-    console.warn('Error reading live colleges28States.json:', err);
+    // Database unreachable, fall back to in-memory/static data
   }
-  return collegesData as CollegeDetail[];
+  return map;
 }
 
-function writeLiveDataset(dataset: CollegeDetail[]) {
-  try {
-    const dir = path.dirname(DATA_FILE);
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(DATA_FILE, JSON.stringify(dataset, null, 2), 'utf-8');
-  } catch (err) {
-    console.error('Error writing live colleges28States.json:', err);
+async function getMergedDataset(): Promise<CollegeDetail[]> {
+  const staticDataset = collegesData as CollegeDetail[];
+  const overridesMap = await getOverridesMap();
+  if (overridesMap.size === 0) {
+    return staticDataset;
   }
+  return staticDataset.map((c) => {
+    const override = overridesMap.get(c.id);
+    return override ? { ...c, ...override } : c;
+  });
 }
 
 export async function getColleges(params: CollegeQueryInput) {
@@ -74,7 +79,8 @@ export async function getColleges(params: CollegeQueryInput) {
     limit = 12,
   } = params;
 
-  let filtered = [...getLiveDataset()];
+  const dataset = await getMergedDataset();
+  let filtered = [...dataset];
 
   if (search) {
     const q = search.toLowerCase();
@@ -143,7 +149,7 @@ export async function getColleges(params: CollegeQueryInput) {
 
 export async function getCollegeByIdOrSlug(identifier: string): Promise<CollegeDetail | null> {
   const cleanId = decodeURIComponent(identifier).trim().toLowerCase();
-  const dataset = getLiveDataset();
+  const dataset = await getMergedDataset();
 
   const found = dataset.find(
     (c) =>
@@ -166,21 +172,20 @@ export async function getCollegeByIdOrSlug(identifier: string): Promise<CollegeD
 }
 
 export async function updateCollege(identifier: string, updates: Partial<CollegeDetail>): Promise<CollegeDetail> {
-  const dataset = getLiveDataset();
   const cleanId = decodeURIComponent(identifier).trim().toLowerCase();
+  const staticDataset = collegesData as CollegeDetail[];
 
-  const index = dataset.findIndex(
+  const existing = staticDataset.find(
     (c) =>
       c.slug.toLowerCase() === cleanId ||
       c.id.toLowerCase() === cleanId ||
       c.name.toLowerCase() === cleanId
   );
 
-  if (index === -1) {
+  if (!existing) {
     throw new Error('College not found');
   }
 
-  const existing = dataset[index];
   const updated: CollegeDetail = {
     ...existing,
     ...updates,
@@ -190,25 +195,26 @@ export async function updateCollege(identifier: string, updates: Partial<College
     lastVerified: updates.lastVerified || `Edited on ${new Date().toLocaleDateString('en-IN')}`,
   };
 
-  dataset[index] = updated;
-  writeLiveDataset(dataset);
-
-  // Sync to PostgreSQL if connected
-  try {
-    await db.college.updateMany({
-      where: {
-        OR: [{ id: existing.id }, { slug: existing.slug }],
-      },
-      data: {
-        name: updated.name,
-        city: updated.city,
-        state: updated.state,
-        fees: updated.fees,
-        rating: updated.rating,
-        overview: updated.overview,
-      },
-    });
-  } catch {}
+  // Upsert into CollegeOverride in PostgreSQL
+  if (process.env.DATABASE_URL) {
+    try {
+      await db.collegeOverride.upsert({
+        where: { collegeId: existing.id },
+        create: {
+          collegeId: existing.id,
+          data: updated as any,
+        },
+        update: {
+          data: updated as any,
+        },
+      });
+    } catch (err) {
+      console.warn('Failed to upsert CollegeOverride in DB, saving in-memory:', err);
+      devOverrides.set(existing.id, updated);
+    }
+  } else {
+    devOverrides.set(existing.id, updated);
+  }
 
   return updated;
 }

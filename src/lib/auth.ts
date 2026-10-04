@@ -3,6 +3,17 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import { findUserByEmail, updateLastLogin } from '@/lib/userStore';
 
+export function getAuthSecret(): string {
+  const secret = process.env.NEXTAUTH_SECRET;
+  if (!secret) {
+    if (process.env.NODE_ENV !== 'production' || process.env.NEXT_PHASE === 'phase-production-build') {
+      return 'development-secret-key-32-chars-minimum-length';
+    }
+    throw new Error('NEXTAUTH_SECRET environment variable is missing in production');
+  }
+  return secret;
+}
+
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -67,9 +78,12 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET || 'development-secret-key-32-chars-minimum-length',
+  secret: getAuthSecret(),
 };
 
 export function getSession() {
+  if (!process.env.NEXTAUTH_SECRET && process.env.NODE_ENV === 'production') {
+    throw new Error('NEXTAUTH_SECRET environment variable is missing in production');
+  }
   return getServerSession(authOptions);
 }
