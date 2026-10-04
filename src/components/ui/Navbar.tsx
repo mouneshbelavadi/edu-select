@@ -78,7 +78,7 @@ export const Navbar: React.FC = () => {
     { href: '/colleges', label: 'Colleges' },
     { href: '/careers', label: 'Careers' },
     { href: '/pathways', label: 'Pathways' },
-    { href: '/states', label: 'Exams' },
+    { href: '/states', label: 'Engineering Colleges by State' },
     { href: '/compare', label: 'Compare', count: selectedColleges.length },
     { href: '/kcet-2026-predictor', label: 'KCET Predictor', highlight: true },
     { href: '/ai-counsellor', label: 'AI Counsellor', pill: 'AI' },
@@ -166,7 +166,7 @@ export const Navbar: React.FC = () => {
               </button>
 
               {isExploreOpen && (
-                <div className="absolute top-full left-0 pt-1.5 w-48 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                <div className="absolute top-full left-0 pt-1.5 w-56 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
                   <div className="bg-white border border-[#E2E8F0] rounded-[12px] shadow-lg shadow-blue-950/10 py-1.5 overflow-hidden">
                     <Link
                       href="/careers"
@@ -199,7 +199,7 @@ export const Navbar: React.FC = () => {
                           : 'text-[#475569] hover:text-[#0F172A] hover:bg-slate-50'
                       }`}
                     >
-                      Entrance Exams
+                      Engineering Colleges by State
                     </Link>
                   </div>
                 </div>
