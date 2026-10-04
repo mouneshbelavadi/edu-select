@@ -20,6 +20,21 @@ export async function GET(request: NextRequest) {
       }
     });
 
+    // Normalize friendly level slugs to schema IDs
+    const LEVEL_SLUG_MAP: Record<string, string> = {
+      '10th': 'CLASS_10',
+      '12th': 'CLASS_12',
+      'iti': 'ITI',
+      'diploma': 'DIPLOMA',
+      'btech': 'UG_ENGG',
+      'degree': 'UG_OTHER',
+      'professional': 'PROFESSIONAL',
+      'pg': 'PG',
+    };
+    if (rawParams.level && LEVEL_SLUG_MAP[rawParams.level.toLowerCase()]) {
+      rawParams.level = LEVEL_SLUG_MAP[rawParams.level.toLowerCase()];
+    }
+
     const parsed = careerSearchQuerySchema.safeParse(rawParams);
     if (!parsed.success) {
       return NextResponse.json(

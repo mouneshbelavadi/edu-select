@@ -1,127 +1,195 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { CareerCard as CareerCardType } from '@/types/careerData';
+import { HeartIcon } from '@/components/ui/Icons';
+import toast from 'react-hot-toast';
 
-interface CareerCardProps {
+interface CareerCardComponentProps {
   card: CareerCardType;
+  selectedSubjects?: string[];
+  selectedInterests?: string[];
 }
 
-export const CareerCardComponent: React.FC<CareerCardProps> = ({ card }) => {
-  const kindBadgeConfig = {
-    pathway: { label: 'Course / Pathway', bg: 'bg-indigo-50 text-indigo-700 border-indigo-200' },
-    branch: { label: 'Engineering Branch', bg: 'bg-blue-50 text-blue-700 border-blue-200' },
-    degree: { label: 'Degree / Career', bg: 'bg-purple-50 text-purple-700 border-purple-200' },
-    govtJob: { label: 'Government Job', bg: 'bg-emerald-50 text-emerald-800 border-emerald-200' },
-  }[card.kind];
+export function formatCostInLakhs(cost?: { min: number; max: number } | null): string {
+  if (!cost || (cost.min === 0 && cost.max === 0)) {
+    return 'Varies by college';
+  }
 
-  const outlookBadgeConfig = {
-    GROWING: { label: 'Growing Demand', bg: 'bg-emerald-50 text-emerald-800 border-emerald-200', icon: '↗' },
-    STABLE: { label: 'Stable Outlook', bg: 'bg-sky-50 text-sky-800 border-sky-200', icon: '→' },
-    DECLINING: { label: 'Declining / Shifting', bg: 'bg-amber-50 text-amber-800 border-amber-200', icon: '↘' },
-  }[card.outlook] || { label: card.outlook, bg: 'bg-slate-50 text-slate-700 border-slate-200', icon: '•' };
+  const formatLakh = (val: number) => {
+    const inLakhs = val / 100000;
+    if (inLakhs >= 1) {
+      return `₹${inLakhs % 1 === 0 ? inLakhs.toFixed(0) : inLakhs.toFixed(1)} L`;
+    }
+    // If under 1 Lakh, express as ₹0.5 L or ₹50,000
+    return `₹${(val / 1000).toFixed(0)}k`;
+  };
+
+  const minStr = formatLakh(cost.min);
+  const maxStr = formatLakh(cost.max);
+
+  if (minStr === maxStr) {
+    return minStr;
+  }
+  return `${minStr} – ${maxStr}`;
+}
+
+export const CareerCardComponent: React.FC<CareerCardComponentProps> = ({
+  card,
+  selectedSubjects = [],
+  selectedInterests = [],
+}) => {
+  const [isSaved, setIsSaved] = useState(false);
+
+  // Check saved state from localStorage on mount
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('saved_careers') || '[]');
+      setIsSaved(saved.includes(card.id));
+    } catch {
+      // Ignore storage errors
+    }
+  }, [card.id]);
+
+  const handleToggleSave = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      const saved: string[] = JSON.parse(localStorage.getItem('saved_careers') || '[]');
+      let next: string[];
+      if (saved.includes(card.id)) {
+        next = saved.filter((id) => id !== card.id);
+        setIsSaved(false);
+        toast.success(`Removed ${card.title} from My Roadmap`);
+      } else {
+        next = [...saved, card.id];
+        setIsSaved(true);
+        toast.success(`Saved ${card.title} to My Roadmap`);
+      }
+      localStorage.setItem('saved_careers', JSON.stringify(next));
+    } catch {
+      toast.error('Unable to save career item');
+    }
+  };
+
+  // 1. Category Tag
+  const categoryLabel = (() => {
+    if (card.clusterName) return card.clusterName;
+    if (card.kind === 'branch') return 'Engineering Branch';
+    if (card.kind === 'govtJob') return 'Government Job';
+    if (card.kind === 'degree') return 'Degree & Career';
+    return 'Course & Pathway';
+  })();
+
+  // 2. Outlook Tag
+  const outlookConfig = {
+    GROWING: { label: 'Growing ↑', className: 'text-emerald-700 bg-emerald-50 border-emerald-200' },
+    STABLE: { label: 'Stable →', className: 'text-slate-700 bg-slate-100 border-slate-200' },
+    DECLINING: { label: 'Declining ↓', className: 'text-amber-800 bg-amber-50 border-amber-200' },
+  }[card.outlook] || { label: 'Stable →', className: 'text-slate-700 bg-slate-100 border-slate-200' };
+
+  // 3. Match line in teal (only matching subjects user selected)
+  const matchingParts = selectedSubjects.filter((subj) => {
+    const s = subj.toLowerCase();
+    const titleMatch = card.title.toLowerCase().includes(s);
+    const subtitleMatch = (card.subtitle || '').toLowerCase().includes(s);
+    const subjectListMatch = card.subjectMatches?.some((m) => m.toLowerCase().includes(s));
+    return titleMatch || subtitleMatch || subjectListMatch;
+  });
+
+  const costFormatted = formatCostInLakhs(card.totalCostINR);
+  const detailUrl = `/careers/${card.kind}/${encodeURIComponent(card.id)}`;
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 hover:border-blue-400 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between gap-4 group">
+    <div className="group relative bg-white rounded-[12px] border border-[#E2E8F0] hover:border-[#CBD5E1] hover:shadow-sm transition-all duration-150 flex flex-col justify-between h-full p-5">
+      <Link href={detailUrl} className="absolute inset-0 z-10" aria-label={`View roadmap for ${card.title}`} />
+
       <div className="flex flex-col gap-3">
-        {/* Top Header: Kind & Outlook */}
-        <div className="flex items-center justify-between gap-2 flex-wrap">
-          <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${kindBadgeConfig.bg}`}>
-            {kindBadgeConfig.label}
-          </span>
-          <span
-            className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold border flex items-center gap-1 ${outlookBadgeConfig.bg}`}
-            title="Market outlook based on WEF and national employment trends"
+        {/* Top Row: Category tag, Outlook tag, Save Heart */}
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span className="px-2.5 py-0.5 rounded-[6px] text-xs font-semibold bg-slate-100 text-[#0F172A] border border-[#E2E8F0]">
+              {categoryLabel}
+            </span>
+            <span className={`px-2 py-0.5 rounded-[6px] text-xs font-semibold border ${outlookConfig.className}`}>
+              {outlookConfig.label}
+            </span>
+          </div>
+
+          <button
+            type="button"
+            onClick={handleToggleSave}
+            className="relative z-20 p-1.5 rounded-full hover:bg-slate-100 text-[#64748B] hover:text-rose-600 transition-colors focus-visible:outline-2 focus-visible:outline-[#1D4ED8]"
+            title={isSaved ? 'Remove from My Roadmap' : 'Save to My Roadmap'}
+            aria-label={isSaved ? 'Remove from My Roadmap' : 'Save to My Roadmap'}
           >
-            <span>{outlookBadgeConfig.icon}</span>
-            <span>{outlookBadgeConfig.label}</span>
-          </span>
+            <HeartIcon
+              className={`w-4 h-4 transition-colors ${
+                isSaved ? 'text-rose-600 fill-rose-600' : 'text-[#64748B]'
+              }`}
+            />
+          </button>
         </div>
 
         {/* Title & Subtitle */}
         <div>
-          <h3 className="font-extrabold text-base text-slate-900 group-hover:text-blue-600 transition-colors leading-snug">
+          <h3 className="text-base font-bold text-[#0F172A] group-hover:text-[#1D4ED8] transition-colors line-clamp-2 leading-snug">
             {card.title}
           </h3>
-          <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+          <p className="mt-1 text-sm text-[#475569] line-clamp-1 leading-relaxed">
             {card.subtitle}
           </p>
         </div>
 
-        {/* Metric Badges: Duration, Cost, Salary */}
-        <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-xs">
-          {/* Duration */}
-          <div className="flex flex-col">
-            <span className="text-[10px] text-slate-400 font-semibold uppercase">Duration / Age</span>
-            <span className="font-bold text-slate-800 text-xs">{card.durationText}</span>
+        {/* Match Line in Teal (only shown when user selected matching subjects) */}
+        {matchingParts.length > 0 && (
+          <div className="text-xs font-semibold text-[#0D9488]">
+            Matches your {matchingParts.join(', ')}
           </div>
+        )}
 
-          {/* Salary or Cost */}
-          {card.entrySalaryLPA ? (
-            <div className="flex flex-col">
-              <span className="text-[10px] text-slate-400 font-semibold uppercase flex items-center gap-1">
-                Entry Pay
-                {card.isEstimate && (
-                  <span className="px-1 py-0.2 rounded text-[9px] bg-amber-100 text-amber-800 font-bold">
-                    Est.
-                  </span>
-                )}
-              </span>
-              <span className="font-extrabold text-emerald-700 text-xs">
-                ₹{card.entrySalaryLPA.min}–₹{card.entrySalaryLPA.max} LPA
-              </span>
-            </div>
-          ) : card.totalCostINR ? (
-            <div className="flex flex-col">
-              <span className="text-[10px] text-slate-400 font-semibold uppercase flex items-center gap-1">
-                Total Est. Cost
-                {card.isEstimate && (
-                  <span className="px-1 py-0.2 rounded text-[9px] bg-amber-100 text-amber-800 font-bold">
-                    Est.
-                  </span>
-                )}
-              </span>
-              <span className="font-extrabold text-indigo-700 text-xs">
-                ₹{(card.totalCostINR.min / 1000).toFixed(0)}k–₹{(card.totalCostINR.max / 100000).toFixed(1)}L
-              </span>
-            </div>
-          ) : (
-            <div className="flex flex-col">
-              <span className="text-[10px] text-slate-400 font-semibold uppercase">Cost Structure</span>
-              <span className="font-medium text-slate-500 text-xs">Standard State Quota</span>
-            </div>
-          )}
+        {/* Two Facts: Duration & Estimated Cost */}
+        <div className="grid grid-cols-2 gap-2 pt-2 border-t border-[#E2E8F0] text-sm">
+          <div className="flex flex-col">
+            <span className="text-xs font-medium text-[#64748B]">Duration</span>
+            <span className="font-semibold text-[#0F172A]">{card.durationText || 'Standard'}</span>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-xs font-medium text-[#64748B]">Estimated Cost</span>
+            <span className="font-semibold text-[#0F172A]">{costFormatted}</span>
+          </div>
         </div>
 
-        {/* Exams chips */}
+        {/* Entrance Exams as small tags */}
         {card.examNames && card.examNames.length > 0 && (
-          <div className="flex items-center gap-1.5 flex-wrap pt-1">
-            <span className="text-[10px] text-slate-400 font-semibold">Exams:</span>
+          <div className="flex items-center gap-1.5 flex-wrap pt-1 text-xs">
+            <span className="text-[#64748B] font-medium">Exams:</span>
             {card.examNames.slice(0, 3).map((exam, i) => (
               <span
                 key={i}
-                className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200"
+                className="px-2 py-0.5 rounded-[4px] bg-slate-50 border border-[#E2E8F0] text-[#0F172A] font-medium text-[11px]"
               >
                 {exam}
               </span>
             ))}
             {card.examNames.length > 3 && (
-              <span className="text-[10px] text-slate-400 font-semibold">
-                +{card.examNames.length - 3}
+              <span className="text-[11px] text-[#64748B] font-medium">
+                +{card.examNames.length - 3} more
               </span>
             )}
           </div>
         )}
       </div>
 
-      {/* Footer Button */}
-      <div className="pt-2 border-t border-slate-100">
-        <Link
-          href={`/careers/${card.kind}/${card.id}`}
-          className="w-full py-2.5 px-3 bg-blue-50 hover:bg-blue-600 text-blue-700 hover:text-white text-xs font-bold rounded-xl text-center transition-colors flex items-center justify-center gap-1 shadow-xs"
-        >
-          <span>Explore Career Pathway</span>
-          <span>→</span>
-        </Link>
+      {/* Button & Data Credibility Footnote */}
+      <div className="mt-4 pt-3 border-t border-[#E2E8F0] flex items-center justify-between text-xs">
+        <span className="text-[11px] text-[#64748B]">
+          Source: Official Portals · 2025
+        </span>
+        <span className="font-semibold text-[#1D4ED8] group-hover:underline flex items-center gap-1">
+          View roadmap →
+        </span>
       </div>
     </div>
   );
