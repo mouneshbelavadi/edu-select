@@ -1402,6 +1402,52 @@
       "frequency": "Twice a year (May and December cycles)",
       "officialSite": "https://www.pmrf.in",
       "note": "Monthly stipend ₹70,000–₹80,000 + ₹2 Lakhs annual research contingency grant (₹10 Lakhs total)"
+    },
+    {
+      "id": "ielts",
+      "name": "IELTS Academic (International English Language Testing System)",
+      "conductingBody": "British Council & IDP Education",
+      "type": "eligibility-test",
+      "forLevels": [
+        "UG_ENGG",
+        "UG_OTHER",
+        "PROFESSIONAL",
+        "PG"
+      ],
+      "purpose": "English language proficiency requirement for international admissions, APS Germany, and global licensure",
+      "eligibility": "Open to all students and professionals",
+      "frequency": "Multiple test dates every month",
+      "officialSite": "https://www.ielts.org",
+      "note": "Band 6.5–7.5 typically required for Germany, UK NHS, and North American universities"
+    },
+    {
+      "id": "gre",
+      "name": "GRE (Graduate Record Examinations)",
+      "conductingBody": "Educational Testing Service (ETS)",
+      "type": "entrance",
+      "forLevels": [
+        "UG_ENGG",
+        "UG_OTHER"
+      ],
+      "purpose": "Graduate school admission test for Master's and PhD programs globally",
+      "eligibility": "Undergraduate degree or in final year",
+      "frequency": "Year-round computer-delivered test",
+      "officialSite": "https://www.ets.org/gre",
+      "note": "Assesses verbal reasoning, quantitative reasoning, and analytical writing"
+    },
+    {
+      "id": "dcet",
+      "name": "DCET (Karnataka Diploma Common Entrance Test)",
+      "conductingBody": "Karnataka Examinations Authority (KEA)",
+      "type": "entrance",
+      "forLevels": [
+        "DIPLOMA"
+      ],
+      "purpose": "Lateral entry admission to 2nd year / 3rd semester B.E./B.Tech courses in Karnataka engineering colleges",
+      "eligibility": "Pass in 3-year Diploma in Engineering with at least 45% aggregate (40% for reserved categories)",
+      "frequency": "Annually (May / June)",
+      "officialSite": "https://cetonline.karnataka.gov.in/kea",
+      "note": "State-level entrance enabling polytechnic and GTTC diploma holders to transition into engineering degrees"
     }
   ]
 }

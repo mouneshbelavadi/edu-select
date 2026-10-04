@@ -177,8 +177,8 @@ export async function POST(request: NextRequest) {
         }
       }
     }
-
-    const careerTitle = detail?.item?.name || detail?.item?.qualification || detail?.item?.exam || title;
+    const rawItem = detail?.item as any;
+    const careerTitle = rawItem?.name || rawItem?.qualification || rawItem?.exam || title;
     const fallbackRoadmap = detail ? buildFallbackRoadmap(detail, careerTitle) : buildGenericRoadmap(careerTitle);
 
     if (!isGeminiConfigured()) {
