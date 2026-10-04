@@ -99,9 +99,11 @@ export default function AiCounsellorPage() {
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<AiResponseData | null>(null);
 
-  // Roadmap State
-  const [roadmapItem, setRoadmapItem] = useState<RoadmapData | null>(null);
+  // Roadmap State per item
+  const [roadmapsByItem, setRoadmapsByItem] = useState<Record<string, RoadmapData>>({});
+  const [expandedRoadmapIds, setExpandedRoadmapIds] = useState<Record<string, boolean>>({});
   const [loadingRoadmapId, setLoadingRoadmapId] = useState<string | null>(null);
+  const [roadmapError, setRoadmapError] = useState<Record<string, string>>({});
 
   const handleSubjectToggle = (subj: string) => {
     setSelectedSubjects((prev) =>
@@ -119,7 +121,9 @@ export default function AiCounsellorPage() {
     if (e) e.preventDefault();
     setIsLoading(true);
     setError(null);
-    setRoadmapItem(null);
+    setRoadmapsByItem({});
+    setExpandedRoadmapIds({});
+    setRoadmapError({});
 
     try {
       const fullPrompt = `Student Profile:
@@ -160,24 +164,153 @@ Student Dilemma & Goal:
     }
   };
 
-  const handleGenerateRoadmap = async (kind: string, id: string) => {
+  const handleToggleRoadmap = async (item: Recommendation) => {
+    const id = item.itemId;
+
+    // If currently open, toggle collapse
+    if (expandedRoadmapIds[id]) {
+      setExpandedRoadmapIds((prev) => ({ ...prev, [id]: false }));
+      return;
+    }
+
+    // If already generated, toggle open immediately
+    if (roadmapsByItem[id]) {
+      setExpandedRoadmapIds((prev) => ({ ...prev, [id]: true }));
+      return;
+    }
+
+    // Otherwise fetch from server
     setLoadingRoadmapId(id);
+    setRoadmapError((prev) => ({ ...prev, [id]: '' }));
+
     try {
       const res = await fetch('/api/careers/ai/roadmap', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ kind, id }),
+        body: JSON.stringify({
+          kind: item.kind,
+          id: item.itemId,
+          itemId: item.itemId,
+          title: item.title,
+        }),
       });
+
       const json = await res.json();
       if (res.ok && json.data) {
-        setRoadmapItem(json.data);
+        setRoadmapsByItem((prev) => ({ ...prev, [id]: json.data }));
+        setExpandedRoadmapIds((prev) => ({ ...prev, [id]: true }));
+      } else {
+        throw new Error(json.error || 'Failed to generate roadmap');
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Failed to generate roadmap:', err);
+      setRoadmapError((prev) => ({
+        ...prev,
+        [id]: err.message || 'Unable to generate roadmap right now. Please try again.',
+      }));
     } finally {
       setLoadingRoadmapId(null);
     }
   };
+
+  function getRecommendationCollegeAction(item: Recommendation): { href: string; label: string } {
+    const kind = (item.kind || '').toLowerCase();
+    const id = (item.itemId || '').toLowerCase();
+    const title = item.title || '';
+    const lowerTitle = title.toLowerCase();
+
+    // Government Jobs / Civil Services
+    if (
+      kind === 'govtjob' ||
+      id.startsWith('govt-') ||
+      lowerTitle.includes('upsc') ||
+      lowerTitle.includes('isro') ||
+      lowerTitle.includes('railway') ||
+      lowerTitle.includes('civil services') ||
+      lowerTitle.includes('ssc cgl')
+    ) {
+      return {
+        href: `/careers?q=${encodeURIComponent(title)}`,
+        label: 'View Exam & Eligibility Details →',
+      };
+    }
+
+    // General B.E. / B.Tech / Engineering Degree
+    if (
+      lowerTitle === 'b.e. / b.tech (engineering)' ||
+      lowerTitle === 'bachelor of engineering' ||
+      lowerTitle === 'bachelor of technology' ||
+      id === 'b-btech' ||
+      id === 'deg-btech'
+    ) {
+      return {
+        href: '/colleges',
+        label: 'Explore 455 Engineering Colleges →',
+      };
+    }
+
+    // Branch matching
+    if (lowerTitle.includes('computer') || lowerTitle.includes('cse') || id.includes('cse')) {
+      return {
+        href: '/colleges?branch=CSE',
+        label: 'View Colleges Offering CSE →',
+      };
+    }
+    if (lowerTitle.includes('information tech') || lowerTitle.includes('it') || id.includes('it')) {
+      return {
+        href: '/colleges?branch=IT',
+        label: 'View Colleges Offering IT →',
+      };
+    }
+    if (lowerTitle.includes('electronics') || lowerTitle.includes('ece') || id.includes('ece')) {
+      return {
+        href: '/colleges?branch=ECE',
+        label: 'View Colleges Offering ECE →',
+      };
+    }
+    if (lowerTitle.includes('mechanical') || lowerTitle.includes('mech') || id.includes('mech')) {
+      return {
+        href: '/colleges?branch=MECH',
+        label: 'View Colleges Offering Mechanical →',
+      };
+    }
+    if (lowerTitle.includes('civil') || id.includes('civil')) {
+      return {
+        href: '/colleges?branch=CIVIL',
+        label: 'View Colleges Offering Civil →',
+      };
+    }
+    if (lowerTitle.includes('electrical') || lowerTitle.includes('eee') || id.includes('eee')) {
+      return {
+        href: '/colleges?branch=EEE',
+        label: 'View Colleges Offering Electrical →',
+      };
+    }
+    if (
+      lowerTitle.includes('artificial intelligence') ||
+      lowerTitle.includes('data science') ||
+      lowerTitle.includes('ai & ds') ||
+      lowerTitle.includes('ai/ds') ||
+      id.includes('ai')
+    ) {
+      return {
+        href: '/colleges?branch=AI',
+        label: 'View Colleges Offering AI & DS →',
+      };
+    }
+
+    // Clean title for search
+    const cleanTitle = title
+      .replace(/^b\.tech\s*(in)?/i, '')
+      .replace(/^b\.e\.\s*(in)?/i, '')
+      .replace(/\(.*?\)/g, '')
+      .trim();
+
+    return {
+      href: `/colleges?search=${encodeURIComponent(cleanTitle || title)}`,
+      label: 'View Colleges Offering This →',
+    };
+  }
 
   const handlePrint = () => {
     window.print();
@@ -578,94 +711,147 @@ Student Dilemma & Goal:
                       </div>
                     )}
 
-                    {/* Action Links */}
-                    <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-100">
-                      <Link
-                        href={`/colleges?search=${encodeURIComponent(item.title.replace('B.Tech in ', ''))}`}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-800"
-                      >
-                        <BuildingLibraryIcon className="w-3.5 h-3.5" />
-                        <span>View Colleges Offering This →</span>
-                      </Link>
+                    {/* Action Links & Inline Roadmap */}
+                    {(() => {
+                      const collegeAction = getRecommendationCollegeAction(item);
+                      const isExpanded = Boolean(expandedRoadmapIds[item.itemId]);
+                      const isLoadingRoadmap = loadingRoadmapId === item.itemId;
+                      const hasRoadmap = Boolean(roadmapsByItem[item.itemId]);
 
-                      <button
-                        type="button"
-                        onClick={() => handleGenerateRoadmap(item.kind, item.itemId)}
-                        disabled={loadingRoadmapId === item.itemId}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg shadow-xs transition-colors cursor-pointer disabled:opacity-50"
-                      >
-                        {loadingRoadmapId === item.itemId ? (
-                          <>
-                            <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                            <span>Building Roadmap...</span>
-                          </>
-                        ) : (
-                          <>
-                            <SparklesIcon className="w-3.5 h-3.5 text-blue-400" />
-                            <span>Generate 4-Year Roadmap</span>
-                          </>
-                        )}
-                      </button>
-                    </div>
+                      return (
+                        <>
+                          <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-100">
+                            <Link
+                              href={collegeAction.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors"
+                            >
+                              <BuildingLibraryIcon className="w-3.5 h-3.5 shrink-0" />
+                              <span>{collegeAction.label}</span>
+                            </Link>
+
+                            <button
+                              type="button"
+                              onClick={() => handleToggleRoadmap(item)}
+                              disabled={isLoadingRoadmap}
+                              className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg shadow-xs transition-colors cursor-pointer disabled:opacity-50 ${
+                                isExpanded
+                                  ? 'bg-blue-100 text-blue-900 border border-blue-300 hover:bg-blue-200'
+                                  : 'bg-slate-900 hover:bg-slate-800 text-white'
+                              }`}
+                            >
+                              {isLoadingRoadmap ? (
+                                <>
+                                  <div className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                                  <span>Building Roadmap...</span>
+                                </>
+                              ) : isExpanded ? (
+                                <>
+                                  <span>Hide 4-Year Roadmap ✕</span>
+                                </>
+                              ) : hasRoadmap ? (
+                                <>
+                                  <SparklesIcon className="w-3.5 h-3.5 text-blue-400" />
+                                  <span>View 4-Year Roadmap →</span>
+                                </>
+                              ) : (
+                                <>
+                                  <SparklesIcon className="w-3.5 h-3.5 text-blue-400" />
+                                  <span>Generate 4-Year Roadmap</span>
+                                </>
+                              )}
+                            </button>
+                          </div>
+
+                          {/* Inline Roadmap Section (Unfolds smoothly inside this card) */}
+                          {isExpanded && roadmapsByItem[item.itemId] && (
+                            <div className="mt-2 pt-4 border-t border-blue-100 flex flex-col gap-4 animate-in fade-in slide-in-from-top-2 duration-200">
+                              <div className="flex items-center justify-between bg-blue-50/70 p-3 rounded-xl border border-blue-100">
+                                <div className="flex items-center gap-2">
+                                  <SparklesIcon className="w-4 h-4 text-blue-600 shrink-0" />
+                                  <span className="text-xs font-black text-blue-950">
+                                    4-Phase Progression Plan: {roadmapsByItem[item.itemId].careerTitle}
+                                  </span>
+                                </div>
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    setExpandedRoadmapIds((prev) => ({ ...prev, [item.itemId]: false }))
+                                  }
+                                  className="text-[11px] font-bold text-slate-500 hover:text-slate-800 px-2 py-0.5 rounded hover:bg-white transition-colors"
+                                >
+                                  Hide ✕
+                                </button>
+                              </div>
+
+                              {roadmapsByItem[item.itemId].ultimateGoal && (
+                                <div className="p-3 bg-indigo-50/70 border border-indigo-100 rounded-xl text-xs font-medium text-indigo-900">
+                                  <strong className="text-indigo-950">Career Culmination:</strong>{' '}
+                                  {roadmapsByItem[item.itemId].ultimateGoal}
+                                </div>
+                              )}
+
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                {roadmapsByItem[item.itemId].phases.map((phase, pIdx) => (
+                                  <div
+                                    key={pIdx}
+                                    className="p-3.5 rounded-xl border border-slate-200 bg-slate-50/60 flex flex-col gap-2 hover:border-blue-300 transition-colors"
+                                  >
+                                    <div className="text-[11px] font-black text-blue-700 uppercase tracking-wide">
+                                      {phase.yearOrPhase}
+                                    </div>
+                                    <div className="text-xs font-bold text-slate-900">{phase.focus}</div>
+
+                                    <div className="flex flex-col gap-1 mt-1 text-[11px]">
+                                      <span className="font-bold text-slate-500 uppercase text-[10px]">
+                                        Milestones:
+                                      </span>
+                                      <ul className="flex flex-col gap-1 text-slate-600">
+                                        {phase.keyMilestones.map((m, mIdx) => (
+                                          <li key={mIdx} className="flex items-start gap-1.5">
+                                            <span className="text-blue-500 font-bold shrink-0">▸</span>
+                                            <span>{m}</span>
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
+
+                                    {phase.skillsOrCertifications && phase.skillsOrCertifications.length > 0 && (
+                                      <div className="flex flex-wrap gap-1 mt-1">
+                                        {phase.skillsOrCertifications.map((s, sIdx) => (
+                                          <span
+                                            key={sIdx}
+                                            className="px-2 py-0.5 rounded-md bg-white border border-slate-200 text-slate-700 font-medium text-[10px]"
+                                          >
+                                            {s}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    )}
+
+                                    {phase.tips && (
+                                      <div className="mt-auto pt-2 border-t border-slate-200/60 text-[10px] text-slate-500 italic">
+                                        <strong>Strategy:</strong> {phase.tips}
+                                      </div>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {roadmapError[item.itemId] && (
+                            <div className="mt-2 p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-medium">
+                              {roadmapError[item.itemId]}
+                            </div>
+                          )}
+                        </>
+                      );
+                    })()}
                   </div>
                 ))}
               </div>
-
-              {/* 4-Phase Progression Roadmap Modal / Panel */}
-              {roadmapItem && (
-                <div className="bg-white rounded-3xl p-6 sm:p-7 border-2 border-blue-500 shadow-md flex flex-col gap-5 animate-in slide-in-from-bottom duration-300">
-                  <div className="flex items-start justify-between border-b border-slate-100 pb-3">
-                    <div>
-                      <div className="inline-flex items-center gap-1 text-[11px] font-bold text-blue-600 uppercase">
-                        <SparklesIcon className="w-3.5 h-3.5" />
-                        <span>4-Phase Career Roadmap</span>
-                      </div>
-                      <h4 className="text-lg font-black text-slate-900 mt-0.5">
-                        Progression Plan: {roadmapItem.careerTitle}
-                      </h4>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setRoadmapItem(null)}
-                      className="text-xs font-bold text-slate-400 hover:text-slate-600 px-2 py-1"
-                    >
-                      Close ✕
-                    </button>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {roadmapItem.phases.map((phase, pIdx) => (
-                      <div
-                        key={pIdx}
-                        className="p-4 rounded-xl border border-slate-200 bg-slate-50/70 flex flex-col gap-2"
-                      >
-                        <div className="text-xs font-extrabold text-blue-700">{phase.yearOrPhase}</div>
-                        <div className="text-xs font-bold text-slate-800">{phase.focus}</div>
-                        
-                        <div className="flex flex-col gap-1 mt-1 text-[11px]">
-                          <span className="font-semibold text-slate-500">Key Milestones:</span>
-                          <ul className="list-disc list-inside text-slate-600 space-y-0.5">
-                            {phase.keyMilestones.map((m, mIdx) => (
-                              <li key={mIdx}>{m}</li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        {phase.tips && (
-                          <div className="text-[10px] text-slate-500 italic mt-auto pt-2 border-t border-slate-200/60">
-                            Tip: {phase.tips}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="p-3 bg-blue-50 rounded-xl border border-blue-200 text-xs text-blue-900 font-semibold flex items-center gap-2">
-                    <SparklesIcon className="w-4 h-4 text-blue-600 shrink-0" />
-                    <span>Ultimate Career Culmination: {roadmapItem.ultimateGoal}</span>
-                  </div>
-                </div>
-              )}
 
               {/* Strategic Questions for Parents & Human Counselors */}
               {result.questionsToAskCounsellor && result.questionsToAskCounsellor.length > 0 && (

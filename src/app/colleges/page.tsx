@@ -80,6 +80,11 @@ function CollegeListingContent() {
   const [searchInput, setSearchInput] = useState(paramSearch);
   const debouncedSearch = useDebounce(searchInput, 400);
 
+  // Sync external URL parameter changes to input box
+  useEffect(() => {
+    setSearchInput(paramSearch);
+  }, [paramSearch]);
+
   // Sync debounced search input to URL
   useEffect(() => {
     if (debouncedSearch !== paramSearch) {

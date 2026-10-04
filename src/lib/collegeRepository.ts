@@ -147,22 +147,49 @@ export async function getColleges(params: CollegeQueryInput) {
   let filtered = [...dataset];
 
   if (search) {
-    const q = search.toLowerCase();
-    filtered = filtered.filter(
-      (c) =>
-        (c.name && c.name.toLowerCase().includes(q)) ||
-        (c.city && c.city.toLowerCase().includes(q)) ||
-        (c.state && c.state.toLowerCase().includes(q)) ||
-        (c.typeDetail && c.typeDetail.toLowerCase().includes(q)) ||
-        (c.affiliation && c.affiliation.toLowerCase().includes(q)) ||
-        (c.overview && c.overview.toLowerCase().includes(q)) ||
-        (c.entranceExams && c.entranceExams.some((e) => e.exam?.toLowerCase().includes(q) || e.code?.toLowerCase().includes(q))) ||
-        (c.admissionRoutes && c.admissionRoutes.some((r) => r.toLowerCase().includes(q))) ||
-        (c.courses && c.courses.some((course) =>
-          course.name.toLowerCase().includes(q) ||
-          (course.branchCode && course.branchCode.toLowerCase().includes(q))
-        ))
-    );
+    const rawQ = search.toLowerCase().trim();
+    const cleanQ = rawQ.replace(/[/(),.-]/g, ' ').replace(/\s+/g, ' ').trim();
+    const words = cleanQ.split(' ').filter((w) => w.length > 1);
+
+    filtered = filtered.filter((c) => {
+      const searchableParts = [
+        c.name,
+        c.city,
+        c.state,
+        c.type,
+        c.typeDetail,
+        c.affiliation,
+        c.overview,
+        ...(c.entranceExams?.map((e) => `${e.exam} ${e.code}`) || []),
+        ...(c.admissionRoutes || []),
+        ...(c.courses?.map((crs) => `${crs.name} ${crs.branchCode}`) || []),
+      ];
+      const searchableText = searchableParts.filter(Boolean).join(' ').toLowerCase();
+
+      // 1. Direct match on raw query or cleaned query
+      if (searchableText.includes(rawQ) || searchableText.includes(cleanQ)) {
+        return true;
+      }
+
+      // 2. Generic B.E. / B.Tech / Engineering matches all engineering colleges
+      if (
+        (rawQ.includes('b.e.') || rawQ.includes('b.tech') || rawQ.includes('bachelor of technology') || rawQ === 'engineering') &&
+        !rawQ.includes('computer') &&
+        !rawQ.includes('mechanical') &&
+        !rawQ.includes('civil') &&
+        !rawQ.includes('electrical') &&
+        !rawQ.includes('electronics')
+      ) {
+        return Boolean(c.courses && c.courses.length > 0);
+      }
+
+      // 3. Multi-word token match (e.g. "Computer Science", "Artificial Intelligence")
+      if (words.length > 0 && words.every((w) => searchableText.includes(w))) {
+        return true;
+      }
+
+      return false;
+    });
   }
 
   if (city) {
