@@ -106,8 +106,8 @@ export const CareerCardComponent: React.FC<CareerCardComponentProps> = ({
       <Link href={detailUrl} className="absolute inset-0 z-10" aria-label={`View roadmap for ${card.title}`} />
 
       <div className="flex flex-col gap-3">
-        {/* Top Row: Category tag, Outlook tag, Save Heart */}
-        <div className="flex items-center justify-between gap-2">
+        {/* Top Row: Category tag, Outlook tag, Special Badges, Save Heart */}
+        <div className="flex items-start justify-between gap-2">
           <div className="flex items-center gap-1.5 flex-wrap">
             <span className="px-2.5 py-0.5 rounded-[6px] text-xs font-semibold bg-slate-100 text-[#0F172A] border border-[#E2E8F0]">
               {categoryLabel}
@@ -115,6 +115,26 @@ export const CareerCardComponent: React.FC<CareerCardComponentProps> = ({
             <span className={`px-2 py-0.5 rounded-[6px] text-xs font-semibold border ${outlookConfig.className}`}>
               {outlookConfig.label}
             </span>
+            {card.globalShortage && (
+              <span className="px-2 py-0.5 rounded-[6px] text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200">
+                Global Talent Deficit ⚡
+              </span>
+            )}
+            {card.globalMobility && (
+              <span className="px-2 py-0.5 rounded-[6px] text-xs font-semibold bg-blue-50 text-[#1D4ED8] border border-blue-200">
+                {card.globalMobility.target_country} Licensure
+              </span>
+            )}
+            {card.industrialLinkage && (
+              <span className="px-2 py-0.5 rounded-[6px] text-xs font-semibold bg-teal-50 text-[#0D9488] border border-teal-200">
+                Karnataka Skill 2025–32
+              </span>
+            )}
+            {card.ncrfLevel && (
+              <span className="px-2 py-0.5 rounded-[6px] text-[11px] font-medium bg-slate-50 text-slate-600 border border-[#E2E8F0]">
+                {card.ncrfLevel.split('(')[0].trim()}
+              </span>
+            )}
           </div>
 
           <button
@@ -149,15 +169,46 @@ export const CareerCardComponent: React.FC<CareerCardComponentProps> = ({
           </div>
         )}
 
-        {/* Two Facts: Duration & Estimated Cost */}
+        {/* Key Competencies for Deep Tech */}
+        {card.keyCompetencies && card.keyCompetencies.length > 0 && (
+          <div className="flex items-center gap-1.5 flex-wrap pt-0.5">
+            <span className="text-[11px] font-medium text-[#64748B]">Skills:</span>
+            {card.keyCompetencies.slice(0, 3).map((comp, i) => (
+              <span
+                key={i}
+                className="px-1.5 py-0.2 rounded text-[11px] bg-blue-50/60 text-[#1D4ED8] font-medium border border-blue-100"
+              >
+                {comp}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Two Facts: Duration & Financial Outcome (Cost or CTC or In-hand Pay) */}
         <div className="grid grid-cols-2 gap-2 pt-2 border-t border-[#E2E8F0] text-sm">
           <div className="flex flex-col">
-            <span className="text-xs font-medium text-[#64748B]">Duration</span>
-            <span className="font-semibold text-[#0F172A]">{card.durationText || 'Standard'}</span>
+            <span className="text-xs font-medium text-[#64748B]">
+              {card.kind === 'govtJob' ? 'Age / Limit' : 'Duration'}
+            </span>
+            <span className="font-semibold text-[#0F172A] line-clamp-1">
+              {card.durationText || 'Standard'}
+            </span>
           </div>
           <div className="flex flex-col">
-            <span className="text-xs font-medium text-[#64748B]">Estimated Cost</span>
-            <span className="font-semibold text-[#0F172A]">{costFormatted}</span>
+            <span className="text-xs font-medium text-[#64748B]">
+              {card.estimatedGrossMonthly
+                ? 'Estimated Monthly'
+                : card.entrySalaryLPA
+                ? card.entrySalaryLPA.basis || 'Fresher CTC'
+                : 'Estimated Cost'}
+            </span>
+            <span className="font-semibold text-[#0F172A] line-clamp-1">
+              {card.estimatedGrossMonthly
+                ? card.estimatedGrossMonthly
+                : card.entrySalaryLPA
+                ? `₹${card.entrySalaryLPA.min}–₹${card.entrySalaryLPA.max} LPA`
+                : costFormatted}
+            </span>
           </div>
         </div>
 

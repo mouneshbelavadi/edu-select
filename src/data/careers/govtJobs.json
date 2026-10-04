@@ -1535,6 +1535,217 @@
       "outlook": "STABLE",
       "isEstimate": true,
       "asOfYear": 2026
+    },
+    {
+      "id": "kpsc-kas-group-a",
+      "minQualification": "GRADUATE",
+      "exam": "KPSC Gazetted Probationers (KAS Group A & B)",
+      "conductingBody": "Karnataka Public Service Commission",
+      "posts": [
+        "Assistant Commissioner (Group A)",
+        "Deputy Superintendent of Police (DSP - Group A)",
+        "Commercial Tax Officer (Group A)",
+        "Tahsildar (Group B)",
+        "Assistant Director of Land Records (Group B)"
+      ],
+      "ageLimit": {
+        "min": 21,
+        "max": 35,
+        "text": "21–35 years (Cat 2A/2B/3A/3B: 38, SC/ST/Cat-1: 40; unlimited attempts for SC/ST)"
+      },
+      "selectionStages": [
+        "Preliminary Exam (400 Marks: Paper 1 GS 200m, Paper 2 GS/CSAT 200m, 0.25 Negative Marking)",
+        "Mains Exam (1,250 Marks: 7 Descriptive Papers; Kannada & English 35% Qualifying, Essay 250m, GS 1-4 1,000m)",
+        "Personality Test / Viva-Voce (25 Marks, Grand Merit Total: 1,275 Marks)"
+      ],
+      "payLevels": [
+        10,
+        11,
+        12,
+        13
+      ],
+      "basicPayINR": [
+        43100,
+        56100,
+        67550
+      ],
+      "approxInHand": "₹80,000–₹1,05,000/month",
+      "clusterIds": [
+        "government-civil",
+        "defence-uniformed"
+      ],
+      "officialSite": "https://kpsc.kar.nic.in",
+      "note": "Karnataka's apex civil administration. 319 total vacancies in 2026-27 (117 Group A, 202 Group B). Starting basic ₹56,100 (Group A Level 10-12) + 24% Bengaluru HRA, DA, and TA creates in-hand pay of ₹80,000–₹1,05,000/mo. Tahsildar (Group B) begins at Level 13 basic ₹43,100.",
+      "outlook": "STABLE",
+      "isEstimate": false,
+      "asOfYear": 2026,
+      "estimatedGrossInHand": [
+        80000,
+        105000
+      ],
+      "vacancies2026": 319
+    },
+    {
+      "id": "karnataka-psi",
+      "minQualification": "GRADUATE",
+      "exam": "Karnataka Police Sub-Inspector (PSI) Examination",
+      "conductingBody": "Karnataka State Police (KSP)",
+      "posts": [
+        "Police Sub-Inspector (Civil)",
+        "PSI (Armed Reserve / CAR / DAR)",
+        "PSI (KSISF - State Industrial Security)"
+      ],
+      "ageLimit": {
+        "min": 21,
+        "max": 30,
+        "text": "21–30 years (General: 30, SC/ST/OBC: 32 years)"
+      },
+      "selectionStages": [
+        "Physical Standard Test (PST: Male min 168 cm, 5 cm chest expansion; Female min 157 cm, 45 kg weight)",
+        "Endurance Test (ET: Male 1600m in ≤6m 30s, Long Jump 3.80m / High Jump 1.20m, Shotput 5.60m; Female 400m in ≤2m, Long Jump 2.50m, High Jump 0.90m, Shotput 3.75m)",
+        "Written Exam Paper 1: Descriptive (50 Marks: Essay 20m, Precis 10m, Translation Eng-Kan-Eng 20m)",
+        "Written Exam Paper 2: Objective (150 Marks: 100 MCQs, 1.5 hrs, 0.375 Negative Marking)"
+      ],
+      "payLevels": [
+        7
+      ],
+      "basicPayINR": [
+        37900
+      ],
+      "approxInHand": "₹52,000–₹62,000/month",
+      "clusterIds": [
+        "defence-uniformed",
+        "government-civil"
+      ],
+      "officialSite": "https://ksp.karnataka.gov.in",
+      "note": "Premier executive uniformed service in Karnataka Police. Rigorous dual elimination requiring superior athletic conditioning and bilingual descriptive precision.",
+      "outlook": "GROWING",
+      "isEstimate": false,
+      "asOfYear": 2026,
+      "physicalRequirements": {
+        "maleHeightCm": 168,
+        "maleChestExpansionCm": 5,
+        "femaleHeightCm": 157,
+        "femaleWeightKg": 45,
+        "notes": "Male 1600m in 6m 30s; Female 400m in 2m"
+      }
+    },
+    {
+      "id": "barc-oces-dgfs",
+      "minQualification": "ENGINEERING",
+      "exam": "BARC Scientific Officer (OCES / DGFS)",
+      "conductingBody": "Bhabha Atomic Research Centre / Department of Atomic Energy (DAE)",
+      "posts": [
+        "Scientific Officer 'C' (Group A Gazetted)",
+        "OCES Trainee Scientific Officer",
+        "DGFS Fellow (M.Tech at IITs)"
+      ],
+      "ageLimit": {
+        "min": 21,
+        "max": 26,
+        "text": "26 years general (OBC 29, SC/ST 31, PwD 36)"
+      },
+      "selectionStages": [
+        "Stage 1: Screening via valid GATE score (2024/2025/2026) or BARC Online Computer-Based Test (CBT)",
+        "Stage 2: Rigorous Technical Selection Interview (sole determinant of final selection)",
+        "Stage 3: 1-Year OCES Training at BARC Training Schools or 2-Year DGFS Fellowship (M.Tech at IITs)"
+      ],
+      "payLevels": [
+        10
+      ],
+      "basicPayINR": [
+        56100
+      ],
+      "approxInHand": "₹1,34,000–₹1,35,000/month",
+      "clusterIds": [
+        "science-research",
+        "engineering-tech",
+        "government-civil"
+      ],
+      "officialSite": "https://barcocesexam.in",
+      "note": "Apex scientific recruitment in India. Training stipend: ₹74,000/month + ₹30,000 book allowance. DGFS pays full IIT M.Tech tuition + ₹60,000/year contingency + up to ₹4,00,000 BRNS fast-track funding. Indemnity bond: ₹6.78 Lakhs (OCES), ₹13.58 Lakhs (DGFS). Absorbed as Scientific Officer C at Level 10 with 3 advance increments, grossing ₹1.35 Lakhs/month in Mumbai/Bengaluru.",
+      "outlook": "GROWING",
+      "isEstimate": false,
+      "asOfYear": 2026,
+      "trainingStipendMonthly": 74000,
+      "startingGrossMonthly": 135000,
+      "indemnityBondINR": 678000
+    },
+    {
+      "id": "fellowship-pmrf",
+      "minQualification": "ENGINEERING",
+      "exam": "Prime Minister's Research Fellows (PMRF) Scheme",
+      "conductingBody": "Ministry of Education / National Coordinating Institute",
+      "posts": [
+        "PMRF Doctoral Fellow",
+        "Apex National Research Scholar"
+      ],
+      "ageLimit": {
+        "min": 21,
+        "max": 32,
+        "text": "Enrolled in PhD at IITs, IISc, IISERs, NITs with high GATE / CGPA"
+      },
+      "selectionStages": [
+        "Direct Entry (B.Tech / Dual Degree from IITs/NITs/IISc with CGPA ≥ 8.0 or qualified GATE)",
+        "Lateral Entry (PhD scholars enrolled in PMRF host institutes for 12–24 months with exemplary course grades & research proposal)",
+        "National Selection Committee Review & Presentation"
+      ],
+      "payLevels": [
+        10
+      ],
+      "basicPayINR": [
+        70000,
+        75000,
+        80000
+      ],
+      "approxInHand": "₹70,000–₹80,000/month (Tax Free)",
+      "clusterIds": [
+        "science-research",
+        "engineering-tech"
+      ],
+      "officialSite": "https://www.pmrf.in",
+      "note": "India's highest funded doctoral fellowship. Monthly stipend: ₹70,000 (Y1-2), ₹75,000 (Y3), ₹80,000 (Y4-5). Annual research contingency grant of ₹2,00,000 (₹10 Lakhs total over 5 years). Supported under ₹50,000 Cr ANRF modernization.",
+      "outlook": "GROWING",
+      "isEstimate": false,
+      "asOfYear": 2026
+    },
+    {
+      "id": "ugc-csir-net-jrf",
+      "minQualification": "PG",
+      "exam": "UGC / CSIR NET Junior Research Fellowship (JRF & SRF)",
+      "conductingBody": "National Testing Agency (NTA) on behalf of UGC & CSIR",
+      "posts": [
+        "Junior Research Fellow (JRF)",
+        "Senior Research Fellow (SRF)",
+        "Assistant Professor"
+      ],
+      "ageLimit": {
+        "min": 21,
+        "max": 30,
+        "text": "Max 30 years for JRF (5 yr relaxation for SC/ST/OBC/Women); No age limit for Assistant Professor"
+      },
+      "selectionStages": [
+        "Computer Based Test (CBT): Paper 1 (Teaching & Research Aptitude - 100m) + Paper 2 (Subject Domain - 200m)",
+        "Merit Award: Top 1-2% percentile awarded JRF; Top 6% qualify for Assistant Professor",
+        "SRF Upgrade: Institutional assessment committee evaluation after 2 years"
+      ],
+      "payLevels": [
+        9
+      ],
+      "basicPayINR": [
+        37000,
+        42000
+      ],
+      "approxInHand": "₹45,000–₹54,000/month",
+      "clusterIds": [
+        "science-research",
+        "education-teaching"
+      ],
+      "officialSite": "https://ugcnet.nta.ac.in",
+      "note": "Revised 2024-2026 fellowship stipend: ₹37,000/month for first 2 years (JRF), enhanced to ₹42,000/month for remaining 3 years (SRF). Entitled to city HRA (up to 27%) and annual contingency of ₹10,000–₹25,000. Exempt from TDS under Income Tax Act. ICMR JRF operates with matching ₹37,000/mo structure.",
+      "outlook": "STABLE",
+      "isEstimate": false,
+      "asOfYear": 2026
     }
   ]
 }

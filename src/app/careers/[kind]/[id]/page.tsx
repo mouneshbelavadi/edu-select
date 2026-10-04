@@ -239,6 +239,228 @@ export default async function CareerDetailPage({ params }: CareerPageProps) {
                   <strong>Course Duration:</strong> {item.duration}
                 </div>
               )}
+              {item.ncrf_credit_level && (
+                <div className="mt-2 p-3.5 bg-blue-50/70 border border-blue-200 rounded-xl flex items-start gap-2.5">
+                  <div className="w-6 h-6 rounded-md bg-[#1D4ED8] text-white flex items-center justify-center text-xs font-bold shrink-0">
+                    NCrF
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold text-[#0F172A] block">
+                      National Credit Framework (NCrF) Accreditation: {item.ncrf_credit_level}
+                    </span>
+                    <span className="text-[11px] text-[#475569] leading-relaxed block mt-0.5">
+                      Enables modular accumulation, credit redemption, and lateral mobility across NSQF/NHEQF levels under NEP 2020.
+                    </span>
+                  </div>
+                </div>
+              )}
+            </section>
+          )}
+
+          {/* Section: Transnational Licensure & Global Mobility */}
+          {item.global_mobility && (
+            <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col gap-5">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-blue-100 text-[#1D4ED8] flex items-center justify-center font-bold text-sm">
+                    🌐
+                  </div>
+                  <div>
+                    <h2 className="text-lg font-black text-[#0F172A]">
+                      Transnational Licensure & Global Mobility Architecture
+                    </h2>
+                    <p className="text-xs text-[#64748B]">
+                      Regulatory pathway, foreign certification requirements, and immigration cost framework
+                    </p>
+                  </div>
+                </div>
+                <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-blue-50 text-[#1D4ED8] border border-blue-200">
+                  {item.global_mobility.target_country} Pathway
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Total Capital Outlay */}
+                {item.global_mobility.total_estimated_capital_outlay_INR && (
+                  <div className="p-4 rounded-2xl bg-slate-50 border border-[#E2E8F0] flex flex-col gap-1.5">
+                    <span className="text-xs font-bold text-[#64748B] uppercase">Estimated Capital Outlay</span>
+                    <span className="text-xl font-black text-[#0F172A]">
+                      ₹{(item.global_mobility.total_estimated_capital_outlay_INR[0] / 100000).toFixed(1)}L – ₹
+                      {(item.global_mobility.total_estimated_capital_outlay_INR[1] / 100000).toFixed(1)}L
+                    </span>
+                    <span className="text-[11px] text-[#64748B]">
+                      Includes exam registration, surcharges, 18% GST, and credential verification
+                    </span>
+                  </div>
+                )}
+
+                {/* Net Monthly Savings (for SSW / migration) */}
+                {item.global_mobility.net_monthly_savings_INR ? (
+                  <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 flex flex-col gap-1.5">
+                    <span className="text-xs font-bold text-emerald-800 uppercase">Estimated Net Savings</span>
+                    <span className="text-xl font-black text-emerald-950">
+                      ~₹{item.global_mobility.net_monthly_savings_INR.toLocaleString('en-IN')}/month
+                    </span>
+                    <span className="text-[11px] text-emerald-800">
+                      Net in-hand savings after social insurance, resident taxes, and dormitory expenses
+                    </span>
+                  </div>
+                ) : item.global_mobility.regulatory_body ? (
+                  <div className="p-4 rounded-2xl bg-indigo-50 border border-indigo-200 flex flex-col gap-1.5">
+                    <span className="text-xs font-bold text-indigo-800 uppercase">Regulatory Governance</span>
+                    <span className="text-base font-bold text-indigo-950">
+                      {item.global_mobility.regulatory_body}
+                    </span>
+                    <span className="text-[11px] text-indigo-800">
+                      Statutory body overseeing examination standards and licensure verification
+                    </span>
+                  </div>
+                ) : null}
+              </div>
+
+              {/* Critical Thresholds & Score Benchmarks */}
+              {item.global_mobility.critical_thresholds && (
+                <div className="p-4 rounded-2xl bg-amber-50/70 border border-amber-200 flex flex-col gap-1">
+                  <span className="text-xs font-bold text-amber-900 uppercase">
+                    Competitive Examination & Score Thresholds
+                  </span>
+                  <p className="text-xs text-amber-950 font-medium leading-relaxed">
+                    {item.global_mobility.critical_thresholds}
+                  </p>
+                </div>
+              )}
+
+              {/* Mandatory Certifications */}
+              {item.global_mobility.mandatory_certifications && (
+                <div className="flex flex-col gap-2">
+                  <span className="text-xs font-bold text-[#0F172A]">Mandatory Certifications & Approvals:</span>
+                  <div className="flex flex-wrap gap-2">
+                    {item.global_mobility.mandatory_certifications.map((cert: string, idx: number) => (
+                      <span
+                        key={idx}
+                        className="px-3 py-1 rounded-xl text-xs font-semibold bg-blue-50 text-[#1D4ED8] border border-blue-200"
+                      >
+                        ✓ {cert}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+          )}
+
+          {/* Section: Industrial Corridors & Placement Ecosystems */}
+          {item.industrial_linkage && (
+            <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col gap-5">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-teal-100 text-[#0D9488] flex items-center justify-center font-bold text-sm">
+                    🏭
+                  </div>
+                  <div>
+                    <h2 className="text-lg font-black text-[#0F172A]">
+                      Industrial Corridors & Direct Placement Ecosystem
+                    </h2>
+                    <p className="text-xs text-[#64748B]">
+                      Subsidized vocational push feeding Karnataka manufacturing mega-hubs
+                    </p>
+                  </div>
+                </div>
+                <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-teal-50 text-[#0D9488] border border-teal-200">
+                  Karnataka Skill Policy 2025–32
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-4 rounded-2xl bg-slate-50 border border-[#E2E8F0] flex flex-col gap-1">
+                  <span className="text-xs font-bold text-[#64748B] uppercase">Manufacturing Hub</span>
+                  <span className="text-sm font-bold text-[#0F172A]">{item.industrial_linkage.corridor}</span>
+                  <span className="text-[11px] text-[#64748B]">{item.industrial_linkage.region}</span>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-teal-50 border border-teal-200 flex flex-col gap-1">
+                  <span className="text-xs font-bold text-teal-800 uppercase">Policy Allocation</span>
+                  <span className="text-sm font-bold text-teal-950">₹4,432.5 Crore State Skilling Budget</span>
+                  <span className="text-[11px] text-teal-800">
+                    CMKKY 2.0 life-cycle integration with GTTC and KGTTI advanced centers
+                  </span>
+                </div>
+              </div>
+
+              {/* Anchor Employers */}
+              {item.industrial_linkage.anchor_corporations && (
+                <div className="flex flex-col gap-2">
+                  <span className="text-xs font-bold text-[#0F172A]">Anchor Corporations & Industrial Consumers:</span>
+                  <div className="flex flex-wrap gap-2">
+                    {item.industrial_linkage.anchor_corporations.map((corp: string, idx: number) => (
+                      <span
+                        key={idx}
+                        className="px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-[#0F172A] border border-[#E2E8F0]"
+                      >
+                        {corp}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Immediate Roles */}
+              {item.industrial_linkage.immediate_roles && (
+                <div className="flex flex-col gap-2 pt-2 border-t border-slate-100">
+                  <span className="text-xs font-bold text-[#0F172A]">Direct Hiring Entry Roles:</span>
+                  <div className="flex flex-wrap gap-2">
+                    {item.industrial_linkage.immediate_roles.map((role: string, idx: number) => (
+                      <span
+                        key={idx}
+                        className="px-2.5 py-1 rounded-lg text-xs font-medium bg-emerald-50 text-emerald-900 border border-emerald-200"
+                      >
+                        ⚡ {role}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+          )}
+
+          {/* Section: Deep-Tech & Semiconductor Deficit Competencies */}
+          {(item.global_shortage_indicator || (item.key_competencies && item.key_competencies.length > 0)) && (
+            <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col gap-5">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-rose-100 text-rose-700 flex items-center justify-center font-bold text-sm">
+                    ⚡
+                  </div>
+                  <div>
+                    <h2 className="text-lg font-black text-[#0F172A]">
+                      Deep-Tech Deficit & Strategic Competency Framework
+                    </h2>
+                    <p className="text-xs text-[#64748B]">
+                      High-stakes, sovereign-backed sector facing global talent shortage ($1.03T market by 2030)
+                    </p>
+                  </div>
+                </div>
+                <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200">
+                  300,000+ Deficit
+                </span>
+              </div>
+
+              {item.key_competencies && (
+                <div className="flex flex-col gap-2">
+                  <span className="text-xs font-bold text-[#0F172A]">Critical Technical Competencies:</span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {item.key_competencies.map((comp: string, idx: number) => (
+                      <div
+                        key={idx}
+                        className="p-3 rounded-xl bg-slate-50 border border-[#E2E8F0] flex items-center gap-2 text-xs font-semibold text-[#0F172A]"
+                      >
+                        <span className="text-[#1D4ED8]">✦</span>
+                        <span>{comp}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </section>
           )}
 
@@ -292,6 +514,56 @@ export default async function CareerDetailPage({ params }: CareerPageProps) {
                       </span>
                     ))}
                   </div>
+                </div>
+              )}
+
+              {/* Physical Requirements for Uniformed Services */}
+              {item.physicalRequirements && (
+                <div className="p-4 rounded-2xl bg-amber-50/60 border border-amber-200 flex flex-col gap-2">
+                  <span className="text-xs font-bold text-amber-900 uppercase">
+                    Physical Standards & Endurance Benchmarks (PST / ET)
+                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-amber-950 font-medium">
+                    {item.physicalRequirements.maleHeightCm && (
+                      <div>
+                        <strong>Male Standards:</strong> Min Height {item.physicalRequirements.maleHeightCm} cm, {item.physicalRequirements.maleChestExpansionCm} cm chest expansion
+                      </div>
+                    )}
+                    {item.physicalRequirements.femaleHeightCm && (
+                      <div>
+                        <strong>Female Standards:</strong> Min Height {item.physicalRequirements.femaleHeightCm} cm, Min Weight {item.physicalRequirements.femaleWeightKg} kg
+                      </div>
+                    )}
+                  </div>
+                  {item.physicalRequirements.notes && (
+                    <span className="text-[11px] text-amber-900 border-t border-amber-200 pt-1">
+                      {item.physicalRequirements.notes}
+                    </span>
+                  )}
+                </div>
+              )}
+
+              {/* Scientific Officer / Fellow Training Stipend & Bonds */}
+              {item.trainingStipendMonthly && (
+                <div className="p-4 rounded-2xl bg-indigo-50/70 border border-indigo-200 flex flex-col gap-2">
+                  <span className="text-xs font-bold text-indigo-900 uppercase">
+                    Scientific Training Stipend & Post-Training Absorption
+                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-indigo-950 font-medium">
+                    <div>
+                      <strong>Training Stipend:</strong> ₹{item.trainingStipendMonthly.toLocaleString('en-IN')}/month
+                    </div>
+                    {item.startingGrossMonthly && (
+                      <div>
+                        <strong>Starting Absorption Gross:</strong> ~₹{item.startingGrossMonthly.toLocaleString('en-IN')}/month (Mumbai / Bengaluru Level 10)
+                      </div>
+                    )}
+                  </div>
+                  {item.indemnityBondINR && (
+                    <span className="text-[11px] text-indigo-900 border-t border-indigo-200 pt-1">
+                      Indemnity Bond: ₹{(item.indemnityBondINR / 100000).toFixed(2)} Lakhs (Service agreement duration: 3 years)
+                    </span>
+                  )}
                 </div>
               )}
 

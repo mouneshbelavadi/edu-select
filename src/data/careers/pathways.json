@@ -6852,6 +6852,727 @@
       "isEstimate": true,
       "asOfYear": 2026,
       "sourceIds": []
+    },
+    {
+      "id": "p-diploma-gttc-precision",
+      "level": "DIPLOMA",
+      "streams": [
+        "VOCATIONAL",
+        "ANY"
+      ],
+      "category": "Advanced Precision & Tool Engineering",
+      "clusterIds": [
+        "engineering-tech",
+        "skilled-trades"
+      ],
+      "name": "Diploma in Tool & Die Making / Precision Manufacturing (GTTC)",
+      "eligibility": "Class 10 (SSLC/CBSE) pass; merit-based admission without competitive entrance test",
+      "duration": "3 to 4 years",
+      "durationYears": {
+        "min": 3,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          20000,
+          25000
+        ],
+        "private": null,
+        "note": "Subsidized by Karnataka Skill Policy 2025–32 (₹4,432.5 Cr budget, CMKKY 2.0)"
+      },
+      "keySubjects": [
+        "Tool & Die Design",
+        "CNC Multi-Axis Programming",
+        "Precision Metrology",
+        "CAD/CAM (Siemens NX)",
+        "Mechatronics & Robotics"
+      ],
+      "nextSteps": [
+        "B.Tech Lateral Entry (2nd Year Engineering via DCET)",
+        "Tool Design Engineer",
+        "CNC Specialist at Automotive OEMs"
+      ],
+      "nextExamIds": [
+        "dcet"
+      ],
+      "outcomes": [
+        "Direct placement at Tata Electronics, Scania, Badve Engineering, Indo Autotech in Narsapura & Vemagal corridors",
+        "Starting pay ₹2.8–₹4.5 LPA",
+        "Pathway to overseas technical manufacturing roles"
+      ],
+      "riasec": [
+        "R",
+        "I",
+        "C"
+      ],
+      "subjectsLiked": [
+        "Mathematics",
+        "Science",
+        "Practical Mechanics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "PSU"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": false,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "ncrf_credit_level": "Level 5 (NSQF Level 5/6, direct credit transfer to B.Tech 2nd year)",
+      "industrial_linkage": {
+        "corridor": "Narsapura & Vemagal Industrial Corridors (Kolar, Karnataka)",
+        "region": "NH-75 & Bengaluru Industrial Belt",
+        "anchor_corporations": [
+          "Tata Electronics",
+          "Scania Commercial Vehicles",
+          "Badve Engineering",
+          "Deccan Hydraulics",
+          "Shivam Autotech",
+          "RR Precision"
+        ],
+        "immediate_roles": [
+          "CNC Programmer",
+          "Precision Tooling Technician",
+          "Automobile Assembly Specialist"
+        ]
+      }
+    },
+    {
+      "id": "p-diploma-kgtti-automation",
+      "level": "DIPLOMA",
+      "streams": [
+        "VOCATIONAL",
+        "ANY"
+      ],
+      "category": "German Technical Competence Diploma",
+      "clusterIds": [
+        "engineering-tech",
+        "skilled-trades"
+      ],
+      "name": "Advanced Diploma in Industrial Automation & CNC (KGTTI)",
+      "eligibility": "Class 10 / ITI / Polytechnic Diploma; KGTTI merit admission",
+      "duration": "1 to 3 years",
+      "durationYears": {
+        "min": 1,
+        "max": 3
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "total",
+        "govt": [
+          25000,
+          45000
+        ],
+        "private": null,
+        "note": "Indo-German technical partnership adhering to German industrial standards"
+      },
+      "keySubjects": [
+        "PLC/SCADA Automation",
+        "Industrial Robotics & Embedded Systems",
+        "Advanced Welding & Fabrication",
+        "Casting Academy (Kimura Foundry Japan Partnership)"
+      ],
+      "nextSteps": [
+        "Automation Engineer",
+        "Robotics Integration Specialist",
+        "Overseas Technical Skilled Worker (Japan SSW / Germany)"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Direct campus hiring by German and Japanese automotive tier-1 suppliers, Tata Electronics, Bosch, Toyota Boshoku",
+        "Starting CTC ₹3.2–₹5 LPA"
+      ],
+      "riasec": [
+        "R",
+        "I",
+        "E"
+      ],
+      "subjectsLiked": [
+        "Automation",
+        "Electronics",
+        "Machining"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "ABROAD"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": false,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "ncrf_credit_level": "Level 5.5 (German Technical Standards Equivalent)",
+      "industrial_linkage": {
+        "corridor": "KGTTI Bengaluru & Vemagal Corridor",
+        "region": "Karnataka",
+        "anchor_corporations": [
+          "Kimura Foundry (Japan)",
+          "Bosch",
+          "Scania",
+          "Tata Electronics"
+        ],
+        "immediate_roles": [
+          "Industrial Automation Specialist",
+          "Precision Casting Engineer"
+        ]
+      }
+    },
+    {
+      "id": "p-usmle-medical",
+      "level": "PROFESSIONAL",
+      "streams": [
+        "PCB",
+        "PCMB"
+      ],
+      "category": "Transnational Medicine & Clinical Licensure",
+      "clusterIds": [
+        "medicine-healthcare"
+      ],
+      "name": "USMLE Clinical Licensure & US Residency Pathway",
+      "eligibility": "Enrolled in or graduated from an ECFMG-recognized medical school (MBBS)",
+      "duration": "2 to 4 years during/after MBBS",
+      "durationYears": {
+        "min": 2,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "usmle-step1",
+        "usmle-step2-ck",
+        "usmle-step3",
+        "oet-medicine"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": [
+          1000000,
+          1500000
+        ],
+        "note": "Includes Step 1 ($695 + $210 region + 18% GST = ~₹99,510), Step 2 CK ($695 + $235 region + 18% GST = ~₹1,02,021), Step 3 ($955), ECFMG ($890 total = ~₹76,440), OET ($455 = ~₹38,220), USCE observerships, ERAS match fees and prep."
+      },
+      "keySubjects": [
+        "Foundational Pathology & Physiology",
+        "Clinical Diagnosis & Internal Medicine",
+        "Surgery & Pediatrics",
+        "Medical Ethics & Communication"
+      ],
+      "nextSteps": [
+        "NRMP Residency Match (PGY-1)",
+        "State Medical Licensure",
+        "Board Certification"
+      ],
+      "nextExamIds": [
+        "usmle-step3"
+      ],
+      "outcomes": [
+        "US Residency placement (Internal Medicine, Pediatrics, Pathology, Surgery, Neurology)",
+        "Residency salary $65,000–$78,000/yr (₹55L–₹65L), attending physician salary $250,000–$450,000/yr (₹2.1Cr–₹3.8Cr)"
+      ],
+      "riasec": [
+        "I",
+        "S",
+        "R"
+      ],
+      "subjectsLiked": [
+        "Biology",
+        "Human Anatomy",
+        "Pathology",
+        "Clinical Sciences"
+      ],
+      "sectors": [
+        "ABROAD",
+        "PRIVATE"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": false,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "mcc"
+      ],
+      "ncrf_credit_level": "Level 8 Equivalent (International Medical Licensure)",
+      "global_mobility": {
+        "target_country": "USA",
+        "mandatory_certifications": [
+          "ECFMG Certification",
+          "OET Medicine (Grade B)"
+        ],
+        "total_estimated_capital_outlay_INR": [
+          1000000,
+          1500000
+        ],
+        "exams": [
+          "usmle-step1",
+          "usmle-step2-ck",
+          "usmle-step3"
+        ],
+        "critical_thresholds": "Step 2 CK score 230+ for general specialties, 245+ for competitive specialties. Step 1 is Pass/Fail.",
+        "regulatory_body": "FSMB & NBME"
+      }
+    },
+    {
+      "id": "p-plab-uk-medical",
+      "level": "PROFESSIONAL",
+      "streams": [
+        "PCB",
+        "PCMB"
+      ],
+      "category": "Transnational Medicine & Clinical Licensure",
+      "clusterIds": [
+        "medicine-healthcare"
+      ],
+      "name": "PLAB / UK MLA Pathway (General Medical Council UK)",
+      "eligibility": "MBBS from recognized medical school + IELTS (7.5 overall) or OET Medicine (Grade B)",
+      "duration": "1 to 2 years after MBBS",
+      "durationYears": {
+        "min": 1,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "plab-1",
+        "plab-2",
+        "oet-medicine"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": [
+          180000,
+          250000
+        ],
+        "note": "Significantly more affordable than USMLE: PLAB 1 (£283 = ~₹35,941), PLAB 2 clinical (£1,036 = ~₹1,31,572), GMC registration (~£440). Core exams under ₹2 Lakhs."
+      },
+      "keySubjects": [
+        "Emergency Medicine",
+        "Clinical Management",
+        "UK NHS Practice Guidelines",
+        "Patient Safety & Consent"
+      ],
+      "nextSteps": [
+        "NHS Trust Doctor / FY2",
+        "UK Specialty Training (ST1-ST8)",
+        "CCT & Consultant Practice"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "NHS Junior Doctor / Registrar appointment in the UK",
+        "Starting pay £34,000–£45,000/yr (₹36L–₹48L), progressing to NHS Consultant £93,000–£126,000/yr (₹99L–₹1.35Cr)"
+      ],
+      "riasec": [
+        "I",
+        "S",
+        "R"
+      ],
+      "subjectsLiked": [
+        "Medicine",
+        "Clinical Diagnosis",
+        "Patient Care"
+      ],
+      "sectors": [
+        "ABROAD",
+        "GOVT"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": false,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "mcc"
+      ],
+      "ncrf_credit_level": "Level 8 Equivalent (UK GMC Registration)",
+      "global_mobility": {
+        "target_country": "United Kingdom",
+        "mandatory_certifications": [
+          "GMC Full Registration",
+          "IELTS 7.5 or OET Grade B"
+        ],
+        "total_estimated_capital_outlay_INR": [
+          180000,
+          250000
+        ],
+        "exams": [
+          "plab-1",
+          "plab-2",
+          "oet-medicine"
+        ],
+        "critical_thresholds": "PLAB 1 pass + PLAB 2 clinical simulation in Manchester",
+        "regulatory_body": "General Medical Council (GMC)"
+      }
+    },
+    {
+      "id": "p-nursing-usa-nclex",
+      "level": "PROFESSIONAL",
+      "streams": [
+        "PCB",
+        "PCMB"
+      ],
+      "category": "Transnational Nursing & Allied Health",
+      "clusterIds": [
+        "medicine-healthcare"
+      ],
+      "name": "B.Sc Nursing International Mobility (NCLEX-RN & CGFNS VisaScreen)",
+      "eligibility": "B.Sc Nursing (4-year degree) + State Nursing Council Registration in India",
+      "duration": "1 to 2 years post-graduation",
+      "durationYears": {
+        "min": 1,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "nclex-rn",
+        "cgfns-visascreen",
+        "oet-medicine"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": [
+          150000,
+          220000
+        ],
+        "note": "NCLEX-RN exam ($200 + international scheduling $150 = ~₹29,750), CGFNS VisaScreen ($540 = ~₹45,360), English test ($250). Universally accepted across all 50 US states for EB-3 Green Card."
+      },
+      "keySubjects": [
+        "Medical-Surgical Nursing",
+        "Pharmacology",
+        "Pediatric & Maternal Care",
+        "Critical Care & Patient Safety"
+      ],
+      "nextSteps": [
+        "Direct Hospital Sponsor Petition (EB-3 / I-140)",
+        "US Registered Nurse (RN)",
+        "Nurse Practitioner (NP)"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Permanent U.S. Green Card employment as Registered Nurse",
+        "Starting US salary $75,000–$105,000/yr (₹63L–₹88L) with overtime benefits"
+      ],
+      "riasec": [
+        "S",
+        "R",
+        "C"
+      ],
+      "subjectsLiked": [
+        "Nursing",
+        "Anatomy",
+        "Pharmacology"
+      ],
+      "sectors": [
+        "ABROAD",
+        "PRIVATE"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": false,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "mcc"
+      ],
+      "ncrf_credit_level": "Level 7 Equivalent (CGFNS VisaScreen Certified)",
+      "global_mobility": {
+        "target_country": "USA",
+        "mandatory_certifications": [
+          "CGFNS VisaScreen Certificate ($540)",
+          "State Board of Nursing RN Licensure"
+        ],
+        "total_estimated_capital_outlay_INR": [
+          150000,
+          220000
+        ],
+        "exams": [
+          "nclex-rn",
+          "cgfns-visascreen"
+        ],
+        "critical_thresholds": "NCLEX-RN CAT passing standard + VisaScreen credential review in 3-6 months",
+        "regulatory_body": "CGFNS International & State Boards of Nursing"
+      }
+    },
+    {
+      "id": "p-japan-ssw-skilled",
+      "level": "ITI",
+      "streams": [
+        "VOCATIONAL",
+        "ANY"
+      ],
+      "category": "Global Technical Skilled Mobility",
+      "clusterIds": [
+        "engineering-tech",
+        "skilled-trades",
+        "medicine-healthcare"
+      ],
+      "name": "Japan Specified Skilled Worker (SSW / Tokutei Ginou)",
+      "eligibility": "Class 10 + ITI / Diploma / Degree; JLPT N4 or JFT-Basic language qualification (JLPT N3 preferred by employers; Nursing Care requires Nursing Care Japanese Evaluation Test 73% passing standard)",
+      "duration": "Type 1: Up to 5 years; Type 2: Indefinite renewal with family & permanent residency",
+      "durationYears": {
+        "min": 1,
+        "max": 5
+      },
+      "isJob": true,
+      "entranceExamIds": [
+        "jlpt-japanese",
+        "ssw-skill-exam"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": [
+          40000,
+          80000
+        ],
+        "private": [
+          80000,
+          150000
+        ],
+        "note": "Language training (JLPT N4/N3) + SSW skills assessment fees. NSDC / ESDP subsidized routes available."
+      },
+      "keySubjects": [
+        "Japanese Language (JLPT N4/N3, JFT-Basic)",
+        "Industrial Machinery / Automotive Maintenance",
+        "Nursing Care / Caregiver Protocols",
+        "Construction / Welding Safety Standards"
+      ],
+      "nextSteps": [
+        "SSW Type 1 (5-year contract)",
+        "Transition to SSW Type 2 (Indefinite stay, spouse/child visa)",
+        "Japanese Permanent Residency"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Guaranteed statutory parity with Japanese workers: Gross wages ¥200,000–¥260,000/month (₹1.15L–₹1.50L)",
+        "Net monthly savings after Shakai Hoken, taxes, and dormitory: ~₹64,000/month",
+        "ESDP replacing TITP by April 2027"
+      ],
+      "riasec": [
+        "R",
+        "C",
+        "S"
+      ],
+      "subjectsLiked": [
+        "Japanese Language",
+        "Technical Machining",
+        "Nursing Care"
+      ],
+      "sectors": [
+        "ABROAD"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": false,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "ncrf_credit_level": "Level 4.5 / 5 (International Technical Competency)",
+      "global_mobility": {
+        "target_country": "Japan",
+        "mandatory_certifications": [
+          "JLPT N4 or JFT-Basic (JLPT N3 highly recommended)",
+          "SSW Field Skills Assessment",
+          "Nursing Care Japanese Test (73% cutoff)"
+        ],
+        "total_estimated_capital_outlay_INR": [
+          60000,
+          120000
+        ],
+        "exams": [
+          "jlpt-japanese",
+          "ssw-skill-exam"
+        ],
+        "critical_thresholds": "Passage of skills test + language exam. Type 2 allows indefinite stay and family accompaniment.",
+        "net_monthly_savings_INR": 64000,
+        "visa_type": "Tokutei Ginou (SSW Type 1 & 2)",
+        "regulatory_body": "Immigration Services Agency of Japan"
+      }
+    },
+    {
+      "id": "p-germany-higher-aps",
+      "level": "UG_ENGG",
+      "streams": [
+        "PCM",
+        "PCMC",
+        "ANY"
+      ],
+      "category": "European Higher Education & Research",
+      "clusterIds": [
+        "science-research",
+        "engineering-tech"
+      ],
+      "name": "Germany Direct Higher Education & Research (APS Certified)",
+      "eligibility": "Indian Bachelor's degree (B.Tech / 4-yr degree) or Class 12 with JEE Advanced / Studienkolleg; APS Certificate is mandatory",
+      "duration": "2 years (Master's) or 3-4 years (PhD)",
+      "durationYears": {
+        "min": 2,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "aps-germany-cert",
+        "ielts",
+        "gre"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          30000
+        ],
+        "private": [
+          800000,
+          1500000
+        ],
+        "note": "Tuition is tuition-free at public universities across 15 German states (semester fee ~€250-350). Mandatory Blocked Account (Sperrkonto ~€11,208/yr). APS Verification Fee: EUR 225 (~₹23,025) non-refundable."
+      },
+      "keySubjects": [
+        "Automotive Engineering",
+        "Quantum Engineering",
+        "Semiconductor Microelectronics",
+        "Renewable Energy Systems"
+      ],
+      "nextSteps": [
+        "TU9 Master's Degree",
+        "DAAD KOSPIE Research",
+        "German EU Blue Card & Permanent Residency"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Zero tuition fees at elite German TU9 technical universities",
+        "18-month post-study work visa in Germany",
+        "Starting engineer salary €48,000–€62,000/yr (₹43L–₹56L)"
+      ],
+      "riasec": [
+        "I",
+        "R",
+        "C"
+      ],
+      "subjectsLiked": [
+        "Engineering",
+        "Physics",
+        "Computer Science"
+      ],
+      "sectors": [
+        "ABROAD",
+        "PRIVATE"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": false,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "iit-fees-2026"
+      ],
+      "ncrf_credit_level": "Level 7 / 8 Equivalent (ECTS Credit Integration)",
+      "global_mobility": {
+        "target_country": "Germany",
+        "mandatory_certifications": [
+          "APS Certificate (Akademische Prüfstelle, €225 fee)",
+          "Sperrkonto Blocked Account",
+          "Statutory Health Insurance (TK/Barmer)"
+        ],
+        "total_estimated_capital_outlay_INR": [
+          1150000,
+          1350000
+        ],
+        "exams": [
+          "aps-germany-cert",
+          "ielts"
+        ],
+        "critical_thresholds": "DigiLocker document authentication with APS New Delhi before visa processing. DAAD/EU scholars exempt.",
+        "regulatory_body": "APS India & DAAD"
+      }
+    },
+    {
+      "id": "p-doctoral-research-fellowship",
+      "level": "PG",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Apex Doctoral Research & Academic Fellowships",
+      "clusterIds": [
+        "science-research",
+        "education-teaching",
+        "engineering-tech"
+      ],
+      "name": "Apex Ph.D & Research Fellowship (UGC/CSIR JRF, PMRF, Fulbright-Nehru)",
+      "eligibility": "Postgraduate degree (M.Sc / M.Tech / MA / MS) or direct B.Tech from CFTIs with CGPA ≥ 8.0",
+      "duration": "4 to 5 years",
+      "durationYears": {
+        "min": 4,
+        "max": 5
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "ugc-net",
+        "csir-net",
+        "gate"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": [
+          0,
+          50000
+        ],
+        "private": null,
+        "note": "Fully funded research phase: Scholars pay nominal semester fees and earn substantial monthly stipends exempt from TDS."
+      },
+      "keySubjects": [
+        "Advanced Research Methodology",
+        "Domain Specialization",
+        "Scientific Publication",
+        "Experimental / Computational Labwork"
+      ],
+      "nextSteps": [
+        "Doctor of Philosophy (Ph.D)",
+        "Postdoctoral Fellowship (DAAD/Fulbright)",
+        "Assistant Professor (Level 10) / Scientist"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "UGC/CSIR NET: ₹37,000/mo (JRF) + ₹42,000/mo (SRF) + up to 27% HRA + ₹10k–₹25k contingency",
+        "PMRF Scheme: ₹70,000–₹80,000/mo + ₹2 Lakhs/year research grant (₹10L total)",
+        "Substantial financial independence during doctoral studies backed by ₹50,000 Cr ANRF funding"
+      ],
+      "riasec": [
+        "I",
+        "A",
+        "C"
+      ],
+      "subjectsLiked": [
+        "Pure Sciences",
+        "Theoretical Computer Science",
+        "Engineering Innovations"
+      ],
+      "sectors": [
+        "GOVT",
+        "PSU",
+        "ABROAD"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": false,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "nta"
+      ],
+      "ncrf_credit_level": "Level 8 (Apex Doctoral Research & Academic Innovation)"
     }
   ]
 }

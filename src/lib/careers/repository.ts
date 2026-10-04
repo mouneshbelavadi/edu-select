@@ -95,6 +95,7 @@ function calculatePathwayCost(pathway: Pathway): { min: number; max: number } | 
 
 // Transform helpers to unified CareerCard
 function pathwayToCard(p: Pathway): CareerCard {
+  const clusterName = p.clusterIds?.[0] ? clustersMap.get(p.clusterIds[0])?.label : undefined;
   return {
     kind: 'pathway',
     id: p.id,
@@ -102,20 +103,42 @@ function pathwayToCard(p: Pathway): CareerCard {
     subtitle: p.category || p.eligibility,
     level: p.level,
     clusterIds: p.clusterIds,
+    clusterName,
     outlook: p.outlook,
     entranceRequired: p.entranceRequired,
     examNames: (p.entranceExamIds || []).map((id) => examsMap.get(id)?.name || id).filter(Boolean),
     durationText: p.duration,
     totalCostINR: calculatePathwayCost(p),
-    entrySalaryLPA: null,
+    entrySalaryLPA: p.global_mobility?.net_monthly_savings_INR
+      ? {
+          min: Number(((p.global_mobility.net_monthly_savings_INR * 12) / 100000).toFixed(1)),
+          max: Number(((p.global_mobility.net_monthly_savings_INR * 12) / 100000).toFixed(1)),
+          basis: 'Net Savings',
+        }
+      : null,
     sectors: p.sectors,
     riasec: p.riasec,
     abroadFriendly: p.abroadFriendly,
     isEstimate: p.isEstimate,
+    ncrfLevel:
+      p.ncrf_credit_level ||
+      (p.level === 'CLASS_10'
+        ? 'NCrF Level 3'
+        : p.level === 'CLASS_12'
+        ? 'NCrF Level 4'
+        : p.level === 'ITI'
+        ? 'NCrF Level 4.5'
+        : p.level === 'DIPLOMA'
+        ? 'NCrF Level 5'
+        : 'NCrF Level 7'),
+    globalMobility: p.global_mobility,
+    industrialLinkage: p.industrial_linkage,
+    subjectMatches: p.keySubjects,
   };
 }
 
 function branchToCard(b: EngineeringBranch): CareerCard {
+  const clusterName = b.clusterIds?.[0] ? clustersMap.get(b.clusterIds[0])?.label : 'Engineering';
   return {
     kind: 'branch',
     id: b.id,
@@ -123,6 +146,7 @@ function branchToCard(b: EngineeringBranch): CareerCard {
     subtitle: b.aliases?.slice(0, 2).join(', ') || '4-Year Engineering Degree',
     level: 'UG_ENGG',
     clusterIds: b.clusterIds,
+    clusterName,
     outlook: b.outlook,
     entranceRequired: true,
     examNames: ['JEE Main', 'JEE Advanced', 'KCET / State CET'],
@@ -137,10 +161,15 @@ function branchToCard(b: EngineeringBranch): CareerCard {
     riasec: b.riasec,
     abroadFriendly: true,
     isEstimate: b.isEstimate,
+    ncrfLevel: 'NCrF Level 7 (4-Year Engineering Degree)',
+    globalShortage: b.global_shortage_indicator,
+    keyCompetencies: b.key_competencies,
+    subjectMatches: b.key_competencies,
   };
 }
 
 function degreeToCard(g: GraduateCareer): CareerCard {
+  const clusterName = g.clusterIds?.[0] ? clustersMap.get(g.clusterIds[0])?.label : 'Degree & Career';
   return {
     kind: 'degree',
     id: g.id,
@@ -148,6 +177,7 @@ function degreeToCard(g: GraduateCareer): CareerCard {
     subtitle: g.roles?.slice(0, 3).join(', ') || 'Degree / Professional Program',
     level: g.level as QualificationLevelId,
     clusterIds: g.clusterIds,
+    clusterName,
     outlook: g.outlook,
     entranceRequired: (g.pgExamIds?.length || 0) > 0,
     examNames: (g.pgExamIds || []).map((id) => examsMap.get(id)?.name || id).filter(Boolean),
@@ -164,6 +194,7 @@ function degreeToCard(g: GraduateCareer): CareerCard {
     riasec: g.riasec,
     abroadFriendly: false,
     isEstimate: g.isEstimate,
+    ncrfLevel: g.ncrf_credit_level || (g.level === 'PG' ? 'NCrF Level 8' : 'NCrF Level 6'),
   };
 }
 
@@ -190,6 +221,8 @@ function govtJobToCard(j: GovtJob): CareerCard {
       ? 'PG'
       : 'PROFESSIONAL';
 
+  const clusterName = j.clusterIds?.[0] ? clustersMap.get(j.clusterIds[0])?.label : 'Government Job';
+
   return {
     kind: 'govtJob',
     id: j.id,
@@ -197,6 +230,7 @@ function govtJobToCard(j: GovtJob): CareerCard {
     subtitle: `${j.conductingBody} • ${j.posts?.slice(0, 2).join(', ')}`,
     level,
     clusterIds: j.clusterIds,
+    clusterName,
     outlook: j.outlook,
     entranceRequired: true,
     examNames: [j.exam],
@@ -211,6 +245,15 @@ function govtJobToCard(j: GovtJob): CareerCard {
     riasec: ['C', 'R'],
     abroadFriendly: false,
     isEstimate: j.isEstimate,
+    estimatedGrossMonthly: j.approxInHand,
+    ncrfLevel:
+      j.minQualification === 'ENGINEERING'
+        ? 'NCrF Level 7'
+        : j.minQualification === 'GRADUATE'
+        ? 'NCrF Level 6'
+        : j.minQualification === 'DIPLOMA'
+        ? 'NCrF Level 5'
+        : 'NCrF Level 4',
   };
 }
 
@@ -296,26 +339,46 @@ export function searchCareers(query: Partial<CareerSearchQuery> = {}) {
     if (branch) {
       branches = branches.filter((b) => b.code.toUpperCase() === branch.toUpperCase());
     }
+    const matchedPathways = pathways.filter((p) => p.level === 'UG_ENGG');
     const allowedGovtQuals = new Set(
       eligibleAlso.ENGINEERING || ['CLASS_10', 'CLASS_12', 'DIPLOMA', 'GRADUATE', 'ENGINEERING']
     );
     const matchedGovt = govtJobs.filter((g) => allowedGovtQuals.has(g.minQualification));
-    candidateCards = [...branches.map(branchToCard), ...matchedGovt.map(govtJobToCard)];
+    candidateCards = [
+      ...branches.map(branchToCard),
+      ...matchedPathways.map(pathwayToCard),
+      ...matchedGovt.map(govtJobToCard),
+    ];
   } else if (level === 'UG_OTHER') {
     const matchedGrad = graduateCareers.filter((g) => g.level === 'UG_OTHER');
+    const matchedPathways = pathways.filter((p) => p.level === 'UG_OTHER');
     const allowedGovtQuals = new Set(eligibleAlso.GRADUATE || ['CLASS_10', 'CLASS_12', 'GRADUATE']);
     const matchedGovt = govtJobs.filter((g) => allowedGovtQuals.has(g.minQualification));
-    candidateCards = [...matchedGrad.map(degreeToCard), ...matchedGovt.map(govtJobToCard)];
+    candidateCards = [
+      ...matchedGrad.map(degreeToCard),
+      ...matchedPathways.map(pathwayToCard),
+      ...matchedGovt.map(govtJobToCard),
+    ];
   } else if (level === 'PROFESSIONAL') {
     const matchedGrad = graduateCareers.filter((g) => g.level === 'PROFESSIONAL');
+    const matchedPathways = pathways.filter((p) => p.level === 'PROFESSIONAL');
     const allowedGovtQuals = new Set(['MBBS', 'LLB', 'PROFESSIONAL', 'GRADUATE', 'CLASS_12', 'CLASS_10']);
     const matchedGovt = govtJobs.filter((g) => allowedGovtQuals.has(g.minQualification));
-    candidateCards = [...matchedGrad.map(degreeToCard), ...matchedGovt.map(govtJobToCard)];
+    candidateCards = [
+      ...matchedGrad.map(degreeToCard),
+      ...matchedPathways.map(pathwayToCard),
+      ...matchedGovt.map(govtJobToCard),
+    ];
   } else if (level === 'PG') {
     const matchedGrad = graduateCareers.filter((g) => g.level === 'PG');
+    const matchedPathways = pathways.filter((p) => p.level === 'PG');
     const allowedGovtQuals = new Set(eligibleAlso.PG || ['CLASS_10', 'CLASS_12', 'GRADUATE', 'PG']);
     const matchedGovt = govtJobs.filter((g) => allowedGovtQuals.has(g.minQualification));
-    candidateCards = [...matchedGrad.map(degreeToCard), ...matchedGovt.map(govtJobToCard)];
+    candidateCards = [
+      ...matchedGrad.map(degreeToCard),
+      ...matchedPathways.map(pathwayToCard),
+      ...matchedGovt.map(govtJobToCard),
+    ];
   }
 
   // 2. Kind Filter

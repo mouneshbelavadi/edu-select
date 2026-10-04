@@ -2581,6 +2581,233 @@
       "isEstimate": true,
       "asOfYear": 2026,
       "notes": null
+    },
+    {
+      "id": "branch-vlsi",
+      "code": "VLSI",
+      "name": "Semiconductor Engineering & VLSI Design",
+      "aliases": [
+        "VLSI",
+        "Semiconductor Technology",
+        "Microelectronics",
+        "Chip Design & Fabrication"
+      ],
+      "gatePaper": "EC",
+      "clusterIds": [
+        "computing-ai",
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Silicon Validation Engineer",
+          "Physical Design Engineer",
+          "Verification Architect",
+          "RTL Design Engineer",
+          "ASIC Design Trainee"
+        ],
+        "mid": [
+          "Senior VLSI Design Engineer",
+          "SoC Verification Specialist",
+          "Analog / Mixed-Signal Engineer",
+          "Firmware Integration Lead"
+        ],
+        "senior": [
+          "Principal Silicon Architect",
+          "Director of Chip Verification",
+          "Chief Semiconductor Strategist",
+          "Fab Liaison Director"
+        ]
+      },
+      "sectors": [
+        "Semiconductor Fabrication",
+        "VLSI & Chip Design",
+        "Consumer Electronics",
+        "Defence & Aerospace Electronics"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Intel",
+          "Qualcomm",
+          "NVIDIA",
+          "Texas Instruments",
+          "Synopsys",
+          "Cadence",
+          "ARM",
+          "AMD",
+          "Tata Electronics",
+          "MediaTek"
+        ],
+        "public": [
+          "BEL",
+          "ISRO",
+          "CDAC",
+          "BARC OCES",
+          "SCL (Semi-Conductor Laboratory Mohali)"
+        ]
+      },
+      "psusViaGate": [
+        "BEL",
+        "ISRO",
+        "CDAC",
+        "BARC OCES"
+      ],
+      "eseEligible": true,
+      "eseStream": "Electronics & Telecommunication",
+      "certifications": [
+        "Universal Verification Methodology (UVM)",
+        "SystemVerilog for Design & Verification",
+        "Cadence Innovus / Synopsys ICC2",
+        "IEEE AI Processor Architecture & ESD Protection"
+      ],
+      "emergingRoles": [
+        "Quantum-Chip Interface Engineer",
+        "Cryogenic CMOS Designer",
+        "Neuromorphic Computing Hardware Engineer"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 6,
+          "max": 18
+        },
+        "mid3to5": {
+          "min": 18,
+          "max": 35
+        },
+        "senior10plus": {
+          "min": 40,
+          "max": 85
+        }
+      },
+      "salaryNote": "Global semiconductor market projecting $1.03T by 2030 with severe 300k+ engineer deficit under US CHIPS Act and India Semiconductor Mission (Tata Electronics Fab, Micron). Verified RTL and UVM talent commands 2-3x typical IT services salaries.",
+      "outlook": "GROWING",
+      "riasec": [
+        "I",
+        "R",
+        "C"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": "Critical talent shortage sector; direct eligibility for BEL, ISRO, CDAC, and BARC OCES.",
+      "global_shortage_indicator": true,
+      "key_competencies": [
+        "RTL Design",
+        "Universal Verification Methodology (UVM)",
+        "Formal Verification",
+        "Computer Architecture",
+        "ESD Protection",
+        "System-on-Chip (SoC) Design"
+      ]
+    },
+    {
+      "id": "branch-quantum",
+      "code": "QUANTUM",
+      "name": "Quantum Engineering & Cryptographic Computing",
+      "aliases": [
+        "Quantum Information Science",
+        "Quantum Computing",
+        "Quantum Technologies",
+        "Quantum-Safe Cryptography"
+      ],
+      "gatePaper": "CS",
+      "clusterIds": [
+        "computing-ai",
+        "science-research",
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Quantum Software Engineer",
+          "Quantum Algorithm Developer",
+          "Cryptographic Security Analyst",
+          "Post-Quantum Cryptography (PQC) Specialist"
+        ],
+        "mid": [
+          "Quantum Systems Architect",
+          "Quantum Hardware Integration Engineer",
+          "Senior Cryptographic Protocol Designer"
+        ],
+        "senior": [
+          "Chief Quantum Scientist",
+          "Director of Quantum Information Systems",
+          "National Security Cryptography Advisor"
+        ]
+      },
+      "sectors": [
+        "Quantum Computing & AI",
+        "Cybersecurity & Cryptography",
+        "Deep-Tech Defense",
+        "Financial High-Frequency Modeling"
+      ],
+      "topRecruiters": {
+        "private": [
+          "IBM Quantum",
+          "Google Quantum AI",
+          "Microsoft Azure Quantum",
+          "Rigetti Computing",
+          "IonQ",
+          "QNu Labs",
+          "TCS Research",
+          "Infosys Research"
+        ],
+        "public": [
+          "DRDO",
+          "ISRO",
+          "BARC OCES",
+          "C-DAC",
+          "TIFR",
+          "Raman Research Institute (RRI)"
+        ]
+      },
+      "psusViaGate": [
+        "BARC OCES",
+        "DRDO RAC",
+        "ISRO",
+        "CDAC"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "Qiskit Developer Certification (IBM)",
+        "Post-Quantum Cryptography Standards (NIST/IEEE)",
+        "Quantum Machine Learning (PennyLane)"
+      ],
+      "emergingRoles": [
+        "Quantum-Safe Migration Consultant",
+        "Quantum Chemistry Simulation Specialist",
+        "Quantum Sensing Engineer"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 8,
+          "max": 24
+        },
+        "mid3to5": {
+          "min": 24,
+          "max": 50
+        },
+        "senior10plus": {
+          "min": 55,
+          "max": 100
+        }
+      },
+      "salaryNote": "Frontier deep-tech domain fueled by National Quantum Mission (NQM India, ₹6,000 Cr) and global Quantum Advantage initiatives. High academic and research demand.",
+      "outlook": "GROWING",
+      "riasec": [
+        "I",
+        "A",
+        "R"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": "Convergence of theoretical physics, advanced computing, and post-quantum cryptographic standards.",
+      "global_shortage_indicator": true,
+      "key_competencies": [
+        "Quantum Information Theory",
+        "Post-Quantum Cryptography",
+        "Quantum Algorithms (Shor, Grover)",
+        "Hamiltonian Simulation",
+        "Qiskit / Cirq"
+      ]
     }
   ]
 }

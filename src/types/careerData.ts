@@ -53,6 +53,27 @@ export interface Cost {
   basis: 'perYear' | 'total' | 'perCycle';
   govt: number[] | null; private: number[] | null; note: string | null; // [min, max] INR
 }
+export interface GlobalMobility {
+  target_country: string;
+  mandatory_certifications?: string[];
+  total_estimated_capital_outlay_INR?: [number, number] | number[];
+  exams?: string[];
+  critical_thresholds?: string;
+  licensure_process?: string;
+  visa_type?: string;
+  net_monthly_savings_INR?: number;
+  regulatory_body?: string;
+}
+
+export interface IndustrialLinkage {
+  corridor: string;
+  region: string;
+  anchor_corporations: string[];
+  immediate_roles: string[];
+  subsidized_policy?: string;
+  institutions?: string[];
+}
+
 export interface Pathway {
   id: string; level: QualificationLevelId; streams: StreamId[]; category: string; clusterIds: string[]; name: string;
   eligibility: string; duration: string; durationYears: Range | null; isJob: boolean;
@@ -62,6 +83,10 @@ export interface Pathway {
   // optional extras
   branches?: string[]; parentId?: string; linkedTrades?: string; regulator?: string;
   linkedDataset?: 'engineeringBranches' | 'govtJobs'; linkedFilter?: { minQualification: string };
+  // NCrF and Global Expansion Fields
+  ncrf_credit_level?: string;
+  global_mobility?: GlobalMobility;
+  industrial_linkage?: IndustrialLinkage;
 }
 
 // ---------- engineeringBranches.json ----------
@@ -72,6 +97,9 @@ export interface EngineeringBranch {
   eseEligible: boolean; eseStream: string | null; certifications: string[]; emergingRoles: string[];
   salaryLPA: { fresher: Range; mid3to5: Range; senior10plus: Range }; salaryNote: string;
   outlook: Outlook; riasec: Riasec[]; isEstimate: boolean; asOfYear: number; notes: string | null;
+  // Deep-tech additions
+  global_shortage_indicator?: boolean;
+  key_competencies?: string[];
 }
 export interface EngineeringBranchesFile extends Dataset<EngineeringBranch> {
   commonToAllBranches: {
@@ -89,6 +117,8 @@ export interface GraduateCareer {
   roles: string[]; sectors: string[]; govtJobIds: string[]; pgOptions: string[]; pgExamIds: string[];
   salaryLPA: { fresher: Range; fiveYears: Range } | null; riasec: Riasec[]; outlook: Outlook;
   isEstimate: boolean; asOfYear: number; note: string | null;
+  ncrf_credit_level?: string;
+  fellowshipStipendMonthly?: number;
 }
 
 // ---------- govtJobs.json ----------
@@ -99,6 +129,19 @@ export interface GovtJob {
   ageLimit: { min: number | null; max: number; text: string }; selectionStages: string[];
   payLevels: number[]; basicPayINR: number[]; approxInHand: string; clusterIds: string[];
   officialSite: string | null; note: string | null; outlook: Outlook; isEstimate: boolean; asOfYear: number;
+  // State executive, uniformed & apex scientific recruitment additions
+  estimatedGrossInHand?: [number, number] | number[];
+  vacancies2026?: number;
+  physicalRequirements?: {
+    maleHeightCm?: number;
+    maleChestExpansionCm?: number;
+    femaleHeightCm?: number;
+    femaleWeightKg?: number;
+    notes?: string;
+  };
+  trainingStipendMonthly?: number;
+  startingGrossMonthly?: number;
+  indemnityBondINR?: number;
 }
 // meta extras: ageRelaxation, payMatrixLevel1to14, minQualifications, eligibleAlso (qualification -> minQualification[] the candidate can apply for)
 
@@ -135,6 +178,8 @@ export interface CareerCard {
   subtitle: string;
   level: QualificationLevelId;
   clusterIds: string[];
+  clusterName?: string;
+  subjectMatches?: string[];
   outlook: Outlook;
   entranceRequired: boolean;
   examNames: string[];
@@ -145,5 +190,12 @@ export interface CareerCard {
   riasec: Riasec[];
   abroadFriendly: boolean;
   isEstimate: boolean;
+  // Extended taxonomy badges & metadata
+  ncrfLevel?: string;
+  globalMobility?: GlobalMobility;
+  industrialLinkage?: IndustrialLinkage;
+  globalShortage?: boolean;
+  keyCompetencies?: string[];
+  estimatedGrossMonthly?: string;
 }
 

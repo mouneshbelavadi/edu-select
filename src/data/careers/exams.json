@@ -1182,6 +1182,226 @@
       "frequency": "Twice a year",
       "officialSite": "https://nta.ac.in",
       "note": null
+    },
+    {
+      "id": "usmle-step1",
+      "name": "USMLE Step 1",
+      "conductingBody": "FSMB & NBME",
+      "type": "professional",
+      "forLevels": [
+        "PROFESSIONAL"
+      ],
+      "purpose": "Foundational medical licensure assessment (Pass/Fail standard)",
+      "eligibility": "Enrolled in or graduated from ECFMG-accredited medical school (MBBS)",
+      "frequency": "Year-round computer-based test",
+      "officialSite": "https://www.usmle.org",
+      "note": "Fee: $695 + $210 international surcharge + 18% Indian GST (~₹99,510 total in India)"
+    },
+    {
+      "id": "usmle-step2-ck",
+      "name": "USMLE Step 2 CK (Clinical Knowledge)",
+      "conductingBody": "FSMB & NBME",
+      "type": "professional",
+      "forLevels": [
+        "PROFESSIONAL"
+      ],
+      "purpose": "Clinical knowledge assessment for US medical residency match (Score 230+ general, 245+ competitive)",
+      "eligibility": "Passage of preclinical curriculum in ECFMG-accredited medical school",
+      "frequency": "Year-round computer-based test",
+      "officialSite": "https://www.usmle.org",
+      "note": "Fee: $695 + $235 international surcharge + 18% Indian GST (~₹1,02,021 total in India)"
+    },
+    {
+      "id": "usmle-step3",
+      "name": "USMLE Step 3",
+      "conductingBody": "FSMB & NBME",
+      "type": "professional",
+      "forLevels": [
+        "PROFESSIONAL"
+      ],
+      "purpose": "Final examination for unsupervised medical practice licensure in the United States",
+      "eligibility": "ECFMG Certified MD/MBBS graduate",
+      "frequency": "Year-round in the United States",
+      "officialSite": "https://www.fsmb.org/step-3",
+      "note": "Fee: $955 (~₹88,815). Administered exclusively within the United States"
+    },
+    {
+      "id": "plab-1",
+      "name": "PLAB 1 / UK MLA Written",
+      "conductingBody": "General Medical Council (GMC, UK)",
+      "type": "professional",
+      "forLevels": [
+        "PROFESSIONAL"
+      ],
+      "purpose": "Overseas medical graduate licensure assessment for NHS practice",
+      "eligibility": "Primary Medical Qualification (MBBS) + IELTS 7.5 or OET Grade B",
+      "frequency": "4 times a year worldwide",
+      "officialSite": "https://www.gmc-uk.org",
+      "note": "Fee: £283 (~₹35,941). 180 single-best-answer questions"
+    },
+    {
+      "id": "plab-2",
+      "name": "PLAB 2 / UK MLA Clinical (OSCE)",
+      "conductingBody": "General Medical Council (GMC, UK)",
+      "type": "professional",
+      "forLevels": [
+        "PROFESSIONAL"
+      ],
+      "purpose": "Objective Structured Clinical Examination (OSCE) in Manchester, UK",
+      "eligibility": "Passage of PLAB 1",
+      "frequency": "Year-round in Manchester, UK",
+      "officialSite": "https://www.gmc-uk.org",
+      "note": "Fee: £1,036 (~₹1,31,572). 16 clinical scenario stations assessing NHS standard practice"
+    },
+    {
+      "id": "oet-medicine",
+      "name": "OET Medicine (Occupational English Test)",
+      "conductingBody": "Cambridge Boxhill Language Assessment",
+      "type": "eligibility-test",
+      "forLevels": [
+        "PROFESSIONAL"
+      ],
+      "purpose": "Healthcare-specific language proficiency for ECFMG, GMC, and international licensure",
+      "eligibility": "Healthcare professionals (Doctors, Nurses)",
+      "frequency": "Monthly",
+      "officialSite": "https://www.occupationalenglishtest.org",
+      "note": "Fee: $455 (~₹38,220). Tests listening, reading, writing, and speaking in clinical context"
+    },
+    {
+      "id": "nclex-rn",
+      "name": "NCLEX-RN (National Council Licensure Examination)",
+      "conductingBody": "National Council of State Boards of Nursing (NCSBN)",
+      "type": "professional",
+      "forLevels": [
+        "PROFESSIONAL"
+      ],
+      "purpose": "Licensure examination for Registered Nurses in the USA and Canada",
+      "eligibility": "B.Sc Nursing / GNM graduate approved by State Board of Nursing",
+      "frequency": "Year-round computer-adaptive test",
+      "officialSite": "https://www.ncsbn.org/nclex.page",
+      "note": "Fee: $200 + $150 international scheduling fee (~₹29,750). Universally required across all 50 US states"
+    },
+    {
+      "id": "cgfns-visascreen",
+      "name": "CGFNS VisaScreen Credential Evaluation",
+      "conductingBody": "CGFNS International",
+      "type": "professional",
+      "forLevels": [
+        "PROFESSIONAL"
+      ],
+      "purpose": "Mandatory federal immigration credential screening for healthcare workers (EB-3 / I-140 visa)",
+      "eligibility": "Foreign-educated registered nurses and healthcare professionals",
+      "frequency": "Continuous application",
+      "officialSite": "https://www.cgfns.org",
+      "note": "Fee: $540 (~₹45,360). Processing time 3–6 months; universally required by US immigration law"
+    },
+    {
+      "id": "jlpt-japanese",
+      "name": "JLPT (Japanese-Language Proficiency Test - N4/N3)",
+      "conductingBody": "Japan Foundation & JEES",
+      "type": "eligibility-test",
+      "forLevels": [
+        "ITI",
+        "DIPLOMA",
+        "UG_ENGG"
+      ],
+      "purpose": "Japanese language qualification for Specified Skilled Worker (SSW) visas and employment",
+      "eligibility": "Open to all non-native speakers",
+      "frequency": "Twice a year (July and December)",
+      "officialSite": "https://www.jlpt.jp",
+      "note": "N4 meets legal threshold for SSW Type 1; employers often require N3 for technical and railway roles"
+    },
+    {
+      "id": "ssw-skill-exam",
+      "name": "Japan Specified Skilled Worker (SSW) Skills Evaluation",
+      "conductingBody": "Relevant Japanese Sectoral Ministries (MLIT, METI, MHLW)",
+      "type": "professional",
+      "forLevels": [
+        "ITI",
+        "DIPLOMA"
+      ],
+      "purpose": "Vocational competency evaluation for 16-19 industrial sectors in Japan",
+      "eligibility": "Age 18+; technical competence in relevant trade",
+      "frequency": "Multiple test windows per year in India & Japan",
+      "officialSite": "https://www.ssw.go.jp",
+      "note": "Nursing Care sector requires specialized Japanese test with 73% passing standard from April 2026"
+    },
+    {
+      "id": "aps-germany-cert",
+      "name": "APS Certificate (Akademische Prüfstelle)",
+      "conductingBody": "German Embassy New Delhi & DAAD",
+      "type": "eligibility-test",
+      "forLevels": [
+        "UG_ENGG",
+        "UG_OTHER",
+        "PG"
+      ],
+      "purpose": "Mandatory document authenticity verification for Indian students applying for German national visa",
+      "eligibility": "Students with Indian educational qualifications applying to German universities",
+      "frequency": "Continuous processing",
+      "officialSite": "https://aps-india.de",
+      "note": "Non-refundable fee: EUR 225 (~₹23,025). Direct verification via DigiLocker and issuing universities"
+    },
+    {
+      "id": "kpsc-kas-exam",
+      "name": "KPSC Gazetted Probationers (KAS)",
+      "conductingBody": "Karnataka Public Service Commission",
+      "type": "government-recruitment",
+      "forLevels": [
+        "UG_OTHER",
+        "UG_ENGG",
+        "PROFESSIONAL"
+      ],
+      "purpose": "State civil services recruitment for Assistant Commissioners, DSPs, and Tahsildars in Karnataka",
+      "eligibility": "Graduate degree, age 21–35 years",
+      "frequency": "Recruitment cycle (e.g. 2026-27: 319 vacancies)",
+      "officialSite": "https://kpsc.kar.nic.in",
+      "note": "Prelims (400m, 0.25 neg) -> Mains (1,250m descriptive, 7 papers) -> Interview (25m, total 1,275m)"
+    },
+    {
+      "id": "ksp-psi-exam",
+      "name": "Karnataka Police Sub-Inspector (PSI) Examination",
+      "conductingBody": "Karnataka State Police (KSP)",
+      "type": "government-recruitment",
+      "forLevels": [
+        "UG_OTHER",
+        "UG_ENGG"
+      ],
+      "purpose": "Uniformed executive officer entry into Karnataka Civil, CAR, and KSISF police forces",
+      "eligibility": "Graduate, age 21–30 years, strict height and endurance benchmarks",
+      "frequency": "Annual recruitment drive",
+      "officialSite": "https://ksp.karnataka.gov.in",
+      "note": "PST/ET physical fitness -> Paper 1 descriptive (50m) -> Paper 2 objective (150m, 0.375 neg)"
+    },
+    {
+      "id": "barc-cbt",
+      "name": "BARC Online CBT / GATE for Scientific Officer",
+      "conductingBody": "Bhabha Atomic Research Centre / DAE",
+      "type": "government-recruitment",
+      "forLevels": [
+        "UG_ENGG",
+        "PG"
+      ],
+      "purpose": "Selection for OCES 1-year training and DGFS 2-year fellowship leading to Group A Scientist in DAE",
+      "eligibility": "B.E./B.Tech or M.Sc with min 60% aggregate marks",
+      "frequency": "Annual (January - April cycle)",
+      "officialSite": "https://barcocesexam.in",
+      "note": "Screening via GATE score or BARC CBT, followed by rigorous technical interview. Stipend: ₹74,000/mo"
+    },
+    {
+      "id": "pmrf-selection",
+      "name": "PMRF Selection Review",
+      "conductingBody": "National Coordinating Institute (IIT Madras / IIT Delhi)",
+      "type": "eligibility-test",
+      "forLevels": [
+        "UG_ENGG",
+        "PG"
+      ],
+      "purpose": "Prime Minister's Research Fellows award for elite doctoral research in India",
+      "eligibility": "Direct entry from CFTIs (CGPA ≥ 8.0) or lateral entry for enrolled PhD scholars",
+      "frequency": "Twice a year (May and December cycles)",
+      "officialSite": "https://www.pmrf.in",
+      "note": "Monthly stipend ₹70,000–₹80,000 + ₹2 Lakhs annual research contingency grant (₹10 Lakhs total)"
     }
   ]
 }
