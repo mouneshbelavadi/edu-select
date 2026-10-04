@@ -97,7 +97,7 @@ async function main() {
 
   // 2. Generate 35 Colleges
   const collegeTypes = [CollegeType.GOVERNMENT, CollegeType.PRIVATE, CollegeType.DEEMED];
-  
+
   for (let i = 0; i < 35; i++) {
     const cityState = CITIES_STATES[i % CITIES_STATES.length];
     const prefix = COLLEGE_NAMES_PREFIX[i % COLLEGE_NAMES_PREFIX.length];
@@ -153,7 +153,7 @@ async function main() {
       const avgPkg = Math.round(baseAvg * yearMultiplier * 10) / 10;
       const highestPkg = Math.round(avgPkg * (2.2 + (i % 3) * 0.5) * 10) / 10;
       const placementPct = Math.min(99, Math.round((75 + rating * 4.5) * 10) / 10);
-      
+
       const recruitersCount = 3 + (i % 3);
       const topRecs = RECRUITERS.slice(i % 5, (i % 5) + recruitersCount);
 

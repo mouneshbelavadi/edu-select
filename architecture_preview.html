@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EduSelect — System Architecture & Engineering Blueprint</title>
+  
+  <!-- Mermaid.js for rendering diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    @page {
+      size: A4;
+      margin: 16mm 14mm 16mm 14mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #0f172a;
+      background: #ffffff;
+      line-height: 1.6;
+      font-size: 13px;
+      margin: 0;
+      padding: 20px 24px;
+    }
+
+    /* Document Title */
+    h1 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 3px solid #2563eb;
+      padding-bottom: 12px;
+      margin-top: 0;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 6px;
+      page-break-after: avoid;
+    }
+
+    h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #2563eb;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #334155;
+    }
+
+    blockquote {
+      margin: 12px 0;
+      padding: 10px 16px;
+      background-color: #f0f7ff;
+      border-left: 4px solid #2563eb;
+      color: #1e3a8a;
+      font-size: 12.5px;
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 18px 0;
+      font-size: 11.5px;
+      page-break-inside: avoid;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+    }
+
+    thead {
+      background-color: #f1f5f9;
+    }
+
+    th {
+      padding: 8px 10px;
+      text-align: left;
+      font-weight: 700;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      font-size: 11.5px;
+    }
+
+    td {
+      padding: 7px 10px;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+      vertical-align: top;
+      word-break: break-word;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #f8fafc;
+    }
+
+    /* Code & Pre */
+    code {
+      font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+      font-size: 11px;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      padding: 2px 5px;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+    }
+
+    pre {
+      background-color: #0f172a;
+      color: #f8fafc;
+      padding: 12px 14px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+      font-size: 11px;
+      line-height: 1.45;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+      border: none;
+    }
+
+    /* Mermaid Diagrams Styling */
+    .mermaid-container {
+      background: #ffffff;
+      border: 1.5px solid #94a3b8;
+      border-radius: 8px;
+      padding: 16px 12px;
+      margin: 18px 0;
+      text-align: center;
+      page-break-inside: avoid;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .mermaid {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      font-family: 'Inter', sans-serif !important;
+    }
+
+    .mermaid svg {
+      max-width: 100% !important;
+      height: auto !important;
+      margin: 0 auto;
+    }
+
+    /* Lists */
+    ul, ol {
+      margin-top: 0;
+      margin-bottom: 10px;
+      padding-left: 20px;
+      color: #334155;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1.5px solid #e2e8f0;
+      margin: 24px 0;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .toc {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>EduSelect — Complete System Architecture &amp; Engineering Blueprint</h1>
+<blockquote>
+<p><strong>A Comprehensive Technical Architecture Guide for Developers, Engineers, and Technical Collaborators.</strong><br><em>Project:</em> <strong>EduSelect (College Discovery &amp; Prediction Platform)</strong><br><em>Version:</em> <code>1.0.0</code> | <em>Target Ecosystem:</em> Modern Web / Full-Stack Next.js<br><em>Authors:</em> EduSelect Engineering Team</p>
+</blockquote>
+<hr>
+<h2>Table of Contents</h2>
+<ol>
+<li><a href="#1-executive-summary--product-vision">Executive Summary &amp; Product Vision</a></li>
+<li><a href="#2-high-level-architecture-diagram">High-Level Architecture Diagram</a></li>
+<li><a href="#3-technology-stack-matrix">Technology Stack Matrix</a></li>
+<li><a href="#4-codebase--directory-topology">Codebase &amp; Directory Topology</a></li>
+<li><a href="#5-core-architectural-design-patterns">Core Architectural Design Patterns</a></li>
+<li><a href="#6-subsystem-deep-dives">Subsystem Deep Dives</a><ul>
+<li><a href="#61-multi-facet-search--discovery-engine">6.1 Multi-Facet Search &amp; Discovery Engine</a></li>
+<li><a href="#62-kcet-2026-rank--college-predictor-engine">6.2 KCET 2026 Rank &amp; College Predictor Engine</a></li>
+<li><a href="#63-college-comparison-matrix-engine">6.3 College Comparison Matrix Engine</a></li>
+<li><a href="#64-dynamic-institutional-profile-pages">6.4 Dynamic Institutional Profile Pages</a></li>
+<li><a href="#65-28-indian-states--geographic-hubs">6.5 28 Indian States &amp; Geographic Hubs</a></li>
+<li><a href="#66-admin-cms--governance-portal">6.6 Admin CMS &amp; Governance Portal</a></li>
+</ul>
+</li>
+<li><a href="#7-authentication-authorization--security">Authentication, Authorization &amp; Security</a></li>
+<li><a href="#8-data-architecture--persistence-layer">Data Architecture &amp; Persistence Layer</a></li>
+<li><a href="#9-rest-api-specification-matrix">REST API Specification Matrix</a></li>
+<li><a href="#10-client-state--data-fetching-strategy">Client State &amp; Data Fetching Strategy</a></li>
+<li><a href="#11-performance-optimizations--production-scaling-roadmap">Performance Optimizations &amp; Production Scaling Roadmap</a></li>
+<li><a href="#12-developer-quick-start--environment-setup">Developer Quick Start &amp; Environment Setup</a></li>
+</ol>
+<hr>
+<h2>1. Executive Summary &amp; Product Vision</h2>
+<p><strong>EduSelect</strong> is an enterprise-grade full-stack higher education platform built to guide students across India through institution discovery, course evaluation, side-by-side college comparisons, and competitive entrance cut-off predictions.</p>
+<h3>Key Capabilities:</h3>
+<ul>
+<li><strong>Pan-India Coverage:</strong> Institutional data spanning all 28 Indian States and Union Territories.</li>
+<li><strong>Instant Multi-Parametric Search:</strong> Filter by state, city, institution type (<code>GOVERNMENT</code>, <code>PRIVATE</code>, <code>DEEMED</code>), fee ceilings, NIRF ratings, and entrance exams (JEE, KCET, COMEDK, MHT-CET, WBJEE, TNEA, etc.).</li>
+<li><strong>KCET 2026 Predictive Scoring:</strong> Mathematical composite rank and college admission predictor based on PCM Board exam scores (50%) and KCET entrance scores (50%), factoring in reservation categories (<code>GM</code>, <code>2A</code>, <code>2B</code>, <code>3A</code>, <code>3B</code>, <code>SC</code>, <code>ST</code>) and quotas.</li>
+<li><strong>Side-by-Side College Matrix:</strong> Multi-college comparative analytics benchmarking fees, placement records, highest/average packages, and accreditation side-by-side.</li>
+<li><strong>Admin CMS:</strong> Internal dashboard enabling administrative teams to update institutional metadata, manage courses, and control user access.</li>
+</ul>
+<hr>
+<h2>2. High-Level Architecture Diagram</h2>
+<p>EduSelect is architected as a <strong>Next.js 14 App Router Full-Stack Monolith</strong>. Frontend UI components, server-side data loaders, middleware guards, and REST API handlers live within a single repository, sharing TypeScript definitions, validation schemas, and database connectors.</p>
+
+<div class="mermaid-container">
+  <pre class="mermaid">
+graph TB
+    subgraph Client ["Client Layer (Browser)"]
+        UI["React 18 + Tailwind UI"]
+        SWRClient["SWR (Data Fetching & Cache)"]
+        ZustandStore["Zustand (Compare Drawer Store)"]
+        NextAuthClient["NextAuth Client Session Provider"]
+    end
+
+    subgraph Edge ["Network & Middleware Layer"]
+        VercelCDN["Edge CDN / Vercel Edge"]
+        Middleware["Next.js Middleware (/src/middleware.ts)<br/>• JWT Role Verification<br/>• Admin RBAC"]
+    end
+
+    subgraph AppRouter ["Next.js 14 Full-Stack Monolith (App Router)"]
+        subgraph ServerComponents ["Server Components (RSC)"]
+            LandingPage["Home Page (/)"]
+            CollegeDetail["College Detail (/colleges/[id])"]
+            StatesHub["States Directory (/states)"]
+        end
+
+        subgraph ClientPages ["Interactive Client Pages"]
+            ListingPage["Search & Filter (/colleges)"]
+            ComparePage["Compare Matrix (/compare)"]
+            PredictorPage["KCET Predictor (/kcet-2026-predictor)"]
+            AdminDashboard["Admin CMS (/admin)"]
+            AuthPages["Login / Signup (/login, /signup)"]
+            SavedPage["Saved Colleges & Comparisons (/saved)"]
+        end
+
+        subgraph APIHandlers ["REST API Route Handlers (/api/*)"]
+            CollegesAPI["/api/colleges (Search, Filter, Sort)"]
+            CollegesDetailAPI["/api/colleges/[id]"]
+            CompareAPI["/api/colleges/compare"]
+            StatesAPI["/api/states"]
+            AuthAPI["/api/auth/[...nextauth] & /api/auth/signup"]
+            SavedAPI["/api/saved/colleges & /api/saved/comparisons"]
+            AdminAPI["/api/admin/colleges & /api/admin/users"]
+        end
+    end
+
+    subgraph Services ["Application Business Logic (/src/lib)"]
+        Repo["College Repository (collegeRepository.ts)"]
+        PredictorEngine["KCET Predictor Engine (kcetPredictor.ts)"]
+        UserStore["User Store & Auth Logic (userStore.ts)"]
+        SavedStore["Saved Items Store (savedStore.ts)"]
+        RateLimiter["Sliding Window Rate Limiter (rateLimit.ts)"]
+        ZodValidator["Zod Validation Layer (/validation/college.ts)"]
+    end
+
+    subgraph DataTier ["Persistence & Storage Layer"]
+        Prisma["Prisma ORM 5.x"]
+        Postgres[("PostgreSQL Database (Neon / Supabase)")]
+        LiveJSON[("Local Live JSON Store<br/>• colleges28States.json<br/>• users.json<br/>• saved.json")]
+    end
+
+    %% Flows
+    Client -->|HTTPS / REST| VercelCDN
+    VercelCDN --> Middleware
+    Middleware --> AppRouter
+    UI --> SWRClient
+    UI --> ZustandStore
+    SWRClient -->|HTTP GET / POST| APIHandlers
+    
+    APIHandlers --> RateLimiter
+    APIHandlers --> ZodValidator
+    APIHandlers --> Services
+    ServerComponents --> Services
+    
+    Services --> Repo
+    Services --> PredictorEngine
+    Services --> UserStore
+    Services --> SavedStore
+
+    Repo --> LiveJSON
+    Repo -->|Prisma Client| Prisma
+    UserStore --> LiveJSON
+    UserStore -->|Prisma Client| Prisma
+    SavedStore --> LiveJSON
+    SavedStore -->|Prisma Client| Prisma
+    Prisma --> Postgres
+  </pre>
+</div>
+<hr>
+<h2>3. Technology Stack Matrix</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Layer</th>
+<th align="left">Technology</th>
+<th align="left">Version</th>
+<th align="left">Purpose &amp; Rationale</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Framework</strong></td>
+<td align="left"><strong>Next.js</strong></td>
+<td align="left"><code>14.2.15</code></td>
+<td align="left">App Router paradigm for hybrid Server Components (RSC) and Client Components with zero CORS complexity.</td>
+</tr>
+<tr>
+<td align="left"><strong>Language</strong></td>
+<td align="left"><strong>TypeScript</strong></td>
+<td align="left"><code>5.x</code></td>
+<td align="left">End-to-end type safety spanning DB schemas, API responses, and React components.</td>
+</tr>
+<tr>
+<td align="left"><strong>UI Library</strong></td>
+<td align="left"><strong>React</strong></td>
+<td align="left"><code>18.3.1</code></td>
+<td align="left">Modern concurrent rendering, Suspense fallbacks, and component-driven architecture.</td>
+</tr>
+<tr>
+<td align="left"><strong>Styling</strong></td>
+<td align="left"><strong>TailwindCSS</strong></td>
+<td align="left"><code>3.4.1</code></td>
+<td align="left">Utility-first responsive design, dark mode tokens, and custom animation utilities.</td>
+</tr>
+<tr>
+<td align="left"><strong>State Management</strong></td>
+<td align="left"><strong>Zustand</strong></td>
+<td align="left"><code>4.5.5</code></td>
+<td align="left">Lightweight client state for the persistent 3-college Comparison Drawer across navigation.</td>
+</tr>
+<tr>
+<td align="left"><strong>Client Fetching</strong></td>
+<td align="left"><strong>SWR</strong></td>
+<td align="left"><code>2.2.5</code></td>
+<td align="left">Stale-While-Revalidate caching, automatic deduplication, and optimistic UI updates.</td>
+</tr>
+<tr>
+<td align="left"><strong>ORM</strong></td>
+<td align="left"><strong>Prisma</strong></td>
+<td align="left"><code>5.22.0</code></td>
+<td align="left">Declarative relational schema, type-safe query generation, and database migrations.</td>
+</tr>
+<tr>
+<td align="left"><strong>Database</strong></td>
+<td align="left"><strong>PostgreSQL</strong></td>
+<td align="left"><code>15+</code></td>
+<td align="left">Relational storage hosted on Neon Serverless with foreign key cascade integrity.</td>
+</tr>
+<tr>
+<td align="left"><strong>Authentication</strong></td>
+<td align="left"><strong>NextAuth.js</strong></td>
+<td align="left"><code>4.24.15</code></td>
+<td align="left">Credentials Provider, stateless JWT token strategy, and secure HTTP-only cookies.</td>
+</tr>
+<tr>
+<td align="left"><strong>Hashing</strong></td>
+<td align="left"><strong>bcryptjs</strong></td>
+<td align="left"><code>2.4.3</code></td>
+<td align="left">Cryptographic password hashing (10 salt rounds) for user credentials.</td>
+</tr>
+<tr>
+<td align="left"><strong>Validation</strong></td>
+<td align="left"><strong>Zod</strong></td>
+<td align="left"><code>3.23.8</code></td>
+<td align="left">Single-source schema validation shared between API query parsers and client forms.</td>
+</tr>
+<tr>
+<td align="left"><strong>Data Export</strong></td>
+<td align="left"><strong>SheetJS (xlsx)</strong></td>
+<td align="left"><code>0.18.5</code></td>
+<td align="left">Exporting side-by-side college comparisons to Excel/CSV worksheets.</td>
+</tr>
+<tr>
+<td align="left"><strong>Notifications</strong></td>
+<td align="left"><strong>react-hot-toast</strong></td>
+<td align="left"><code>2.6.0</code></td>
+<td align="left">Micro-interaction toast alerts for bookmarks, comparison actions, and errors.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>4. Codebase &amp; Directory Topology</h2>
+
+<pre><code class="language-text">edu-select/
+├── prisma/
+│   ├── schema.prisma            # Declarative PostgreSQL schema &amp; relations
+│   └── seed.ts                  # Database seeder populating colleges, courses &amp; placements
+├── public/
+│   ├── images/                  # Institutional photos, university emblems, state hero graphics
+│   └── favicon.ico              # Platform branding favicon
+├── src/
+│   ├── app/                     # Next.js 14 App Router (Pages, Layouts &amp; Endpoints)
+│   │   ├── admin/               # Internal Admin CMS Portal
+│   │   │   ├── colleges/        # Institution editor &amp; course manager
+│   │   │   ├── login/           # Admin dedicated authentication screen
+│   │   │   ├── states/          # State metadata &amp; regional college count management
+│   │   │   ├── users/           # User role assignment &amp; account suspension
+│   │   │   ├── layout.tsx       # Admin sidebar &amp; breadcrumbs layout
+│   │   │   └── page.tsx         # Executive metrics dashboard
+│   │   ├── api/                 # REST API Handlers
+│   │   │   ├── admin/           # Secured admin endpoints (Colleges &amp; Users)
+│   │   │   ├── auth/            # NextAuth [...nextauth] &amp; User Signup
+│   │   │   ├── colleges/        # GET /api/colleges &amp; /api/colleges/[id] &amp; /compare
+│   │   │   ├── saved/           # Saved colleges &amp; custom comparison lists
+│   │   │   └── states/          # Aggregated state directory &amp; entrance exam counts
+│   │   ├── colleges/            # College Discovery &amp; Directory
+│   │   │   ├── [id]/            # College Profile Page (Overview, Courses, Placements, Reviews)
+│   │   │   └── page.tsx         # Multi-criteria search &amp; filter directory
+│   │   ├── compare/             # Side-by-side college comparison matrix
+│   │   ├── kcet-2026-predictor/ # KCET Rank &amp; Admission Probability Calculator
+│   │   ├── login/               # User Sign-In screen
+│   │   ├── signup/              # User Registration screen
+│   │   ├── saved/               # User Bookmarks &amp; Saved Comparisons dashboard
+│   │   ├── states/              # 28 States Geographical Directory Hub
+│   │   ├── globals.css          # Tailwind base directives &amp; color variables
+│   │   ├── layout.tsx           # Global Root Layout (Navbar, Toast, CompareBar, Footer)
+│   │   └── page.tsx             # Interactive Landing Page
+│   ├── components/              # Modular UI Component Library
+│   │   ├── features/            # Feature-specific composite components
+│   │   │   ├── CollegeActionButtons.tsx # Save &amp; Compare interactive triggers
+│   │   │   ├── CollegeCard.tsx          # Institution discovery card
+│   │   │   ├── CollegeLogoBadge.tsx     # Dynamic fallback avatar badge
+│   │   │   ├── CompareBar.tsx           # Persistent comparison floating drawer
+│   │   │   └── StateCardImage.tsx       # Regional landscape banner
+│   │   ├── providers/           # Context providers (NextAuth SessionProvider)
+│   │   └── ui/                  # Atomic Design System (Button, Badge, Card, Input, Modal, Tabs)
+│   ├── data/                    # Hybrid Data Store Files
+│   │   ├── colleges28States.json# Master repository of Indian colleges (~1.1 MB)
+│   │   ├── saved.json           # User saved items snapshot
+│   │   └── users.json           # Local accounts snapshot with hashed passwords
+│   ├── lib/                     # Business Logic, Repositories &amp; Utilities
+│   │   ├── auth.ts              # NextAuth configuration &amp; Credentials provider setup
+│   │   ├── collegeRepository.ts # Hybrid Data Access Layer (JSON + Prisma dual read/write)
+│   │   ├── constants.ts         # Global app constants, state lists &amp; filter defaults
+│   │   ├── db.ts                # Singleton Prisma client instance
+│   │   ├── kcetPredictor.ts     # KCET Composite Rank &amp; Cutoff Calculation Engine
+│   │   ├── rateLimit.ts         # In-memory sliding window IP rate limiter
+│   │   ├── savedStore.ts        # Bookmark &amp; Comparison persistence layer
+│   │   ├── stateConfig.ts       # 28 States metadata, slugs, icons &amp; gradient styles
+│   │   ├── userStore.ts         # User management &amp; authentication storage
+│   │   ├── store/               # Zustand state stores (useCompareStore)
+│   │   └── validation/          # Zod input schemas (collegeQuerySchema)
+│   ├── middleware.ts            # Route protection &amp; Admin RBAC verification
+│   └── types/                   # Global TypeScript interfaces &amp; DTOs
+├── package.json                 # Project dependencies &amp; scripts
+├── tailwind.config.ts           # Tailwind theme tokens &amp; design system
+└── tsconfig.json                # TypeScript compiler configuration</code></pre>
+<hr>
+<h2>5. Core Architectural Design Patterns</h2>
+<h3>1. Monolithic Next.js 14 App Router</h3>
+<ul>
+<li><strong>Single Deployable Unit:</strong> Eliminates the deployment overhead of separate backend microservices.</li>
+<li><strong>Zero CORS Configuration:</strong> Frontend and API routes share the exact same host origin.</li>
+<li><strong>Shared Type Definitions:</strong> Data Transfer Objects (DTOs), Zod schemas, and Prisma types are shared directly without build-step code generation.</li>
+</ul>
+<h3>2. Hybrid Data Access Pattern (Resilience Architecture)</h3>
+<p>To guarantee high availability and enable seamless local development without mandatory cloud database dependencies:</p>
+<ol>
+<li><strong>Primary Database:</strong> PostgreSQL connected through Prisma ORM for relational queries, foreign key cascading, and production workloads.</li>
+<li><strong>Local Live JSON Repository:</strong> <code>src/data/colleges28States.json</code> serves as an offline-first, high-performance data store.</li>
+<li><strong>Dual-Write Synchronization:</strong> When an administrator edits college information via <code>/api/admin/colleges</code>, the repository updates the live JSON file and simultaneously syncs with PostgreSQL if a live database connection exists.</li>
+</ol>
+<h3>3. Separation of Client and Server Boundaries</h3>
+<ul>
+<li><strong>Server Components (RSC):</strong> Render the static skeleton, college profile metadata, and state hero graphics without sending JavaScript to the browser.</li>
+<li><strong>Client Components (<code>&#39;use client&#39;</code>):</strong> Reserved for interactive micro-components, including debounced search bars, slider filters, the comparison tray, and tab switchers.</li>
+</ul>
+<h3>4. Single Source of Truth for Search State (URL Query Params)</h3>
+<p>All filtering criteria (search keyword, state, city, type, fees, rating, page) are serialized into the browser URL (<code>/colleges?search=RVCE&amp;type=GOVERNMENT&amp;minRating=4</code>). This architecture ensures:</p>
+<ul>
+<li>Filtered results are instantly <strong>bookmarkable and shareable</strong>.</li>
+<li>Browser <strong>Back</strong> and <strong>Forward</strong> buttons work naturally.</li>
+<li>State is restored immediately upon page reload.</li>
+</ul>
+<hr>
+<h2>6. Subsystem Deep Dives</h2>
+
+<div class="mermaid-container">
+  <pre class="mermaid">
+flowchart TD
+    subgraph S1 [Search & Filter Flow]
+        UIInput[User Search / Filter Input] -->|400ms Debounce| URLSync[Update URLSearchParams]
+        URLSync --> SWRHook[SWR Hook triggers fetch]
+        SWRHook --> CollegeRoute[GET /api/colleges]
+        CollegeRoute --> ZodCheck[Zod Query Schema Validation]
+        ZodCheck --> RepoQuery[collegeRepository.getColleges]
+        RepoQuery --> FilterEngine[In-Memory / SQL Filter & Sort]
+        FilterEngine --> ReturnData[Return Paginated College DTOs]
+    end
+
+    subgraph S2 [KCET 2026 Predictor Flow]
+        Scores[Input: KCET 0-180 & Board 0-300] --> Normalizer[Normalize to 50% KCET + 50% Board]
+        Normalizer --> CompositeScore[Calculate Composite Score 0-100]
+        CompositeScore --> RankCurve[Apply Non-Linear Rank Decay Curve]
+        RankCurve --> EstimatedRank[Compute Min, Median & Max Predicted Rank]
+        EstimatedRank --> CutoffMatcher[Match against Historic Karnataka College Cutoffs]
+        CutoffMatcher --> CategoryFilter[Apply Reservation: GM / 2A / 2B / 3A / 3B / SC / ST]
+        CategoryFilter --> CategorizedOutput[Group into High, Moderate, Dream Chances]
+    end
+  </pre>
+</div>
+<h3>6.1 Multi-Facet Search &amp; Discovery Engine</h3>
+<ul>
+<li><strong>Debounced Text Search (400ms):</strong> Prevents network saturation while the user types. Queries match college names, cities, states, affiliations, overview texts, entrance exam codes, and individual course branch codes.</li>
+<li><strong>Multi-Factor Filtering:</strong><ul>
+<li><strong>Type:</strong> Enums <code>GOVERNMENT</code>, <code>PRIVATE</code>, <code>DEEMED</code>.</li>
+<li><strong>State &amp; City:</strong> Exact case-insensitive matching across 28 states.</li>
+<li><strong>Fee Range:</strong> Lower and upper bound numerical comparisons.</li>
+<li><strong>Rating Threshold:</strong> Minimum user rating filter (0.0 to 5.0).</li>
+</ul>
+</li>
+<li><strong>Pagination:</strong> Offset-based pagination with customizable <code>limit</code> (default: 12, max: 500) and page index calculations.</li>
+</ul>
+<h3>6.2 KCET 2026 Rank &amp; College Predictor Engine</h3>
+<p>The predictor located in <code>src/lib/kcetPredictor.ts</code> implements Karnataka Examination Authority&#39;s (KEA) official engineering rank computation guidelines:</p>
+<p>$$\text{KCET Percentage} = \frac{\text{Physics} + \text{Chemistry} + \text{Maths}}{180} \times 100$$</p>
+<p>$$\text{Board Percentage} = \frac{\text{Board Physics} + \text{Board Chemistry} + \text{Board Maths}}{300} \times 100$$</p>
+<p>$$\text{Composite Score} = (0.50 \times \text{KCET Percentage}) + (0.50 \times \text{Board Percentage})$$</p>
+<ul>
+<li><strong>Non-Linear Rank Estimation Curve:</strong> Accounts for score clustering at higher score intervals ($&gt;90%$) and higher density in median score ranges ($60% - 75%$).</li>
+<li><strong>Quota &amp; Category Matrix:</strong> Dynamically selects the appropriate cutoff threshold for the candidate&#39;s category (<code>GM</code>, <code>2A</code>, <code>2B</code>, <code>3A</code>, <code>3B</code>, <code>SC</code>, <code>ST</code>) and applies reservation adjustments for <code>Rural</code> and <code>Kannada Medium</code> quotas.</li>
+<li><strong>Admission Probability Classification:</strong><ul>
+<li><strong>High Chance:</strong> Candidate&#39;s predicted rank is comfortably within the historical cutoff ($Rank \le Cutoff \times 0.85$).</li>
+<li><strong>Moderate Chance:</strong> Candidate&#39;s predicted rank is close to the cutoff ($Cutoff \times 0.85 &lt; Rank \le Cutoff \times 1.10$).</li>
+<li><strong>Dream / Ambitious:</strong> Candidate&#39;s predicted rank is slightly above the historical cutoff ($Cutoff \times 1.10 &lt; Rank \le Cutoff \times 1.35$).</li>
+</ul>
+</li>
+</ul>
+<h3>6.3 College Comparison Matrix Engine</h3>
+<ul>
+<li><strong>Global Comparison State (<code>useCompareStore</code>):</strong> Zustand-powered client store supporting up to 3 simultaneously selected institutions.</li>
+<li><strong>Persistent Bottom Drawer (<code>CompareBar.tsx</code>):</strong> Displays selected institutions with thumbnail badges, quick removal triggers, and a direct CTA to <code>/compare</code>.</li>
+<li><strong>Comparative Metrics Table:</strong> Compares Annual Tuition Fees, NIRF/User Rating, State &amp; City, Campus Type, 3-Year Placement Packages (Highest &amp; Average), Branch Offerings, and Regulatory Approvals (AICTE, NBA, NAAC).</li>
+<li><strong>Export Utility:</strong> Integrated Excel workbook generation (<code>xlsx</code>) allowing students to download comparison sheets.</li>
+</ul>
+<h3>6.4 Dynamic Institutional Profile Pages (<code>/colleges/[id]</code>)</h3>
+<ul>
+<li><strong>Dual Identifier Resolution:</strong> Fetches institution profiles seamlessly by either unique CUID/UUID or human-readable URL slug (e.g., <code>/colleges/rv-college-of-engineering-bangalore</code>).</li>
+<li><strong>Tabbed Information Architecture:</strong><ol>
+<li><strong>Overview:</strong> Institutional history, campus infrastructure, accreditations, and affiliation details.</li>
+<li><strong>Courses &amp; Fees:</strong> Comprehensive branch tables with duration, annual fee breakdown, and seat intake.</li>
+<li><strong>Placements:</strong> 3-year historical trends showing Average Package, Highest Package, Placement %, and list of Top Recruiters (Google, Amazon, Microsoft, TCS, etc.).</li>
+<li><strong>Reviews &amp; Ratings:</strong> Student testimonials, verified ratings, and campus feedback.</li>
+</ol>
+</li>
+</ul>
+<h3>6.5 28 Indian States &amp; Geographic Hubs (<code>/states</code>)</h3>
+<ul>
+<li>Provides dedicated regional exploration hubs for all 28 Indian States.</li>
+<li>Incorporates custom state visual styling: localized emoji identifiers, curated color gradients, and state landscape imagery.</li>
+<li>Automatically calculates real-time college counts and filters by regional entrance exams (e.g., KCET/COMEDK in Karnataka, MHT-CET in Maharashtra, WBJEE in West Bengal, TNEA in Tamil Nadu).</li>
+</ul>
+<h3>6.6 Admin CMS &amp; Governance Portal (<code>/admin</code>)</h3>
+<ul>
+<li><strong>Executive Analytics:</strong> High-level counts of total registered institutions, user accounts, and active comparisons.</li>
+<li><strong>Institutional Management:</strong> Full editing capabilities for college names, tuition fees, ratings, overview text, and course configurations.</li>
+<li><strong>User Governance:</strong> View registered users, examine account creation dates, and toggle account statuses between <code>ACTIVE</code> and <code>SUSPENDED</code>.</li>
+</ul>
+<hr>
+<h2>7. Authentication, Authorization &amp; Security</h2>
+
+<div class="mermaid-container">
+  <pre class="mermaid">
+sequenceDiagram
+    autonumber
+    actor User as User / Admin
+    participant Client as Next.js Client Form
+    participant API as /api/auth/[...nextauth]
+    participant Store as User Store / DB
+    participant Middleware as Next.js Edge Middleware
+    participant Protected as /admin Dashboard
+
+    User->>Client: Enters Email & Password
+    Client->>API: POST credentials (email, password)
+    API->>Store: Find user record by email
+    Store-->>API: Return user hash & role (USER / ADMIN)
+    API->>API: bcrypt.compare(plainPassword, passwordHash)
+    alt Password Valid
+        API->>Store: updateLastLogin(email)
+        API-->>Client: Issue Signed JWT Session Cookie (httpOnly)
+        Client-->>User: Redirect to requested page
+    else Invalid Password
+        API-->>Client: 401 Unauthorized
+    end
+
+    Note over User,Protected: Accessing Protected Admin Routes (/admin/users)
+    User->>Middleware: Request /admin/users with JWT Cookie
+    Middleware->>Middleware: getToken({ req, secret })
+    alt Token Role === 'ADMIN'
+        Middleware->>Protected: Forward Request (NextResponse.next())
+        Protected-->>User: Render Admin CMS
+    else Token Missing or Role !== 'ADMIN'
+        Middleware-->>User: Redirect to /admin (Login Prompt)
+    end
+  </pre>
+</div>
+<h3>Security Defenses:</h3>
+<ol>
+<li><strong>Stateless JWT Sessions:</strong> Eliminates database lookups on every route navigation, minimizing latency while maintaining session validity for 30 days.</li>
+<li><strong>Cryptographic Password Security:</strong> Enforces <code>bcryptjs</code> with salt round factor 10. Passwords are never stored in plaintext.</li>
+<li><strong>Route Protection Middleware:</strong> Intercepts incoming requests at the Edge (<code>src/middleware.ts</code>). Restricts administrative routes (<code>/admin/users/*</code>, <code>/admin/settings/*</code>) exclusively to authenticated users with <code>role: &#39;ADMIN&#39;</code>.</li>
+<li><strong>Input Validation &amp; Sanitization:</strong> All incoming REST queries are parsed and type-coerced through Zod schemas to eliminate malformed inputs and parameter tampering.</li>
+<li><strong>Sliding Window Rate Limiter:</strong> An in-memory sliding window limiter in <code>src/lib/rateLimit.ts</code> safeguards endpoints against brute-force attacks and volumetric request abuse.</li>
+</ol>
+<hr>
+<h2>8. Data Architecture &amp; Persistence Layer</h2>
+<h3>8.1 Entity-Relationship (ER) Diagram</h3>
+
+<div class="mermaid-container">
+  <pre class="mermaid">
+erDiagram
+    USER ||--o{ REVIEW : writes
+    USER ||--o{ SAVED_COLLEGE : bookmarks
+    USER ||--o{ SAVED_COMPARISON : creates
+    
+    COLLEGE ||--o{ COURSE : offers
+    COLLEGE ||--o{ PLACEMENT : records
+    COLLEGE ||--o{ REVIEW : receives
+    COLLEGE ||--o{ SAVED_COLLEGE : saved_by
+
+    USER {
+        string id PK
+        string name
+        string email UK
+        string passwordHash
+        enum role "USER | ADMIN"
+        datetime emailVerified
+        datetime lastLoginAt
+        datetime createdAt
+        datetime updatedAt
+    }
+
+    COLLEGE {
+        string id PK
+        string name
+        string slug UK
+        string city
+        string state
+        enum type "GOVERNMENT | PRIVATE | DEEMED"
+        int establishedYear
+        int fees
+        float rating
+        string overview
+        string imageUrl
+        datetime createdAt
+    }
+
+    COURSE {
+        string id PK
+        string collegeId FK
+        string name
+        string duration
+        int fees
+        int seats
+    }
+
+    PLACEMENT {
+        string id PK
+        string collegeId FK
+        int year
+        float avgPackage
+        float highestPackage
+        float placementPercentage
+        string[] topRecruiters
+    }
+
+    REVIEW {
+        string id PK
+        string collegeId FK
+        string userId FK
+        int rating
+        string comment
+        datetime createdAt
+    }
+
+    SAVED_COLLEGE {
+        string id PK
+        string userId FK
+        string collegeId FK
+        datetime createdAt
+    }
+
+    SAVED_COMPARISON {
+        string id PK
+        string userId FK
+        string name
+        string[] collegeIds
+        datetime createdAt
+    }
+  </pre>
+</div>
+<h3>8.2 Database Indexing Strategy</h3>
+<p>To maintain sub-50ms query times at scale, the Prisma schema defines targeted database indexes:</p>
+<ul>
+<li><code>User</code>: <code>@@index([email])</code>, <code>@@index([role])</code></li>
+<li><code>College</code>: <code>@@index([city])</code>, <code>@@index([state])</code>, <code>@@index([fees])</code>, <code>@@index([rating])</code></li>
+<li><code>SavedCollege</code>: <code>@@unique([userId, collegeId])</code> (Prevents duplicate bookmarks at the database level)</li>
+</ul>
+<hr>
+<h2>9. REST API Specification Matrix</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Method</th>
+<th align="left">Endpoint</th>
+<th align="left">Access Level</th>
+<th align="left">Description</th>
+<th align="left">Key Request / Query Parameters</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>GET</code></td>
+<td align="left"><code>/api/colleges</code></td>
+<td align="left">Public</td>
+<td align="left">Paginated list of colleges matching search &amp; multi-filter criteria</td>
+<td align="left"><code>search</code>, <code>city</code>, <code>state</code>, <code>type</code>, <code>minFees</code>, <code>maxFees</code>, <code>minRating</code>, <code>sortBy</code>, <code>sortOrder</code>, <code>page</code>, <code>limit</code></td>
+</tr>
+<tr>
+<td align="left"><code>GET</code></td>
+<td align="left"><code>/api/colleges/[id]</code></td>
+<td align="left">Public</td>
+<td align="left">Fetch single college profile by ID or URL slug</td>
+<td align="left">Path param: <code>id</code> (e.g. <code>rvce</code> or CUID)</td>
+</tr>
+<tr>
+<td align="left"><code>POST</code></td>
+<td align="left"><code>/api/colleges/compare</code></td>
+<td align="left">Public</td>
+<td align="left">Retrieve multiple full college records for comparison matrix</td>
+<td align="left">Body: <code>{ ids: string[] }</code></td>
+</tr>
+<tr>
+<td align="left"><code>GET</code></td>
+<td align="left"><code>/api/states</code></td>
+<td align="left">Public</td>
+<td align="left">Summary list of 28 states with college counts and exam associations</td>
+<td align="left">None</td>
+</tr>
+<tr>
+<td align="left"><code>POST</code></td>
+<td align="left"><code>/api/auth/signup</code></td>
+<td align="left">Public</td>
+<td align="left">Register a new student user account</td>
+<td align="left">Body: <code>{ name, email, password }</code></td>
+</tr>
+<tr>
+<td align="left"><code>POST</code></td>
+<td align="left"><code>/api/auth/[...nextauth]</code></td>
+<td align="left">Public</td>
+<td align="left">NextAuth handler for user login, token refresh, and sign-out</td>
+<td align="left">Body: <code>{ email, password }</code></td>
+</tr>
+<tr>
+<td align="left"><code>GET</code></td>
+<td align="left"><code>/api/saved/colleges</code></td>
+<td align="left">Authenticated</td>
+<td align="left">Retrieve all bookmarked colleges for the logged-in user</td>
+<td align="left">Session Cookie</td>
+</tr>
+<tr>
+<td align="left"><code>POST</code></td>
+<td align="left"><code>/api/saved/colleges</code></td>
+<td align="left">Authenticated</td>
+<td align="left">Bookmark or remove a college from user&#39;s saved list</td>
+<td align="left">Body: <code>{ collegeId: string }</code></td>
+</tr>
+<tr>
+<td align="left"><code>GET</code></td>
+<td align="left"><code>/api/saved/comparisons</code></td>
+<td align="left">Authenticated</td>
+<td align="left">Retrieve all custom saved comparisons for current user</td>
+<td align="left">Session Cookie</td>
+</tr>
+<tr>
+<td align="left"><code>POST</code></td>
+<td align="left"><code>/api/saved/comparisons</code></td>
+<td align="left">Authenticated</td>
+<td align="left">Save a new comparison group</td>
+<td align="left">Body: <code>{ name: string, collegeIds: string[] }</code></td>
+</tr>
+<tr>
+<td align="left"><code>GET</code></td>
+<td align="left"><code>/api/admin/colleges</code></td>
+<td align="left">Admin Only</td>
+<td align="left">Full college catalog for management console</td>
+<td align="left">Session Cookie (<code>role: ADMIN</code>)</td>
+</tr>
+<tr>
+<td align="left"><code>PUT</code></td>
+<td align="left"><code>/api/admin/colleges</code></td>
+<td align="left">Admin Only</td>
+<td align="left">Update institutional details, fees, rating, or courses</td>
+<td align="left">Body: <code>{ id, updates: Partial&lt;CollegeDetail&gt; }</code></td>
+</tr>
+<tr>
+<td align="left"><code>GET</code></td>
+<td align="left"><code>/api/admin/users</code></td>
+<td align="left">Admin Only</td>
+<td align="left">List registered users with account status and roles</td>
+<td align="left">Session Cookie (<code>role: ADMIN</code>)</td>
+</tr>
+<tr>
+<td align="left"><code>PUT</code></td>
+<td align="left"><code>/api/admin/users</code></td>
+<td align="left">Admin Only</td>
+<td align="left">Update user role or toggle suspension status</td>
+<td align="left">Body: <code>{ userId, status, role }</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>10. Client State &amp; Data Fetching Strategy</h2>
+
+<div class="mermaid-container">
+  <pre class="mermaid">
+graph LR
+    subgraph DataFetching ["Data Fetching Paradigms"]
+        direction TB
+        RSC["React Server Components<br/>(Initial Page Load & Static Shell)"]
+        SWRFetch["SWR Hooks<br/>(Dynamic Filtering & Pagination)"]
+        ZustandStore["Zustand Store<br/>(Client UI State: Comparison Tray)"]
+    end
+
+    RSC -->|Zero JS Payload| BrowserView[Fast First Contentful Paint]
+    SWRFetch -->|Deduplication & Cache| FastInteractivity[Instant Filter & Search Updates]
+    ZustandStore -->|Persisted Memory| StickyComparison[Sticky Compare Bar across all routes]
+  </pre>
+</div>
+<ol>
+<li><strong>React Server Components (RSC):</strong><ul>
+<li>Implemented on landing pages and detail profile views (<code>/colleges/[id]</code>).</li>
+<li>Server-renders critical HTML on the initial hit, dramatically accelerating First Contentful Paint (FCP) and boosting search engine SEO indexing.</li>
+</ul>
+</li>
+<li><strong>Client-Side SWR Fetching:</strong><ul>
+<li>Powers the search page (<code>/colleges</code>) and dynamic widgets.</li>
+<li>Provides automatic cache deduplication, background revalidation, and built-in loading states (<code>isLoading</code>, <code>error</code>).</li>
+</ul>
+</li>
+<li><strong>Zustand Comparison Store (<code>src/lib/store/useCompareStore.ts</code>):</strong><ul>
+<li>Manages the selected institution comparison IDs (<code>string[]</code>, maximum 3).</li>
+<li>Survives route transitions across the entire site without requiring a heavyweight React Context Provider tree.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>11. Performance Optimizations &amp; Production Scaling Roadmap</h2>
+<h3>Current Engineering Optimizations:</h3>
+<ul>
+<li><strong>Zero Layout Shift (CLS):</strong> Pre-allocated skeleton loaders (<code>Skeleton.tsx</code>) while SWR loads data.</li>
+<li><strong>Image Optimization:</strong> Responsive WebP image rendering with fallback SVG logo badges (<code>CollegeLogoBadge.tsx</code>).</li>
+<li><strong>Debounced Network Requests:</strong> 400ms delay on all keystroke inputs to protect API endpoints from excessive load.</li>
+</ul>
+<h3>Production Scaling Roadmap:</h3>
+<ol>
+<li><strong>Cursor-Based Keyset Pagination:</strong><ul>
+<li><em>Current:</em> Offset-based pagination (<code>OFFSET N LIMIT M</code>).</li>
+<li><em>Roadmap:</em> Transition to Keyset/Cursor pagination (<code>WHERE id &gt; :cursor LIMIT 12</code>) when database size exceeds 100,000+ institutional records.</li>
+</ul>
+</li>
+<li><strong>Distributed Redis Caching:</strong><ul>
+<li><em>Current:</em> In-memory sliding window rate limiter and JSON fallback.</li>
+<li><em>Roadmap:</em> Deploy Upstash Redis for distributed cache storage and multi-instance rate limiting across Vercel Serverless Regions.</li>
+</ul>
+</li>
+<li><strong>Third-Party Object Storage:</strong><ul>
+<li><em>Current:</em> Static images served from <code>/public/images/</code>.</li>
+<li><em>Roadmap:</em> Integrate AWS S3 or Cloudinary with an automated image upload pipeline for verified campus imagery.</li>
+</ul>
+</li>
+<li><strong>Social OAuth Providers:</strong><ul>
+<li>Extend NextAuth configuration to support Google and LinkedIn OAuth single sign-on (SSO).</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>12. Developer Quick Start &amp; Environment Setup</h2>
+<h3>1. Prerequisites</h3>
+<ul>
+<li><strong>Node.js:</strong> <code>v18.17.0</code> or higher</li>
+<li><strong>npm:</strong> <code>v9.x</code> or higher</li>
+<li><strong>PostgreSQL:</strong> Local PostgreSQL instance or a free serverless database on <a href="https://neon.tech">Neon.tech</a></li>
+</ul>
+<h3>2. Environment Configuration</h3>
+<p>Create a <code>.env</code> file in the project root:</p>
+
+<pre><code class="language-env"># Database Connection (Neon Serverless or Local Postgres)
+DATABASE_URL="postgresql://username:password@ep-cool-project.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
+
+# NextAuth Authentication Secret (Minimum 32 random characters)
+NEXTAUTH_SECRET="e93b2a8d4f0c7e6b1a5d8f2c3e4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2"
+NEXTAUTH_URL="http://localhost:3000"</code></pre>
+<h3>3. Dependency Installation &amp; Database Initialization</h3>
+
+<pre><code class="language-bash"># 1. Install dependencies
+npm install
+
+# 2. Generate Prisma Client
+npx prisma generate
+
+# 3. Push schema to database
+npx prisma db push
+
+# 4. (Optional) Run Database Seeder
+npm run build # or npx prisma db seed</code></pre>
+<h3>4. Running the Development Server</h3>
+
+<pre><code class="language-bash">npm run dev</code></pre>
+<p>Open <strong><a href="http://localhost:3000">http://localhost:3000</a></strong> in your browser.</p>
+<h3>5. Pre-Seeded Default Accounts</h3>
+<table>
+<thead>
+<tr>
+<th align="left">Account Type</th>
+<th align="left">Email Address</th>
+<th align="left">Password</th>
+<th align="left">Permissions</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Administrator</strong></td>
+<td align="left"><code>admin@collegediscovery.com</code></td>
+<td align="left"><code>Admin@123456</code></td>
+<td align="left">Full Admin CMS Access (<code>/admin</code>)</td>
+</tr>
+<tr>
+<td align="left"><strong>Student User</strong></td>
+<td align="left"><code>aarav.sharma@example.com</code></td>
+<td align="left"><code>password123</code></td>
+<td align="left">Bookmark, Compare, Predict (<code>/saved</code>)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><em>This document is maintained as the authoritative architectural blueprint for the EduSelect codebase.</em></p>
+
+
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' },
+      sequence: { useMaxWidth: true, showSequenceNumbers: true },
+      er: { useMaxWidth: true }
+    });
+
+    // Wait until diagrams are converted to SVG
+    window.addEventListener('load', async () => {
+      try {
+        await mermaid.run({ querySelector: '.mermaid' });
+        console.log('All mermaid diagrams rendered!');
+      } catch (e) {
+        console.warn('Mermaid rendering notice:', e);
+      }
+    });
+  </script>
+</body>
+</html>
