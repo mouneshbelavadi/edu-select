@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, useMemo, Suspense } from 'react';
+import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import useSWR from 'swr';
 import { CollegeCard, CollegeCardData } from '@/components/features/CollegeCard';
@@ -10,6 +11,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { useDebounce } from '@/lib/hooks/useDebounce';
 import { ALL_INDIAN_STATES } from '@/lib/constants';
+import engineeringBranchesData from '@/data/careers/engineeringBranches.json';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -60,6 +62,18 @@ function CollegeListingContent() {
   const paramSortBy = searchParams.get('sortBy') || 'nirf';
   const paramSortOrder = searchParams.get('sortOrder') || (paramSortBy === 'nirf' ? 'asc' : 'desc');
   const paramPage = parseInt(searchParams.get('page') || '1', 10);
+
+  // Match search or branch filter to engineering branches
+  const matchedBranch = useMemo(() => {
+    const query = (paramBranch || paramSearch || '').trim().toUpperCase();
+    if (!query) return null;
+    return (engineeringBranchesData as any).items.find(
+      (b: any) =>
+        b.code.toUpperCase() === query ||
+        b.name.toUpperCase().includes(query) ||
+        b.aliases?.some((a: string) => a.toUpperCase().includes(query))
+    );
+  }, [paramBranch, paramSearch]);
 
   // Search input state + debounce
   const [searchInput, setSearchInput] = useState(paramSearch);
@@ -284,6 +298,24 @@ function CollegeListingContent() {
 
         {/* College Grid Area */}
         <main className="lg:col-span-3 flex flex-col gap-6">
+          {/* Matched Branch Career Banner */}
+          {matchedBranch && (
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 p-4 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs shadow-xs animate-in fade-in duration-150">
+              <div className="flex items-center gap-2.5">
+                <span className="text-xl">🧭</span>
+                <span className="text-slate-800 font-medium">
+                  Looking into <strong>{matchedBranch.name}</strong>? Explore verified industry roles, CTC ranges, and GATE PSUs.
+                </span>
+              </div>
+              <Link
+                href={`/careers/branch/branch-${matchedBranch.code.toLowerCase()}`}
+                className="font-bold text-blue-700 hover:text-white hover:bg-blue-600 bg-white px-3.5 py-1.5 rounded-xl border border-blue-300 shrink-0 transition-all text-center"
+              >
+                Explore careers after {matchedBranch.code} →
+              </Link>
+            </div>
+          )}
+
           {/* Controls Bar (Result Count & Sort Dropdown) */}
           <div className="flex items-center justify-between bg-white px-4 py-3 rounded-xl border border-surface-200 text-sm flex-wrap gap-2">
             <span className="text-surface-600 font-medium">

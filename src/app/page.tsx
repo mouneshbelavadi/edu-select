@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import useSWR from 'swr';
 import { StateCardImage } from '@/components/features/StateCardImage';
 import { CollegeLogoBadge } from '@/components/features/CollegeLogoBadge';
+import { AiCounselorDrawer } from '@/components/features/AiCounselorDrawer';
 import { ALL_STATE_CONFIGS } from '@/lib/stateConfig';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -16,6 +17,17 @@ const POPULAR_BRANCH_TAGS = [
   { label: 'B.Tech ECE', query: 'Electronics' },
   { label: 'B.Tech Civil', query: 'Civil' },
   { label: 'AI & ML', query: 'Artificial Intelligence' },
+];
+
+const QUALIFICATION_LEVELS = [
+  { id: 'CLASS_10', shortLabel: 'Class 10th', icon: '🎒', desc: 'Diploma, ITI, Polytechnic, 11th-12th' },
+  { id: 'CLASS_12', shortLabel: 'Class 12th / PU', icon: '📘', desc: 'Engineering, Medical, NDA, Degrees' },
+  { id: 'ITI', shortLabel: 'ITI Trades', icon: '🔧', desc: 'Apprentice, Railways, PSU Technician' },
+  { id: 'DIPLOMA', shortLabel: 'Polytechnic', icon: '📐', desc: 'Lateral B.Tech, Junior Engineer' },
+  { id: 'UG_ENGG', shortLabel: 'B.Tech / B.E.', icon: '💻', desc: 'Software, PSUs via GATE, Core Tech' },
+  { id: 'UG_OTHER', shortLabel: 'General Degree', icon: '🎓', desc: 'B.Sc, B.Com, BCA, Banking & UPSC' },
+  { id: 'PROFESSIONAL', shortLabel: 'Professional', icon: '⚖️', desc: 'MBBS, Law, Architecture, CA' },
+  { id: 'PG', shortLabel: 'Postgraduate', icon: '🔬', desc: 'M.Tech, MBA, Ph.D, R&D & Specialist' },
 ];
 
 export default function EduSelectDashboard() {
@@ -84,12 +96,12 @@ export default function EduSelectDashboard() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
-              Find the Right <br />
-              <span className="text-blue-600">Engineering</span> College
+              Find the Right College <br />
+              <span className="text-blue-600">— and the Career It Leads To.</span>
             </h1>
 
             <p className="text-base sm:text-lg text-slate-600 max-w-xl font-normal leading-relaxed">
-              Explore top engineering colleges across India. Compare, shortlist and choose the best path for your future.
+              Explore 450+ verified engineering colleges across India. Connect academic branches directly with career outcomes, salaries, and recruitment exams.
             </p>
 
             {/* Interactive Search Overlay Box */}
@@ -261,6 +273,40 @@ export default function EduSelectDashboard() {
               <div className="text-lg font-black text-slate-900">100K+</div>
               <div className="text-xs text-slate-500 font-medium">Students Trust Us</div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2.5 NOT SURE WHAT TO STUDY? (QUALIFICATION LEVEL CARDS + AI COUNSELLOR) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-4">
+        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm flex flex-col gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold w-fit mb-1.5">
+                <span>🧭 Career Pathways</span>
+              </div>
+              <h2 className="text-2xl font-black text-slate-900">Not sure what to study next?</h2>
+              <p className="text-xs text-slate-500 mt-0.5">Explore structured pathways mapped directly to your current qualification level</p>
+            </div>
+            <AiCounselorDrawer />
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+            {QUALIFICATION_LEVELS.map((lvl) => (
+              <Link
+                key={lvl.id}
+                href={`/careers?level=${lvl.id}`}
+                className="p-4 rounded-2xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50/50 bg-slate-50/50 transition-all flex flex-col justify-between gap-3 group"
+              >
+                <div className="text-2xl">{lvl.icon}</div>
+                <div>
+                  <h3 className="font-extrabold text-sm text-slate-900 group-hover:text-blue-600 transition-colors">
+                    {lvl.shortLabel}
+                  </h3>
+                  <p className="text-[11px] text-slate-500 line-clamp-2 mt-0.5">{lvl.desc}</p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -460,6 +506,29 @@ export default function EduSelectDashboard() {
             </h3>
 
             <div className="flex flex-col gap-3">
+              <Link
+                href="/careers"
+                className="p-3.5 bg-indigo-50/80 hover:bg-indigo-100/90 rounded-xl border border-indigo-200 flex items-center justify-between group transition-colors shadow-xs"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">
+                    🧭
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-1.5">
+                      <h4 className="font-bold text-xs text-slate-900 group-hover:text-indigo-700 transition-colors">
+                        Career Explorer
+                      </h4>
+                      <span className="px-1.5 py-0.2 rounded-full text-[9px] font-black bg-indigo-600 text-white">
+                        NEW
+                      </span>
+                    </div>
+                    <p className="text-[10px] text-slate-500">Explore pathways after 10th, 12th & B.Tech</p>
+                  </div>
+                </div>
+                <span className="text-slate-400 group-hover:text-indigo-700 font-bold text-sm">›</span>
+              </Link>
+
               <Link
                 href="/kcet-2026-predictor"
                 className="p-3.5 bg-blue-50/60 hover:bg-blue-100/80 rounded-xl border border-blue-100 flex items-center justify-between group transition-colors"

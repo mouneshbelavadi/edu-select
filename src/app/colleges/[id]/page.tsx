@@ -8,6 +8,12 @@ import { useCompareStore } from '@/lib/store/useCompareStore';
 import toast from 'react-hot-toast';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { CollegeDetail } from '@/lib/collegeRepository';
+import engineeringBranchesData from '@/data/careers/engineeringBranches.json';
+
+const branchCareerMap: Record<string, any> = {};
+(engineeringBranchesData as any).items.forEach((b: any) => {
+  branchCareerMap[b.code.toUpperCase()] = b;
+});
 
 export default function CollegeDetailPage() {
   const params = useParams();
@@ -349,14 +355,78 @@ export default function CollegeDetailPage() {
                       </div>
                     </div>
 
-                    <Link
-                      href="/kcet-2026-predictor"
-                      className="text-xs font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-1 border-t border-slate-100 pt-2"
-                    >
-                      Check 2026 Cutoff for this Branch →
-                    </Link>
+                    <div className="flex items-center justify-between gap-2 border-t border-slate-100 pt-2 text-xs font-bold">
+                      <Link
+                        href={`/careers/branch/branch-${course.branchCode.toLowerCase()}`}
+                        className="text-blue-600 hover:text-blue-800 flex items-center gap-1"
+                      >
+                        <span>Careers after this branch</span>
+                        <span>→</span>
+                      </Link>
+                      <Link
+                        href="/kcet-2026-predictor"
+                        className="text-slate-500 hover:text-slate-800 text-[11px]"
+                      >
+                        Cutoff &gt;
+                      </Link>
+                    </div>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* Jobs After This Course Panel */}
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm flex flex-col gap-5">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3 flex-wrap gap-2">
+                <div>
+                  <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
+                    <span>💼</span> Jobs & Placements After These Branches
+                  </h2>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    Verified industry entry roles and market fresher CTC from the 2026 Career Data
+                  </p>
+                </div>
+                <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300">
+                  Est. Fresher CTC
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {college.courses.slice(0, 6).map((course) => {
+                  const branchInfo = branchCareerMap[course.branchCode.toUpperCase()];
+                  if (!branchInfo) return null;
+                  return (
+                    <div
+                      key={course.id}
+                      className="p-4 rounded-2xl bg-slate-50/70 border border-slate-200 flex flex-col justify-between gap-3"
+                    >
+                      <div className="flex flex-col gap-1.5">
+                        <div className="flex items-center justify-between">
+                          <span className="font-extrabold text-xs text-slate-900">{course.branchCode}</span>
+                          {branchInfo.salaryLPA?.fresher && (
+                            <span className="text-xs font-black text-emerald-700">
+                              ₹{branchInfo.salaryLPA.fresher.min}–₹{branchInfo.salaryLPA.fresher.max} LPA
+                            </span>
+                          )}
+                        </div>
+                        <span className="text-[11px] font-semibold text-slate-600 line-clamp-1">{branchInfo.name}</span>
+                        {branchInfo.roles?.entry && (
+                          <div className="text-[11px] text-slate-500">
+                            <strong>Top Roles: </strong>
+                            {branchInfo.roles.entry.slice(0, 3).join(', ')}
+                          </div>
+                        )}
+                      </div>
+
+                      <Link
+                        href={`/careers/branch/branch-${course.branchCode.toLowerCase()}`}
+                        className="text-[11px] font-bold text-blue-600 hover:underline flex items-center gap-1"
+                      >
+                        Full Career Pathway & PSUs →
+                      </Link>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 

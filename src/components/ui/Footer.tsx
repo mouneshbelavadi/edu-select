@@ -36,6 +36,9 @@ export const Footer: React.FC = () => {
           <Link href="/colleges" className="hover:text-white transition-colors">
             Engineering Colleges
           </Link>
+          <Link href="/careers" className="hover:text-white transition-colors">
+            Career Explorer
+          </Link>
           <Link href="/kcet-2026-predictor" className="hover:text-white transition-colors">
             KCET 2026 Predictor
           </Link>
@@ -45,12 +48,15 @@ export const Footer: React.FC = () => {
           <Link href="/compare" className="hover:text-white transition-colors">
             Compare Colleges
           </Link>
+          <Link href="/about-data" className="hover:text-white transition-colors">
+            Data Sources & Methodology
+          </Link>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/80 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-        <span>© {new Date().getFullYear()} EduSelect. All Rights Reserved.</span>
-        <span>Trusted by 100K+ Students & Parents Across India</span>
+        <span>© {new Date().getFullYear()} EduSelect. All Rights Reserved. Data compiled from official public notifications & NIRF 2025.</span>
+        <span>All fees, compensation and cutoffs are compiled from public notifications and represent estimates.</span>
       </div>
     </footer>
   );

@@ -82,6 +82,27 @@ export default function KCET2026PredictorPage() {
           </div>
         </div>
 
+        {/* Post-Engineering Careers Banner */}
+        <div className="bg-gradient-to-r from-emerald-900/90 via-teal-900/80 to-slate-900 text-white rounded-2xl p-5 border border-emerald-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl p-2 bg-emerald-500/20 rounded-xl">🚀</span>
+            <div>
+              <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">
+                Planning Ahead for After B.Tech?
+              </div>
+              <p className="text-sm text-surface-200">
+                Explore placement packages, PSU eligibility through GATE, master's pathways, and job profiles across 29 engineering branches.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/careers?level=UG_ENGG"
+            className="inline-flex items-center whitespace-nowrap gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition-all shadow-md shrink-0"
+          >
+            Explore Careers After Engineering →
+          </Link>
+        </div>
+
         {/* Main Grid: Inputs (Left) & Results (Right) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Input Form (5 Cols) */}

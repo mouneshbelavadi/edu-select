@@ -5,6 +5,7 @@ import Link from 'next/link';
 import useSWR from 'swr';
 import { ALL_INDIAN_STATES } from '@/lib/constants';
 import { StateCardImage } from '@/components/features/StateCardImage';
+import collegesData from '@/data/colleges.json';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -21,6 +22,22 @@ const NORTH_EAST_STATES = new Set([
 export default function ExploreStatesPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const { data: statesRes } = useSWR('/api/states', fetcher);
+
+  const topCollegesByState = useMemo(() => {
+    const map: Record<string, string[]> = {};
+    const sorted = [...(collegesData as any[])].sort((a, b) => {
+      const aRank = a.nirfRank2025 || 9999;
+      const bRank = b.nirfRank2025 || 9999;
+      return aRank - bRank;
+    });
+    sorted.forEach((col) => {
+      if (!map[col.state]) map[col.state] = [];
+      if (map[col.state].length < 3) {
+        map[col.state].push(col.name);
+      }
+    });
+    return map;
+  }, []);
 
   const stateCounts = useMemo(() => {
     const map: Record<string, number> = {};
@@ -129,6 +146,12 @@ export default function ExploreStatesPage() {
                       <p className="text-xs text-slate-500 line-clamp-2">
                         {meta.highlight}
                       </p>
+                    )}
+                    {topCollegesByState[state] && topCollegesByState[state].length > 0 && (
+                      <div className="flex flex-col gap-0.5 border-t border-slate-100 pt-2 text-[10px] text-slate-500">
+                        <span className="font-bold text-slate-700">Top NIRF Institutes:</span>
+                        <span className="truncate text-slate-600">{topCollegesByState[state].slice(0, 2).join(' • ')}</span>
+                      </div>
                     )}
                   </div>
 
