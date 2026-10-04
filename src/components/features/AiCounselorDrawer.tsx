@@ -10,6 +10,31 @@ interface AiCounselorDrawerProps {
   initialStream?: string;
   initialInterests?: string[];
   initialSubjects?: string[];
+  isOpen?: boolean;
+  onClose?: () => void;
+  initialQuestion?: string;
+  hideTrigger?: boolean;
+}
+
+const LEVEL_OPTIONS = [
+  { id: '10th', label: '10th Pass' },
+  { id: '12th', label: '12th / PUC' },
+  { id: 'diploma', label: 'Polytechnic / Diploma' },
+  { id: 'iti', label: 'ITI' },
+  { id: 'btech', label: 'B.Tech / Engg' },
+  { id: 'degree', label: 'Degree / Graduate' },
+];
+
+function normalizeDrawerLevel(lvl?: string | null): string | null {
+  if (!lvl) return null;
+  const l = lvl.toLowerCase().trim();
+  if (['10th', '10', 'class_10', 'class-10', 'sslc', 'matric'].includes(l)) return '10th';
+  if (['12th', '12', 'class_12', 'class-12', 'puc', 'inter'].includes(l)) return '12th';
+  if (['iti'].includes(l)) return 'iti';
+  if (['diploma', 'polytechnic'].includes(l)) return 'diploma';
+  if (['btech', 'be', 'engineering', 'ug_engg'].includes(l)) return 'btech';
+  if (['degree', 'graduate', 'ug_other'].includes(l)) return 'degree';
+  return l;
 }
 
 export const AiCounselorDrawer: React.FC<AiCounselorDrawerProps> = ({
@@ -17,9 +42,53 @@ export const AiCounselorDrawer: React.FC<AiCounselorDrawerProps> = ({
   initialStream,
   initialInterests = [],
   initialSubjects = [],
+  isOpen: controlledIsOpen,
+  onClose,
+  initialQuestion = '',
+  hideTrigger = false,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [question, setQuestion] = useState('');
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+  const isControlled = typeof controlledIsOpen === 'boolean';
+  const open = isControlled ? controlledIsOpen : internalIsOpen;
+
+  const setOpen = (val: boolean) => {
+    if (isControlled) {
+      if (!val && onClose) onClose();
+    } else {
+      setInternalIsOpen(val);
+    }
+  };
+
+  const [question, setQuestion] = useState(initialQuestion);
+  const [selectedLevel, setSelectedLevel] = useState<string | null>(normalizeDrawerLevel(initialLevel));
+
+  React.useEffect(() => {
+    if (initialQuestion) {
+      setQuestion(initialQuestion);
+    }
+  }, [initialQuestion]);
+
+  React.useEffect(() => {
+    if (initialLevel) {
+      setSelectedLevel(normalizeDrawerLevel(initialLevel));
+    }
+  }, [initialLevel]);
+
+  const detectedLevel = React.useMemo(() => {
+    if (!question) return null;
+    const lower = question.toLowerCase();
+    if (/\b(10th|class\s*10|tenth|10\s*th|sslc|matric|matriculation)\b/.test(lower)) return '10th';
+    if (/\b(12th|class\s*12|twelfth|12\s*th|puc|2nd\s*puc|\+2|plus\s*two|intermediate)\b/.test(lower)) return '12th';
+    if (/\b(iti)\b/.test(lower)) return 'iti';
+    if (/\b(polytechnic|diploma)\b/.test(lower)) return 'diploma';
+    if (/\b(b\.?tech|b\.?e\b|engineering)\b/.test(lower)) return 'btech';
+    if (/\b(degree|graduation|graduate|b\.?sc|b\.?com|b\.?a\b)\b/.test(lower)) return 'degree';
+    if (/\b(pg|post\s*grad|mba|mca|mtech|msc)\b/.test(lower)) return 'pg';
+    return null;
+  }, [question]);
+
+  const effectiveLevel = selectedLevel || detectedLevel || initialLevel || null;
+
   const [isLoading, setIsLoading] = useState(false);
   const [response, setResponse] = useState<any | null>(null);
   const [roadmapItem, setRoadmapItem] = useState<any | null>(null);
@@ -38,7 +107,7 @@ export const AiCounselorDrawer: React.FC<AiCounselorDrawerProps> = ({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          level: initialLevel || undefined,
+          level: effectiveLevel || undefined,
           stream: initialStream || undefined,
           interests: initialInterests.length ? initialInterests : undefined,
           subjects: initialSubjects.length ? initialSubjects : undefined,
@@ -81,16 +150,18 @@ export const AiCounselorDrawer: React.FC<AiCounselorDrawerProps> = ({
   return (
     <>
       {/* Floating or Inline Trigger Button */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg hover:shadow-xl transition-all hover:scale-102 cursor-pointer"
-      >
-        <SparklesIcon className="w-4 h-4 text-amber-300" />
-        <span>Ask EduSelect AI</span>
-      </button>
+      {!hideTrigger && (
+        <button
+          onClick={() => setOpen(true)}
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg hover:shadow-xl transition-all hover:scale-102 cursor-pointer"
+        >
+          <SparklesIcon className="w-4 h-4 text-amber-300" />
+          <span>Ask EduSelect AI</span>
+        </button>
+      )}
 
       {/* Drawer Overlay */}
-      {isOpen && (
+      {open && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex justify-end">
           <div className="w-full sm:max-w-xl h-full bg-white shadow-2xl flex flex-col justify-between overflow-hidden animate-in slide-in-from-right duration-200">
             {/* Drawer Header */}
@@ -105,7 +176,7 @@ export const AiCounselorDrawer: React.FC<AiCounselorDrawerProps> = ({
                 </div>
               </div>
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={() => setOpen(false)}
                 className="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center font-bold text-sm transition-colors"
                 aria-label="Close Drawer"
               >
@@ -115,13 +186,30 @@ export const AiCounselorDrawer: React.FC<AiCounselorDrawerProps> = ({
 
             {/* Drawer Scrollable Content */}
             <div className="flex-1 overflow-y-auto p-5 sm:p-6 flex flex-col gap-6">
-              {/* Context Chips */}
-              <div className="flex flex-col gap-2 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs">
-                <span className="font-bold text-slate-700">Your Current Context:</span>
+              {/* Context Chips & Interactive Level Selector */}
+              <div className="flex flex-col gap-2.5 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-slate-700">Your Current Context:</span>
+                  {effectiveLevel && !initialLevel && (
+                    <span className="text-[10px] text-blue-600 font-bold bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                      {detectedLevel && !selectedLevel ? 'Auto-detected from question' : 'Selected'}
+                    </span>
+                  )}
+                </div>
                 <div className="flex items-center gap-1.5 flex-wrap">
-                  {initialLevel && (
-                    <span className="px-2.5 py-1 rounded-lg bg-blue-100 text-blue-800 font-bold text-[11px]">
-                      Level: {initialLevel}
+                  {effectiveLevel && (
+                    <span className="px-2.5 py-1 rounded-lg bg-blue-100 text-blue-800 font-bold text-[11px] flex items-center gap-1.5">
+                      <span>Level: {LEVEL_OPTIONS.find((o) => o.id === effectiveLevel)?.label || effectiveLevel}</span>
+                      {selectedLevel && (
+                        <button
+                          type="button"
+                          onClick={() => setSelectedLevel(null)}
+                          className="hover:text-blue-950 font-black cursor-pointer leading-none text-xs ml-0.5"
+                          title="Clear level filter"
+                        >
+                          ✕
+                        </button>
+                      )}
                     </span>
                   )}
                   {initialStream && (
@@ -134,10 +222,38 @@ export const AiCounselorDrawer: React.FC<AiCounselorDrawerProps> = ({
                       RIASEC: {r}
                     </span>
                   ))}
-                  {!initialLevel && !initialStream && initialInterests.length === 0 && (
-                    <span className="text-slate-400 italic">No filters active — exploring nationwide catalogue</span>
+                  {!effectiveLevel && !initialStream && initialInterests.length === 0 && (
+                    <span className="text-slate-400 italic">No level selected — choose below or type in question</span>
                   )}
                 </div>
+
+                {/* Level Quick Chips if no initialLevel */}
+                {!initialLevel && (
+                  <div className="pt-2 border-t border-slate-200/80 flex flex-col gap-1.5">
+                    <span className="text-[11px] font-semibold text-slate-500">
+                      Choose your current qualification:
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {LEVEL_OPTIONS.map((opt) => {
+                        const isSelected = effectiveLevel === opt.id;
+                        return (
+                          <button
+                            key={opt.id}
+                            type="button"
+                            onClick={() => setSelectedLevel(selectedLevel === opt.id ? null : opt.id)}
+                            className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+                              isSelected
+                                ? 'bg-blue-600 text-white shadow-xs'
+                                : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:border-slate-300'
+                            }`}
+                          >
+                            {opt.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Question Form */}
@@ -256,7 +372,7 @@ export const AiCounselorDrawer: React.FC<AiCounselorDrawerProps> = ({
                         <div className="flex items-center justify-between gap-2 pt-2 border-t border-slate-100">
                           <Link
                             href={`/careers/${rec.kind}/${rec.itemId}`}
-                            onClick={() => setIsOpen(false)}
+                            onClick={() => setOpen(false)}
                             className="text-xs font-bold text-blue-600 hover:underline"
                           >
                             View Full Pathway Details →

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSession, signOut } from 'next-auth/react';
@@ -16,20 +16,64 @@ export const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isExploreOpen, setIsExploreOpen] = useState(false);
+  const exploreRef = useRef<HTMLDivElement>(null);
+  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Close mobile menu on route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setShowSearchModal(false);
+    setIsExploreOpen(false);
   }, [pathname]);
+
+  // Handle outside click and escape key to close dropdown cleanly
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (exploreRef.current && !exploreRef.current.contains(e.target as Node)) {
+        setIsExploreOpen(false);
+      }
+    };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsExploreOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    };
+  }, []);
+
+  const handleExploreMouseEnter = () => {
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    setIsExploreOpen(true);
+  };
+
+  const handleExploreMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setIsExploreOpen(false);
+    }, 180);
+  };
+
+  const handleExploreToggle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    setIsExploreOpen((prev) => !prev);
+  };
 
   // Do not render student Navbar inside the Admin Portal
   if (pathname.startsWith('/admin')) {
     return null;
   }
 
+  const isExploreActive = pathname.startsWith('/careers') || pathname.startsWith('/pathways') || pathname.startsWith('/states');
+
   // Complete, fully-featured navigation links
-  const navLinks = [
+  const mobileNavLinks = [
     { href: '/', label: 'Home' },
     { href: '/colleges', label: 'Colleges' },
     { href: '/careers', label: 'Careers' },
@@ -38,6 +82,7 @@ export const Navbar: React.FC = () => {
     { href: '/compare', label: 'Compare', count: selectedColleges.length },
     { href: '/kcet-2026-predictor', label: 'KCET Predictor', highlight: true },
     { href: '/ai-counsellor', label: 'AI Counsellor', pill: 'AI' },
+    { href: '/telegram', label: 'Telegram Bot', pill: 'Bot' },
   ];
 
   const handleSearchSubmit = (e: React.FormEvent) => {
@@ -52,66 +97,172 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header className="sticky top-0 z-40 w-full bg-white border-b border-[#E2E8F0]">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
           {/* Left: Brand Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8] rounded-md shrink-0 mr-2"
+            className="flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1E2A78] rounded-md shrink-0 mr-2"
             aria-label="EduSelect Home"
           >
-            <div className="w-8 h-8 rounded-[8px] bg-[#1D4ED8] text-white flex items-center justify-center shadow-xs">
+            <div className="w-8 h-8 rounded-[8px] bg-ink text-white flex items-center justify-center shadow-xs">
               <GraduationCapIcon className="w-5 h-5 text-white" />
             </div>
             <span className="font-bold text-xl tracking-tight text-[#0F172A]">
-              Edu<span className="text-[#1D4ED8]">Select</span>
+              Edu<span className="text-ink">Select</span>
             </span>
           </Link>
 
           {/* Center: Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Main Navigation">
-            {navLinks.map((link) => {
-              const isActive = link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
+            <Link
+              href="/"
+              className={`px-3 py-1.5 rounded-[8px] text-xs font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-ink ${
+                pathname === '/'
+                  ? 'text-ink font-bold bg-blue-50/60'
+                  : 'text-[#475569] hover:text-[#0F172A] hover:bg-slate-50'
+              }`}
+            >
+              Home
+            </Link>
 
-              if (link.highlight) {
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1 border ${
-                      isActive
-                        ? 'bg-[#1D4ED8] text-white border-[#1D4ED8]'
-                        : 'bg-blue-50 text-[#1D4ED8] border-blue-200 hover:bg-blue-100 hover:border-blue-300'
-                    }`}
-                  >
-                    <span>{link.label}</span>
-                  </Link>
-                );
-              }
+            <Link
+              href="/colleges"
+              className={`px-3 py-1.5 rounded-[8px] text-xs font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-ink ${
+                pathname.startsWith('/colleges')
+                  ? 'text-ink font-bold bg-blue-50/60'
+                  : 'text-[#475569] hover:text-[#0F172A] hover:bg-slate-50'
+              }`}
+            >
+              Colleges
+            </Link>
 
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`px-2.5 py-1.5 rounded-[6px] text-xs font-semibold transition-colors flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-[#1D4ED8] ${
-                    isActive
-                      ? 'text-[#1D4ED8] font-bold bg-blue-50/50'
-                      : 'text-[#475569] hover:text-[#0F172A] hover:bg-slate-50'
-                  }`}
+            {/* Explore Grouped Dropdown */}
+            <div
+              ref={exploreRef}
+              className="relative"
+              onMouseEnter={handleExploreMouseEnter}
+              onMouseLeave={handleExploreMouseLeave}
+            >
+              <button
+                type="button"
+                onClick={handleExploreToggle}
+                aria-expanded={isExploreOpen}
+                aria-haspopup="true"
+                className={`px-3 py-1.5 rounded-[8px] text-xs font-semibold transition-colors flex items-center gap-1 focus-visible:outline-2 focus-visible:outline-ink cursor-pointer ${
+                  isExploreActive || isExploreOpen
+                    ? 'text-ink font-bold bg-blue-50/60'
+                    : 'text-[#475569] hover:text-[#0F172A] hover:bg-slate-50'
+                }`}
+              >
+                <span>Explore</span>
+                <svg
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${isExploreOpen ? 'rotate-180 text-ink' : 'text-slate-400'}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
-                  <span>{link.label}</span>
-                  {typeof link.count === 'number' && link.count > 0 && (
-                    <span className="px-1.5 py-0.2 rounded-full text-[10px] font-black bg-[#1D4ED8] text-white leading-none">
-                      {link.count}
-                    </span>
-                  )}
-                  {link.pill && (
-                    <span className="px-1.5 py-0.2 rounded text-[10px] font-bold bg-blue-100 text-[#1D4ED8] leading-none">
-                      {link.pill}
-                    </span>
-                  )}
-                </Link>
-              );
-            })}
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {isExploreOpen && (
+                <div className="absolute top-full left-0 pt-1.5 w-48 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                  <div className="bg-white border border-[#E2E8F0] rounded-[12px] shadow-lg shadow-blue-950/10 py-1.5 overflow-hidden">
+                    <Link
+                      href="/careers"
+                      onClick={() => setIsExploreOpen(false)}
+                      className={`block px-3.5 py-2 text-xs font-medium transition-colors ${
+                        pathname.startsWith('/careers')
+                          ? 'text-ink font-bold bg-blue-50/60'
+                          : 'text-[#475569] hover:text-[#0F172A] hover:bg-slate-50'
+                      }`}
+                    >
+                      Careers
+                    </Link>
+                    <Link
+                      href="/pathways"
+                      onClick={() => setIsExploreOpen(false)}
+                      className={`block px-3.5 py-2 text-xs font-medium transition-colors ${
+                        pathname.startsWith('/pathways')
+                          ? 'text-ink font-bold bg-blue-50/60'
+                          : 'text-[#475569] hover:text-[#0F172A] hover:bg-slate-50'
+                      }`}
+                    >
+                      Pathways
+                    </Link>
+                    <Link
+                      href="/states"
+                      onClick={() => setIsExploreOpen(false)}
+                      className={`block px-3.5 py-2 text-xs font-medium transition-colors ${
+                        pathname.startsWith('/states')
+                          ? 'text-ink font-bold bg-blue-50/60'
+                          : 'text-[#475569] hover:text-[#0F172A] hover:bg-slate-50'
+                      }`}
+                    >
+                      Entrance Exams
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <Link
+              href="/compare"
+              className={`px-3 py-1.5 rounded-[8px] text-xs font-semibold transition-colors flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-ink ${
+                pathname.startsWith('/compare')
+                  ? 'text-ink font-bold bg-blue-50/60'
+                  : 'text-[#475569] hover:text-[#0F172A] hover:bg-slate-50'
+              }`}
+            >
+              <span>Compare</span>
+              {selectedColleges.length > 0 && (
+                <span className="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-ink text-white leading-none">
+                  {selectedColleges.length}
+                </span>
+              )}
+            </Link>
+
+            <Link
+              href="/kcet-2026-predictor"
+              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1 border ${
+                pathname === '/kcet-2026-predictor'
+                  ? 'bg-ink text-white border-ink'
+                  : 'bg-blue-50 text-ink border-blue-200 hover:bg-blue-100 hover:border-blue-300'
+              }`}
+            >
+              <span>KCET Predictor</span>
+            </Link>
+
+            <Link
+              href="/ai-counsellor"
+              className={`px-3 py-1.5 rounded-[8px] text-xs font-semibold transition-colors flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-ink ${
+                pathname.startsWith('/ai-counsellor')
+                  ? 'text-ink font-bold bg-blue-50/60'
+                  : 'text-[#475569] hover:text-[#0F172A] hover:bg-slate-50'
+              }`}
+            >
+              <span>AI Counsellor</span>
+              <span className="px-1.5 py-0.2 rounded text-[10px] font-bold bg-marigold/20 text-[#B26E00] leading-none">
+                AI
+              </span>
+            </Link>
+
+            <Link
+              href="/telegram"
+              className={`px-3 py-1.5 rounded-[8px] text-xs font-semibold transition-colors flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-ink ${
+                pathname.startsWith('/telegram')
+                  ? 'text-ink font-bold bg-blue-50/60'
+                  : 'text-[#475569] hover:text-[#0F172A] hover:bg-slate-50'
+              }`}
+            >
+              <svg className="w-3.5 h-3.5 text-[#24A1DE]" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.943z" />
+              </svg>
+              <span>Telegram</span>
+              <span className="px-1.5 py-0.2 rounded text-[10px] font-bold bg-[#24A1DE]/15 text-[#0088cc] leading-none">
+                Bot
+              </span>
+            </Link>
           </nav>
 
           {/* Right: Search, Auth & Mobile Menu */}
@@ -198,7 +349,7 @@ export const Navbar: React.FC = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden bg-white border-b border-[#E2E8F0] px-4 pt-2 pb-6 flex flex-col gap-2">
             <nav className="flex flex-col gap-1" aria-label="Mobile Navigation">
-              {navLinks.map((link) => {
+              {mobileNavLinks.map((link) => {
                 const isActive = link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
                 return (
                   <Link

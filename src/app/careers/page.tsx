@@ -796,6 +796,8 @@ function CareersExplorerContent() {
                         card={card}
                         selectedSubjects={paramSubjects}
                         selectedInterests={paramInterests}
+                        currentLevel={paramLevel}
+                        currentStream={paramStream}
                       />
                     ))}
                   </div>

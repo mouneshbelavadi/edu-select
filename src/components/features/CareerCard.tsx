@@ -10,6 +10,8 @@ interface CareerCardComponentProps {
   card: CareerCardType;
   selectedSubjects?: string[];
   selectedInterests?: string[];
+  currentLevel?: string;
+  currentStream?: string;
 }
 
 export function formatCostInLakhs(cost?: { min: number; max: number } | null): string {
@@ -39,6 +41,8 @@ export const CareerCardComponent: React.FC<CareerCardComponentProps> = ({
   card,
   selectedSubjects = [],
   selectedInterests = [],
+  currentLevel,
+  currentStream,
 }) => {
   const [isSaved, setIsSaved] = useState(false);
 
@@ -99,7 +103,14 @@ export const CareerCardComponent: React.FC<CareerCardComponentProps> = ({
   });
 
   const costFormatted = formatCostInLakhs(card.totalCostINR);
-  const detailUrl = `/careers/${card.kind}/${encodeURIComponent(card.id)}`;
+
+  // Preserve context in URL to pass to detail page and AI counsellor
+  const queryParams = new URLSearchParams();
+  if (currentLevel) queryParams.set('fromLevel', currentLevel);
+  if (currentStream) queryParams.set('fromStream', currentStream);
+  if (selectedSubjects.length > 0) queryParams.set('fromSubjects', selectedSubjects.join(','));
+  const qs = queryParams.toString();
+  const detailUrl = `/careers/${card.kind}/${encodeURIComponent(card.id)}${qs ? `?${qs}` : ''}`;
 
   return (
     <div className="group relative bg-white rounded-[12px] border border-[#E2E8F0] hover:border-[#CBD5E1] hover:shadow-sm transition-all duration-150 flex flex-col justify-between h-full p-5">

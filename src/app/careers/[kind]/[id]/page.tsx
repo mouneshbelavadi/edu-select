@@ -27,6 +27,11 @@ interface CareerPageProps {
     kind: string;
     id: string;
   };
+  searchParams?: {
+    fromLevel?: string;
+    fromStream?: string;
+    fromSubjects?: string;
+  };
 }
 
 export async function generateStaticParams() {
@@ -73,7 +78,7 @@ export async function generateMetadata({ params }: CareerPageProps): Promise<Met
   };
 }
 
-export default async function CareerDetailPage({ params }: CareerPageProps) {
+export default async function CareerDetailPage({ params, searchParams }: CareerPageProps) {
   const { kind, id } = params;
   const detail = getCareerDetail(kind as any, id);
 
@@ -83,6 +88,19 @@ export default async function CareerDetailPage({ params }: CareerPageProps) {
 
   const item = detail.item as any;
   const { resolvedClusters, sources } = detail;
+
+  const itemTitle = item.name || item.qualification || item.exam || item.title || 'this pathway';
+  const itemLevel = searchParams?.fromLevel || item.level || (kind === 'branch' ? 'UG_ENGG' : kind === 'govtJob' ? item.minQualification : 'CLASS_10');
+  const itemStream = item.streams?.[0] || searchParams?.fromStream || '';
+  const itemSubjects = searchParams?.fromSubjects || (item.keySubjects || item.subjectsLiked || []).slice(0, 4).join(',');
+
+  const counsellorParams = new URLSearchParams();
+  if (itemLevel) counsellorParams.set('level', itemLevel);
+  if (itemStream) counsellorParams.set('stream', itemStream);
+  if (itemSubjects) counsellorParams.set('subjects', itemSubjects);
+  counsellorParams.set('career', itemTitle);
+  counsellorParams.set('query', `I want to explore ${itemTitle}. What are my next best options, entrance exams, and college pathways?`);
+  const counsellorUrl = `/ai-counsellor?${counsellorParams.toString()}`;
 
   // If engineering branch, fetch colleges offering it
   let branchColleges: any[] = [];
@@ -915,16 +933,18 @@ export default async function CareerDetailPage({ params }: CareerPageProps) {
             {/* Call to action */}
             <div className="pt-2 flex flex-col gap-2.5">
               <Link
-                href={`/ai-counsellor?query=${encodeURIComponent(`I want to explore ${item.name}`)}`}
+                href={counsellorUrl}
                 className="w-full py-2.5 px-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-xs rounded-xl text-center shadow-md shadow-blue-500/20 transition-all flex items-center justify-center gap-1.5"
               >
                 <SparklesIcon className="w-3.5 h-3.5 text-amber-300" />
                 <span>Ask AI Counsellor About This Path</span>
               </Link>
               <AiCounselorDrawer
-                initialLevel={item.level}
-                initialStream={item.streams?.[0]}
+                initialLevel={itemLevel}
+                initialStream={itemStream}
                 initialInterests={item.riasec}
+                initialSubjects={itemSubjects ? itemSubjects.split(',') : (item.keySubjects || item.subjectsLiked)}
+                initialQuestion={`I want to explore ${itemTitle}. What are my next best options and preparation steps?`}
               />
               <Link
                 href="/colleges"

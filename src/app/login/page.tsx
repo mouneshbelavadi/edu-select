@@ -18,7 +18,7 @@ const loginSchema = z.object({
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/saved';
+  const explicitCallback = searchParams.get('callbackUrl');
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -55,7 +55,13 @@ function LoginForm() {
         toast.error('Login failed');
       } else {
         toast.success('Successfully logged in!');
-        router.push(callbackUrl);
+        if (explicitCallback) {
+          router.push(explicitCallback);
+        } else {
+          // If profile not yet set, direct to onboarding with later option; otherwise saved dashboard
+          const hasProfile = typeof window !== 'undefined' && localStorage.getItem('student_profile');
+          router.push(hasProfile ? '/saved' : '/onboarding');
+        }
         router.refresh();
       }
     } catch {

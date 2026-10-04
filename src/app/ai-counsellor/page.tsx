@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo, Suspense } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import {
   SparklesIcon,
   GraduationCapIcon,
@@ -80,19 +81,97 @@ const PRESET_SCENARIOS = [
   },
 ];
 
-export default function AiCounsellorPage() {
-  // Input State
-  const [level, setLevel] = useState<string>('CLASS_12');
-  const [stream, setStream] = useState<string>('PCM');
-  const [marks10th, setMarks10th] = useState<string>('82');
-  const [marks12th, setMarks12th] = useState<string>('85');
-  const [examScore, setExamScore] = useState<string>('');
+function AiCounsellorDashboard() {
+  const searchParams = useSearchParams();
+
+  const urlLevel = searchParams.get('level') || searchParams.get('fromLevel');
+  const urlStream = searchParams.get('stream') || searchParams.get('fromStream');
+  const urlSubjects = searchParams.get('subjects') || searchParams.get('fromSubjects');
+  const urlCareer = searchParams.get('career');
+  const urlQuery = searchParams.get('query') || searchParams.get('q');
+  const urlMarks10 = searchParams.get('marks10th') || searchParams.get('marks10');
+  const urlMarks12 = searchParams.get('marks12th') || searchParams.get('marks12');
+  const urlScore = searchParams.get('score') || searchParams.get('rank');
+
+  const normalizedLevel = useMemo(() => {
+    if (!urlLevel) return 'CLASS_10';
+    const l = urlLevel.toLowerCase().trim();
+    if (['10th', '10', 'class_10', 'class-10', 'sslc', 'matric'].includes(l)) return 'CLASS_10';
+    if (['12th', '12', 'class_12', 'class-12', 'puc', 'inter', 'intermediate'].includes(l)) return 'CLASS_12';
+    if (['iti'].includes(l)) return 'ITI';
+    if (['diploma', 'polytechnic'].includes(l)) return 'DIPLOMA';
+    if (['btech', 'be', 'engineering', 'ug_engg'].includes(l)) return 'UG_ENGG';
+    if (['degree', 'graduate', 'ug_other', 'bsc', 'bcom', 'ba'].includes(l)) return 'UG_OTHER';
+    if (['CLASS_10', 'CLASS_12', 'ITI', 'DIPLOMA', 'UG_ENGG', 'UG_OTHER', 'PROFESSIONAL', 'PG'].includes(urlLevel)) return urlLevel;
+    return 'CLASS_10';
+  }, [urlLevel]);
+
+  const normalizedStream = useMemo(() => {
+    const raw = (urlStream || '').toLowerCase().trim();
+    if (raw === 'pcb' || urlCareer?.toLowerCase().includes('pcb')) return 'PCB';
+    if (raw === 'pcm' || urlCareer?.toLowerCase().includes('pcm')) return 'PCM';
+    if (raw === 'pcmb' || urlCareer?.toLowerCase().includes('pcmb')) return 'PCMB';
+    if (raw.includes('commerce') && raw.includes('math')) return 'COMMERCE_MATHS';
+    if (raw.includes('commerce')) return 'COMMERCE_NO_MATHS';
+    if (raw.includes('art') || raw.includes('humanities')) return 'ARTS';
+    if (urlStream) return urlStream.toUpperCase();
+    return normalizedLevel === 'CLASS_12' ? 'PCM' : '';
+  }, [urlStream, urlCareer, normalizedLevel]);
+
+  // Input State: initialized with actual URL/user parameters or clean empty defaults (no fake mock numbers)
+  const [level, setLevel] = useState<string>(normalizedLevel);
+  const [stream, setStream] = useState<string>(normalizedStream);
+  const [marks10th, setMarks10th] = useState<string>(urlMarks10 || '');
+  const [marks12th, setMarks12th] = useState<string>(urlMarks12 || '');
+  const [examScore, setExamScore] = useState<string>(urlScore || '');
   const [category, setCategory] = useState<string>('General');
   const [budget, setBudget] = useState<string>('moderate');
-  const [selectedSubjects, setSelectedSubjects] = useState<string[]>(['Mathematics', 'Computer Science']);
-  const [userQuestion, setUserQuestion] = useState<string>(
-    'I scored 85% in 12th PCM and like mathematics and coding. Suggest my best engineering and career pathways with good placement and higher study options.'
-  );
+
+  const initialSubjects = useMemo(() => {
+    if (!urlSubjects) return [];
+    return urlSubjects.split(',').map((s) => s.trim()).filter(Boolean);
+  }, [urlSubjects]);
+
+  const [selectedSubjects, setSelectedSubjects] = useState<string[]>(initialSubjects);
+
+  const availableSubjectOptions = useMemo(() => {
+    const defaults = [
+      'Mathematics',
+      'Physics',
+      'Chemistry',
+      'Biology',
+      'Computer Science',
+      'English',
+      'Economics',
+      'Accountancy',
+      'Design / Drawing',
+      'Law / Civic Studies',
+    ];
+    const extras = selectedSubjects.filter(
+      (s) => !defaults.some((d) => d.toLowerCase() === s.toLowerCase())
+    );
+    return [...defaults, ...extras];
+  }, [selectedSubjects]);
+
+  const initialQuestion = useMemo(() => {
+    if (urlQuery) return urlQuery;
+    if (urlCareer) return `I want to explore ${urlCareer}. What are my next best academic options, entrance exams, and future career pathways?`;
+    return '';
+  }, [urlQuery, urlCareer]);
+
+  const [userQuestion, setUserQuestion] = useState<string>(initialQuestion);
+
+  // Sync state if URL search parameters update
+  useEffect(() => {
+    setLevel(normalizedLevel);
+    if (normalizedStream) setStream(normalizedStream);
+    if (urlSubjects) setSelectedSubjects(urlSubjects.split(',').map((s) => s.trim()).filter(Boolean));
+    if (urlQuery) setUserQuestion(urlQuery);
+    else if (urlCareer) setUserQuestion(`I want to explore ${urlCareer}. What are my next best academic options, entrance exams, and future career pathways?`);
+    if (urlMarks10) setMarks10th(urlMarks10);
+    if (urlMarks12) setMarks12th(urlMarks12);
+    if (urlScore) setExamScore(urlScore);
+  }, [normalizedLevel, normalizedStream, urlSubjects, urlQuery, urlCareer, urlMarks10, urlMarks12, urlScore]);
 
   // Execution State
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -106,47 +185,100 @@ export default function AiCounsellorPage() {
   const [roadmapError, setRoadmapError] = useState<Record<string, string>>({});
 
   const handleSubjectToggle = (subj: string) => {
-    setSelectedSubjects((prev) =>
-      prev.includes(subj) ? prev.filter((s) => s !== subj) : [...prev, subj]
-    );
+    setSelectedSubjects((prev) => {
+      const exists = prev.some((p) => p.toLowerCase() === subj.toLowerCase());
+      if (exists) {
+        return prev.filter((p) => p.toLowerCase() !== subj.toLowerCase());
+      }
+      return [...prev, subj];
+    });
   };
 
   const handleApplyPreset = (preset: typeof PRESET_SCENARIOS[0]) => {
     setLevel(preset.level);
-    if (preset.stream) setStream(preset.stream);
+    if (preset.stream) {
+      setStream(preset.stream);
+    } else {
+      setStream('');
+    }
+    if (preset.marks) {
+      if (preset.level === 'CLASS_10') {
+        setMarks10th(preset.marks.replace('%', ''));
+        setMarks12th('');
+      } else {
+        setMarks12th(preset.marks.replace('%', ''));
+      }
+    }
     setUserQuestion(preset.question);
   };
 
-  const handleGeneratePlan = async (e?: React.FormEvent) => {
-    if (e) e.preventDefault();
+  const handleExecutePlan = async (overrides?: {
+    execLevel?: string;
+    execStream?: string;
+    execMarks10?: string;
+    execMarks12?: string;
+    execScore?: string;
+    execCategory?: string;
+    execBudget?: string;
+    execSubjects?: string[];
+    execQuestion?: string;
+  }) => {
     setIsLoading(true);
     setError(null);
     setRoadmapsByItem({});
     setExpandedRoadmapIds({});
     setRoadmapError({});
 
-    try {
-      const fullPrompt = `Student Profile:
-Current Qualification Level: ${level}
-Stream: ${stream}
-10th Board Marks: ${marks10th}%
-12th / Diploma Marks: ${marks12th}%
-Competitive Exam Score/Rank: ${examScore || 'Not yet appeared'}
-Category: ${category}
-Budget Preference: ${budget}
-Subjects of Interest: ${selectedSubjects.join(', ')}
+    const activeLevel = overrides?.execLevel ?? level;
+    const activeStream = overrides?.execStream ?? stream;
+    const activeMarks10 = overrides?.execMarks10 ?? marks10th;
+    const activeMarks12 = overrides?.execMarks12 ?? marks12th;
+    const activeScore = overrides?.execScore ?? examScore;
+    const activeCategory = overrides?.execCategory ?? category;
+    const activeBudget = overrides?.execBudget ?? budget;
+    const activeSubjects = overrides?.execSubjects ?? selectedSubjects;
+    const activeQuestion = overrides?.execQuestion ?? userQuestion;
 
-Student Dilemma & Goal:
-"${userQuestion.trim()}"`;
+    try {
+      const profileParts: string[] = [
+        `Student Profile:`,
+        `Current Qualification Level: ${activeLevel}`,
+      ];
+      if (activeLevel === 'CLASS_12' && activeStream) {
+        profileParts.push(`12th / PU Stream: ${activeStream}`);
+      }
+      if (activeMarks10.trim()) {
+        profileParts.push(`10th Board Marks: ${activeMarks10.trim()}%`);
+      }
+      if (activeLevel !== 'CLASS_10' && activeMarks12.trim()) {
+        profileParts.push(`12th / Diploma Marks: ${activeMarks12.trim()}%`);
+      }
+      if (activeScore.trim()) {
+        profileParts.push(`Competitive Exam Score/Rank: ${activeScore.trim()}`);
+      }
+      if (activeCategory) {
+        profileParts.push(`Category: ${activeCategory}`);
+      }
+      if (activeBudget) {
+        profileParts.push(`Budget Preference: ${activeBudget}`);
+      }
+      if (activeSubjects.length > 0) {
+        profileParts.push(`Subjects of Interest: ${activeSubjects.join(', ')}`);
+      }
+
+      const dilemma = activeQuestion.trim() || `What are the best career and education pathways for my profile?`;
+      profileParts.push(`\nStudent Dilemma & Goal:\n"${dilemma}"`);
+
+      const fullPrompt = profileParts.join('\n');
 
       const res = await fetch('/api/careers/ai', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          level,
-          stream,
-          subjects: selectedSubjects,
-          budget,
+          level: activeLevel,
+          stream: activeLevel === 'CLASS_12' ? activeStream : undefined,
+          subjects: activeSubjects.length ? activeSubjects : undefined,
+          budget: activeBudget,
           question: fullPrompt,
         }),
       });
@@ -162,6 +294,43 @@ Student Dilemma & Goal:
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleGeneratePlan = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    await handleExecutePlan();
+  };
+
+  const handleRunSampleProfile = () => {
+    const sampleLevel = 'CLASS_12';
+    const sampleStream = 'PCM';
+    const sample10 = '84';
+    const sample12 = '86';
+    const sampleScore = 'KCET 15200';
+    const sampleCat = 'General';
+    const sampleSubj = ['Mathematics', 'Computer Science', 'Physics'];
+    const sampleQ = 'I scored 86% in 12th PCM and like mathematics and coding. Suggest my best engineering and career pathways with good placement and higher study options.';
+
+    setLevel(sampleLevel);
+    setStream(sampleStream);
+    setMarks10th(sample10);
+    setMarks12th(sample12);
+    setExamScore(sampleScore);
+    setCategory(sampleCat);
+    setSelectedSubjects(sampleSubj);
+    setUserQuestion(sampleQ);
+
+    handleExecutePlan({
+      execLevel: sampleLevel,
+      execStream: sampleStream,
+      execMarks10: sample10,
+      execMarks12: sample12,
+      execScore: sampleScore,
+      execCategory: sampleCat,
+      execBudget: budget,
+      execSubjects: sampleSubj,
+      execQuestion: sampleQ,
+    });
   };
 
   const handleToggleRoadmap = async (item: Recommendation) => {
@@ -393,6 +562,26 @@ Student Dilemma & Goal:
               </p>
             </div>
 
+            {/* Target Career Banner if navigated from a pathway */}
+            {urlCareer && (
+              <div className="p-3 bg-blue-50/80 border border-blue-200 rounded-2xl flex items-center justify-between text-xs">
+                <div className="flex items-center gap-2 text-blue-900 font-bold">
+                  <SparklesIcon className="w-4 h-4 text-blue-600 shrink-0" />
+                  <span>Target Pathway: {urlCareer}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setUserQuestion('');
+                    window.history.replaceState({}, '', '/ai-counsellor');
+                  }}
+                  className="text-[11px] text-blue-600 hover:text-blue-900 font-semibold"
+                >
+                  Clear
+                </button>
+              </div>
+            )}
+
             {/* 1. Current Qualification Level */}
             <div className="flex flex-col gap-1.5">
               <label className="text-xs font-bold text-slate-700">Where are you right now?</label>
@@ -410,7 +599,7 @@ Student Dilemma & Goal:
               </select>
             </div>
 
-            {/* 2. Stream (if Class 12) */}
+            {/* 2. Stream (only applicable for Class 12) */}
             {level === 'CLASS_12' && (
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-bold text-slate-700">12th / PU Stream</label>
@@ -440,38 +629,59 @@ Student Dilemma & Goal:
               </div>
             )}
 
-            {/* 3. Academic Marks */}
-            <div className="grid grid-cols-2 gap-3">
+            {/* 3. Academic Marks (adapted to qualification stage) */}
+            {level === 'CLASS_10' ? (
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-700">10th Board Marks (%)</label>
+                <label className="text-xs font-bold text-slate-700">10th Board Marks (%) (Optional)</label>
                 <input
                   type="text"
-                  placeholder="e.g. 84"
+                  placeholder="Leave blank if awaiting results or not decided"
                   value={marks10th}
                   onChange={(e) => setMarks10th(e.target.value)}
                   className="px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-3">
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-bold text-slate-700">10th Board Marks (%) (Optional)</label>
+                  <input
+                    type="text"
+                    placeholder="Leave blank if not applicable"
+                    value={marks10th}
+                    onChange={(e) => setMarks10th(e.target.value)}
+                    className="px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
 
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-700">12th / Diploma (%)</label>
-                <input
-                  type="text"
-                  placeholder="e.g. 88"
-                  value={marks12th}
-                  onChange={(e) => setMarks12th(e.target.value)}
-                  className="px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-bold text-slate-700">
+                    {level === 'DIPLOMA' || level === 'ITI'
+                      ? 'Diploma / ITI (%) (Optional)'
+                      : level === 'UG_ENGG' || level === 'UG_OTHER'
+                      ? 'Degree Aggregate / CGPA (Optional)'
+                      : '12th / Diploma (%) (Optional)'}
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Leave blank if not decided"
+                    value={marks12th}
+                    onChange={(e) => setMarks12th(e.target.value)}
+                    className="px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
               </div>
-            </div>
+            )}
 
             {/* 4. Entrance Score & Category */}
             <div className="grid grid-cols-2 gap-3">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-slate-700">Exam Rank / Percentile</label>
+                <label className="text-xs font-bold text-slate-700">
+                  {level === 'CLASS_10' ? 'Target Board / Exam (Optional)' : 'Exam Rank / Percentile (Optional)'}
+                </label>
                 <input
                   type="text"
-                  placeholder="e.g. KCET 12450 / JEE 92%"
+                  placeholder={level === 'CLASS_10' ? 'e.g. CBSE / State Board (Optional)' : 'e.g. KCET / JEE Rank (Optional)'}
                   value={examScore}
                   onChange={(e) => setExamScore(e.target.value)}
                   className="px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -498,17 +708,8 @@ Student Dilemma & Goal:
             <div className="flex flex-col gap-1.5">
               <label className="text-xs font-bold text-slate-700">Subjects & Topics You Enjoy</label>
               <div className="flex flex-wrap gap-1.5">
-                {[
-                  'Mathematics',
-                  'Physics',
-                  'Computer Science',
-                  'Biology',
-                  'Chemistry',
-                  'Economics',
-                  'Design / Drawing',
-                  'Law / Civic Studies',
-                ].map((s) => {
-                  const isChecked = selectedSubjects.includes(s);
+                {availableSubjectOptions.map((s) => {
+                  const isChecked = selectedSubjects.some((p) => p.toLowerCase() === s.toLowerCase());
                   return (
                     <button
                       key={s}
@@ -537,7 +738,11 @@ Student Dilemma & Goal:
                 rows={4}
                 value={userQuestion}
                 onChange={(e) => setUserQuestion(e.target.value)}
-                placeholder="e.g. I am in 12th PCM with 82% marks. I want a career in robotics or AI, but want to know if I can also appear for government exams like ISRO. What are my best college and branch choices?"
+                placeholder={
+                  level === 'CLASS_10'
+                    ? 'e.g. What are my best options after 10th? Should I take Science PCM/PCB, a 3-Year Polytechnic Diploma, or an ITI trade?'
+                    : 'e.g. Compare engineering branches vs degree programs with good placement and government job options.'
+                }
                 className="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-xs text-slate-900 leading-relaxed focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
@@ -585,7 +790,7 @@ Student Dilemma & Goal:
               </div>
               <button
                 type="button"
-                onClick={() => handleGeneratePlan()}
+                onClick={() => handleRunSampleProfile()}
                 className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md transition-all cursor-pointer"
               >
                 <span>Run Demonstration with Sample Profile</span>
@@ -888,5 +1093,22 @@ Student Dilemma & Goal:
 
       </main>
     </div>
+  );
+}
+
+export default function AiCounsellorPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="w-full min-h-screen bg-slate-50 flex items-center justify-center p-8">
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-8 h-8 border-3 border-blue-600 border-t-transparent rounded-full animate-spin" />
+            <span className="text-xs text-slate-500 font-semibold">Loading AI Counsellor Workspace...</span>
+          </div>
+        </div>
+      }
+    >
+      <AiCounsellorDashboard />
+    </Suspense>
   );
 }

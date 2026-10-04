@@ -26,6 +26,7 @@ export interface GenerateJsonOptions {
   responseJsonSchema?: Record<string, unknown>;
   maxOutputTokens?: number;
   temperature?: number;
+  thinkingBudget?: number;
 }
 
 export async function generateJson<T>(options: GenerateJsonOptions): Promise<{ data: T; model: string }> {
@@ -38,8 +39,9 @@ export async function generateJson<T>(options: GenerateJsonOptions): Promise<{ d
     systemInstruction,
     contents,
     responseJsonSchema,
-    maxOutputTokens = 800,
-    temperature = 0.4,
+    maxOutputTokens = 4096,
+    temperature = 0.3,
+    thinkingBudget = 0,
   } = options;
 
   let attempt = 0;
@@ -60,6 +62,9 @@ export async function generateJson<T>(options: GenerateJsonOptions): Promise<{ d
           ...(responseJsonSchema ? { responseSchema: responseJsonSchema } : {}),
           temperature,
           maxOutputTokens,
+          thinkingConfig: {
+            thinkingBudget,
+          },
         },
       });
 
@@ -70,7 +75,14 @@ export async function generateJson<T>(options: GenerateJsonOptions): Promise<{ d
         throw new Error('Empty response received from Gemini model');
       }
 
-      const parsed = JSON.parse(text) as T;
+      let cleanText = text.trim();
+      if (cleanText.startsWith('```json')) {
+        cleanText = cleanText.replace(/^```json\s*/, '').replace(/```\s*$/, '').trim();
+      } else if (cleanText.startsWith('```')) {
+        cleanText = cleanText.replace(/^```\s*/, '').replace(/```\s*$/, '').trim();
+      }
+
+      const parsed = JSON.parse(cleanText) as T;
       return { data: parsed, model: modelName };
     } catch (err: any) {
       clearTimeout(timer);

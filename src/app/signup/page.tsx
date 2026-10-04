@@ -70,7 +70,7 @@ export default function SignupPage() {
       });
 
       if (signInRes?.ok) {
-        router.push('/saved');
+        router.push('/onboarding');
         router.refresh();
       } else {
         router.push('/login');
