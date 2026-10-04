@@ -58,10 +58,10 @@ function CareersExplorerContent() {
   const currentKind = searchParams.get('kind') || '';
   const currentSearch = searchParams.get('q') || '';
   const currentCluster = searchParams.get('cluster') || '';
-  const currentRiasec = searchParams.get('riasec')?.split(',').filter(Boolean) || [];
-  const currentSubjects = searchParams.get('subjects')?.split(',').filter(Boolean) || [];
-  const currentOutlook = searchParams.get('outlook')?.split(',').filter(Boolean) || [];
-  const currentSector = searchParams.get('sector')?.split(',').filter(Boolean) || [];
+  const currentRiasec = useMemo(() => searchParams.get('riasec')?.split(',').filter(Boolean) || [], [searchParams]);
+  const currentSubjects = useMemo(() => searchParams.get('subjects')?.split(',').filter(Boolean) || [], [searchParams]);
+  const currentOutlook = useMemo(() => searchParams.get('outlook')?.split(',').filter(Boolean) || [], [searchParams]);
+  const currentSector = useMemo(() => searchParams.get('sector')?.split(',').filter(Boolean) || [], [searchParams]);
   const currentBudget = searchParams.get('budget') || '';
   const currentDuration = searchParams.get('duration') || '';
   const currentSalary = searchParams.get('salary') || '';
