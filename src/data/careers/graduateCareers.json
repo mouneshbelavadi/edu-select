@@ -1,0 +1,1306 @@
+{
+  "meta": {
+    "dataset": "graduateCareers",
+    "description": "Careers by qualification for non-engineering graduates, professional degrees and postgraduates: roles, sectors, government jobs, PG options and salary estimates.",
+    "version": "1.0.0",
+    "compiledOn": "2026-10-04",
+    "region": "India",
+    "currency": "INR",
+    "disclaimer": "Curated for EduSelect from official and reputable public sources (compiled 2026-10-04). Fees and private-sector salaries are estimates (isEstimate=true) and must be shown with an 'Estimate' badge. Government pay is from the 7th CPC pay matrix (basic pay, excludes DA/HRA). Exam rules, age limits and fees change every cycle - re-check the official notification before relying on any value.",
+    "sources": [
+      {
+        "id": "ambitionbox",
+        "title": "AmbitionBox salary data (self-reported)",
+        "url": "https://www.ambitionbox.com/salaries"
+      },
+      {
+        "id": "glassdoor-in",
+        "title": "Glassdoor India salaries (self-reported)",
+        "url": "https://www.glassdoor.co.in/Salaries/index.htm"
+      },
+      {
+        "id": "isr2026",
+        "title": "India Skills Report 2026 summary (InsightsIAS)",
+        "url": "https://www.insightsonindia.com/2025/11/14/the-india-skills-report-2026/"
+      },
+      {
+        "id": "pay-matrix",
+        "title": "7th CPC pay matrix (Indian Pay Calculator)",
+        "url": "https://www.indianpaycalculator.in/pay-matrix"
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "grad-bsc-pcm",
+      "qualification": "B.Sc Physics / Chemistry / Maths",
+      "level": "UG_OTHER",
+      "clusterIds": [
+        "science-research"
+      ],
+      "roles": [
+        "QC analyst",
+        "Data analyst",
+        "Teacher",
+        "Lab chemist"
+      ],
+      "sectors": [
+        "Pharma & chemicals",
+        "Analytics",
+        "Education",
+        "Research labs"
+      ],
+      "govtJobIds": [
+        "ssc-cgl",
+        "upsc-cse"
+      ],
+      "pgOptions": [
+        "M.Sc (IIT JAM, CUET-PG)",
+        "CSIR NET → research",
+        "GATE",
+        "B.Ed"
+      ],
+      "pgExamIds": [
+        "iit-jam",
+        "cuet-pg",
+        "csir-net",
+        "gate"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 2.5,
+          "max": 5
+        },
+        "fiveYears": {
+          "min": 5,
+          "max": 10
+        }
+      },
+      "riasec": [
+        "I"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": "ISRO / CSIR technical posts also recruit B.Sc graduates."
+    },
+    {
+      "id": "grad-bsc-stats",
+      "qualification": "B.Sc Statistics",
+      "level": "UG_OTHER",
+      "clusterIds": [
+        "science-research",
+        "computing-ai"
+      ],
+      "roles": [
+        "Data analyst",
+        "Actuarial analyst",
+        "Statistical assistant"
+      ],
+      "sectors": [
+        "Analytics",
+        "Insurance",
+        "Government statistics"
+      ],
+      "govtJobIds": [
+        "ssc-cgl"
+      ],
+      "pgOptions": [
+        "M.Stat (ISI)",
+        "M.Sc Statistics",
+        "UPSC Indian Statistical Service"
+      ],
+      "pgExamIds": [
+        "iit-jam"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3.5,
+          "max": 7
+        },
+        "fiveYears": {
+          "min": 8,
+          "max": 15
+        }
+      },
+      "riasec": [
+        "I",
+        "C"
+      ],
+      "outlook": "GROWING",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    },
+    {
+      "id": "grad-bsc-life",
+      "qualification": "B.Sc Life Sciences (Biology, Biotech, Microbiology, Biochemistry)",
+      "level": "UG_OTHER",
+      "clusterIds": [
+        "science-research",
+        "medicine-health"
+      ],
+      "roles": [
+        "Clinical research associate",
+        "Pharmacovigilance associate",
+        "Lab analyst"
+      ],
+      "sectors": [
+        "Pharma",
+        "CROs",
+        "Hospitals & diagnostics",
+        "Research"
+      ],
+      "govtJobIds": [],
+      "pgOptions": [
+        "M.Sc",
+        "MPH",
+        "GAT-B"
+      ],
+      "pgExamIds": [
+        "gat-b",
+        "iit-jam",
+        "cuet-pg"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 2.5,
+          "max": 4
+        },
+        "fiveYears": {
+          "min": 5,
+          "max": 9
+        }
+      },
+      "riasec": [
+        "I"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": "ICMR / CSIR technical assistant posts are a government option."
+    },
+    {
+      "id": "grad-bsc-cs-bca",
+      "qualification": "B.Sc Computer Science / BCA",
+      "level": "UG_OTHER",
+      "clusterIds": [
+        "computing-ai"
+      ],
+      "roles": [
+        "Software developer",
+        "Tester",
+        "Support engineer",
+        "Data analyst"
+      ],
+      "sectors": [
+        "IT services",
+        "Product companies",
+        "Startups"
+      ],
+      "govtJobIds": [
+        "ibps-so"
+      ],
+      "pgOptions": [
+        "MCA (NIMCET)",
+        "MBA",
+        "M.Sc CS"
+      ],
+      "pgExamIds": [
+        "nimcet",
+        "cat"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 6
+        },
+        "fiveYears": {
+          "min": 7,
+          "max": 15
+        }
+      },
+      "riasec": [
+        "I",
+        "C"
+      ],
+      "outlook": "GROWING",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    },
+    {
+      "id": "grad-bcom",
+      "qualification": "B.Com",
+      "level": "UG_OTHER",
+      "clusterIds": [
+        "commerce-finance"
+      ],
+      "roles": [
+        "Accountant",
+        "Audit associate",
+        "Banking officer",
+        "Financial analyst"
+      ],
+      "sectors": [
+        "Accounting & audit",
+        "Banking",
+        "Insurance",
+        "Corporate finance"
+      ],
+      "govtJobIds": [
+        "ssc-cgl",
+        "ibps-po",
+        "ibps-clerk",
+        "rbi-grade-b",
+        "lic-aao"
+      ],
+      "pgOptions": [
+        "M.Com",
+        "MBA",
+        "CA / CMA / CS",
+        "CFA"
+      ],
+      "pgExamIds": [
+        "cat",
+        "cuet-pg"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 2.5,
+          "max": 5
+        },
+        "fiveYears": {
+          "min": 5,
+          "max": 10
+        }
+      },
+      "riasec": [
+        "C",
+        "E"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    },
+    {
+      "id": "grad-ba-economics",
+      "qualification": "BA Economics",
+      "level": "UG_OTHER",
+      "clusterIds": [
+        "social-humanities",
+        "commerce-finance"
+      ],
+      "roles": [
+        "Research analyst",
+        "Policy associate",
+        "Economic consultant"
+      ],
+      "sectors": [
+        "Research",
+        "Banking",
+        "Consulting",
+        "Government"
+      ],
+      "govtJobIds": [
+        "upsc-cse",
+        "rbi-grade-b"
+      ],
+      "pgOptions": [
+        "MA Economics (DSE, JNU, IGIDR)",
+        "UPSC IES",
+        "RBI DEPR"
+      ],
+      "pgExamIds": [
+        "cuet-pg"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 6
+        },
+        "fiveYears": {
+          "min": 6,
+          "max": 12
+        }
+      },
+      "riasec": [
+        "I",
+        "E"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    },
+    {
+      "id": "grad-ba-english",
+      "qualification": "BA English",
+      "level": "UG_OTHER",
+      "clusterIds": [
+        "media-communication",
+        "education-teaching"
+      ],
+      "roles": [
+        "Content writer",
+        "Editor",
+        "Communications executive"
+      ],
+      "sectors": [
+        "Publishing",
+        "Media",
+        "Corporate communications",
+        "Education"
+      ],
+      "govtJobIds": [
+        "ssc-cgl",
+        "upsc-cse"
+      ],
+      "pgOptions": [
+        "MA English",
+        "B.Ed",
+        "Journalism PG"
+      ],
+      "pgExamIds": [],
+      "salaryLPA": {
+        "fresher": {
+          "min": 2.5,
+          "max": 4.5
+        },
+        "fiveYears": {
+          "min": 5,
+          "max": 9
+        }
+      },
+      "riasec": [
+        "A",
+        "S"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    },
+    {
+      "id": "grad-ba-social",
+      "qualification": "BA History / Political Science / Sociology / Geography",
+      "level": "UG_OTHER",
+      "clusterIds": [
+        "social-humanities",
+        "government-civil"
+      ],
+      "roles": [
+        "Researcher",
+        "NGO programme associate",
+        "GIS analyst (Geography)"
+      ],
+      "sectors": [
+        "NGOs",
+        "Research",
+        "Government",
+        "Education"
+      ],
+      "govtJobIds": [
+        "upsc-cse",
+        "state-psc",
+        "ugc-net-jobs"
+      ],
+      "pgOptions": [
+        "MA",
+        "MSW",
+        "MPA"
+      ],
+      "pgExamIds": [
+        "cuet-pg"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 2.5,
+          "max": 4
+        },
+        "fiveYears": {
+          "min": 4,
+          "max": 8
+        }
+      },
+      "riasec": [
+        "S",
+        "I"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    },
+    {
+      "id": "grad-psychology",
+      "qualification": "BA / B.Sc Psychology",
+      "level": "UG_OTHER",
+      "clusterIds": [
+        "social-humanities",
+        "medicine-health"
+      ],
+      "roles": [
+        "HR associate",
+        "UX researcher",
+        "Counsellor (after PG)"
+      ],
+      "sectors": [
+        "HR",
+        "Tech (UX research)",
+        "Schools",
+        "Healthcare"
+      ],
+      "govtJobIds": [],
+      "pgOptions": [
+        "MA / M.Sc Psychology",
+        "M.Phil Clinical Psychology (RCI licence)"
+      ],
+      "pgExamIds": [],
+      "salaryLPA": {
+        "fresher": {
+          "min": 2.5,
+          "max": 4
+        },
+        "fiveYears": {
+          "min": 5,
+          "max": 10
+        }
+      },
+      "riasec": [
+        "S",
+        "I"
+      ],
+      "outlook": "GROWING",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    },
+    {
+      "id": "grad-languages",
+      "qualification": "BA Languages",
+      "level": "UG_OTHER",
+      "clusterIds": [
+        "social-humanities",
+        "media-communication"
+      ],
+      "roles": [
+        "Translator",
+        "Interpreter",
+        "Localisation specialist"
+      ],
+      "sectors": [
+        "Localisation",
+        "Tourism",
+        "MNCs",
+        "Government"
+      ],
+      "govtJobIds": [
+        "ssc-jht"
+      ],
+      "pgOptions": [
+        "MA"
+      ],
+      "pgExamIds": [],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 6
+        },
+        "fiveYears": {
+          "min": 6,
+          "max": 12
+        }
+      },
+      "riasec": [
+        "A",
+        "S"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    },
+    {
+      "id": "grad-bba",
+      "qualification": "BBA / BMS",
+      "level": "UG_OTHER",
+      "clusterIds": [
+        "management-business"
+      ],
+      "roles": [
+        "Sales executive",
+        "HR associate",
+        "Operations executive"
+      ],
+      "sectors": [
+        "FMCG",
+        "Retail",
+        "Consulting",
+        "Startups"
+      ],
+      "govtJobIds": [
+        "ibps-po",
+        "sbi-po"
+      ],
+      "pgOptions": [
+        "MBA"
+      ],
+      "pgExamIds": [
+        "cat",
+        "xat",
+        "gmat"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 5
+        },
+        "fiveYears": {
+          "min": 6,
+          "max": 12
+        }
+      },
+      "riasec": [
+        "E",
+        "C"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    },
+    {
+      "id": "grad-llb",
+      "qualification": "LLB / BA LLB",
+      "level": "PROFESSIONAL",
+      "clusterIds": [
+        "law"
+      ],
+      "roles": [
+        "Litigation advocate",
+        "Corporate lawyer",
+        "Legal officer"
+      ],
+      "sectors": [
+        "Law firms",
+        "Corporate legal",
+        "Courts",
+        "PSUs"
+      ],
+      "govtJobIds": [
+        "judiciary",
+        "ibps-so"
+      ],
+      "pgOptions": [
+        "LLM (CLAT PG)"
+      ],
+      "pgExamIds": [
+        "clat-pg",
+        "aibe"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 2,
+          "max": 20
+        },
+        "fiveYears": {
+          "min": 6,
+          "max": 30
+        }
+      },
+      "riasec": [
+        "E",
+        "I"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": "Highly tier-dependent: top-NLU corporate roles start ₹15-20 LPA; litigation starts low. Also APO, JAG, PSU legal officer posts."
+    },
+    {
+      "id": "grad-mbbs",
+      "qualification": "MBBS",
+      "level": "PROFESSIONAL",
+      "clusterIds": [
+        "medicine-health"
+      ],
+      "roles": [
+        "Medical officer",
+        "Resident doctor",
+        "Specialist (after MD/MS)"
+      ],
+      "sectors": [
+        "Government hospitals",
+        "Private hospitals",
+        "Own practice",
+        "Abroad"
+      ],
+      "govtJobIds": [
+        "upsc-cms"
+      ],
+      "pgOptions": [
+        "MD / MS / DNB (NEET-PG)",
+        "USMLE / PLAB (abroad)"
+      ],
+      "pgExamIds": [
+        "neet-pg"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 8,
+          "max": 15
+        },
+        "fiveYears": {
+          "min": 20,
+          "max": 50
+        }
+      },
+      "riasec": [
+        "I",
+        "S"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    },
+    {
+      "id": "grad-bds",
+      "qualification": "BDS",
+      "level": "PROFESSIONAL",
+      "clusterIds": [
+        "medicine-health"
+      ],
+      "roles": [
+        "Dentist",
+        "Dental officer"
+      ],
+      "sectors": [
+        "Own clinic",
+        "Hospitals",
+        "Army Dental Corps"
+      ],
+      "govtJobIds": [],
+      "pgOptions": [
+        "MDS (NEET-MDS)"
+      ],
+      "pgExamIds": [
+        "neet-mds"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 6
+        },
+        "fiveYears": {
+          "min": 8,
+          "max": 20
+        }
+      },
+      "riasec": [
+        "I",
+        "S"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    },
+    {
+      "id": "grad-ayush",
+      "qualification": "BAMS / BHMS / BUMS / BSMS",
+      "level": "PROFESSIONAL",
+      "clusterIds": [
+        "medicine-health"
+      ],
+      "roles": [
+        "AYUSH medical officer",
+        "Wellness consultant"
+      ],
+      "sectors": [
+        "Government AYUSH",
+        "Wellness",
+        "Own practice"
+      ],
+      "govtJobIds": [
+        "state-psc"
+      ],
+      "pgOptions": [
+        "MD (AYUSH) via AIAPGET"
+      ],
+      "pgExamIds": [
+        "aiapget"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 6
+        },
+        "fiveYears": {
+          "min": 6,
+          "max": 15
+        }
+      },
+      "riasec": [
+        "I",
+        "S"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    },
+    {
+      "id": "grad-bpharm",
+      "qualification": "B.Pharm",
+      "level": "PROFESSIONAL",
+      "clusterIds": [
+        "medicine-health"
+      ],
+      "roles": [
+        "QA/QC executive",
+        "Regulatory affairs associate",
+        "Medical representative",
+        "Drug Inspector"
+      ],
+      "sectors": [
+        "Pharma manufacturing",
+        "Regulatory",
+        "Sales",
+        "Retail pharmacy"
+      ],
+      "govtJobIds": [
+        "state-psc"
+      ],
+      "pgOptions": [
+        "M.Pharm (GPAT)",
+        "MBA Pharma"
+      ],
+      "pgExamIds": [
+        "gpat"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 2.5,
+          "max": 5
+        },
+        "fiveYears": {
+          "min": 5,
+          "max": 10
+        }
+      },
+      "riasec": [
+        "I",
+        "C"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    },
+    {
+      "id": "grad-nursing",
+      "qualification": "B.Sc Nursing",
+      "level": "PROFESSIONAL",
+      "clusterIds": [
+        "medicine-health"
+      ],
+      "roles": [
+        "Staff nurse",
+        "Nursing officer",
+        "Military Nursing Service officer"
+      ],
+      "sectors": [
+        "Hospitals",
+        "AIIMS / ESIC",
+        "Abroad"
+      ],
+      "govtJobIds": [
+        "aiims-norcet"
+      ],
+      "pgOptions": [
+        "M.Sc Nursing"
+      ],
+      "pgExamIds": [],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 5
+        },
+        "fiveYears": {
+          "min": 5,
+          "max": 10
+        }
+      },
+      "riasec": [
+        "S",
+        "I"
+      ],
+      "outlook": "GROWING",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": "Salaries abroad (UK, Gulf, Australia) are several times higher."
+    },
+    {
+      "id": "grad-allied",
+      "qualification": "Allied health (BPT, BMLT, Radiology, etc.)",
+      "level": "PROFESSIONAL",
+      "clusterIds": [
+        "medicine-health"
+      ],
+      "roles": [
+        "Physiotherapist",
+        "Medical lab technologist",
+        "Radiographer"
+      ],
+      "sectors": [
+        "Hospitals",
+        "Diagnostics",
+        "Sports teams"
+      ],
+      "govtJobIds": [],
+      "pgOptions": [
+        "MPT / M.Sc"
+      ],
+      "pgExamIds": [],
+      "salaryLPA": {
+        "fresher": {
+          "min": 2.5,
+          "max": 4.5
+        },
+        "fiveYears": {
+          "min": 5,
+          "max": 9
+        }
+      },
+      "riasec": [
+        "S",
+        "I"
+      ],
+      "outlook": "GROWING",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": "Railways and ESIC recruit allied health professionals."
+    },
+    {
+      "id": "grad-bsc-agri",
+      "qualification": "B.Sc Agriculture",
+      "level": "UG_OTHER",
+      "clusterIds": [
+        "agriculture-allied"
+      ],
+      "roles": [
+        "Agriculture extension officer",
+        "Bank Agriculture Field Officer",
+        "Agri-business executive"
+      ],
+      "sectors": [
+        "Government agriculture",
+        "Banks",
+        "Agri-input companies"
+      ],
+      "govtJobIds": [
+        "ibps-so",
+        "nabard-grade-a"
+      ],
+      "pgOptions": [
+        "M.Sc (ICAR AIEEA-PG)",
+        "MBA Agribusiness"
+      ],
+      "pgExamIds": [
+        "icar-pg"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 6
+        },
+        "fiveYears": {
+          "min": 6,
+          "max": 12
+        }
+      },
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "outlook": "GROWING",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": "FCI also recruits agriculture graduates."
+    },
+    {
+      "id": "grad-bdes",
+      "qualification": "B.Des",
+      "level": "UG_OTHER",
+      "clusterIds": [
+        "design-creative"
+      ],
+      "roles": [
+        "UX / product designer",
+        "Visual designer",
+        "Fashion designer"
+      ],
+      "sectors": [
+        "Tech",
+        "Fashion",
+        "Design studios"
+      ],
+      "govtJobIds": [],
+      "pgOptions": [
+        "M.Des (CEED)"
+      ],
+      "pgExamIds": [
+        "ceed"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 4,
+          "max": 10
+        },
+        "fiveYears": {
+          "min": 10,
+          "max": 25
+        }
+      },
+      "riasec": [
+        "A",
+        "I"
+      ],
+      "outlook": "GROWING",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    },
+    {
+      "id": "grad-bfa",
+      "qualification": "BFA",
+      "level": "UG_OTHER",
+      "clusterIds": [
+        "design-creative"
+      ],
+      "roles": [
+        "Illustrator",
+        "Animator",
+        "Art director (later)"
+      ],
+      "sectors": [
+        "Studios",
+        "Advertising",
+        "Freelance"
+      ],
+      "govtJobIds": [],
+      "pgOptions": [
+        "MFA"
+      ],
+      "pgExamIds": [],
+      "salaryLPA": {
+        "fresher": {
+          "min": 2.5,
+          "max": 5
+        },
+        "fiveYears": {
+          "min": 5,
+          "max": 12
+        }
+      },
+      "riasec": [
+        "A"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    },
+    {
+      "id": "grad-bjmc",
+      "qualification": "BJMC / Mass Communication",
+      "level": "UG_OTHER",
+      "clusterIds": [
+        "media-communication"
+      ],
+      "roles": [
+        "Reporter",
+        "PR executive",
+        "Social media manager"
+      ],
+      "sectors": [
+        "News media",
+        "PR agencies",
+        "Digital marketing"
+      ],
+      "govtJobIds": [
+        "upsc-cse"
+      ],
+      "pgOptions": [
+        "IIMC PG diploma"
+      ],
+      "pgExamIds": [],
+      "salaryLPA": {
+        "fresher": {
+          "min": 2.5,
+          "max": 5
+        },
+        "fiveYears": {
+          "min": 5,
+          "max": 10
+        }
+      },
+      "riasec": [
+        "A",
+        "E"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": "UPSC also recruits for the Indian Information Service."
+    },
+    {
+      "id": "grad-bhm",
+      "qualification": "BHM / Hotel Management",
+      "level": "UG_OTHER",
+      "clusterIds": [
+        "hospitality-tourism"
+      ],
+      "roles": [
+        "Hotel operations executive",
+        "Chef de partie",
+        "Front office executive"
+      ],
+      "sectors": [
+        "Hotels",
+        "Cruise lines",
+        "QSR chains"
+      ],
+      "govtJobIds": [],
+      "pgOptions": [
+        "MBA Hospitality"
+      ],
+      "pgExamIds": [],
+      "salaryLPA": {
+        "fresher": {
+          "min": 2.5,
+          "max": 4
+        },
+        "fiveYears": {
+          "min": 5,
+          "max": 10
+        }
+      },
+      "riasec": [
+        "S",
+        "E"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    },
+    {
+      "id": "grad-barch",
+      "qualification": "B.Arch",
+      "level": "PROFESSIONAL",
+      "clusterIds": [
+        "architecture-planning"
+      ],
+      "roles": [
+        "Architect",
+        "Urban designer",
+        "BIM specialist"
+      ],
+      "sectors": [
+        "Architecture firms",
+        "Real estate",
+        "Government (CPWD)"
+      ],
+      "govtJobIds": [],
+      "pgOptions": [
+        "M.Arch / M.Plan (GATE AR)"
+      ],
+      "pgExamIds": [
+        "gate"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 6
+        },
+        "fiveYears": {
+          "min": 6,
+          "max": 15
+        }
+      },
+      "riasec": [
+        "A",
+        "I"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    },
+    {
+      "id": "grad-bed",
+      "qualification": "B.Ed",
+      "level": "PROFESSIONAL",
+      "clusterIds": [
+        "education-teaching"
+      ],
+      "roles": [
+        "School teacher (TGT/PGT)",
+        "Academic coordinator"
+      ],
+      "sectors": [
+        "Government schools",
+        "Private schools",
+        "EdTech"
+      ],
+      "govtJobIds": [
+        "ctet-kvs-nvs"
+      ],
+      "pgOptions": [
+        "M.Ed"
+      ],
+      "pgExamIds": [],
+      "salaryLPA": null,
+      "riasec": [
+        "S",
+        "A"
+      ],
+      "outlook": "GROWING",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": "Government TGT is Level 7 (₹44,900 basic)."
+    },
+    {
+      "id": "grad-any-pg",
+      "qualification": "Any postgraduate (MA / M.Sc / M.Com / M.Tech)",
+      "level": "PG",
+      "clusterIds": [
+        "education-teaching",
+        "science-research"
+      ],
+      "roles": [
+        "Assistant professor",
+        "Junior Research Fellow",
+        "Research scientist"
+      ],
+      "sectors": [
+        "Universities",
+        "Research institutes"
+      ],
+      "govtJobIds": [
+        "ugc-net-jobs"
+      ],
+      "pgOptions": [
+        "PhD"
+      ],
+      "pgExamIds": [
+        "ugc-net",
+        "csir-net"
+      ],
+      "salaryLPA": null,
+      "riasec": [
+        "I",
+        "S"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": "JRF ₹37,000/month; Assistant Professor is Level 10."
+    },
+    {
+      "id": "grad-mba",
+      "qualification": "MBA / PGDM",
+      "level": "PG",
+      "clusterIds": [
+        "management-business"
+      ],
+      "roles": [
+        "Management trainee",
+        "Product manager",
+        "Consultant",
+        "Brand manager",
+        "Investment banking analyst"
+      ],
+      "sectors": [
+        "Consulting",
+        "BFSI",
+        "Tech",
+        "FMCG"
+      ],
+      "govtJobIds": [
+        "sbi-po",
+        "rbi-grade-b"
+      ],
+      "pgOptions": [
+        "Executive programmes",
+        "CFA"
+      ],
+      "pgExamIds": [],
+      "salaryLPA": {
+        "fresher": {
+          "min": 6,
+          "max": 30
+        },
+        "fiveYears": {
+          "min": 15,
+          "max": 50
+        }
+      },
+      "riasec": [
+        "E",
+        "C"
+      ],
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": "Very B-school dependent; IIM median packages are far above the national median."
+    },
+    {
+      "id": "grad-mca",
+      "qualification": "MCA",
+      "level": "PG",
+      "clusterIds": [
+        "computing-ai"
+      ],
+      "roles": [
+        "Software engineer",
+        "Data engineer",
+        "Cloud engineer"
+      ],
+      "sectors": [
+        "IT services",
+        "Product companies"
+      ],
+      "govtJobIds": [
+        "ibps-so"
+      ],
+      "pgOptions": [
+        "Certifications",
+        "M.Tech"
+      ],
+      "pgExamIds": [],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3.5,
+          "max": 10
+        },
+        "fiveYears": {
+          "min": 8,
+          "max": 18
+        }
+      },
+      "riasec": [
+        "I",
+        "C"
+      ],
+      "outlook": "GROWING",
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "note": null
+    }
+  ]
+}

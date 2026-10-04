@@ -1,0 +1,2586 @@
+{
+  "meta": {
+    "dataset": "engineeringBranches",
+    "description": "Careers after B.E./B.Tech for 29 branches: roles by level, sectors, recruiters, PSUs via GATE, certifications, emerging roles and salary estimates. 'code' matches college course branchCode values (CSE, ISE, IT, AI, DS, ECE, EEE, ME, CIVIL, BT...).",
+    "version": "1.0.0",
+    "compiledOn": "2026-10-04",
+    "region": "India",
+    "currency": "INR",
+    "disclaimer": "Curated for EduSelect from official and reputable public sources (compiled 2026-10-04). Fees and private-sector salaries are estimates (isEstimate=true) and must be shown with an 'Estimate' badge. Government pay is from the 7th CPC pay matrix (basic pay, excludes DA/HRA). Exam rules, age limits and fees change every cycle - re-check the official notification before relying on any value.",
+    "sources": [
+      {
+        "id": "psu-gate-pw",
+        "title": "Top PSUs hiring through GATE 2026 (PW)",
+        "url": "https://www.pw.live/gate/exams/top-psu-hiring-through-gate-2026-salary-job-roles-explained"
+      },
+      {
+        "id": "psu-gate-bic",
+        "title": "PSU recruitment through GATE 2026 (BeInCareer)",
+        "url": "https://beincareer.com/psu-recruitment-through-gate-2026/"
+      },
+      {
+        "id": "psu-madeeasy",
+        "title": "PSUs through GATE (MADE EASY)",
+        "url": "https://www.madeeasy.in/exams/psus"
+      },
+      {
+        "id": "ambitionbox",
+        "title": "AmbitionBox salary data (self-reported)",
+        "url": "https://www.ambitionbox.com/salaries"
+      },
+      {
+        "id": "glassdoor-in",
+        "title": "Glassdoor India salaries (self-reported)",
+        "url": "https://www.glassdoor.co.in/Salaries/index.htm"
+      },
+      {
+        "id": "isr2026",
+        "title": "India Skills Report 2026 summary (InsightsIAS)",
+        "url": "https://www.insightsonindia.com/2025/11/14/the-india-skills-report-2026/"
+      },
+      {
+        "id": "wef2025",
+        "title": "WEF Future of Jobs Report 2025",
+        "url": "https://reports.weforum.org/docs/WEF_Future_of_Jobs_Report_2025.pdf"
+      },
+      {
+        "id": "pay-matrix",
+        "title": "7th CPC pay matrix (Indian Pay Calculator)",
+        "url": "https://www.indianpaycalculator.in/pay-matrix"
+      }
+    ]
+  },
+  "commonToAllBranches": {
+    "governmentExams": [
+      {
+        "examId": "upsc-ese",
+        "note": "Group A engineering services - Civil, Mechanical, Electrical, Electronics & Telecommunication streams only (Level 10)"
+      },
+      {
+        "examId": "ssc-je",
+        "note": "Junior Engineer (Civil/Mechanical/Electrical) - Level 6"
+      },
+      {
+        "examId": "rrb-je",
+        "note": "Railway Junior Engineer - Level 6"
+      },
+      {
+        "examId": "state-psc",
+        "note": "State Assistant Engineer / Junior Engineer posts"
+      },
+      {
+        "examId": "upsc-cds",
+        "note": "Defence officer entry (any graduate)"
+      },
+      {
+        "examId": "afcat",
+        "note": "IAF Ground Duty Technical branch"
+      },
+      {
+        "examId": "army-tgc",
+        "note": "Army Technical Graduate Course"
+      },
+      {
+        "examId": "navy-ssc-tech",
+        "note": "Navy Short Service Commission (Technical)"
+      },
+      {
+        "examId": "icg-ac",
+        "note": "Coast Guard Assistant Commandant"
+      },
+      {
+        "examId": "upsc-cse",
+        "note": "Civil Services (IAS/IPS/IFS/IRS) - open to any degree"
+      }
+    ],
+    "higherStudies": [
+      {
+        "name": "M.Tech / ME",
+        "examIds": [
+          "gate"
+        ],
+        "note": "Admission via COAP (IITs) / CCMT (NITs)"
+      },
+      {
+        "name": "MS / PhD abroad",
+        "examIds": [
+          "gre"
+        ],
+        "note": "Plus TOEFL / IELTS"
+      },
+      {
+        "name": "MBA / PGDM",
+        "examIds": [
+          "cat",
+          "xat",
+          "gmat"
+        ],
+        "note": "Also SNAP, NMAT"
+      },
+      {
+        "name": "PhD (India)",
+        "examIds": [
+          "gate"
+        ],
+        "note": "Fellowship via GATE / institute interviews"
+      }
+    ],
+    "nonCoreCareers": [
+      "Management consulting",
+      "Product management",
+      "Business / data analytics",
+      "Investment banking & finance (MBA / CFA)",
+      "UPSC Civil Services",
+      "Startups & entrepreneurship",
+      "Teaching / academia",
+      "Technical sales",
+      "Patent analyst / patent agent",
+      "Working abroad"
+    ],
+    "psuEntry": {
+      "description": "PSUs recruit Executive Trainees through GATE scores followed by group discussion / interview.",
+      "payScale": "E2 IDA ₹40,000-1,40,000 basic; roughly ₹12-20 LPA CTC",
+      "typicalGeneralAgeCaps": {
+        "IOCL": 26,
+        "NTPC": 27,
+        "BHEL": 27,
+        "BPCL": 28,
+        "ONGC": 30
+      },
+      "sourceIds": [
+        "psu-gate-pw",
+        "psu-gate-bic",
+        "psu-madeeasy"
+      ],
+      "isEstimate": true
+    },
+    "governmentPay": [
+      {
+        "post": "UPSC ESE Group A officer / ISRO Scientist 'SC'",
+        "payLevel": 10,
+        "basicPay": 56100,
+        "approxGrossMonthly": "₹90,000-1,05,000"
+      },
+      {
+        "post": "Defence officer (Lieutenant / equivalent)",
+        "payLevel": 10,
+        "basicPay": 56100,
+        "approxGrossMonthly": "₹1,00,000-1,20,000 (includes Military Service Pay ₹15,500)"
+      },
+      {
+        "post": "SSC JE / RRB JE",
+        "payLevel": 6,
+        "basicPay": 35400,
+        "approxGrossMonthly": "₹55,000-65,000"
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "branch-cse",
+      "code": "CSE",
+      "name": "Computer Science & Engineering",
+      "aliases": [
+        "CSE",
+        "CS",
+        "Computer Engineering"
+      ],
+      "gatePaper": "CS",
+      "clusterIds": [
+        "computing-ai",
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Software development engineer (SDE)",
+          "Full-stack developer",
+          "QA / test engineer",
+          "Cloud / DevOps engineer"
+        ],
+        "mid": [
+          "Senior software engineer",
+          "Tech lead",
+          "Engineering manager"
+        ],
+        "senior": [
+          "Software architect",
+          "Director of engineering",
+          "CTO"
+        ]
+      },
+      "sectors": [
+        "IT services",
+        "Product & SaaS companies",
+        "BFSI / fintech",
+        "E-commerce",
+        "Global capability centres (GCCs)",
+        "Startups",
+        "Government IT (NIC, C-DAC)"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Google",
+          "Microsoft",
+          "Amazon",
+          "Flipkart",
+          "TCS",
+          "Infosys",
+          "Wipro",
+          "Accenture"
+        ],
+        "public": [
+          "C-DAC",
+          "NIC"
+        ]
+      },
+      "psusViaGate": [
+        "IOCL",
+        "ONGC (IT)",
+        "GAIL",
+        "BHEL",
+        "BEL",
+        "POWERGRID"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "AWS / Azure / GCP",
+        "Certified Kubernetes Administrator (CKA)"
+      ],
+      "emergingRoles": [
+        "Generative AI engineer",
+        "MLOps",
+        "Site reliability engineer (SRE)"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3.5,
+          "max": 45
+        },
+        "mid3to5": {
+          "min": 8,
+          "max": 25
+        },
+        "senior10plus": {
+          "min": 25,
+          "max": 80
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "GROWING",
+      "riasec": [
+        "I",
+        "C",
+        "R"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-it",
+      "code": "IT",
+      "name": "Information Technology",
+      "aliases": [
+        "IT"
+      ],
+      "gatePaper": "CS",
+      "clusterIds": [
+        "computing-ai",
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Software developer",
+          "System / network engineer",
+          "Cloud support engineer"
+        ],
+        "mid": [
+          "Senior developer",
+          "Solutions architect"
+        ],
+        "senior": [
+          "Enterprise architect",
+          "IT head / CIO"
+        ]
+      },
+      "sectors": [
+        "IT services",
+        "Product & SaaS companies",
+        "BFSI / fintech",
+        "E-commerce",
+        "Global capability centres (GCCs)",
+        "Startups",
+        "Government IT (NIC, C-DAC)"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Google",
+          "Microsoft",
+          "Amazon",
+          "Flipkart",
+          "TCS",
+          "Infosys",
+          "Wipro",
+          "Accenture"
+        ],
+        "public": [
+          "C-DAC",
+          "NIC"
+        ]
+      },
+      "psusViaGate": [
+        "IOCL",
+        "ONGC (IT)",
+        "GAIL",
+        "BHEL",
+        "BEL",
+        "POWERGRID"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "AWS / Azure / GCP",
+        "CCNA",
+        "ITIL"
+      ],
+      "emergingRoles": [
+        "Platform engineering",
+        "Cloud security"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3.5,
+          "max": 40
+        },
+        "mid3to5": {
+          "min": 8,
+          "max": 22
+        },
+        "senior10plus": {
+          "min": 22,
+          "max": 70
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "GROWING",
+      "riasec": [
+        "I",
+        "C"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-ise",
+      "code": "ISE",
+      "name": "Information Science & Engineering",
+      "aliases": [
+        "ISE",
+        "Information Science"
+      ],
+      "gatePaper": "CS",
+      "clusterIds": [
+        "computing-ai",
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Software developer",
+          "Data engineer",
+          "QA engineer"
+        ],
+        "mid": [
+          "Senior engineer",
+          "Tech lead"
+        ],
+        "senior": [
+          "Architect",
+          "Engineering manager"
+        ]
+      },
+      "sectors": [
+        "IT services",
+        "Product & SaaS companies",
+        "BFSI / fintech",
+        "E-commerce",
+        "Global capability centres (GCCs)",
+        "Startups",
+        "Government IT (NIC, C-DAC)"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Google",
+          "Microsoft",
+          "Amazon",
+          "Flipkart",
+          "TCS",
+          "Infosys",
+          "Wipro",
+          "Accenture"
+        ],
+        "public": [
+          "C-DAC",
+          "NIC"
+        ]
+      },
+      "psusViaGate": [
+        "IOCL",
+        "ONGC (IT)",
+        "GAIL",
+        "BHEL",
+        "BEL",
+        "POWERGRID"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "AWS / Azure / GCP",
+        "Databricks"
+      ],
+      "emergingRoles": [
+        "Data platform engineering",
+        "GenAI applications"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3.5,
+          "max": 40
+        },
+        "mid3to5": {
+          "min": 8,
+          "max": 22
+        },
+        "senior10plus": {
+          "min": 22,
+          "max": 70
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "GROWING",
+      "riasec": [
+        "I",
+        "C"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": "Karnataka (VTU) branch close to CSE."
+    },
+    {
+      "id": "branch-ai",
+      "code": "AI",
+      "name": "Artificial Intelligence & Machine Learning",
+      "aliases": [
+        "AI",
+        "AIML",
+        "AI & ML",
+        "CSE (AI&ML)"
+      ],
+      "gatePaper": "DA / CS",
+      "clusterIds": [
+        "computing-ai"
+      ],
+      "roles": {
+        "entry": [
+          "ML engineer",
+          "Data analyst",
+          "AI application developer"
+        ],
+        "mid": [
+          "Data scientist",
+          "Senior ML engineer"
+        ],
+        "senior": [
+          "Head of AI",
+          "Principal scientist"
+        ]
+      },
+      "sectors": [
+        "IT services",
+        "Product & SaaS companies",
+        "BFSI / fintech",
+        "E-commerce",
+        "Global capability centres (GCCs)",
+        "Startups",
+        "Government IT (NIC, C-DAC)",
+        "AI research labs",
+        "Analytics firms (Fractal, Tiger Analytics)"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Google",
+          "Microsoft",
+          "Amazon",
+          "Flipkart",
+          "TCS",
+          "Infosys",
+          "Wipro",
+          "Accenture",
+          "Fractal",
+          "Tiger Analytics"
+        ],
+        "public": [
+          "C-DAC",
+          "NIC"
+        ]
+      },
+      "psusViaGate": [
+        "IOCL",
+        "ONGC (IT)",
+        "GAIL",
+        "BHEL",
+        "BEL",
+        "POWERGRID"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "AWS Machine Learning",
+        "Databricks",
+        "TensorFlow / PyTorch certificates"
+      ],
+      "emergingRoles": [
+        "LLM ops",
+        "AI product manager",
+        "AI safety & evaluation"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 4,
+          "max": 12
+        },
+        "mid3to5": {
+          "min": 12,
+          "max": 30
+        },
+        "senior10plus": {
+          "min": 30,
+          "max": 80
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "GROWING",
+      "riasec": [
+        "I",
+        "C"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-ds",
+      "code": "DS",
+      "name": "Data Science",
+      "aliases": [
+        "DS",
+        "CSE (Data Science)"
+      ],
+      "gatePaper": "DA",
+      "clusterIds": [
+        "computing-ai"
+      ],
+      "roles": {
+        "entry": [
+          "Data analyst",
+          "Data engineer",
+          "BI developer"
+        ],
+        "mid": [
+          "Data scientist",
+          "Analytics manager"
+        ],
+        "senior": [
+          "Head of data",
+          "Chief data officer"
+        ]
+      },
+      "sectors": [
+        "IT services",
+        "Product & SaaS companies",
+        "BFSI / fintech",
+        "E-commerce",
+        "Global capability centres (GCCs)",
+        "Startups",
+        "Government IT (NIC, C-DAC)",
+        "Analytics firms",
+        "Consulting"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Google",
+          "Microsoft",
+          "Amazon",
+          "Flipkart",
+          "TCS",
+          "Infosys",
+          "Wipro",
+          "Accenture",
+          "Fractal",
+          "Tiger Analytics",
+          "Mu Sigma"
+        ],
+        "public": [
+          "C-DAC",
+          "NIC"
+        ]
+      },
+      "psusViaGate": [
+        "IOCL",
+        "ONGC (IT)",
+        "GAIL",
+        "BHEL",
+        "BEL",
+        "POWERGRID"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "Databricks",
+        "Google Data Analytics",
+        "Tableau / Power BI"
+      ],
+      "emergingRoles": [
+        "Analytics engineering",
+        "Decision science"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 4,
+          "max": 12
+        },
+        "mid3to5": {
+          "min": 12,
+          "max": 30
+        },
+        "senior10plus": {
+          "min": 30,
+          "max": 80
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "GROWING",
+      "riasec": [
+        "I",
+        "C"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-cy",
+      "code": "CY",
+      "name": "Cyber Security",
+      "aliases": [
+        "CY",
+        "CSE (Cyber Security)"
+      ],
+      "gatePaper": "CS",
+      "clusterIds": [
+        "computing-ai"
+      ],
+      "roles": {
+        "entry": [
+          "SOC analyst",
+          "Security engineer",
+          "VAPT tester"
+        ],
+        "mid": [
+          "Penetration tester",
+          "Security architect"
+        ],
+        "senior": [
+          "CISO",
+          "Head of security"
+        ]
+      },
+      "sectors": [
+        "Consulting",
+        "BFSI",
+        "Product security",
+        "Government cyber agencies"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Deloitte",
+          "PwC",
+          "Palo Alto Networks",
+          "TCS",
+          "Infosys"
+        ],
+        "public": [
+          "CERT-In",
+          "NTRO"
+        ]
+      },
+      "psusViaGate": [
+        "IOCL",
+        "ONGC (IT)",
+        "GAIL",
+        "BHEL",
+        "BEL",
+        "POWERGRID"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "CEH",
+        "CompTIA Security+",
+        "OSCP",
+        "CISSP"
+      ],
+      "emergingRoles": [
+        "Cloud security",
+        "OT / ICS security"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 4,
+          "max": 8
+        },
+        "mid3to5": {
+          "min": 10,
+          "max": 25
+        },
+        "senior10plus": {
+          "min": 30,
+          "max": 60
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "GROWING",
+      "riasec": [
+        "I",
+        "C",
+        "R"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-iot",
+      "code": "IOT",
+      "name": "Internet of Things",
+      "aliases": [
+        "IoT",
+        "CSE (IoT)"
+      ],
+      "gatePaper": "EC / CS",
+      "clusterIds": [
+        "computing-ai",
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Embedded / IoT developer",
+          "Firmware engineer"
+        ],
+        "mid": [
+          "IoT solutions architect"
+        ],
+        "senior": [
+          "Head of connected products"
+        ]
+      },
+      "sectors": [
+        "Consumer electronics",
+        "Automotive",
+        "Industrial automation",
+        "Smart cities"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Bosch",
+          "Qualcomm",
+          "Tata Elxsi"
+        ],
+        "public": [
+          "BEL",
+          "ECIL"
+        ]
+      },
+      "psusViaGate": [
+        "BEL",
+        "ECIL"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "ARM",
+        "AWS IoT"
+      ],
+      "emergingRoles": [
+        "Edge AI"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 4,
+          "max": 8
+        },
+        "mid3to5": {
+          "min": 8,
+          "max": 18
+        },
+        "senior10plus": {
+          "min": 20,
+          "max": 45
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "GROWING",
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-ecm",
+      "code": "ECM",
+      "name": "Electronics & Computer Engineering",
+      "aliases": [
+        "ECM",
+        "Electronics and Computer"
+      ],
+      "gatePaper": "EC / CS",
+      "clusterIds": [
+        "computing-ai",
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Embedded developer",
+          "Software engineer",
+          "Hardware validation engineer"
+        ],
+        "mid": [
+          "Embedded architect"
+        ],
+        "senior": [
+          "Principal engineer"
+        ]
+      },
+      "sectors": [
+        "Semiconductors",
+        "Embedded systems",
+        "IT"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Bosch",
+          "Qualcomm",
+          "Tata Elxsi",
+          "TCS"
+        ],
+        "public": [
+          "BEL",
+          "ECIL"
+        ]
+      },
+      "psusViaGate": [
+        "BEL",
+        "ECIL"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "ARM",
+        "AWS IoT"
+      ],
+      "emergingRoles": [
+        "Edge AI",
+        "Chip design"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 4,
+          "max": 8
+        },
+        "mid3to5": {
+          "min": 8,
+          "max": 18
+        },
+        "senior10plus": {
+          "min": 20,
+          "max": 45
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "GROWING",
+      "riasec": [
+        "I",
+        "R"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-ece",
+      "code": "ECE",
+      "name": "Electronics & Communication Engineering",
+      "aliases": [
+        "ECE",
+        "E&TC",
+        "Electronics and Telecommunication"
+      ],
+      "gatePaper": "EC",
+      "clusterIds": [
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "VLSI design / verification engineer",
+          "Embedded engineer",
+          "Telecom / network engineer",
+          "Software engineer"
+        ],
+        "mid": [
+          "Senior design engineer",
+          "Project lead"
+        ],
+        "senior": [
+          "Principal engineer",
+          "Engineering director"
+        ]
+      },
+      "sectors": [
+        "Semiconductors",
+        "Telecom",
+        "Defence electronics",
+        "Consumer electronics",
+        "IT"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Intel",
+          "Qualcomm",
+          "Texas Instruments",
+          "NXP",
+          "Nvidia",
+          "Jio"
+        ],
+        "public": [
+          "BEL",
+          "ISRO",
+          "DRDO"
+        ]
+      },
+      "psusViaGate": [
+        "BEL",
+        "HAL",
+        "POWERGRID",
+        "NTPC",
+        "ONGC",
+        "IOCL",
+        "AAI"
+      ],
+      "eseEligible": true,
+      "eseStream": "Electronics & Telecommunication",
+      "certifications": [
+        "Cadence / Synopsys tools",
+        "CCNA"
+      ],
+      "emergingRoles": [
+        "Semiconductor fabs & OSAT",
+        "5G / 6G"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 4,
+          "max": 12
+        },
+        "mid3to5": {
+          "min": 10,
+          "max": 25
+        },
+        "senior10plus": {
+          "min": 25,
+          "max": 70
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "GROWING",
+      "riasec": [
+        "I",
+        "R"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-eee",
+      "code": "EEE",
+      "name": "Electrical & Electronics Engineering",
+      "aliases": [
+        "EEE",
+        "EE",
+        "Electrical Engineering"
+      ],
+      "gatePaper": "EE",
+      "clusterIds": [
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Graduate engineer trainee (GET)",
+          "Power systems engineer",
+          "Electrical design engineer"
+        ],
+        "mid": [
+          "Manager - power / projects"
+        ],
+        "senior": [
+          "General manager",
+          "Plant head"
+        ]
+      },
+      "sectors": [
+        "Power generation & transmission",
+        "Renewables",
+        "EV & charging",
+        "Electrical equipment",
+        "Metro / railways"
+      ],
+      "topRecruiters": {
+        "private": [
+          "ABB",
+          "Siemens",
+          "Schneider Electric",
+          "Tata Power",
+          "L&T"
+        ],
+        "public": [
+          "NTPC"
+        ]
+      },
+      "psusViaGate": [
+        "NTPC",
+        "POWERGRID",
+        "BHEL",
+        "NHPC",
+        "NPCIL",
+        "IOCL",
+        "SAIL",
+        "Coal India"
+      ],
+      "eseEligible": true,
+      "eseStream": "Electrical Engineering",
+      "certifications": [
+        "ETAP",
+        "PLC / SCADA"
+      ],
+      "emergingRoles": [
+        "Battery storage",
+        "EV charging",
+        "Green hydrogen"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3.5,
+          "max": 8
+        },
+        "mid3to5": {
+          "min": 8,
+          "max": 15
+        },
+        "senior10plus": {
+          "min": 18,
+          "max": 40
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "GROWING",
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-eie",
+      "code": "EIE",
+      "name": "Electronics & Instrumentation Engineering",
+      "aliases": [
+        "EIE",
+        "E&I",
+        "Instrumentation"
+      ],
+      "gatePaper": "IN",
+      "clusterIds": [
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Control / instrumentation engineer",
+          "Automation engineer"
+        ],
+        "mid": [
+          "Senior control engineer"
+        ],
+        "senior": [
+          "Head of instrumentation"
+        ]
+      },
+      "sectors": [
+        "Oil & gas",
+        "Process plants",
+        "Industrial automation"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Honeywell",
+          "Emerson",
+          "Yokogawa"
+        ],
+        "public": [
+          "ONGC"
+        ]
+      },
+      "psusViaGate": [
+        "ONGC",
+        "IOCL",
+        "BPCL",
+        "HPCL",
+        "GAIL"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "DCS / PLC"
+      ],
+      "emergingRoles": [
+        "Industrial IoT"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3.5,
+          "max": 7
+        },
+        "mid3to5": {
+          "min": 8,
+          "max": 15
+        },
+        "senior10plus": {
+          "min": 18,
+          "max": 35
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "STABLE",
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-me",
+      "code": "ME",
+      "name": "Mechanical Engineering",
+      "aliases": [
+        "ME",
+        "Mech"
+      ],
+      "gatePaper": "ME",
+      "clusterIds": [
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Graduate engineer trainee (design / production)",
+          "Quality engineer",
+          "CAD/CAE engineer"
+        ],
+        "mid": [
+          "Production manager",
+          "Design lead"
+        ],
+        "senior": [
+          "Plant head",
+          "VP manufacturing"
+        ]
+      },
+      "sectors": [
+        "Automotive",
+        "Heavy engineering",
+        "Aerospace",
+        "Energy",
+        "Manufacturing"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Tata Motors",
+          "Mahindra & Mahindra",
+          "Maruti Suzuki",
+          "L&T",
+          "Cummins"
+        ],
+        "public": [
+          "BHEL",
+          "HAL"
+        ]
+      },
+      "psusViaGate": [
+        "ONGC",
+        "NTPC",
+        "IOCL",
+        "BHEL",
+        "SAIL",
+        "GAIL",
+        "HPCL",
+        "Coal India",
+        "NPCIL"
+      ],
+      "eseEligible": true,
+      "eseStream": "Mechanical Engineering",
+      "certifications": [
+        "SolidWorks",
+        "CATIA",
+        "ANSYS",
+        "Six Sigma"
+      ],
+      "emergingRoles": [
+        "EV powertrain",
+        "Additive manufacturing"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 7
+        },
+        "mid3to5": {
+          "min": 6,
+          "max": 12
+        },
+        "senior10plus": {
+          "min": 15,
+          "max": 35
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "STABLE",
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-civil",
+      "code": "CIVIL",
+      "name": "Civil Engineering",
+      "aliases": [
+        "CIVIL",
+        "CE"
+      ],
+      "gatePaper": "CE",
+      "clusterIds": [
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Site engineer",
+          "Quantity surveyor",
+          "Structural design engineer"
+        ],
+        "mid": [
+          "Project manager"
+        ],
+        "senior": [
+          "Project director"
+        ]
+      },
+      "sectors": [
+        "Construction & infrastructure",
+        "Highways",
+        "Real estate",
+        "Water resources",
+        "Government works"
+      ],
+      "topRecruiters": {
+        "private": [
+          "L&T",
+          "Tata Projects",
+          "Afcons"
+        ],
+        "public": [
+          "NHAI",
+          "CPWD"
+        ]
+      },
+      "psusViaGate": [
+        "NTPC",
+        "POWERGRID",
+        "NHPC",
+        "NBCC",
+        "AAI",
+        "SJVN"
+      ],
+      "eseEligible": true,
+      "eseStream": "Civil Engineering",
+      "certifications": [
+        "STAAD.Pro",
+        "ETABS",
+        "Primavera",
+        "BIM",
+        "PMP"
+      ],
+      "emergingRoles": [
+        "Smart cities",
+        "Green buildings"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 2.5,
+          "max": 6
+        },
+        "mid3to5": {
+          "min": 5,
+          "max": 10
+        },
+        "senior10plus": {
+          "min": 12,
+          "max": 30
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "STABLE",
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-che",
+      "code": "CHE",
+      "name": "Chemical Engineering",
+      "aliases": [
+        "CHE",
+        "Chemical"
+      ],
+      "gatePaper": "CH",
+      "clusterIds": [
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Process engineer",
+          "Production engineer"
+        ],
+        "mid": [
+          "Process lead",
+          "Plant manager"
+        ],
+        "senior": [
+          "Head of operations"
+        ]
+      },
+      "sectors": [
+        "Refineries & petrochemicals",
+        "Fertilisers",
+        "Pharma",
+        "Specialty chemicals"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Reliance",
+          "Tata Chemicals",
+          "UPL"
+        ],
+        "public": [
+          "IOCL"
+        ]
+      },
+      "psusViaGate": [
+        "IOCL",
+        "ONGC",
+        "GAIL",
+        "HPCL",
+        "BPCL",
+        "EIL",
+        "NFL"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "Aspen HYSYS",
+        "HAZOP"
+      ],
+      "emergingRoles": [
+        "Green hydrogen",
+        "Battery materials"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 4,
+          "max": 9
+        },
+        "mid3to5": {
+          "min": 8,
+          "max": 16
+        },
+        "senior10plus": {
+          "min": 18,
+          "max": 40
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "STABLE",
+      "riasec": [
+        "I",
+        "R"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-aero",
+      "code": "AERO",
+      "name": "Aerospace / Aeronautical Engineering",
+      "aliases": [
+        "AERO",
+        "Aeronautical",
+        "Aerospace"
+      ],
+      "gatePaper": "AE",
+      "clusterIds": [
+        "engineering-tech",
+        "aviation-maritime"
+      ],
+      "roles": {
+        "entry": [
+          "Design / stress engineer",
+          "MRO engineer"
+        ],
+        "mid": [
+          "Senior design engineer"
+        ],
+        "senior": [
+          "Chief engineer"
+        ]
+      },
+      "sectors": [
+        "Aircraft & MRO",
+        "Space",
+        "Defence",
+        "Drones"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Airbus",
+          "Tata Advanced Systems",
+          "Skyroot Aerospace"
+        ],
+        "public": [
+          "HAL",
+          "ISRO",
+          "DRDO"
+        ]
+      },
+      "psusViaGate": [
+        "HAL",
+        "ISRO",
+        "DRDO"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "CATIA",
+        "ANSYS Fluent"
+      ],
+      "emergingRoles": [
+        "Drones",
+        "Space launch"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 4,
+          "max": 10
+        },
+        "mid3to5": {
+          "min": 8,
+          "max": 18
+        },
+        "senior10plus": {
+          "min": 18,
+          "max": 40
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "GROWING",
+      "riasec": [
+        "I",
+        "R"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-auto",
+      "code": "AUTO",
+      "name": "Automobile Engineering",
+      "aliases": [
+        "AUTO",
+        "Automotive"
+      ],
+      "gatePaper": "ME",
+      "clusterIds": [
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Design / testing engineer",
+          "Service engineer"
+        ],
+        "mid": [
+          "Vehicle integration lead"
+        ],
+        "senior": [
+          "Head of product engineering"
+        ]
+      },
+      "sectors": [
+        "Automotive OEMs",
+        "EV startups",
+        "Auto components"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Tata Motors",
+          "Mahindra & Mahindra",
+          "Ola Electric",
+          "Ather Energy"
+        ],
+        "public": []
+      },
+      "psusViaGate": [
+        "Via Mechanical (GATE ME)"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "AUTOSAR"
+      ],
+      "emergingRoles": [
+        "EV",
+        "ADAS"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 7
+        },
+        "mid3to5": {
+          "min": 7,
+          "max": 14
+        },
+        "senior10plus": {
+          "min": 15,
+          "max": 35
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "GROWING",
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-bt",
+      "code": "BT",
+      "name": "Biotechnology",
+      "aliases": [
+        "BT",
+        "Biotech"
+      ],
+      "gatePaper": "BT",
+      "clusterIds": [
+        "engineering-tech",
+        "science-research"
+      ],
+      "roles": {
+        "entry": [
+          "Research associate",
+          "QC analyst"
+        ],
+        "mid": [
+          "Scientist"
+        ],
+        "senior": [
+          "Principal scientist / R&D head"
+        ]
+      },
+      "sectors": [
+        "Biopharma",
+        "Vaccines",
+        "Agri-biotech",
+        "Research institutes"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Biocon",
+          "Serum Institute of India"
+        ],
+        "public": [
+          "CSIR labs",
+          "ICMR"
+        ]
+      },
+      "psusViaGate": [
+        "Few - mainly research institutes"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "GMP",
+        "GLP"
+      ],
+      "emergingRoles": [
+        "Biomanufacturing"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 6
+        },
+        "mid3to5": {
+          "min": 6,
+          "max": 12
+        },
+        "senior10plus": {
+          "min": 15,
+          "max": 30
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "STABLE",
+      "riasec": [
+        "I"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-bme",
+      "code": "BME",
+      "name": "Biomedical Engineering",
+      "aliases": [
+        "BME",
+        "Biomedical"
+      ],
+      "gatePaper": "BM",
+      "clusterIds": [
+        "engineering-tech",
+        "medicine-health"
+      ],
+      "roles": {
+        "entry": [
+          "Clinical / application engineer",
+          "Service engineer"
+        ],
+        "mid": [
+          "Product specialist"
+        ],
+        "senior": [
+          "Head of med-tech R&D"
+        ]
+      },
+      "sectors": [
+        "Medical devices",
+        "Hospitals",
+        "Diagnostics"
+      ],
+      "topRecruiters": {
+        "private": [
+          "GE Healthcare",
+          "Philips",
+          "Siemens Healthineers"
+        ],
+        "public": []
+      },
+      "psusViaGate": [
+        "Limited"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "ISO 13485"
+      ],
+      "emergingRoles": [
+        "Med-tech AI"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 6
+        },
+        "mid3to5": {
+          "min": 6,
+          "max": 12
+        },
+        "senior10plus": {
+          "min": 15,
+          "max": 30
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "GROWING",
+      "riasec": [
+        "I",
+        "R",
+        "S"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-ipe",
+      "code": "IPE",
+      "name": "Industrial & Production Engineering",
+      "aliases": [
+        "IPE",
+        "Production",
+        "Industrial"
+      ],
+      "gatePaper": "PI",
+      "clusterIds": [
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Planning / quality engineer",
+          "Operations analyst"
+        ],
+        "mid": [
+          "Operations manager"
+        ],
+        "senior": [
+          "COO / plant head"
+        ]
+      },
+      "sectors": [
+        "Manufacturing",
+        "Supply chain",
+        "E-commerce operations"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Maruti Suzuki",
+          "Bosch",
+          "Amazon Operations"
+        ],
+        "public": []
+      },
+      "psusViaGate": [
+        "Via Mechanical"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "Lean Six Sigma",
+        "CPIM"
+      ],
+      "emergingRoles": [
+        "Industry 4.0"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 7
+        },
+        "mid3to5": {
+          "min": 7,
+          "max": 14
+        },
+        "senior10plus": {
+          "min": 15,
+          "max": 35
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "STABLE",
+      "riasec": [
+        "R",
+        "C",
+        "E"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-mme",
+      "code": "MME",
+      "name": "Metallurgical & Materials Engineering",
+      "aliases": [
+        "MME",
+        "Metallurgy",
+        "Materials"
+      ],
+      "gatePaper": "MT",
+      "clusterIds": [
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Process / QA metallurgist"
+        ],
+        "mid": [
+          "Senior metallurgist"
+        ],
+        "senior": [
+          "Head of steel operations"
+        ]
+      },
+      "sectors": [
+        "Steel",
+        "Aluminium",
+        "Defence materials"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Tata Steel",
+          "JSW",
+          "Hindalco"
+        ],
+        "public": [
+          "SAIL",
+          "NALCO",
+          "MIDHANI"
+        ]
+      },
+      "psusViaGate": [
+        "SAIL",
+        "NALCO",
+        "RINL",
+        "NMDC"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "NDT"
+      ],
+      "emergingRoles": [
+        "Battery materials"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 4,
+          "max": 9
+        },
+        "mid3to5": {
+          "min": 8,
+          "max": 15
+        },
+        "senior10plus": {
+          "min": 18,
+          "max": 35
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "STABLE",
+      "riasec": [
+        "I",
+        "R"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-min",
+      "code": "MIN",
+      "name": "Mining Engineering",
+      "aliases": [
+        "MIN",
+        "Mining"
+      ],
+      "gatePaper": "MN",
+      "clusterIds": [
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Statutory mining engineer (graduate trainee)"
+        ],
+        "mid": [
+          "Mine manager"
+        ],
+        "senior": [
+          "General manager - mines"
+        ]
+      },
+      "sectors": [
+        "Coal",
+        "Metal mining",
+        "Minerals"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Vedanta",
+          "Hindustan Zinc"
+        ],
+        "public": [
+          "Coal India",
+          "NMDC"
+        ]
+      },
+      "psusViaGate": [
+        "Coal India",
+        "NMDC",
+        "NLC India"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "DGMS competency certificates"
+      ],
+      "emergingRoles": [
+        "Mine automation"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 5,
+          "max": 10
+        },
+        "mid3to5": {
+          "min": 10,
+          "max": 18
+        },
+        "senior10plus": {
+          "min": 20,
+          "max": 40
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "STABLE",
+      "riasec": [
+        "R"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-pe",
+      "code": "PE",
+      "name": "Petroleum Engineering",
+      "aliases": [
+        "PE",
+        "Petroleum"
+      ],
+      "gatePaper": "PE",
+      "clusterIds": [
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Drilling / reservoir / production engineer"
+        ],
+        "mid": [
+          "Senior reservoir engineer"
+        ],
+        "senior": [
+          "Asset manager"
+        ]
+      },
+      "sectors": [
+        "Upstream oil & gas",
+        "Oilfield services"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Reliance",
+          "Cairn",
+          "SLB"
+        ],
+        "public": [
+          "ONGC",
+          "Oil India"
+        ]
+      },
+      "psusViaGate": [
+        "ONGC",
+        "Oil India",
+        "GAIL"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "IWCF well control"
+      ],
+      "emergingRoles": [
+        "CCUS (carbon capture)"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 6,
+          "max": 15
+        },
+        "mid3to5": {
+          "min": 12,
+          "max": 25
+        },
+        "senior10plus": {
+          "min": 25,
+          "max": 60
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "STABLE",
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-mar",
+      "code": "MAR",
+      "name": "Marine Engineering / Naval Architecture",
+      "aliases": [
+        "MAR",
+        "Marine"
+      ],
+      "gatePaper": "NM",
+      "clusterIds": [
+        "engineering-tech",
+        "aviation-maritime"
+      ],
+      "roles": {
+        "entry": [
+          "Marine engineer (4th engineer)",
+          "Ship design engineer"
+        ],
+        "mid": [
+          "2nd engineer"
+        ],
+        "senior": [
+          "Chief engineer"
+        ]
+      },
+      "sectors": [
+        "Merchant shipping",
+        "Shipbuilding",
+        "Offshore"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Maersk",
+          "Anglo-Eastern",
+          "Shipping Corporation of India"
+        ],
+        "public": [
+          "Cochin Shipyard",
+          "Mazagon Dock"
+        ]
+      },
+      "psusViaGate": [
+        "SCI",
+        "Cochin Shipyard",
+        "Mazagon Dock"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "DG Shipping Certificate of Competency"
+      ],
+      "emergingRoles": [
+        "LNG vessels"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 6,
+          "max": 15
+        },
+        "mid3to5": {
+          "min": 15,
+          "max": 30
+        },
+        "senior10plus": {
+          "min": 50,
+          "max": 80
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "STABLE",
+      "riasec": [
+        "R"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": "Mid and senior figures are sea-going estimates; Chief Engineer pay is typically ₹50 LPA+."
+    },
+    {
+      "id": "branch-agri",
+      "code": "AGRI",
+      "name": "Agricultural Engineering",
+      "aliases": [
+        "AGRI",
+        "Agricultural"
+      ],
+      "gatePaper": "AG",
+      "clusterIds": [
+        "engineering-tech",
+        "agriculture-allied"
+      ],
+      "roles": {
+        "entry": [
+          "Farm machinery engineer",
+          "Irrigation engineer"
+        ],
+        "mid": [
+          "Project manager"
+        ],
+        "senior": [
+          "Head of agri-tech"
+        ]
+      },
+      "sectors": [
+        "Farm equipment",
+        "Irrigation",
+        "Agri-tech",
+        "Rural banking"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Mahindra (Farm)",
+          "John Deere",
+          "Jain Irrigation"
+        ],
+        "public": [
+          "NABARD"
+        ]
+      },
+      "psusViaGate": [
+        "Limited"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "GIS"
+      ],
+      "emergingRoles": [
+        "Agri-drones",
+        "Precision farming"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 6
+        },
+        "mid3to5": {
+          "min": 6,
+          "max": 10
+        },
+        "senior10plus": {
+          "min": 12,
+          "max": 25
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "GROWING",
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-tex",
+      "code": "TEX",
+      "name": "Textile Engineering",
+      "aliases": [
+        "TEX",
+        "Textile"
+      ],
+      "gatePaper": "TF",
+      "clusterIds": [
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Production / quality engineer"
+        ],
+        "mid": [
+          "Production manager"
+        ],
+        "senior": [
+          "Plant head"
+        ]
+      },
+      "sectors": [
+        "Textile mills",
+        "Apparel",
+        "Technical textiles"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Arvind",
+          "Raymond",
+          "Welspun"
+        ],
+        "public": []
+      },
+      "psusViaGate": [
+        "Limited"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "Textile testing"
+      ],
+      "emergingRoles": [
+        "Technical textiles"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 5
+        },
+        "mid3to5": {
+          "min": 5,
+          "max": 9
+        },
+        "senior10plus": {
+          "min": 10,
+          "max": 20
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "STABLE",
+      "riasec": [
+        "R"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-env",
+      "code": "ENV",
+      "name": "Environmental Engineering",
+      "aliases": [
+        "ENV",
+        "Environmental"
+      ],
+      "gatePaper": "ES",
+      "clusterIds": [
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "EHS engineer",
+          "Environmental consultant"
+        ],
+        "mid": [
+          "EHS manager"
+        ],
+        "senior": [
+          "ESG head"
+        ]
+      },
+      "sectors": [
+        "Consulting",
+        "Industry EHS",
+        "Pollution control"
+      ],
+      "topRecruiters": {
+        "private": [
+          "ERM"
+        ],
+        "public": [
+          "CPCB / State PCBs"
+        ]
+      },
+      "psusViaGate": [
+        "Limited"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "ISO 14001",
+        "LEED"
+      ],
+      "emergingRoles": [
+        "ESG / carbon accounting"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 6
+        },
+        "mid3to5": {
+          "min": 6,
+          "max": 12
+        },
+        "senior10plus": {
+          "min": 15,
+          "max": 30
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "GROWING",
+      "riasec": [
+        "I",
+        "R",
+        "S"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-rai",
+      "code": "RAI",
+      "name": "Robotics / Mechatronics",
+      "aliases": [
+        "RAI",
+        "Robotics",
+        "Mechatronics"
+      ],
+      "gatePaper": "ME / EC",
+      "clusterIds": [
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Automation / robotics engineer"
+        ],
+        "mid": [
+          "Robotics lead"
+        ],
+        "senior": [
+          "Head of automation"
+        ]
+      },
+      "sectors": [
+        "Industrial automation",
+        "Warehousing",
+        "Defence"
+      ],
+      "topRecruiters": {
+        "private": [
+          "ABB",
+          "Fanuc",
+          "Addverb"
+        ],
+        "public": [
+          "DRDO"
+        ]
+      },
+      "psusViaGate": [
+        "Via Mechanical / ECE"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "ROS",
+        "PLC"
+      ],
+      "emergingRoles": [
+        "Autonomous mobile robots",
+        "Humanoids"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 4,
+          "max": 9
+        },
+        "mid3to5": {
+          "min": 8,
+          "max": 18
+        },
+        "senior10plus": {
+          "min": 20,
+          "max": 40
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "GROWING",
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-ft",
+      "code": "FT",
+      "name": "Food Technology",
+      "aliases": [
+        "FT",
+        "Food Technology",
+        "Food Engineering"
+      ],
+      "gatePaper": "XL (Food Technology section)",
+      "clusterIds": [
+        "engineering-tech",
+        "agriculture-allied"
+      ],
+      "roles": {
+        "entry": [
+          "QA / R&D executive",
+          "Production executive"
+        ],
+        "mid": [
+          "QA manager"
+        ],
+        "senior": [
+          "Head of R&D"
+        ]
+      },
+      "sectors": [
+        "Packaged foods",
+        "Dairy",
+        "Beverages",
+        "Regulatory"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Nestlé",
+          "ITC",
+          "Amul"
+        ],
+        "public": [
+          "FSSAI"
+        ]
+      },
+      "psusViaGate": [
+        "Limited"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [
+        "HACCP",
+        "FoSTaC"
+      ],
+      "emergingRoles": [
+        "Alternative proteins"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 5
+        },
+        "mid3to5": {
+          "min": 5,
+          "max": 10
+        },
+        "senior10plus": {
+          "min": 12,
+          "max": 25
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "STABLE",
+      "riasec": [
+        "I",
+        "R"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    },
+    {
+      "id": "branch-cer",
+      "code": "CER",
+      "name": "Ceramic Engineering",
+      "aliases": [
+        "CER",
+        "Ceramic"
+      ],
+      "gatePaper": "MT / XE (verify)",
+      "clusterIds": [
+        "engineering-tech"
+      ],
+      "roles": {
+        "entry": [
+          "Process engineer"
+        ],
+        "mid": [
+          "Senior process engineer"
+        ],
+        "senior": [
+          "Plant head"
+        ]
+      },
+      "sectors": [
+        "Tiles & sanitaryware",
+        "Refractories",
+        "Advanced ceramics"
+      ],
+      "topRecruiters": {
+        "private": [
+          "Kajaria",
+          "Saint-Gobain"
+        ],
+        "public": [
+          "CSIR-CGCRI"
+        ]
+      },
+      "psusViaGate": [
+        "Limited"
+      ],
+      "eseEligible": false,
+      "eseStream": null,
+      "certifications": [],
+      "emergingRoles": [
+        "Advanced ceramics"
+      ],
+      "salaryLPA": {
+        "fresher": {
+          "min": 3,
+          "max": 5
+        },
+        "mid3to5": {
+          "min": 5,
+          "max": 9
+        },
+        "senior10plus": {
+          "min": 10,
+          "max": 20
+        }
+      },
+      "salaryNote": "Private-sector estimates from 2024-26 aggregators (AmbitionBox, Glassdoor, Naukri) and NIRF median data; fresher range spans Tier-3 to Tier-1 colleges.",
+      "outlook": "STABLE",
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "notes": null
+    }
+  ]
+}

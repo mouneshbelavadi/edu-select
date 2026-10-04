@@ -10,7 +10,8 @@
     "postinstall": "prisma generate",
     "db:migrate": "prisma migrate deploy",
     "db:seed": "prisma db seed",
-    "data:colleges": "node scripts/build-colleges.cjs"
+    "data:colleges": "node scripts/build-colleges.cjs",
+    "data:check": "node scripts/check-career-data.cjs"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"

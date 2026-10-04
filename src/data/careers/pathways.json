@@ -1,0 +1,6857 @@
+{
+  "meta": {
+    "dataset": "pathways",
+    "description": "Every pathway after Class 10, Class 12/PU, ITI and Diploma: streams, diploma, ITI trades, defence entries, degrees and professional courses, with eligibility, exams, cost and outcomes.",
+    "version": "1.0.0",
+    "compiledOn": "2026-10-04",
+    "region": "India",
+    "currency": "INR",
+    "disclaimer": "Curated for EduSelect from official and reputable public sources (compiled 2026-10-04). Fees and private-sector salaries are estimates (isEstimate=true) and must be shown with an 'Estimate' badge. Government pay is from the 7th CPC pay matrix (basic pay, excludes DA/HRA). Exam rules, age limits and fees change every cycle - re-check the official notification before relying on any value.",
+    "sources": [
+      {
+        "id": "nta",
+        "title": "National Testing Agency (JEE Main, NEET-UG, CUET, NCET, NCHM JEE, UGC NET)",
+        "url": "https://nta.ac.in"
+      },
+      {
+        "id": "josaa",
+        "title": "JoSAA counselling (IITs, NITs, IIITs, GFTIs)",
+        "url": "https://josaa.nic.in"
+      },
+      {
+        "id": "dgt",
+        "title": "Directorate General of Training (ITI trades, NCVT)",
+        "url": "https://dgt.gov.in"
+      },
+      {
+        "id": "mcc",
+        "title": "Medical Counselling Committee (NEET-UG AIQ)",
+        "url": "https://mcc.nic.in"
+      },
+      {
+        "id": "agniveer-elig",
+        "title": "Indian Army Agniveer eligibility (Testbook)",
+        "url": "https://testbook.com/indian-army-agniveer/eligibility-criteria"
+      },
+      {
+        "id": "agniveer-2026",
+        "title": "Agniveer recruitment 2026 (Sakshi Education)",
+        "url": "https://education.sakshi.com/en/defence-jobs/education-news/agniveer-recruitment-2026-apply-now-army-navy-and-air-force-jobs-187219"
+      },
+      {
+        "id": "iit-fees-2026",
+        "title": "IIT fee structure 2026 (Cracku)",
+        "url": "https://cracku.in/iit-fee-structure-2026/"
+      },
+      {
+        "id": "wef2025",
+        "title": "WEF Future of Jobs Report 2025",
+        "url": "https://reports.weforum.org/docs/WEF_Future_of_Jobs_Report_2025.pdf"
+      }
+    ],
+    "costBasis": {
+      "perYear": "Approximate annual fee in INR",
+      "total": "Approximate total programme cost in INR",
+      "perCycle": "Per exam cycle"
+    },
+    "note": "Rows with linkedDataset point to engineeringBranches.json or govtJobs.json for the detailed job roles."
+  },
+  "items": [
+    {
+      "id": "a-pcm",
+      "level": "CLASS_10",
+      "streams": [
+        "PCM"
+      ],
+      "category": "Class 11-12 / PU stream",
+      "clusterIds": [
+        "engineering-tech",
+        "computing-ai",
+        "science-research",
+        "architecture-planning",
+        "aviation-maritime",
+        "defence-uniformed"
+      ],
+      "name": "Science - PCM (Physics, Chemistry, Maths)",
+      "eligibility": "Class 10 pass; many schools/PU colleges set a 60-75% cut-off",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          1000,
+          15000
+        ],
+        "private": [
+          30000,
+          200000
+        ],
+        "note": "Coaching for JEE/CET is extra"
+      },
+      "keySubjects": [
+        "Physics",
+        "Chemistry",
+        "Mathematics",
+        "English"
+      ],
+      "nextSteps": [
+        "JEE Main / JEE Advanced for IITs, NITs, IIITs",
+        "State CETs (KCET, MHT CET, EAPCET, WBJEE, KEAM...)",
+        "NDA (defence officer)",
+        "NATA / JEE Paper 2 (B.Arch)",
+        "B.Sc, BCA, BS-MS",
+        "Pilot training, Merchant Navy"
+      ],
+      "nextExamIds": [
+        "jee-main",
+        "jee-advanced",
+        "kcet",
+        "comedk",
+        "nda",
+        "nata",
+        "bitsat"
+      ],
+      "outcomes": [
+        "Engineer",
+        "Architect",
+        "Defence officer",
+        "Pilot",
+        "Data scientist",
+        "Scientist"
+      ],
+      "riasec": [
+        "I",
+        "R"
+      ],
+      "subjectsLiked": [
+        "Mathematics",
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "PSU",
+        "DEFENCE"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "a-pcb",
+      "level": "CLASS_10",
+      "streams": [
+        "PCB"
+      ],
+      "category": "Class 11-12 / PU stream",
+      "clusterIds": [
+        "medicine-health",
+        "agriculture-allied",
+        "science-research"
+      ],
+      "name": "Science - PCB (Physics, Chemistry, Biology)",
+      "eligibility": "Class 10 pass; schools may set a 60-75% cut-off",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          1000,
+          15000
+        ],
+        "private": [
+          30000,
+          200000
+        ],
+        "note": "NEET coaching is extra"
+      },
+      "keySubjects": [
+        "Physics",
+        "Chemistry",
+        "Biology",
+        "English"
+      ],
+      "nextSteps": [
+        "NEET-UG (MBBS, BDS, AYUSH, veterinary)",
+        "B.Sc Nursing, allied health",
+        "B.Pharm",
+        "B.Sc Agriculture / Biotechnology"
+      ],
+      "nextExamIds": [
+        "neet-ug",
+        "cuet-ug"
+      ],
+      "outcomes": [
+        "Doctor",
+        "Dentist",
+        "Nurse",
+        "Pharmacist",
+        "Physiotherapist",
+        "Agriculture officer"
+      ],
+      "riasec": [
+        "I",
+        "S"
+      ],
+      "subjectsLiked": [
+        "Biology",
+        "Chemistry"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "a-pcmb",
+      "level": "CLASS_10",
+      "streams": [
+        "PCMB"
+      ],
+      "category": "Class 11-12 / PU stream",
+      "clusterIds": [
+        "engineering-tech",
+        "medicine-health",
+        "science-research"
+      ],
+      "name": "Science - PCMB (Physics, Chemistry, Maths, Biology)",
+      "eligibility": "Class 10 pass; usually higher cut-off",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          1000,
+          15000
+        ],
+        "private": [
+          30000,
+          200000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Physics",
+        "Chemistry",
+        "Mathematics",
+        "Biology"
+      ],
+      "nextSteps": [
+        "Keeps both JEE and NEET open",
+        "IISER BS-MS via IAT",
+        "Biotechnology / bioinformatics"
+      ],
+      "nextExamIds": [
+        "jee-main",
+        "neet-ug",
+        "iat",
+        "kcet"
+      ],
+      "outcomes": [
+        "Engineer",
+        "Doctor",
+        "Scientist",
+        "Biotech researcher"
+      ],
+      "riasec": [
+        "I"
+      ],
+      "subjectsLiked": [
+        "Mathematics",
+        "Biology"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "a-pcmc",
+      "level": "CLASS_10",
+      "streams": [
+        "PCMC"
+      ],
+      "category": "Class 11-12 / PU stream",
+      "clusterIds": [
+        "computing-ai",
+        "engineering-tech"
+      ],
+      "name": "Science - PCM + Computer Science (PCMC)",
+      "eligibility": "Class 10 pass",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          1000,
+          15000
+        ],
+        "private": [
+          30000,
+          200000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Physics",
+        "Chemistry",
+        "Mathematics",
+        "Computer Science"
+      ],
+      "nextSteps": [
+        "B.Tech CSE / AI / Data Science",
+        "BCA",
+        "B.Sc Computer Science"
+      ],
+      "nextExamIds": [
+        "jee-main",
+        "kcet",
+        "comedk"
+      ],
+      "outcomes": [
+        "Software engineer",
+        "AI/ML engineer",
+        "Data analyst"
+      ],
+      "riasec": [
+        "I",
+        "C",
+        "R"
+      ],
+      "subjectsLiked": [
+        "Mathematics",
+        "Computer Science"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "ABROAD"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "a-com-maths",
+      "level": "CLASS_10",
+      "streams": [
+        "COMMERCE_MATHS"
+      ],
+      "category": "Class 11-12 / PU stream",
+      "clusterIds": [
+        "commerce-finance",
+        "management-business"
+      ],
+      "name": "Commerce with Maths",
+      "eligibility": "Class 10 pass",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          1000,
+          10000
+        ],
+        "private": [
+          25000,
+          150000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Accountancy",
+        "Business Studies",
+        "Economics",
+        "Mathematics"
+      ],
+      "nextSteps": [
+        "CA / CS / CMA",
+        "B.Com, BBA",
+        "IPMAT (IIM integrated MBA)",
+        "Actuarial science (ACET)",
+        "Economics honours"
+      ],
+      "nextExamIds": [
+        "ca-foundation",
+        "ipmat",
+        "acet",
+        "cuet-ug"
+      ],
+      "outcomes": [
+        "Chartered accountant",
+        "Financial analyst",
+        "Actuary",
+        "Banker"
+      ],
+      "riasec": [
+        "C",
+        "E"
+      ],
+      "subjectsLiked": [
+        "Accountancy",
+        "Mathematics",
+        "Economics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "a-com",
+      "level": "CLASS_10",
+      "streams": [
+        "COMMERCE_NO_MATHS"
+      ],
+      "category": "Class 11-12 / PU stream",
+      "clusterIds": [
+        "commerce-finance",
+        "management-business",
+        "law",
+        "hospitality-tourism"
+      ],
+      "name": "Commerce without Maths",
+      "eligibility": "Class 10 pass",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          1000,
+          10000
+        ],
+        "private": [
+          25000,
+          150000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Accountancy",
+        "Business Studies",
+        "Economics"
+      ],
+      "nextSteps": [
+        "B.Com, BBA",
+        "CS (Company Secretary)",
+        "CLAT (law)",
+        "Hotel management"
+      ],
+      "nextExamIds": [
+        "cseet",
+        "clat",
+        "cuet-ug",
+        "nchm-jee"
+      ],
+      "outcomes": [
+        "Accountant",
+        "Sales / marketing executive",
+        "Company secretary",
+        "Lawyer"
+      ],
+      "riasec": [
+        "C",
+        "E"
+      ],
+      "subjectsLiked": [
+        "Accountancy",
+        "Economics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "a-arts",
+      "level": "CLASS_10",
+      "streams": [
+        "ARTS"
+      ],
+      "category": "Class 11-12 / PU stream",
+      "clusterIds": [
+        "social-humanities",
+        "law",
+        "media-communication",
+        "design-creative",
+        "government-civil",
+        "education-teaching"
+      ],
+      "name": "Arts / Humanities",
+      "eligibility": "Class 10 pass",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          1000,
+          10000
+        ],
+        "private": [
+          20000,
+          120000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "History",
+        "Political Science",
+        "Geography",
+        "Psychology",
+        "Sociology",
+        "Economics",
+        "Languages"
+      ],
+      "nextSteps": [
+        "BA (any major) via CUET",
+        "CLAT (5-year law)",
+        "Design (NIFT/NID/UCEED)",
+        "Journalism / mass communication"
+      ],
+      "nextExamIds": [
+        "cuet-ug",
+        "clat",
+        "nift",
+        "uceed"
+      ],
+      "outcomes": [
+        "Civil servant",
+        "Lawyer",
+        "Journalist",
+        "Teacher",
+        "Psychologist",
+        "Designer"
+      ],
+      "riasec": [
+        "S",
+        "A",
+        "E"
+      ],
+      "subjectsLiked": [
+        "Languages",
+        "Social Sciences"
+      ],
+      "sectors": [
+        "GOVT",
+        "PRIVATE",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "a-vocational",
+      "level": "CLASS_10",
+      "streams": [
+        "VOCATIONAL"
+      ],
+      "category": "Class 11-12 / PU stream",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "Vocational stream (NSQF subject in Class 11-12)",
+      "eligibility": "Class 10 pass",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          5000
+        ],
+        "private": null,
+        "note": "Low in government schools"
+      },
+      "keySubjects": [
+        "Academic core + IT/ITeS, retail, healthcare, automotive, agriculture, tourism etc."
+      ],
+      "nextSteps": [
+        "B.Voc",
+        "Diploma",
+        "Any UG via CUET"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Technician",
+        "Supervisor",
+        "Retail / service executive"
+      ],
+      "riasec": [
+        "R",
+        "C"
+      ],
+      "subjectsLiked": [
+        "Computer Science"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "a-diploma",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Diploma / Polytechnic",
+      "clusterIds": [
+        "engineering-tech",
+        "skilled-trades"
+      ],
+      "name": "Diploma in Engineering (Polytechnic)",
+      "eligibility": "Class 10 pass + state polytechnic entrance or merit",
+      "duration": "3 years",
+      "durationYears": {
+        "min": 3,
+        "max": 3
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "polytechnic-entrance"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          5000,
+          30000
+        ],
+        "private": [
+          40000,
+          120000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Branch subjects + workshop practice"
+      ],
+      "nextSteps": [
+        "Junior Engineer (JE) jobs: SSC JE, RRB JE, state JE",
+        "Lateral entry to B.E./B.Tech 2nd year (DCET, ECET, DSE, LET...)",
+        "Industry technician / supervisor"
+      ],
+      "nextExamIds": [
+        "lateral-entry"
+      ],
+      "outcomes": [
+        "Junior Engineer",
+        "Technician",
+        "Site supervisor",
+        "Draughtsman"
+      ],
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "subjectsLiked": [
+        "Mathematics",
+        "Physics"
+      ],
+      "sectors": [
+        "GOVT",
+        "PSU",
+        "PRIVATE"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [],
+      "branches": [
+        "Civil",
+        "Mechanical",
+        "Electrical",
+        "Electrical & Electronics",
+        "Electronics & Communication",
+        "Computer Science",
+        "Information Technology",
+        "Automobile",
+        "Chemical",
+        "Mining",
+        "Metallurgy",
+        "Architecture Assistantship",
+        "Instrumentation",
+        "Mechatronics",
+        "Production",
+        "Textile",
+        "Garment / Fashion Technology",
+        "Printing",
+        "Plastics",
+        "Ceramic",
+        "Leather",
+        "Marine",
+        "Food Technology",
+        "Agricultural",
+        "Medical Electronics",
+        "Commercial Practice",
+        "Interior Design"
+      ]
+    },
+    {
+      "id": "a-iti",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI (Industrial Training Institute) - NCVT/SCVT trades",
+      "eligibility": "Class 8 or 10 pass (by trade); age 14+",
+      "duration": "1-2 years",
+      "durationYears": {
+        "min": 1,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician",
+        "Lateral entry to diploma",
+        "Skilled jobs in India & abroad"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Electrician",
+        "Fitter",
+        "Welder",
+        "Mechanic",
+        "Technician"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "GOVT",
+        "PRIVATE",
+        "SELF",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "linkedTrades": "iti-*"
+    },
+    {
+      "id": "a-paramedical",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Paramedical certificate",
+      "clusterIds": [
+        "medicine-health"
+      ],
+      "name": "Paramedical certificate / diploma (lab, X-ray, OT, ECG, GDA)",
+      "eligibility": "Class 10 (some courses need Class 12)",
+      "duration": "6 months - 2 years",
+      "durationYears": {
+        "min": 0.5,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "total",
+        "govt": [
+          5000,
+          30000
+        ],
+        "private": [
+          20000,
+          80000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Lab technique",
+        "Radiography basics",
+        "OT assistance",
+        "ECG",
+        "Patient care"
+      ],
+      "nextSteps": [
+        "B.Sc allied health later",
+        "Hospital jobs"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Lab technician",
+        "X-ray technician",
+        "OT assistant",
+        "General duty assistant"
+      ],
+      "riasec": [
+        "S",
+        "R"
+      ],
+      "subjectsLiked": [
+        "Biology"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "a-nios",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Open schooling",
+      "clusterIds": [
+        "sports-fitness",
+        "design-creative"
+      ],
+      "name": "NIOS (National Institute of Open Schooling)",
+      "eligibility": "Open to all",
+      "duration": "Self-paced",
+      "durationYears": {
+        "min": 1,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "perCycle",
+        "govt": [
+          1500,
+          2500
+        ],
+        "private": null,
+        "note": null
+      },
+      "keySubjects": [
+        "Choose your own subjects"
+      ],
+      "nextSteps": [
+        "Valid for JEE / NEET / CUET and all degrees"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Suits athletes, artists and working students"
+      ],
+      "riasec": [
+        "A",
+        "R"
+      ],
+      "subjectsLiked": [
+        "Sports",
+        "Art & Design"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "a-pmkvy",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Skill course",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "Skill India / PMKVY short-term courses",
+      "eligibility": "Usually age 15+",
+      "duration": "150-600 hours",
+      "durationYears": {
+        "min": 0.1,
+        "max": 0.5
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "total",
+        "govt": [
+          0,
+          0
+        ],
+        "private": null,
+        "note": "Free under PMKVY"
+      },
+      "keySubjects": [
+        "Sector Skill Council job roles"
+      ],
+      "nextSteps": [
+        "Placement support",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Retail associate",
+        "Field technician",
+        "Beautician",
+        "Data entry operator"
+      ],
+      "riasec": [
+        "R",
+        "C"
+      ],
+      "subjectsLiked": [],
+      "sectors": [
+        "PRIVATE",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "a-arts-sports",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Talent route",
+      "clusterIds": [
+        "design-creative",
+        "sports-fitness"
+      ],
+      "name": "Performing arts / sports academies (SAI, Khelo India)",
+      "eligibility": "Talent / trials",
+      "duration": "Varies",
+      "durationYears": {
+        "min": 1,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          20000
+        ],
+        "private": [
+          50000,
+          300000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Music, dance, sport-specific training"
+      ],
+      "nextSteps": [
+        "BFA / BPA later",
+        "Sports quota jobs",
+        "Coaching"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Performer",
+        "Athlete",
+        "Coach"
+      ],
+      "riasec": [
+        "A",
+        "R"
+      ],
+      "subjectsLiked": [
+        "Art & Design",
+        "Sports"
+      ],
+      "sectors": [
+        "SELF",
+        "GOVT",
+        "PRIVATE"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "a-agniveer-gd",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Defence after 10th",
+      "clusterIds": [
+        "defence-uniformed"
+      ],
+      "name": "Army Agniveer - General Duty",
+      "eligibility": "Class 10 with 45% aggregate and 33% in each subject; age 17.5-21",
+      "duration": "4 years",
+      "durationYears": {
+        "min": 4,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "agniveer-army"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": null,
+        "note": "Paid: ₹30,000/month (year 1) rising to ₹40,000 (year 4); in-hand 70% (₹21,000 → ₹28,000); ~₹11.71 lakh Seva Nidhi at exit (tax-free)"
+      },
+      "keySubjects": [
+        "Physical fitness",
+        "Written exam (CEE)"
+      ],
+      "nextSteps": [
+        "Up to 25% retained as regular soldiers",
+        "Priority in CAPF / state police after exit"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Agniveer (soldier)"
+      ],
+      "riasec": [
+        "R",
+        "S"
+      ],
+      "subjectsLiked": [
+        "Sports"
+      ],
+      "sectors": [
+        "DEFENCE",
+        "GOVT"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "agniveer-elig",
+        "agniveer-age",
+        "agniveer-2026"
+      ]
+    },
+    {
+      "id": "a-agniveer-tradesman",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Defence after 10th",
+      "clusterIds": [
+        "defence-uniformed"
+      ],
+      "name": "Army Agniveer - Tradesman",
+      "eligibility": "Class 8 or 10 (by trade); age 17.5-21",
+      "duration": "4 years",
+      "durationYears": {
+        "min": 4,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "agniveer-army"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": null,
+        "note": "Paid - same Agniveer package"
+      },
+      "keySubjects": [
+        "Physical fitness",
+        "Trade test"
+      ],
+      "nextSteps": [
+        "Retention as regular soldier (up to 25%)"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Agniveer tradesman (cook, steward, washerman, etc.)"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Sports"
+      ],
+      "sectors": [
+        "DEFENCE"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "agniveer-elig"
+      ]
+    },
+    {
+      "id": "a-navy-mr",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Defence after 10th",
+      "clusterIds": [
+        "defence-uniformed"
+      ],
+      "name": "Navy Agniveer - MR (Musician / Matric Recruit)",
+      "eligibility": "Class 10, ~50%",
+      "duration": "4 years",
+      "durationYears": {
+        "min": 4,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "agniveer-navy"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": null,
+        "note": "Paid - Agniveer package"
+      },
+      "keySubjects": [
+        "Physical fitness",
+        "Written test"
+      ],
+      "nextSteps": [
+        "Retention as sailor"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Agniveer sailor"
+      ],
+      "riasec": [
+        "R",
+        "S"
+      ],
+      "subjectsLiked": [
+        "Sports"
+      ],
+      "sectors": [
+        "DEFENCE"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "a-icg-db",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Defence after 10th",
+      "clusterIds": [
+        "defence-uniformed"
+      ],
+      "name": "Coast Guard Navik (Domestic Branch)",
+      "eligibility": "Class 10; age 18-22",
+      "duration": "Career",
+      "durationYears": null,
+      "isJob": true,
+      "entranceExamIds": [
+        "icg-navik"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": null,
+        "note": "Paid government job"
+      },
+      "keySubjects": [
+        "Physical fitness",
+        "Written test"
+      ],
+      "nextSteps": [
+        "Promotions within Coast Guard"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Navik (cook / steward)"
+      ],
+      "riasec": [
+        "R",
+        "S"
+      ],
+      "subjectsLiked": [
+        "Sports"
+      ],
+      "sectors": [
+        "DEFENCE",
+        "GOVT"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "a-sainik",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Defence feeder",
+      "clusterIds": [
+        "defence-uniformed"
+      ],
+      "name": "Sainik Schools / Rashtriya Military Schools",
+      "eligibility": "Entry at Class 6 or 9 via AISSEE",
+      "duration": "Up to Class 12",
+      "durationYears": {
+        "min": 3,
+        "max": 7
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "aissee"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          50000,
+          150000
+        ],
+        "private": null,
+        "note": "Scholarships available"
+      },
+      "keySubjects": [
+        "CBSE curriculum + NDA preparation"
+      ],
+      "nextSteps": [
+        "NDA after Class 12"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Future defence officer (feeder school, not a job)"
+      ],
+      "riasec": [
+        "R",
+        "E"
+      ],
+      "subjectsLiked": [
+        "Sports"
+      ],
+      "sectors": [
+        "DEFENCE"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "a-govt-10",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Government job after 10th",
+      "clusterIds": [
+        "government-civil",
+        "defence-uniformed"
+      ],
+      "name": "Government jobs for 10th pass (SSC MTS, SSC GD, RRB Group D, India Post GDS, police constable)",
+      "eligibility": "Class 10 pass; age limits by exam",
+      "duration": "Job",
+      "durationYears": null,
+      "isJob": true,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": null,
+        "note": "Paid jobs - see govtJobs.json"
+      },
+      "keySubjects": [
+        "Exam preparation"
+      ],
+      "nextSteps": [
+        "See government jobs with minimum qualification Class 10"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "MTS",
+        "Constable",
+        "Track maintainer",
+        "Gramin Dak Sevak"
+      ],
+      "riasec": [
+        "C",
+        "R"
+      ],
+      "subjectsLiked": [],
+      "sectors": [
+        "GOVT"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [],
+      "linkedDataset": "govtJobs",
+      "linkedFilter": {
+        "minQualification": "CLASS_10"
+      }
+    },
+    {
+      "id": "iti-electrician",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Electrician",
+      "eligibility": "Class 10 pass; age 14+",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Electrician",
+        "Wireman",
+        "Maintenance technician",
+        "Solar installer"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF",
+        "ABROAD"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-fitter",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Fitter",
+      "eligibility": "Class 10 pass; age 14+",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Fitter",
+        "Assembly technician",
+        "Maintenance fitter"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-turner",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Turner",
+      "eligibility": "Class 10 pass; age 14+",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Turner / lathe operator",
+        "CNC operator"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-machinist",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Machinist",
+      "eligibility": "Class 10 pass; age 14+",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Machinist",
+        "CNC machinist"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-mmv",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Mechanic Motor Vehicle",
+      "eligibility": "Class 10 pass; age 14+",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Auto mechanic",
+        "Service technician",
+        "Workshop supervisor"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-electronics-mechanic",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Electronics Mechanic",
+      "eligibility": "Class 10 pass; age 14+",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Electronics repair technician",
+        "Assembly line technician"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-rac",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Refrigeration & Air-Conditioning Technician",
+      "eligibility": "Class 10 pass; age 14+",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "AC / refrigeration technician",
+        "HVAC technician"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF",
+        "ABROAD"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-draughtsman-civil",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Draughtsman (Civil)",
+      "eligibility": "Class 10 pass; age 14+",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Civil draughtsman",
+        "AutoCAD drafter"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-draughtsman-mech",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Draughtsman (Mechanical)",
+      "eligibility": "Class 10 pass; age 14+",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Mechanical draughtsman",
+        "CAD drafter"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-instrument-mechanic",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Instrument Mechanic",
+      "eligibility": "Class 10 pass; age 14+",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Instrument technician",
+        "Calibration technician"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-wireman",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Wireman",
+      "eligibility": "Class 8 pass; age 14+",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Wireman",
+        "Electrical helper"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-welder",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Welder",
+      "eligibility": "Class 8 pass; age 14+",
+      "duration": "1 year",
+      "durationYears": {
+        "min": 1,
+        "max": 1
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Welder (arc/gas/TIG/MIG)",
+        "Fabricator"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-plumber",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Plumber",
+      "eligibility": "Class 8 pass; age 14+",
+      "duration": "1 year",
+      "durationYears": {
+        "min": 1,
+        "max": 1
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Plumber",
+        "Pipe fitter"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-copa",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - COPA (Computer Operator & Programming Assistant)",
+      "eligibility": "Class 10 pass; age 14+",
+      "duration": "1 year",
+      "durationYears": {
+        "min": 1,
+        "max": 1
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Computer operator",
+        "Data entry operator",
+        "Office assistant"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-carpenter",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Carpenter",
+      "eligibility": "Class 8 pass; age 14+",
+      "duration": "1 year",
+      "durationYears": {
+        "min": 1,
+        "max": 1
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Carpenter",
+        "Furniture maker"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-sewing",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Sewing Technology",
+      "eligibility": "Class 8 pass; age 14+",
+      "duration": "1 year",
+      "durationYears": {
+        "min": 1,
+        "max": 1
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Tailor",
+        "Garment machine operator"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-diesel-mechanic",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Mechanic Diesel",
+      "eligibility": "Class 10 pass; age 14+",
+      "duration": "1 year",
+      "durationYears": {
+        "min": 1,
+        "max": 1
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Diesel engine mechanic",
+        "Generator technician"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-tractor-mechanic",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Mechanic Tractor",
+      "eligibility": "Class 8/10 pass; age 14+",
+      "duration": "1 year",
+      "durationYears": {
+        "min": 1,
+        "max": 1
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Tractor mechanic",
+        "Farm machinery technician"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-stenographer",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Stenographer & Secretarial Assistant",
+      "eligibility": "Class 10 pass; age 14+",
+      "duration": "1 year",
+      "durationYears": {
+        "min": 1,
+        "max": 1
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Stenographer",
+        "Secretarial assistant"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF"
+      ],
+      "outlook": "DECLINING",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "iti-solar",
+      "level": "CLASS_10",
+      "streams": [
+        "ANY"
+      ],
+      "category": "ITI trade",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "ITI - Solar Technician (Electrical)",
+      "eligibility": "Class 10 pass; age 14+",
+      "duration": "1 year",
+      "durationYears": {
+        "min": 1,
+        "max": 1
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iti-admission"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          10000
+        ],
+        "private": [
+          15000,
+          60000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Trade theory",
+        "Workshop practice",
+        "Employability skills"
+      ],
+      "nextSteps": [
+        "Apprenticeship (NAPS)",
+        "RRB ALP / Technician (relevant trades)",
+        "Lateral entry to diploma (state rules)",
+        "Self-employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Solar PV installer",
+        "Solar maintenance technician"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "dgt"
+      ],
+      "parentId": "a-iti"
+    },
+    {
+      "id": "b-btech",
+      "level": "CLASS_12",
+      "streams": [
+        "PCM",
+        "PCMB",
+        "PCMC"
+      ],
+      "category": "Engineering",
+      "clusterIds": [
+        "engineering-tech",
+        "computing-ai"
+      ],
+      "name": "B.E. / B.Tech (Engineering)",
+      "eligibility": "Class 12 with PCM; JoSAA needs 75% in Class 12 (65% SC/ST) or top-20 percentile",
+      "duration": "4 years",
+      "durationYears": {
+        "min": 4,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "jee-main",
+        "jee-advanced",
+        "josaa",
+        "kcet",
+        "comedk",
+        "mht-cet",
+        "ap-eapcet",
+        "tg-eapcet",
+        "wbjee",
+        "keam",
+        "ojee",
+        "gujcet",
+        "tnea",
+        "bitsat",
+        "viteee",
+        "srmjeee",
+        "met"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          10000,
+          200000
+        ],
+        "private": [
+          150000,
+          500000
+        ],
+        "note": "IIT ≈ ₹2L/yr and NIT ≈ ₹1.25L/yr (waivers for SC/ST/PwD and low family income); state government seats ₹10k-1L"
+      },
+      "keySubjects": [
+        "Maths",
+        "Physics",
+        "Programming",
+        "Branch subjects"
+      ],
+      "nextSteps": [
+        "Jobs by branch",
+        "GATE → M.Tech / PSU",
+        "MBA (CAT)",
+        "MS abroad (GRE)",
+        "UPSC ESE / CSE"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Software engineer",
+        "Core engineer",
+        "PSU executive",
+        "Data scientist",
+        "Product manager"
+      ],
+      "riasec": [
+        "I",
+        "R"
+      ],
+      "subjectsLiked": [
+        "Mathematics",
+        "Physics",
+        "Computer Science"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "PSU",
+        "GOVT",
+        "ABROAD",
+        "DEFENCE"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "josaa",
+        "iit-fees-2026"
+      ],
+      "linkedDataset": "engineeringBranches"
+    },
+    {
+      "id": "b-barch",
+      "level": "CLASS_12",
+      "streams": [
+        "PCM",
+        "PCMB",
+        "PCMC"
+      ],
+      "category": "Architecture",
+      "clusterIds": [
+        "architecture-planning"
+      ],
+      "name": "B.Arch (Architecture)",
+      "eligibility": "Class 12 with PCM, 50%",
+      "duration": "5 years",
+      "durationYears": {
+        "min": 5,
+        "max": 5
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "nata",
+        "jee-main"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          30000,
+          150000
+        ],
+        "private": [
+          150000,
+          400000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Design studio",
+        "Building construction",
+        "History of architecture"
+      ],
+      "nextSteps": [
+        "Council of Architecture registration",
+        "M.Arch / M.Plan (GATE AR)"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Architect",
+        "Urban designer",
+        "Interior architect",
+        "Landscape architect"
+      ],
+      "riasec": [
+        "A",
+        "R",
+        "I"
+      ],
+      "subjectsLiked": [
+        "Art & Design",
+        "Mathematics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "SELF",
+        "GOVT"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-bplan",
+      "level": "CLASS_12",
+      "streams": [
+        "PCM",
+        "PCMB",
+        "PCMC"
+      ],
+      "category": "Architecture",
+      "clusterIds": [
+        "architecture-planning"
+      ],
+      "name": "B.Planning",
+      "eligibility": "Class 12 with Maths, 50%",
+      "duration": "4 years",
+      "durationYears": {
+        "min": 4,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "jee-main"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          100000,
+          150000
+        ],
+        "private": null,
+        "note": null
+      },
+      "keySubjects": [
+        "Urban planning",
+        "GIS",
+        "Transport planning"
+      ],
+      "nextSteps": [
+        "M.Plan",
+        "Smart city projects"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Urban planner",
+        "Transport planner",
+        "GIS analyst"
+      ],
+      "riasec": [
+        "I",
+        "A"
+      ],
+      "subjectsLiked": [
+        "Mathematics",
+        "Social Sciences"
+      ],
+      "sectors": [
+        "GOVT",
+        "PRIVATE"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-bsc-pcm",
+      "level": "CLASS_12",
+      "streams": [
+        "PCM",
+        "PCMB",
+        "PCMC"
+      ],
+      "category": "Pure science",
+      "clusterIds": [
+        "science-research"
+      ],
+      "name": "B.Sc (Physics, Chemistry, Maths, Statistics, Computer Science, Electronics, Geology)",
+      "eligibility": "Class 12 Science",
+      "duration": "3-4 years",
+      "durationYears": {
+        "min": 3,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cuet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          5000,
+          40000
+        ],
+        "private": [
+          50000,
+          200000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Major subject + electives"
+      ],
+      "nextSteps": [
+        "M.Sc (IIT JAM, CUET-PG)",
+        "B.Ed (teaching)",
+        "Data analytics",
+        "Government exams"
+      ],
+      "nextExamIds": [
+        "iit-jam",
+        "cuet-pg"
+      ],
+      "outcomes": [
+        "Research scientist (after M.Sc/PhD)",
+        "Data analyst",
+        "Teacher / lecturer",
+        "QC / lab analyst"
+      ],
+      "riasec": [
+        "I"
+      ],
+      "subjectsLiked": [
+        "Mathematics",
+        "Physics",
+        "Chemistry"
+      ],
+      "sectors": [
+        "GOVT",
+        "PRIVATE"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-bsms",
+      "level": "CLASS_12",
+      "streams": [
+        "PCM",
+        "PCMB",
+        "PCMC",
+        "PCB",
+        "PCMB"
+      ],
+      "category": "Pure science",
+      "clusterIds": [
+        "science-research"
+      ],
+      "name": "BS-MS / Integrated M.Sc (IISER, NISER, CEBS)",
+      "eligibility": "Class 12 Science, 60%",
+      "duration": "5 years",
+      "durationYears": {
+        "min": 5,
+        "max": 5
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "iat",
+        "nest"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          100000,
+          150000
+        ],
+        "private": null,
+        "note": "INSPIRE scholarship available"
+      },
+      "keySubjects": [
+        "Physics, chemistry, biology, maths, research projects"
+      ],
+      "nextSteps": [
+        "PhD in India or abroad",
+        "Research careers"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Scientist",
+        "Researcher",
+        "Professor"
+      ],
+      "riasec": [
+        "I"
+      ],
+      "subjectsLiked": [
+        "Mathematics",
+        "Physics",
+        "Biology"
+      ],
+      "sectors": [
+        "GOVT",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-stat-math",
+      "level": "CLASS_12",
+      "streams": [
+        "PCM",
+        "PCMB",
+        "PCMC",
+        "COMMERCE_MATHS"
+      ],
+      "category": "Pure science",
+      "clusterIds": [
+        "science-research",
+        "commerce-finance"
+      ],
+      "name": "B.Stat / B.Math (ISI) and B.Sc Maths (CMI)",
+      "eligibility": "Class 12 with Maths",
+      "duration": "3 years",
+      "durationYears": {
+        "min": 3,
+        "max": 3
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "isi-admission",
+        "cmi-entrance"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          0,
+          20000
+        ],
+        "private": null,
+        "note": "ISI pays a stipend; CMI fees differ - check"
+      },
+      "keySubjects": [
+        "Probability",
+        "Statistics",
+        "Analysis",
+        "Programming"
+      ],
+      "nextSteps": [
+        "M.Stat / M.Math",
+        "Quant finance",
+        "Data science"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Quant analyst",
+        "Actuary",
+        "Statistician",
+        "Data scientist"
+      ],
+      "riasec": [
+        "I",
+        "C"
+      ],
+      "subjectsLiked": [
+        "Mathematics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "ABROAD"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-bca",
+      "level": "CLASS_12",
+      "streams": [
+        "PCM",
+        "PCMC",
+        "COMMERCE_MATHS",
+        "ANY"
+      ],
+      "category": "Computer applications",
+      "clusterIds": [
+        "computing-ai"
+      ],
+      "name": "BCA / B.Sc Data Science / AI / Cyber Security",
+      "eligibility": "Class 12 (Maths often required)",
+      "duration": "3-4 years",
+      "durationYears": {
+        "min": 3,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cuet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          20000,
+          80000
+        ],
+        "private": [
+          50000,
+          300000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Programming",
+        "Databases",
+        "Networking",
+        "Data / AI basics"
+      ],
+      "nextSteps": [
+        "MCA (NIMCET)",
+        "MBA",
+        "Industry certifications (AWS, Azure)"
+      ],
+      "nextExamIds": [
+        "nimcet"
+      ],
+      "outcomes": [
+        "Software developer",
+        "Data analyst",
+        "Cybersecurity analyst",
+        "Cloud support engineer"
+      ],
+      "riasec": [
+        "I",
+        "C"
+      ],
+      "subjectsLiked": [
+        "Computer Science",
+        "Mathematics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "ABROAD"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-cpl",
+      "level": "CLASS_12",
+      "streams": [
+        "PCM",
+        "PCMB",
+        "PCMC"
+      ],
+      "category": "Aviation",
+      "clusterIds": [
+        "aviation-maritime"
+      ],
+      "name": "Commercial Pilot Licence (CPL)",
+      "eligibility": "Class 12 PCM; age 17+; DGCA Class 1 medical",
+      "duration": "18-24 months",
+      "durationYears": {
+        "min": 1.5,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "dgca-cpl"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": [
+          4000000,
+          8000000
+        ],
+        "note": "Includes flying hours; type rating extra"
+      },
+      "keySubjects": [
+        "Air navigation",
+        "Meteorology",
+        "Air regulations",
+        "Flying hours"
+      ],
+      "nextSteps": [
+        "Type rating",
+        "Airline cadet programmes"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "First Officer → Captain",
+        "Flight instructor",
+        "Charter pilot"
+      ],
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "subjectsLiked": [
+        "Physics",
+        "Mathematics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "ABROAD"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-ame",
+      "level": "CLASS_12",
+      "streams": [
+        "PCM",
+        "PCMB",
+        "PCMC"
+      ],
+      "category": "Aviation",
+      "clusterIds": [
+        "aviation-maritime"
+      ],
+      "name": "Aircraft Maintenance Engineering (B1 / B2)",
+      "eligibility": "Class 12 PCM",
+      "duration": "2-4 years",
+      "durationYears": {
+        "min": 2,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": [
+          300000,
+          800000
+        ],
+        "note": "DGCA-approved institutes"
+      },
+      "keySubjects": [
+        "Airframe",
+        "Engines",
+        "Avionics",
+        "DGCA modules"
+      ],
+      "nextSteps": [
+        "DGCA licence"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Licensed aircraft maintenance engineer",
+        "MRO technician"
+      ],
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "ABROAD"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-merchant-navy",
+      "level": "CLASS_12",
+      "streams": [
+        "PCM",
+        "PCMB",
+        "PCMC"
+      ],
+      "category": "Merchant Navy",
+      "clusterIds": [
+        "aviation-maritime"
+      ],
+      "name": "Merchant Navy - DNS / B.Sc Nautical Science / B.Tech Marine Engineering",
+      "eligibility": "Class 12 PCM 60%, English 50%; medical fitness",
+      "duration": "1-4 years",
+      "durationYears": {
+        "min": 1,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "imu-cet"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": [
+          200000,
+          800000
+        ],
+        "private": [
+          200000,
+          800000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Navigation",
+        "Marine engineering",
+        "Seamanship"
+      ],
+      "nextSteps": [
+        "DG Shipping Certificate of Competency exams"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Deck cadet → Captain",
+        "Engine cadet → Chief Engineer"
+      ],
+      "riasec": [
+        "R",
+        "E"
+      ],
+      "subjectsLiked": [
+        "Physics",
+        "Mathematics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-gp-rating",
+      "level": "CLASS_12",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Merchant Navy",
+      "clusterIds": [
+        "aviation-maritime"
+      ],
+      "name": "GP Rating (Merchant Navy crew)",
+      "eligibility": "Class 10 / 12 (DG Shipping rules); medical fitness",
+      "duration": "6 months",
+      "durationYears": {
+        "min": 0.5,
+        "max": 0.5
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": [
+          100000,
+          200000
+        ],
+        "note": "DG Shipping-approved institutes"
+      },
+      "keySubjects": [
+        "Seamanship",
+        "Engine basics",
+        "Safety courses"
+      ],
+      "nextSteps": [
+        "Promotion to officer with sea time + exams"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Deck rating",
+        "Engine rating"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Sports"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-nda",
+      "level": "CLASS_12",
+      "streams": [
+        "PCM",
+        "PCMB",
+        "PCMC",
+        "ANY"
+      ],
+      "category": "Defence after 12th",
+      "clusterIds": [
+        "defence-uniformed"
+      ],
+      "name": "NDA (National Defence Academy)",
+      "eligibility": "Class 12 (PCM for Navy & Air Force; any stream for Army); age 16.5-19.5; unmarried",
+      "duration": "3 + 1 years training",
+      "durationYears": {
+        "min": 4,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "nda"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": [
+          0,
+          0
+        ],
+        "private": null,
+        "note": "Free training with stipend; commissioned at Level 10 + Military Service Pay"
+      },
+      "keySubjects": [
+        "Written exam",
+        "SSB interview",
+        "Medical"
+      ],
+      "nextSteps": [
+        "Commission as Lieutenant / Sub-Lieutenant / Flying Officer"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Army / Navy / Air Force officer"
+      ],
+      "riasec": [
+        "R",
+        "E",
+        "S"
+      ],
+      "subjectsLiked": [
+        "Sports",
+        "Mathematics"
+      ],
+      "sectors": [
+        "DEFENCE"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-tes",
+      "level": "CLASS_12",
+      "streams": [
+        "PCM",
+        "PCMB",
+        "PCMC"
+      ],
+      "category": "Defence after 12th",
+      "clusterIds": [
+        "defence-uniformed",
+        "engineering-tech"
+      ],
+      "name": "Army TES / Navy 10+2 B.Tech Cadet Entry",
+      "eligibility": "Class 12 PCM 60% (Army) / 70% (Navy) + JEE Main",
+      "duration": "4 years",
+      "durationYears": {
+        "min": 4,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "army-tes",
+        "navy-btech",
+        "jee-main"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": [
+          0,
+          0
+        ],
+        "private": null,
+        "note": "Free B.Tech + stipend"
+      },
+      "keySubjects": [
+        "SSB interview",
+        "Engineering degree in service"
+      ],
+      "nextSteps": [
+        "Permanent commission as technical officer"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Technical officer (Army / Navy)"
+      ],
+      "riasec": [
+        "R",
+        "I",
+        "E"
+      ],
+      "subjectsLiked": [
+        "Mathematics",
+        "Physics",
+        "Sports"
+      ],
+      "sectors": [
+        "DEFENCE"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-agniveer-12",
+      "level": "CLASS_12",
+      "streams": [
+        "PCM",
+        "PCMB",
+        "PCMC",
+        "ANY"
+      ],
+      "category": "Defence after 12th",
+      "clusterIds": [
+        "defence-uniformed"
+      ],
+      "name": "Agniveer Vayu / Navy SSR / Coast Guard Navik (GD)",
+      "eligibility": "Class 12 (PCM 50% for science trades); age limits apply",
+      "duration": "4 years (Agniveer) / career (Coast Guard)",
+      "durationYears": {
+        "min": 4,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "agniveer-vayu",
+        "agniveer-navy",
+        "icg-navik"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": null,
+        "note": "Paid: Agniveer ₹30,000-40,000/month package"
+      },
+      "keySubjects": [
+        "Written test",
+        "Physical fitness",
+        "Medical"
+      ],
+      "nextSteps": [
+        "Retention up to 25%",
+        "CAPF / police priority"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Airman",
+        "Sailor",
+        "Navik"
+      ],
+      "riasec": [
+        "R",
+        "S"
+      ],
+      "subjectsLiked": [
+        "Sports",
+        "Physics"
+      ],
+      "sectors": [
+        "DEFENCE"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "agniveer-2026"
+      ]
+    },
+    {
+      "id": "b-mbbs",
+      "level": "CLASS_12",
+      "streams": [
+        "PCB",
+        "PCMB"
+      ],
+      "category": "Medical",
+      "clusterIds": [
+        "medicine-health"
+      ],
+      "name": "MBBS (Bachelor of Medicine & Surgery)",
+      "eligibility": "Class 12 PCB with English; NEET-UG qualified; age 17+",
+      "duration": "5.5 years (incl. internship)",
+      "durationYears": {
+        "min": 5.5,
+        "max": 5.5
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "neet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          10000,
+          150000
+        ],
+        "private": [
+          1000000,
+          2500000
+        ],
+        "note": "Government seats via MCC (15% AIQ) and state counselling (85%)"
+      },
+      "keySubjects": [
+        "Anatomy",
+        "Physiology",
+        "Pathology",
+        "Medicine",
+        "Surgery"
+      ],
+      "nextSteps": [
+        "NEET-PG → MD/MS/DNB",
+        "UPSC CMS",
+        "USMLE / PLAB (abroad)"
+      ],
+      "nextExamIds": [
+        "neet-pg"
+      ],
+      "outcomes": [
+        "Doctor",
+        "Medical officer",
+        "Specialist (after PG)"
+      ],
+      "riasec": [
+        "I",
+        "S"
+      ],
+      "subjectsLiked": [
+        "Biology",
+        "Chemistry"
+      ],
+      "sectors": [
+        "GOVT",
+        "PRIVATE",
+        "SELF",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "mcc",
+        "nta"
+      ]
+    },
+    {
+      "id": "b-bds",
+      "level": "CLASS_12",
+      "streams": [
+        "PCB",
+        "PCMB"
+      ],
+      "category": "Medical",
+      "clusterIds": [
+        "medicine-health"
+      ],
+      "name": "BDS (Dental Surgery)",
+      "eligibility": "Class 12 PCB; NEET-UG",
+      "duration": "5 years",
+      "durationYears": {
+        "min": 5,
+        "max": 5
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "neet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          20000,
+          100000
+        ],
+        "private": [
+          300000,
+          800000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Oral anatomy",
+        "Prosthodontics",
+        "Orthodontics"
+      ],
+      "nextSteps": [
+        "NEET-MDS",
+        "Own clinic"
+      ],
+      "nextExamIds": [
+        "neet-mds"
+      ],
+      "outcomes": [
+        "Dentist",
+        "Dental surgeon",
+        "Army Dental Corps officer"
+      ],
+      "riasec": [
+        "I",
+        "S",
+        "R"
+      ],
+      "subjectsLiked": [
+        "Biology"
+      ],
+      "sectors": [
+        "SELF",
+        "PRIVATE",
+        "GOVT"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-ayush",
+      "level": "CLASS_12",
+      "streams": [
+        "PCB",
+        "PCMB"
+      ],
+      "category": "Medical",
+      "clusterIds": [
+        "medicine-health"
+      ],
+      "name": "AYUSH - BAMS / BHMS / BUMS / BSMS / BNYS",
+      "eligibility": "Class 12 PCB; NEET-UG",
+      "duration": "5.5 years",
+      "durationYears": {
+        "min": 5.5,
+        "max": 5.5
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "neet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          20000,
+          100000
+        ],
+        "private": [
+          100000,
+          400000
+        ],
+        "note": "Counselling via AACCC and states"
+      },
+      "keySubjects": [
+        "Ayurveda / Homoeopathy / Unani / Siddha / Naturopathy"
+      ],
+      "nextSteps": [
+        "AIAPGET → MD (AYUSH)",
+        "State AYUSH medical officer"
+      ],
+      "nextExamIds": [
+        "aiapget"
+      ],
+      "outcomes": [
+        "AYUSH doctor",
+        "Wellness consultant"
+      ],
+      "riasec": [
+        "I",
+        "S"
+      ],
+      "subjectsLiked": [
+        "Biology"
+      ],
+      "sectors": [
+        "SELF",
+        "GOVT",
+        "PRIVATE"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-bvsc",
+      "level": "CLASS_12",
+      "streams": [
+        "PCB",
+        "PCMB"
+      ],
+      "category": "Veterinary",
+      "clusterIds": [
+        "agriculture-allied",
+        "medicine-health"
+      ],
+      "name": "BVSc & AH (Veterinary Science)",
+      "eligibility": "Class 12 PCB; NEET-UG (VCI quota) + state",
+      "duration": "5.5 years",
+      "durationYears": {
+        "min": 5.5,
+        "max": 5.5
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "neet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          20000,
+          100000
+        ],
+        "private": null,
+        "note": null
+      },
+      "keySubjects": [
+        "Animal anatomy",
+        "Veterinary medicine",
+        "Animal husbandry"
+      ],
+      "nextSteps": [
+        "MVSc",
+        "State veterinary officer"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Veterinarian",
+        "Veterinary officer",
+        "Dairy / poultry consultant"
+      ],
+      "riasec": [
+        "I",
+        "R",
+        "S"
+      ],
+      "subjectsLiked": [
+        "Biology"
+      ],
+      "sectors": [
+        "GOVT",
+        "SELF",
+        "PRIVATE"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-nursing",
+      "level": "CLASS_12",
+      "streams": [
+        "PCB",
+        "PCMB"
+      ],
+      "category": "Nursing",
+      "clusterIds": [
+        "medicine-health"
+      ],
+      "name": "B.Sc Nursing / GNM / ANM",
+      "eligibility": "Class 12 PCB (B.Sc/GNM); ANM open to more streams",
+      "duration": "4 / 3 / 2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "neet-ug",
+        "aiims-paramedical"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          10000,
+          100000
+        ],
+        "private": [
+          60000,
+          250000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Anatomy",
+        "Nursing foundations",
+        "Community health"
+      ],
+      "nextSteps": [
+        "AIIMS NORCET (Level 7)",
+        "M.Sc Nursing",
+        "Work abroad (NCLEX, OET)"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Staff nurse",
+        "Nursing officer",
+        "ICU nurse",
+        "Nurse educator"
+      ],
+      "riasec": [
+        "S",
+        "I"
+      ],
+      "subjectsLiked": [
+        "Biology"
+      ],
+      "sectors": [
+        "GOVT",
+        "PRIVATE",
+        "ABROAD"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [
+        "wef2025"
+      ]
+    },
+    {
+      "id": "b-pharmacy",
+      "level": "CLASS_12",
+      "streams": [
+        "PCB",
+        "PCMB",
+        "PCM"
+      ],
+      "category": "Pharmacy",
+      "clusterIds": [
+        "medicine-health"
+      ],
+      "name": "B.Pharm / D.Pharm / Pharm.D",
+      "eligibility": "Class 12 PCB or PCM",
+      "duration": "4 / 2 / 6 years",
+      "durationYears": {
+        "min": 2,
+        "max": 6
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "kcet",
+        "mht-cet",
+        "ap-eapcet",
+        "tg-eapcet"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          20000,
+          100000
+        ],
+        "private": [
+          60000,
+          250000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Pharmaceutics",
+        "Pharmacology",
+        "Medicinal chemistry"
+      ],
+      "nextSteps": [
+        "GPAT → M.Pharm",
+        "Drug Inspector exams",
+        "Own pharmacy"
+      ],
+      "nextExamIds": [
+        "gpat"
+      ],
+      "outcomes": [
+        "Pharmacist",
+        "QA/QC analyst",
+        "Regulatory affairs",
+        "Medical representative"
+      ],
+      "riasec": [
+        "I",
+        "C"
+      ],
+      "subjectsLiked": [
+        "Chemistry",
+        "Biology"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-rehab",
+      "level": "CLASS_12",
+      "streams": [
+        "PCB",
+        "PCMB"
+      ],
+      "category": "Allied health",
+      "clusterIds": [
+        "medicine-health"
+      ],
+      "name": "Physiotherapy (BPT), Occupational Therapy (BOT), Audiology & Speech-Language Pathology (BASLP)",
+      "eligibility": "Class 12 PCB",
+      "duration": "4-4.5 years",
+      "durationYears": {
+        "min": 4,
+        "max": 4.5
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cuet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          10000,
+          100000
+        ],
+        "private": [
+          80000,
+          300000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Anatomy",
+        "Exercise therapy",
+        "Rehabilitation"
+      ],
+      "nextSteps": [
+        "MPT / MOT / MASLP",
+        "Own clinic",
+        "Sports teams"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Physiotherapist",
+        "Occupational therapist",
+        "Audiologist / speech therapist"
+      ],
+      "riasec": [
+        "S",
+        "I",
+        "R"
+      ],
+      "subjectsLiked": [
+        "Biology",
+        "Sports"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "SELF",
+        "ABROAD"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [],
+      "regulator": "NCAHP Act 2021"
+    },
+    {
+      "id": "b-medtech",
+      "level": "CLASS_12",
+      "streams": [
+        "PCB",
+        "PCMB"
+      ],
+      "category": "Allied health",
+      "clusterIds": [
+        "medicine-health"
+      ],
+      "name": "Medical technology - BMLT, Radiology / Imaging, OT, Dialysis, Cardiac, Respiratory, Emergency Medical Technology",
+      "eligibility": "Class 12 PCB",
+      "duration": "3-4 years",
+      "durationYears": {
+        "min": 3,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cuet-ug",
+        "aiims-paramedical"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          10000,
+          80000
+        ],
+        "private": [
+          60000,
+          250000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Lab science / imaging / equipment"
+      ],
+      "nextSteps": [
+        "M.Sc in specialty",
+        "Hospital & diagnostics jobs"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Medical lab technologist",
+        "Radiographer",
+        "OT technologist",
+        "Dialysis technologist",
+        "Cardiac technologist"
+      ],
+      "riasec": [
+        "I",
+        "R",
+        "S"
+      ],
+      "subjectsLiked": [
+        "Biology"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "ABROAD"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-optometry",
+      "level": "CLASS_12",
+      "streams": [
+        "PCB",
+        "PCMB",
+        "PCM"
+      ],
+      "category": "Allied health",
+      "clusterIds": [
+        "medicine-health"
+      ],
+      "name": "B.Optom (Optometry)",
+      "eligibility": "Class 12 PCB/PCM",
+      "duration": "4 years",
+      "durationYears": {
+        "min": 4,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cuet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          20000,
+          80000
+        ],
+        "private": [
+          60000,
+          200000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Optics",
+        "Ocular anatomy",
+        "Contact lenses"
+      ],
+      "nextSteps": [
+        "M.Optom",
+        "Own optical clinic"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Optometrist",
+        "Vision scientist"
+      ],
+      "riasec": [
+        "I",
+        "S"
+      ],
+      "subjectsLiked": [
+        "Biology",
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "SELF"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-nutrition",
+      "level": "CLASS_12",
+      "streams": [
+        "PCB",
+        "PCMB",
+        "ANY"
+      ],
+      "category": "Allied health",
+      "clusterIds": [
+        "medicine-health"
+      ],
+      "name": "B.Sc Nutrition & Dietetics / Public Health (BPH)",
+      "eligibility": "Class 12 (Biology preferred)",
+      "duration": "3-4 years",
+      "durationYears": {
+        "min": 3,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cuet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          10000,
+          60000
+        ],
+        "private": [
+          50000,
+          200000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Nutrition science",
+        "Community health",
+        "Epidemiology (BPH)"
+      ],
+      "nextSteps": [
+        "M.Sc / MPH"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Clinical dietitian",
+        "Nutritionist",
+        "Public health officer"
+      ],
+      "riasec": [
+        "S",
+        "I"
+      ],
+      "subjectsLiked": [
+        "Biology"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT",
+        "SELF"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-agri",
+      "level": "CLASS_12",
+      "streams": [
+        "PCB",
+        "PCMB",
+        "PCM"
+      ],
+      "category": "Agriculture",
+      "clusterIds": [
+        "agriculture-allied"
+      ],
+      "name": "B.Sc Agriculture / Horticulture / Forestry / Fisheries; B.Tech Dairy / Food / Agricultural Engineering",
+      "eligibility": "Class 12 Science (PCB/PCM/PCMB as per course)",
+      "duration": "4 years",
+      "durationYears": {
+        "min": 4,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cuet-ug",
+        "kcet",
+        "mht-cet",
+        "ap-eapcet",
+        "tg-eapcet"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          15000,
+          80000
+        ],
+        "private": [
+          80000,
+          250000
+        ],
+        "note": "ICAR seats via CUET-UG"
+      },
+      "keySubjects": [
+        "Agronomy",
+        "Soil science",
+        "Plant breeding",
+        "Agri-economics"
+      ],
+      "nextSteps": [
+        "ICAR AIEEA-PG → M.Sc",
+        "IBPS SO Agriculture Field Officer",
+        "NABARD",
+        "FCI"
+      ],
+      "nextExamIds": [
+        "icar-pg"
+      ],
+      "outcomes": [
+        "Agriculture officer",
+        "Bank agriculture field officer",
+        "Agri-business manager",
+        "Food technologist"
+      ],
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "subjectsLiked": [
+        "Biology",
+        "Chemistry"
+      ],
+      "sectors": [
+        "GOVT",
+        "PRIVATE",
+        "SELF"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-lifesci",
+      "level": "CLASS_12",
+      "streams": [
+        "PCB",
+        "PCMB"
+      ],
+      "category": "Pure science",
+      "clusterIds": [
+        "science-research",
+        "medicine-health"
+      ],
+      "name": "B.Sc Biotechnology / Microbiology / Biochemistry / Zoology / Botany",
+      "eligibility": "Class 12 PCB",
+      "duration": "3-4 years",
+      "durationYears": {
+        "min": 3,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cuet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          10000,
+          80000
+        ],
+        "private": [
+          60000,
+          250000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Cell biology",
+        "Genetics",
+        "Lab techniques"
+      ],
+      "nextSteps": [
+        "M.Sc (GAT-B, JAM, CUET-PG)",
+        "Clinical research",
+        "Pharmacovigilance"
+      ],
+      "nextExamIds": [
+        "gat-b",
+        "iit-jam"
+      ],
+      "outcomes": [
+        "Research associate",
+        "Clinical research associate",
+        "Lab analyst"
+      ],
+      "riasec": [
+        "I"
+      ],
+      "subjectsLiked": [
+        "Biology",
+        "Chemistry"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-bcom",
+      "level": "CLASS_12",
+      "streams": [
+        "COMMERCE_MATHS",
+        "COMMERCE_NO_MATHS",
+        "ANY"
+      ],
+      "category": "Commerce",
+      "clusterIds": [
+        "commerce-finance"
+      ],
+      "name": "B.Com / B.Com (Hons)",
+      "eligibility": "Class 12 (Commerce preferred)",
+      "duration": "3-4 years",
+      "durationYears": {
+        "min": 3,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cuet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          5000,
+          50000
+        ],
+        "private": [
+          50000,
+          200000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Accounting",
+        "Taxation",
+        "Business law",
+        "Economics"
+      ],
+      "nextSteps": [
+        "M.Com, MBA",
+        "CA / CMA / CS alongside",
+        "Banking & SSC exams"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Accountant",
+        "Audit associate",
+        "Tax consultant",
+        "Bank officer"
+      ],
+      "riasec": [
+        "C",
+        "E"
+      ],
+      "subjectsLiked": [
+        "Accountancy",
+        "Economics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-bba",
+      "level": "CLASS_12",
+      "streams": [
+        "COMMERCE_MATHS",
+        "COMMERCE_NO_MATHS",
+        "ANY"
+      ],
+      "category": "Management",
+      "clusterIds": [
+        "management-business"
+      ],
+      "name": "BBA / BMS",
+      "eligibility": "Class 12 (any stream)",
+      "duration": "3-4 years",
+      "durationYears": {
+        "min": 3,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cuet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          20000,
+          100000
+        ],
+        "private": [
+          100000,
+          400000
+        ],
+        "note": "Private universities use own tests (NPAT, SET, IPU CET)"
+      },
+      "keySubjects": [
+        "Management",
+        "Marketing",
+        "Finance",
+        "HR"
+      ],
+      "nextSteps": [
+        "MBA (CAT/XAT)",
+        "Family business",
+        "Startups"
+      ],
+      "nextExamIds": [
+        "cat"
+      ],
+      "outcomes": [
+        "Sales / marketing executive",
+        "HR associate",
+        "Operations analyst",
+        "Business analyst"
+      ],
+      "riasec": [
+        "E",
+        "C"
+      ],
+      "subjectsLiked": [
+        "Economics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-ipm",
+      "level": "CLASS_12",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Management",
+      "clusterIds": [
+        "management-business"
+      ],
+      "name": "Integrated Programme in Management (IIM Indore, Rohtak, Ranchi, Bodh Gaya, Jammu)",
+      "eligibility": "Class 12, 60%",
+      "duration": "5 years",
+      "durationYears": {
+        "min": 5,
+        "max": 5
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "ipmat",
+        "jipmat"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          400000,
+          500000
+        ],
+        "private": null,
+        "note": null
+      },
+      "keySubjects": [
+        "Maths",
+        "Economics",
+        "Management"
+      ],
+      "nextSteps": [
+        "MBA from IIM at the end"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Management trainee",
+        "Consultant",
+        "Analyst"
+      ],
+      "riasec": [
+        "E",
+        "I"
+      ],
+      "subjectsLiked": [
+        "Mathematics",
+        "Economics"
+      ],
+      "sectors": [
+        "PRIVATE"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-ca",
+      "level": "CLASS_12",
+      "streams": [
+        "COMMERCE_MATHS",
+        "COMMERCE_NO_MATHS",
+        "ANY"
+      ],
+      "category": "Professional finance",
+      "clusterIds": [
+        "commerce-finance"
+      ],
+      "name": "Chartered Accountancy (CA) - ICAI",
+      "eligibility": "Class 12 (Foundation) or graduation (direct entry)",
+      "duration": "~4.5-5 years (Foundation → Intermediate → 3-yr articleship → Final)",
+      "durationYears": {
+        "min": 4.5,
+        "max": 5
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "ca-foundation"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": [
+          150000,
+          250000
+        ],
+        "private": null,
+        "note": "ICAI fees + coaching"
+      },
+      "keySubjects": [
+        "Accounting",
+        "Audit",
+        "Taxation",
+        "Law"
+      ],
+      "nextSteps": [
+        "Big 4 firms",
+        "Own practice",
+        "CFO track"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Chartered accountant",
+        "Auditor",
+        "Tax advisor",
+        "Finance controller"
+      ],
+      "riasec": [
+        "C",
+        "E"
+      ],
+      "subjectsLiked": [
+        "Accountancy",
+        "Mathematics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "SELF",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-cs",
+      "level": "CLASS_12",
+      "streams": [
+        "COMMERCE_MATHS",
+        "COMMERCE_NO_MATHS",
+        "ANY"
+      ],
+      "category": "Professional finance",
+      "clusterIds": [
+        "commerce-finance",
+        "law"
+      ],
+      "name": "Company Secretary (CS) - ICSI",
+      "eligibility": "Class 12",
+      "duration": "~3-4 years (CSEET → Executive → Professional)",
+      "durationYears": {
+        "min": 3,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cseet"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": [
+          50000,
+          120000
+        ],
+        "private": null,
+        "note": null
+      },
+      "keySubjects": [
+        "Company law",
+        "Corporate governance",
+        "Securities law"
+      ],
+      "nextSteps": [
+        "Listed company compliance",
+        "Practice"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Company secretary",
+        "Compliance officer"
+      ],
+      "riasec": [
+        "C",
+        "E"
+      ],
+      "subjectsLiked": [
+        "Accountancy",
+        "Languages"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-cma",
+      "level": "CLASS_12",
+      "streams": [
+        "COMMERCE_MATHS",
+        "COMMERCE_NO_MATHS",
+        "ANY"
+      ],
+      "category": "Professional finance",
+      "clusterIds": [
+        "commerce-finance"
+      ],
+      "name": "Cost & Management Accountancy (CMA) - ICMAI",
+      "eligibility": "Class 12",
+      "duration": "~3-4 years",
+      "durationYears": {
+        "min": 3,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cma-foundation"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": [
+          50000,
+          100000
+        ],
+        "private": null,
+        "note": null
+      },
+      "keySubjects": [
+        "Cost accounting",
+        "Management accounting",
+        "Financial management"
+      ],
+      "nextSteps": [
+        "Manufacturing & PSU finance"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Cost accountant",
+        "Management accountant"
+      ],
+      "riasec": [
+        "C"
+      ],
+      "subjectsLiked": [
+        "Accountancy",
+        "Mathematics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "PSU"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-acca",
+      "level": "CLASS_12",
+      "streams": [
+        "COMMERCE_MATHS",
+        "COMMERCE_NO_MATHS",
+        "ANY"
+      ],
+      "category": "Professional finance",
+      "clusterIds": [
+        "commerce-finance"
+      ],
+      "name": "ACCA (global accounting qualification)",
+      "eligibility": "Class 12 (exemptions for graduates)",
+      "duration": "2-4 years",
+      "durationYears": {
+        "min": 2,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "total",
+        "govt": [
+          200000,
+          400000
+        ],
+        "private": null,
+        "note": "Paid in GBP - varies with exchange rate"
+      },
+      "keySubjects": [
+        "IFRS",
+        "Audit",
+        "Taxation"
+      ],
+      "nextSteps": [
+        "MNC finance / shared services",
+        "Work abroad"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Accountant (global)",
+        "Auditor"
+      ],
+      "riasec": [
+        "C"
+      ],
+      "subjectsLiked": [
+        "Accountancy"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-cfa",
+      "level": "CLASS_12",
+      "streams": [
+        "COMMERCE_MATHS",
+        "COMMERCE_NO_MATHS",
+        "ANY"
+      ],
+      "category": "Professional finance",
+      "clusterIds": [
+        "commerce-finance"
+      ],
+      "name": "CFA / FRM (investment & risk)",
+      "eligibility": "Usually during or after graduation (CFA Level I in final year)",
+      "duration": "2-4 years",
+      "durationYears": {
+        "min": 2,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "total",
+        "govt": [
+          200000,
+          500000
+        ],
+        "private": null,
+        "note": "Paid in USD"
+      },
+      "keySubjects": [
+        "Investments",
+        "Ethics",
+        "Risk management"
+      ],
+      "nextSteps": [
+        "Investment banking, asset management, risk"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Equity research analyst",
+        "Portfolio manager",
+        "Risk analyst"
+      ],
+      "riasec": [
+        "I",
+        "C",
+        "E"
+      ],
+      "subjectsLiked": [
+        "Mathematics",
+        "Economics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-actuarial",
+      "level": "CLASS_12",
+      "streams": [
+        "COMMERCE_MATHS",
+        "PCM",
+        "PCMB",
+        "PCMC"
+      ],
+      "category": "Professional finance",
+      "clusterIds": [
+        "commerce-finance"
+      ],
+      "name": "Actuarial Science (IAI)",
+      "eligibility": "Class 12 with Maths/Statistics; ACET",
+      "duration": "3-6 years (exams alongside degree/job)",
+      "durationYears": {
+        "min": 3,
+        "max": 6
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "acet"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "total",
+        "govt": [
+          100000,
+          300000
+        ],
+        "private": null,
+        "note": null
+      },
+      "keySubjects": [
+        "Probability",
+        "Statistics",
+        "Financial maths"
+      ],
+      "nextSteps": [
+        "Insurance, reinsurance, consulting"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Actuarial analyst",
+        "Actuary"
+      ],
+      "riasec": [
+        "I",
+        "C"
+      ],
+      "subjectsLiked": [
+        "Mathematics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "ABROAD"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-economics",
+      "level": "CLASS_12",
+      "streams": [
+        "COMMERCE_MATHS",
+        "ARTS",
+        "PCM"
+      ],
+      "category": "Social science",
+      "clusterIds": [
+        "social-humanities",
+        "commerce-finance"
+      ],
+      "name": "BA / B.Sc Economics (Hons)",
+      "eligibility": "Class 12 (Maths recommended)",
+      "duration": "3-4 years",
+      "durationYears": {
+        "min": 3,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cuet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          5000,
+          50000
+        ],
+        "private": [
+          100000,
+          400000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Micro/macroeconomics",
+        "Econometrics",
+        "Statistics"
+      ],
+      "nextSteps": [
+        "MA Economics (DSE, JNU, IGIDR)",
+        "UPSC IES",
+        "RBI Grade B"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Research analyst",
+        "Economist",
+        "Policy analyst"
+      ],
+      "riasec": [
+        "I",
+        "E"
+      ],
+      "subjectsLiked": [
+        "Economics",
+        "Mathematics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-law",
+      "level": "CLASS_12",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Law",
+      "clusterIds": [
+        "law"
+      ],
+      "name": "5-year integrated law - BA / BBA / B.Sc / B.Com LLB",
+      "eligibility": "Class 12, 45% (40% SC/ST)",
+      "duration": "5 years",
+      "durationYears": {
+        "min": 5,
+        "max": 5
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "clat",
+        "ailet",
+        "lsat-india",
+        "mh-cet-law",
+        "cuet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          5000,
+          50000
+        ],
+        "private": [
+          200000,
+          350000
+        ],
+        "note": "NLU ≈ ₹2-3.5L/yr; government law colleges ₹5k-50k"
+      },
+      "keySubjects": [
+        "Constitutional law",
+        "Contracts",
+        "Criminal law",
+        "Corporate law"
+      ],
+      "nextSteps": [
+        "AIBE (practice)",
+        "Judicial services",
+        "LLM (CLAT PG)"
+      ],
+      "nextExamIds": [
+        "aibe",
+        "clat-pg"
+      ],
+      "outcomes": [
+        "Advocate",
+        "Corporate lawyer",
+        "Judge",
+        "Legal officer"
+      ],
+      "riasec": [
+        "E",
+        "I",
+        "S"
+      ],
+      "subjectsLiked": [
+        "Languages",
+        "Social Sciences"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "SELF",
+        "GOVT"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-design",
+      "level": "CLASS_12",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Design",
+      "clusterIds": [
+        "design-creative"
+      ],
+      "name": "Design - B.Des / B.FTech (fashion, product, communication, UX/UI, game, interior)",
+      "eligibility": "Class 12 (any stream)",
+      "duration": "4 years",
+      "durationYears": {
+        "min": 4,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "nift",
+        "nid-dat",
+        "uceed"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          200000,
+          400000
+        ],
+        "private": [
+          300000,
+          700000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Drawing",
+        "Design thinking",
+        "Studio projects"
+      ],
+      "nextSteps": [
+        "M.Des (CEED)",
+        "Own studio"
+      ],
+      "nextExamIds": [
+        "ceed"
+      ],
+      "outcomes": [
+        "UX / UI designer",
+        "Fashion designer",
+        "Product designer",
+        "Communication designer"
+      ],
+      "riasec": [
+        "A",
+        "I"
+      ],
+      "subjectsLiked": [
+        "Art & Design"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "SELF",
+        "ABROAD"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-fine-arts",
+      "level": "CLASS_12",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Fine & performing arts",
+      "clusterIds": [
+        "design-creative"
+      ],
+      "name": "BFA / BPA - fine arts, music, dance, theatre, film-making",
+      "eligibility": "Class 12; aptitude test",
+      "duration": "3-4 years",
+      "durationYears": {
+        "min": 3,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          5000,
+          50000
+        ],
+        "private": [
+          50000,
+          150000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Studio practice",
+        "Art history",
+        "Performance"
+      ],
+      "nextSteps": [
+        "MFA / MPA",
+        "Freelance"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Artist",
+        "Illustrator",
+        "Performer",
+        "Film-maker"
+      ],
+      "riasec": [
+        "A"
+      ],
+      "subjectsLiked": [
+        "Art & Design"
+      ],
+      "sectors": [
+        "SELF",
+        "PRIVATE"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-bjmc",
+      "level": "CLASS_12",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Media",
+      "clusterIds": [
+        "media-communication"
+      ],
+      "name": "BJMC / Mass Communication / Advertising / PR",
+      "eligibility": "Class 12",
+      "duration": "3 years",
+      "durationYears": {
+        "min": 3,
+        "max": 3
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cuet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          20000,
+          100000
+        ],
+        "private": [
+          100000,
+          300000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Reporting",
+        "Editing",
+        "Digital media",
+        "Advertising"
+      ],
+      "nextSteps": [
+        "IIMC PG diploma",
+        "Digital marketing"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Journalist",
+        "PR executive",
+        "Content strategist",
+        "Digital marketer"
+      ],
+      "riasec": [
+        "A",
+        "E",
+        "S"
+      ],
+      "subjectsLiked": [
+        "Languages"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-hotel",
+      "level": "CLASS_12",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Hospitality",
+      "clusterIds": [
+        "hospitality-tourism"
+      ],
+      "name": "Hotel Management - B.Sc Hospitality & Hotel Administration",
+      "eligibility": "Class 12 with English",
+      "duration": "3-4 years",
+      "durationYears": {
+        "min": 3,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "nchm-jee"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          100000,
+          150000
+        ],
+        "private": [
+          150000,
+          400000
+        ],
+        "note": "IHMs ≈ ₹1-1.5L/yr"
+      },
+      "keySubjects": [
+        "Food production",
+        "F&B service",
+        "Front office",
+        "Housekeeping"
+      ],
+      "nextSteps": [
+        "Hotel chains, cruise lines",
+        "MBA Hospitality"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Hotel operations trainee",
+        "Chef",
+        "Front office manager",
+        "Cruise staff"
+      ],
+      "riasec": [
+        "S",
+        "E"
+      ],
+      "subjectsLiked": [
+        "Languages"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-culinary",
+      "level": "CLASS_12",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Hospitality",
+      "clusterIds": [
+        "hospitality-tourism"
+      ],
+      "name": "Culinary arts / Tourism / Event management",
+      "eligibility": "Class 12",
+      "duration": "1-3 years",
+      "durationYears": {
+        "min": 1,
+        "max": 3
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          100000,
+          400000
+        ],
+        "private": [
+          100000,
+          400000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Cooking techniques / travel operations / event planning"
+      ],
+      "nextSteps": [
+        "Own venture"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Chef",
+        "Travel consultant",
+        "Event manager"
+      ],
+      "riasec": [
+        "A",
+        "E",
+        "S"
+      ],
+      "subjectsLiked": [
+        "Art & Design",
+        "Languages"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "SELF",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-cabin-crew",
+      "level": "CLASS_12",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Aviation",
+      "clusterIds": [
+        "aviation-maritime",
+        "hospitality-tourism"
+      ],
+      "name": "Cabin crew / Airport management",
+      "eligibility": "Class 12; height & fitness norms for crew",
+      "duration": "6 months - 3 years",
+      "durationYears": {
+        "min": 0.5,
+        "max": 3
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": [
+          100000,
+          300000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Grooming",
+        "Safety procedures",
+        "Customer service"
+      ],
+      "nextSteps": [
+        "Airline / airport recruitment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Cabin crew",
+        "Airport ground staff"
+      ],
+      "riasec": [
+        "S",
+        "E"
+      ],
+      "subjectsLiked": [
+        "Languages"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-ba",
+      "level": "CLASS_12",
+      "streams": [
+        "ARTS",
+        "ANY"
+      ],
+      "category": "Humanities",
+      "clusterIds": [
+        "social-humanities",
+        "government-civil",
+        "education-teaching"
+      ],
+      "name": "BA (English, History, Political Science, Sociology, Geography, Languages)",
+      "eligibility": "Class 12",
+      "duration": "3-4 years",
+      "durationYears": {
+        "min": 3,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cuet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          2000,
+          50000
+        ],
+        "private": [
+          50000,
+          300000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Major + minor subjects"
+      ],
+      "nextSteps": [
+        "MA, B.Ed",
+        "UPSC / state PSC",
+        "Content & media"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Civil servant",
+        "Teacher",
+        "Content writer",
+        "Researcher"
+      ],
+      "riasec": [
+        "S",
+        "A",
+        "E"
+      ],
+      "subjectsLiked": [
+        "Languages",
+        "Social Sciences"
+      ],
+      "sectors": [
+        "GOVT",
+        "PRIVATE"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-psychology",
+      "level": "CLASS_12",
+      "streams": [
+        "ARTS",
+        "PCB",
+        "ANY"
+      ],
+      "category": "Humanities",
+      "clusterIds": [
+        "social-humanities",
+        "medicine-health"
+      ],
+      "name": "BA / B.Sc Psychology",
+      "eligibility": "Class 12",
+      "duration": "3-4 years",
+      "durationYears": {
+        "min": 3,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cuet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          5000,
+          60000
+        ],
+        "private": [
+          80000,
+          300000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Developmental, social, clinical psychology",
+        "Research methods"
+      ],
+      "nextSteps": [
+        "MA/M.Sc; M.Phil Clinical Psychology (RCI) for clinical practice"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Counsellor",
+        "HR associate",
+        "UX researcher",
+        "Clinical psychologist (after RCI)"
+      ],
+      "riasec": [
+        "S",
+        "I"
+      ],
+      "subjectsLiked": [
+        "Social Sciences",
+        "Biology"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "SELF"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-liberal-arts",
+      "level": "CLASS_12",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Humanities",
+      "clusterIds": [
+        "social-humanities"
+      ],
+      "name": "Liberal Arts (4-year)",
+      "eligibility": "Class 12",
+      "duration": "4 years",
+      "durationYears": {
+        "min": 4,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "perYear",
+        "govt": null,
+        "private": [
+          600000,
+          1000000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Interdisciplinary majors"
+      ],
+      "nextSteps": [
+        "Policy, consulting, research, abroad PG"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Policy analyst",
+        "Consultant"
+      ],
+      "riasec": [
+        "I",
+        "A",
+        "E"
+      ],
+      "subjectsLiked": [
+        "Social Sciences",
+        "Languages"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-bsw",
+      "level": "CLASS_12",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Social work",
+      "clusterIds": [
+        "social-humanities"
+      ],
+      "name": "BSW (Social Work)",
+      "eligibility": "Class 12",
+      "duration": "3 years",
+      "durationYears": {
+        "min": 3,
+        "max": 3
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cuet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          2000,
+          30000
+        ],
+        "private": [
+          30000,
+          100000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Community work",
+        "Social policy",
+        "Field placements"
+      ],
+      "nextSteps": [
+        "MSW (TISS etc.)"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "NGO programme officer",
+        "CSR executive",
+        "Community worker"
+      ],
+      "riasec": [
+        "S"
+      ],
+      "subjectsLiked": [
+        "Social Sciences"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "GOVT"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-teaching",
+      "level": "CLASS_12",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Education",
+      "clusterIds": [
+        "education-teaching"
+      ],
+      "name": "ITEP (4-year integrated B.Ed) / B.El.Ed / D.El.Ed",
+      "eligibility": "Class 12",
+      "duration": "4 / 4 / 2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "ncet"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          5000,
+          50000
+        ],
+        "private": [
+          50000,
+          150000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Pedagogy",
+        "Child development",
+        "Subject teaching"
+      ],
+      "nextSteps": [
+        "CTET / state TET",
+        "KVS / NVS"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "School teacher (PRT/TGT)"
+      ],
+      "riasec": [
+        "S",
+        "A"
+      ],
+      "subjectsLiked": [
+        "Languages",
+        "Social Sciences"
+      ],
+      "sectors": [
+        "GOVT",
+        "PRIVATE"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-bped",
+      "level": "CLASS_12",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Sports",
+      "clusterIds": [
+        "sports-fitness",
+        "education-teaching"
+      ],
+      "name": "B.P.Ed / B.Sc Sports Science",
+      "eligibility": "Class 12 + physical test",
+      "duration": "3-4 years",
+      "durationYears": {
+        "min": 3,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          20000,
+          60000
+        ],
+        "private": [
+          50000,
+          150000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Sports training",
+        "Exercise physiology"
+      ],
+      "nextSteps": [
+        "M.P.Ed",
+        "Coaching certifications"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "PE teacher",
+        "Coach",
+        "Fitness trainer",
+        "Sports analyst"
+      ],
+      "riasec": [
+        "R",
+        "S"
+      ],
+      "subjectsLiked": [
+        "Sports"
+      ],
+      "sectors": [
+        "GOVT",
+        "PRIVATE",
+        "SELF"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-languages",
+      "level": "CLASS_12",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Humanities",
+      "clusterIds": [
+        "social-humanities",
+        "media-communication"
+      ],
+      "name": "Foreign languages (BA)",
+      "eligibility": "Class 12",
+      "duration": "3 years",
+      "durationYears": {
+        "min": 3,
+        "max": 3
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "cuet-ug"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          2000,
+          30000
+        ],
+        "private": [
+          50000,
+          200000
+        ],
+        "note": "JNU, EFLU, DU via CUET"
+      },
+      "keySubjects": [
+        "French, German, Japanese, Spanish, etc."
+      ],
+      "nextSteps": [
+        "MA",
+        "Translation certifications"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Translator",
+        "Interpreter",
+        "Localisation specialist"
+      ],
+      "riasec": [
+        "A",
+        "S"
+      ],
+      "subjectsLiked": [
+        "Languages"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "ABROAD"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-animation",
+      "level": "CLASS_12",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Design",
+      "clusterIds": [
+        "design-creative",
+        "computing-ai"
+      ],
+      "name": "Animation / VFX / Gaming",
+      "eligibility": "Class 12",
+      "duration": "3-4 years",
+      "durationYears": {
+        "min": 3,
+        "max": 4
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "perYear",
+        "govt": null,
+        "private": [
+          100000,
+          400000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "3D modelling",
+        "Animation",
+        "Compositing",
+        "Game design"
+      ],
+      "nextSteps": [
+        "Studio jobs",
+        "Freelance"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "3D artist",
+        "VFX artist",
+        "Game designer"
+      ],
+      "riasec": [
+        "A",
+        "R"
+      ],
+      "subjectsLiked": [
+        "Art & Design",
+        "Computer Science"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "SELF",
+        "ABROAD"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-library-voc",
+      "level": "CLASS_12",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Vocational degree",
+      "clusterIds": [
+        "skilled-trades",
+        "social-humanities"
+      ],
+      "name": "B.Voc / B.Lib.I.Sc / Paralegal courses",
+      "eligibility": "Class 12 (B.Lib after graduation)",
+      "duration": "1-3 years",
+      "durationYears": {
+        "min": 1,
+        "max": 3
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          2000,
+          30000
+        ],
+        "private": [
+          20000,
+          100000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Job-role based curriculum"
+      ],
+      "nextSteps": [
+        "Industry jobs"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Librarian",
+        "Legal assistant",
+        "Sector specialist"
+      ],
+      "riasec": [
+        "C",
+        "R"
+      ],
+      "subjectsLiked": [],
+      "sectors": [
+        "PRIVATE",
+        "GOVT"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "b-govt-12",
+      "level": "CLASS_12",
+      "streams": [
+        "ANY"
+      ],
+      "category": "Government job after 12th",
+      "clusterIds": [
+        "government-civil",
+        "defence-uniformed"
+      ],
+      "name": "Government jobs for 12th pass (SSC CHSL, SSC Steno, RRB NTPC UG, Agniveer, police)",
+      "eligibility": "Class 12 pass; age limits by exam",
+      "duration": "Job",
+      "durationYears": null,
+      "isJob": true,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": null,
+        "note": "Paid jobs - see govtJobs.json"
+      },
+      "keySubjects": [
+        "Exam preparation"
+      ],
+      "nextSteps": [
+        "See government jobs with minimum qualification Class 12"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "LDC / JSA",
+        "Data entry operator",
+        "Stenographer",
+        "Trains clerk",
+        "Constable"
+      ],
+      "riasec": [
+        "C"
+      ],
+      "subjectsLiked": [],
+      "sectors": [
+        "GOVT"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [],
+      "linkedDataset": "govtJobs",
+      "linkedFilter": {
+        "minQualification": "CLASS_12"
+      }
+    },
+    {
+      "id": "i-apprentice",
+      "level": "ITI",
+      "streams": [
+        "ANY"
+      ],
+      "category": "After ITI",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "Apprenticeship (National Apprenticeship Promotion Scheme)",
+      "eligibility": "ITI pass",
+      "duration": "6 months - 2 years",
+      "durationYears": {
+        "min": 0.5,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": null,
+        "note": "Paid stipend"
+      },
+      "keySubjects": [
+        "On-the-job training"
+      ],
+      "nextSteps": [
+        "Permanent jobs in industry / PSUs"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Apprentice → technician"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [],
+      "sectors": [
+        "PRIVATE",
+        "PSU"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "i-rrb",
+      "level": "ITI",
+      "streams": [
+        "ANY"
+      ],
+      "category": "After ITI",
+      "clusterIds": [
+        "government-civil",
+        "skilled-trades"
+      ],
+      "name": "RRB ALP / Technician (Railways)",
+      "eligibility": "ITI in relevant trade; age 18-30/33",
+      "duration": "Job",
+      "durationYears": null,
+      "isJob": true,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": null,
+        "note": "ALP Level 2 (₹19,900 basic)"
+      },
+      "keySubjects": [
+        "CBT 1-2",
+        "CBAT (ALP)"
+      ],
+      "nextSteps": [
+        "Loco Pilot promotions"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Assistant Loco Pilot",
+        "Technician"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "GOVT"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [],
+      "linkedDataset": "govtJobs",
+      "linkedFilter": {
+        "minQualification": "ITI"
+      }
+    },
+    {
+      "id": "i-lateral",
+      "level": "ITI",
+      "streams": [
+        "ANY"
+      ],
+      "category": "After ITI",
+      "clusterIds": [
+        "engineering-tech"
+      ],
+      "name": "Lateral entry to Diploma (2nd year)",
+      "eligibility": "ITI pass (state rules)",
+      "duration": "2 years",
+      "durationYears": {
+        "min": 2,
+        "max": 2
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "polytechnic-entrance"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          5000,
+          30000
+        ],
+        "private": [
+          40000,
+          120000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Diploma subjects"
+      ],
+      "nextSteps": [
+        "JE jobs",
+        "B.E. lateral entry"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Junior engineer"
+      ],
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "GOVT",
+        "PRIVATE"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "i-abroad",
+      "level": "ITI",
+      "streams": [
+        "ANY"
+      ],
+      "category": "After ITI",
+      "clusterIds": [
+        "skilled-trades"
+      ],
+      "name": "Skilled trades abroad (Gulf, Europe, Japan)",
+      "eligibility": "ITI + experience + trade certification",
+      "duration": "Job",
+      "durationYears": null,
+      "isJob": true,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": null,
+        "note": "Emigration and certification costs vary"
+      },
+      "keySubjects": [
+        "Trade test",
+        "Language (for Japan/Europe)"
+      ],
+      "nextSteps": [
+        "Overseas employment"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Welder",
+        "Electrician",
+        "Plumber",
+        "HVAC technician"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [],
+      "sectors": [
+        "ABROAD"
+      ],
+      "outlook": "GROWING",
+      "abroadFriendly": true,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    },
+    {
+      "id": "d-lateral",
+      "level": "DIPLOMA",
+      "streams": [
+        "ANY"
+      ],
+      "category": "After Diploma",
+      "clusterIds": [
+        "engineering-tech"
+      ],
+      "name": "Lateral entry to B.E./B.Tech (2nd year)",
+      "eligibility": "3-year engineering diploma",
+      "duration": "3 years",
+      "durationYears": {
+        "min": 3,
+        "max": 3
+      },
+      "isJob": false,
+      "entranceExamIds": [
+        "lateral-entry"
+      ],
+      "entranceRequired": true,
+      "cost": {
+        "basis": "perYear",
+        "govt": [
+          10000,
+          100000
+        ],
+        "private": [
+          100000,
+          300000
+        ],
+        "note": null
+      },
+      "keySubjects": [
+        "Engineering subjects"
+      ],
+      "nextSteps": [
+        "Engineering careers by branch"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Engineer"
+      ],
+      "riasec": [
+        "I",
+        "R"
+      ],
+      "subjectsLiked": [
+        "Mathematics",
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE",
+        "PSU",
+        "GOVT"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [],
+      "linkedDataset": "engineeringBranches"
+    },
+    {
+      "id": "d-je",
+      "level": "DIPLOMA",
+      "streams": [
+        "ANY"
+      ],
+      "category": "After Diploma",
+      "clusterIds": [
+        "government-civil",
+        "engineering-tech"
+      ],
+      "name": "Junior Engineer jobs (SSC JE, RRB JE, state JE)",
+      "eligibility": "Diploma in Civil/Mechanical/Electrical (by post); age 18-32",
+      "duration": "Job",
+      "durationYears": null,
+      "isJob": true,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": null,
+        "note": "Level 6 (₹35,400 basic)"
+      },
+      "keySubjects": [
+        "CBE Paper 1-2"
+      ],
+      "nextSteps": [
+        "Promotion to AE"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Junior Engineer"
+      ],
+      "riasec": [
+        "R",
+        "C"
+      ],
+      "subjectsLiked": [
+        "Mathematics",
+        "Physics"
+      ],
+      "sectors": [
+        "GOVT"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": [],
+      "linkedDataset": "govtJobs",
+      "linkedFilter": {
+        "minQualification": "DIPLOMA"
+      }
+    },
+    {
+      "id": "d-industry",
+      "level": "DIPLOMA",
+      "streams": [
+        "ANY"
+      ],
+      "category": "After Diploma",
+      "clusterIds": [
+        "engineering-tech",
+        "skilled-trades"
+      ],
+      "name": "Industry jobs (technician, supervisor, draughtsman)",
+      "eligibility": "Diploma",
+      "duration": "Job",
+      "durationYears": null,
+      "isJob": true,
+      "entranceExamIds": [],
+      "entranceRequired": false,
+      "cost": {
+        "basis": "total",
+        "govt": null,
+        "private": null,
+        "note": "Private salaries vary"
+      },
+      "keySubjects": [
+        "On-the-job"
+      ],
+      "nextSteps": [
+        "Supervisor → production / site engineer"
+      ],
+      "nextExamIds": [],
+      "outcomes": [
+        "Technician",
+        "Site supervisor",
+        "CAD draughtsman",
+        "Maintenance engineer"
+      ],
+      "riasec": [
+        "R"
+      ],
+      "subjectsLiked": [
+        "Physics"
+      ],
+      "sectors": [
+        "PRIVATE"
+      ],
+      "outlook": "STABLE",
+      "abroadFriendly": false,
+      "isEstimate": true,
+      "asOfYear": 2026,
+      "sourceIds": []
+    }
+  ]
+}

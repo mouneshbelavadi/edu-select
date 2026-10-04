@@ -1,0 +1,1187 @@
+{
+  "meta": {
+    "dataset": "exams",
+    "description": "Entrance, counselling, professional and eligibility exams referenced by pathways and careers. Government recruitment exams are in govtJobs.json.",
+    "version": "1.0.0",
+    "compiledOn": "2026-10-04",
+    "region": "India",
+    "currency": "INR",
+    "disclaimer": "Curated for EduSelect from official and reputable public sources (compiled 2026-10-04). Fees and private-sector salaries are estimates (isEstimate=true) and must be shown with an 'Estimate' badge. Government pay is from the 7th CPC pay matrix (basic pay, excludes DA/HRA). Exam rules, age limits and fees change every cycle - re-check the official notification before relying on any value.",
+    "sources": [
+      {
+        "id": "nta",
+        "title": "National Testing Agency (JEE Main, NEET-UG, CUET, NCET, NCHM JEE, UGC NET)",
+        "url": "https://nta.ac.in"
+      },
+      {
+        "id": "josaa",
+        "title": "JoSAA counselling (IITs, NITs, IIITs, GFTIs)",
+        "url": "https://josaa.nic.in"
+      },
+      {
+        "id": "jeeadv",
+        "title": "JEE Advanced",
+        "url": "https://jeeadv.ac.in"
+      },
+      {
+        "id": "mcc",
+        "title": "Medical Counselling Committee (NEET-UG AIQ)",
+        "url": "https://mcc.nic.in"
+      },
+      {
+        "id": "dgt",
+        "title": "Directorate General of Training (ITI trades, NCVT)",
+        "url": "https://dgt.gov.in"
+      },
+      {
+        "id": "upsc",
+        "title": "Union Public Service Commission",
+        "url": "https://upsc.gov.in"
+      },
+      {
+        "id": "ssc",
+        "title": "Staff Selection Commission",
+        "url": "https://ssc.gov.in"
+      },
+      {
+        "id": "ibps",
+        "title": "Institute of Banking Personnel Selection",
+        "url": "https://www.ibps.in"
+      }
+    ],
+    "note": "officialSite values point to the conducting body's main site; always link to the current year's notification."
+  },
+  "items": [
+    {
+      "id": "jee-main",
+      "name": "JEE Main",
+      "conductingBody": "National Testing Agency (NTA)",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "B.E./B.Tech at NITs, IIITs, GFTIs (via JoSAA/CSAB) and many state/private colleges; qualifier for JEE Advanced. Paper 2A B.Arch, 2B B.Planning.",
+      "eligibility": "Class 12 with PCM (Physics, Maths compulsory)",
+      "frequency": "Twice a year (January & April sessions)",
+      "officialSite": "https://nta.ac.in",
+      "note": null
+    },
+    {
+      "id": "jee-advanced",
+      "name": "JEE Advanced",
+      "conductingBody": "IITs (organising IIT rotates)",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Admission to IITs (and IISERs/IIST use ranks)",
+      "eligibility": "Top JEE Main qualifiers; max 2 attempts in consecutive years",
+      "frequency": "Once a year (May/June)",
+      "officialSite": "https://jeeadv.ac.in",
+      "note": null
+    },
+    {
+      "id": "josaa",
+      "name": "JoSAA counselling",
+      "conductingBody": "Joint Seat Allocation Authority",
+      "type": "counselling",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Seat allocation for IITs, NITs, IIITs, GFTIs",
+      "eligibility": "JEE Advanced / JEE Main rank; 75% in Class 12 (65% SC/ST) or top-20 percentile of board",
+      "frequency": "Annually (June-July)",
+      "officialSite": "https://josaa.nic.in",
+      "note": null
+    },
+    {
+      "id": "bitsat",
+      "name": "BITSAT",
+      "conductingBody": "BITS Pilani",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "B.E. at BITS Pilani, Goa, Hyderabad",
+      "eligibility": "PCM, 75% aggregate in PCM",
+      "frequency": "Twice a year",
+      "officialSite": "https://www.bitsadmission.com",
+      "note": null
+    },
+    {
+      "id": "viteee",
+      "name": "VITEEE",
+      "conductingBody": "VIT University",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "B.Tech at VIT Vellore, Chennai, AP, Bhopal",
+      "eligibility": "PCM/PCB, 60%",
+      "frequency": "Annually",
+      "officialSite": "https://vit.ac.in",
+      "note": null
+    },
+    {
+      "id": "srmjeee",
+      "name": "SRMJEEE",
+      "conductingBody": "SRM Institute of Science & Technology",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "B.Tech at SRM campuses",
+      "eligibility": "PCM, 50-60%",
+      "frequency": "Multiple phases",
+      "officialSite": "https://www.srmist.edu.in",
+      "note": null
+    },
+    {
+      "id": "met",
+      "name": "MET (Manipal Entrance Test)",
+      "conductingBody": "Manipal Academy of Higher Education",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "B.Tech at Manipal Institute of Technology",
+      "eligibility": "PCM",
+      "frequency": "Multiple sessions",
+      "officialSite": "https://manipal.edu",
+      "note": null
+    },
+    {
+      "id": "kcet",
+      "name": "KCET",
+      "conductingBody": "Karnataka Examinations Authority (KEA)",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Engineering, pharmacy, agriculture, B.Arch seats in Karnataka (state quota)",
+      "eligibility": "2nd PUC with PCM (engineering); Karnataka eligibility rules",
+      "frequency": "Annually (April)",
+      "officialSite": "https://cetonline.karnataka.gov.in/kea/",
+      "note": null
+    },
+    {
+      "id": "comedk",
+      "name": "COMEDK UGET",
+      "conductingBody": "Consortium of Medical, Engineering & Dental Colleges of Karnataka",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "B.E. in Karnataka private colleges (all-India)",
+      "eligibility": "PCM, 45%",
+      "frequency": "Annually (May)",
+      "officialSite": "https://www.comedk.org",
+      "note": null
+    },
+    {
+      "id": "mht-cet",
+      "name": "MHT CET",
+      "conductingBody": "State CET Cell, Maharashtra",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Engineering, pharmacy, agriculture in Maharashtra (via CAP)",
+      "eligibility": "PCM/PCB",
+      "frequency": "Annually",
+      "officialSite": "https://cetcell.mahacet.org",
+      "note": null
+    },
+    {
+      "id": "ap-eapcet",
+      "name": "AP EAPCET",
+      "conductingBody": "APSCHE (conducted by JNTU Kakinada)",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Engineering, agriculture, pharmacy in Andhra Pradesh",
+      "eligibility": "MPC/BiPC",
+      "frequency": "Annually",
+      "officialSite": "https://cets.apsche.ap.gov.in",
+      "note": null
+    },
+    {
+      "id": "tg-eapcet",
+      "name": "TG EAPCET",
+      "conductingBody": "TGCHE (conducted by JNTU Hyderabad)",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Engineering, agriculture, pharmacy in Telangana",
+      "eligibility": "MPC/BiPC",
+      "frequency": "Annually",
+      "officialSite": "https://eapcet.tgche.ac.in",
+      "note": null
+    },
+    {
+      "id": "wbjee",
+      "name": "WBJEE",
+      "conductingBody": "West Bengal Joint Entrance Examinations Board",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Engineering, pharmacy, architecture in West Bengal",
+      "eligibility": "PCM, 45%",
+      "frequency": "Annually",
+      "officialSite": "https://wbjeeb.nic.in",
+      "note": null
+    },
+    {
+      "id": "keam",
+      "name": "KEAM",
+      "conductingBody": "Commissioner for Entrance Examinations, Kerala",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Engineering, medical-allied, architecture in Kerala",
+      "eligibility": "PCM 45% (engineering)",
+      "frequency": "Annually",
+      "officialSite": "https://cee.kerala.gov.in",
+      "note": null
+    },
+    {
+      "id": "ojee",
+      "name": "OJEE",
+      "conductingBody": "Odisha Joint Entrance Examination Committee",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Engineering, pharmacy, MBA/MCA, lateral entry in Odisha",
+      "eligibility": "PCM",
+      "frequency": "Annually",
+      "officialSite": "https://ojee.nic.in",
+      "note": null
+    },
+    {
+      "id": "gujcet",
+      "name": "GUJCET",
+      "conductingBody": "Gujarat Secondary & Higher Secondary Education Board",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Engineering and pharmacy in Gujarat (admission via ACPC)",
+      "eligibility": "PCM/PCB",
+      "frequency": "Annually",
+      "officialSite": "https://gseb.org",
+      "note": null
+    },
+    {
+      "id": "tnea",
+      "name": "TNEA",
+      "conductingBody": "Directorate of Technical Education, Tamil Nadu",
+      "type": "counselling",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Engineering in Tamil Nadu - merit on Class 12 marks, no entrance test",
+      "eligibility": "PCM marks",
+      "frequency": "Annually",
+      "officialSite": "https://www.tneaonline.org",
+      "note": null
+    },
+    {
+      "id": "ugeac",
+      "name": "UGEAC (Bihar)",
+      "conductingBody": "Bihar Combined Entrance Competitive Examination Board",
+      "type": "counselling",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Engineering in Bihar via JEE Main rank",
+      "eligibility": "JEE Main rank",
+      "frequency": "Annually",
+      "officialSite": "https://bceceboard.bihar.gov.in",
+      "note": null
+    },
+    {
+      "id": "uptac",
+      "name": "UPTAC",
+      "conductingBody": "Dr. A.P.J. Abdul Kalam Technical University (AKTU)",
+      "type": "counselling",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Engineering in Uttar Pradesh via JEE Main rank",
+      "eligibility": "JEE Main rank",
+      "frequency": "Annually",
+      "officialSite": "https://uptac.admissions.nic.in",
+      "note": null
+    },
+    {
+      "id": "jcece",
+      "name": "JCECE",
+      "conductingBody": "Jharkhand Combined Entrance Competitive Examination Board",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Engineering & other courses in Jharkhand (JEE Main also used)",
+      "eligibility": "PCM",
+      "frequency": "Annually",
+      "officialSite": "https://jceceb.jharkhand.gov.in",
+      "note": null
+    },
+    {
+      "id": "assam-cee",
+      "name": "Assam CEE",
+      "conductingBody": "Assam Science and Technology University",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Engineering in Assam government colleges",
+      "eligibility": "PCM",
+      "frequency": "Annually",
+      "officialSite": null,
+      "note": null
+    },
+    {
+      "id": "gcet-goa",
+      "name": "GCET (Goa)",
+      "conductingBody": "Directorate of Technical Education, Goa",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Engineering & pharmacy in Goa",
+      "eligibility": "PCM",
+      "frequency": "Annually",
+      "officialSite": null,
+      "note": null
+    },
+    {
+      "id": "tjee",
+      "name": "TJEE",
+      "conductingBody": "Tripura Board of Joint Entrance Examination",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Engineering & medical-allied seats in Tripura",
+      "eligibility": "PCM/PCB",
+      "frequency": "Annually",
+      "officialSite": null,
+      "note": null
+    },
+    {
+      "id": "reap",
+      "name": "REAP (Rajasthan)",
+      "conductingBody": "Rajasthan Engineering Admission Process",
+      "type": "counselling",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Engineering admission in Rajasthan on Class 12 / JEE Main",
+      "eligibility": "PCM",
+      "frequency": "Annually",
+      "officialSite": null,
+      "note": null
+    },
+    {
+      "id": "hstes",
+      "name": "HSTES counselling",
+      "conductingBody": "Haryana State Technical Education Society",
+      "type": "counselling",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Engineering in Haryana via JEE Main",
+      "eligibility": "JEE Main rank",
+      "frequency": "Annually",
+      "officialSite": null,
+      "note": null
+    },
+    {
+      "id": "lateral-entry",
+      "name": "Diploma lateral-entry exams (DCET, AP/TS ECET, Maharashtra DSE, TNEA-LE, Kerala LET, WB JELET, OJEE-LE, ACPDC D2D)",
+      "conductingBody": "State technical education bodies",
+      "type": "entrance",
+      "forLevels": [
+        "DIPLOMA"
+      ],
+      "purpose": "Direct admission of diploma holders to B.E./B.Tech 2nd year",
+      "eligibility": "3-year engineering diploma",
+      "frequency": "Annually",
+      "officialSite": null,
+      "note": null
+    },
+    {
+      "id": "polytechnic-entrance",
+      "name": "State polytechnic admission (entrance or Class 10 merit)",
+      "conductingBody": "State Directorates of Technical Education",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_10"
+      ],
+      "purpose": "Admission to 3-year diploma",
+      "eligibility": "Class 10",
+      "frequency": "Annually",
+      "officialSite": null,
+      "note": null
+    },
+    {
+      "id": "iti-admission",
+      "name": "ITI admission (merit)",
+      "conductingBody": "State DTE / DGT",
+      "type": "counselling",
+      "forLevels": [
+        "CLASS_10"
+      ],
+      "purpose": "Admission to NCVT/SCVT ITI trades",
+      "eligibility": "Class 8 or 10, age 14+",
+      "frequency": "Annually",
+      "officialSite": "https://dgt.gov.in",
+      "note": null
+    },
+    {
+      "id": "nata",
+      "name": "NATA",
+      "conductingBody": "Council of Architecture",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "B.Arch admission",
+      "eligibility": "PCM 50%",
+      "frequency": "Multiple attempts per year",
+      "officialSite": "https://www.nata.in",
+      "note": null
+    },
+    {
+      "id": "iat",
+      "name": "IISER Aptitude Test (IAT)",
+      "conductingBody": "IISERs",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "BS-MS at IISERs",
+      "eligibility": "Class 12 Science, 60%",
+      "frequency": "Annually",
+      "officialSite": "https://www.iiseradmission.in",
+      "note": null
+    },
+    {
+      "id": "nest",
+      "name": "NEST",
+      "conductingBody": "NISER Bhubaneswar & UM-DAE CEBS",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Integrated M.Sc at NISER, CEBS",
+      "eligibility": "Class 12 Science, 60%",
+      "frequency": "Annually",
+      "officialSite": "https://www.nestexam.in",
+      "note": null
+    },
+    {
+      "id": "isi-admission",
+      "name": "ISI admission test",
+      "conductingBody": "Indian Statistical Institute",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "B.Stat / B.Math (Hons)",
+      "eligibility": "Class 12 with Maths",
+      "frequency": "Annually",
+      "officialSite": "https://www.isical.ac.in",
+      "note": null
+    },
+    {
+      "id": "cmi-entrance",
+      "name": "CMI entrance",
+      "conductingBody": "Chennai Mathematical Institute",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "B.Sc Maths/CS/Physics",
+      "eligibility": "Class 12 with Maths",
+      "frequency": "Annually",
+      "officialSite": "https://www.cmi.ac.in",
+      "note": null
+    },
+    {
+      "id": "cuet-ug",
+      "name": "CUET-UG",
+      "conductingBody": "NTA",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "UG admission at central, state and private universities (DU, JNU, BHU etc.), ICAR agriculture seats",
+      "eligibility": "Class 12 (any stream; subject rules by course)",
+      "frequency": "Annually (May-June)",
+      "officialSite": "https://nta.ac.in",
+      "note": null
+    },
+    {
+      "id": "neet-ug",
+      "name": "NEET-UG",
+      "conductingBody": "NTA",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "MBBS, BDS, AYUSH (BAMS, BHMS, BUMS, BSMS, BNYS), BVSc & AH, some B.Sc Nursing",
+      "eligibility": "Class 12 PCB with English; age 17+",
+      "frequency": "Once a year (May)",
+      "officialSite": "https://nta.ac.in",
+      "note": null
+    },
+    {
+      "id": "aiims-paramedical",
+      "name": "AIIMS paramedical / B.Sc Nursing",
+      "conductingBody": "AIIMS New Delhi",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "B.Sc (Hons) Nursing, paramedical courses at AIIMS",
+      "eligibility": "Class 12 PCB",
+      "frequency": "Annually",
+      "officialSite": "https://www.aiimsexams.ac.in",
+      "note": null
+    },
+    {
+      "id": "ca-foundation",
+      "name": "CA Foundation",
+      "conductingBody": "ICAI",
+      "type": "professional",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Entry to Chartered Accountancy",
+      "eligibility": "Class 12 (any stream)",
+      "frequency": "Multiple times a year",
+      "officialSite": "https://www.icai.org",
+      "note": null
+    },
+    {
+      "id": "cseet",
+      "name": "CSEET",
+      "conductingBody": "ICSI",
+      "type": "professional",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Entry to Company Secretary course",
+      "eligibility": "Class 12",
+      "frequency": "Multiple times a year",
+      "officialSite": "https://www.icsi.edu",
+      "note": null
+    },
+    {
+      "id": "cma-foundation",
+      "name": "CMA Foundation",
+      "conductingBody": "ICMAI",
+      "type": "professional",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Entry to Cost & Management Accountancy",
+      "eligibility": "Class 12",
+      "frequency": "Twice a year",
+      "officialSite": "https://icmai.in",
+      "note": null
+    },
+    {
+      "id": "acet",
+      "name": "ACET",
+      "conductingBody": "Institute of Actuaries of India",
+      "type": "professional",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Entry to actuarial science",
+      "eligibility": "Class 12 with Maths/Statistics",
+      "frequency": "Multiple times a year",
+      "officialSite": "https://www.actuariesindia.org",
+      "note": null
+    },
+    {
+      "id": "ipmat",
+      "name": "IPMAT",
+      "conductingBody": "IIM Indore / IIM Rohtak",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "5-year Integrated Programme in Management at IIMs",
+      "eligibility": "Class 12, 60%",
+      "frequency": "Annually",
+      "officialSite": "https://www.iimidr.ac.in",
+      "note": null
+    },
+    {
+      "id": "jipmat",
+      "name": "JIPMAT",
+      "conductingBody": "NTA",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "IPM at IIM Bodh Gaya and IIM Jammu",
+      "eligibility": "Class 12",
+      "frequency": "Annually",
+      "officialSite": "https://nta.ac.in",
+      "note": null
+    },
+    {
+      "id": "clat",
+      "name": "CLAT",
+      "conductingBody": "Consortium of National Law Universities",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12",
+        "UG_OTHER"
+      ],
+      "purpose": "5-year integrated LLB at NLUs (UG) and LLM (PG)",
+      "eligibility": "Class 12, 45% (40% SC/ST)",
+      "frequency": "Once a year (December)",
+      "officialSite": "https://consortiumofnlus.ac.in",
+      "note": null
+    },
+    {
+      "id": "ailet",
+      "name": "AILET",
+      "conductingBody": "National Law University Delhi",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "BA LLB at NLU Delhi",
+      "eligibility": "Class 12, 45%",
+      "frequency": "Annually (December)",
+      "officialSite": "https://nationallawuniversitydelhi.in",
+      "note": null
+    },
+    {
+      "id": "lsat-india",
+      "name": "LSAT-India",
+      "conductingBody": "LSAC Global",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Law admission at several private universities",
+      "eligibility": "Class 12",
+      "frequency": "Varies",
+      "officialSite": null,
+      "note": "Verify availability for the current cycle."
+    },
+    {
+      "id": "mh-cet-law",
+      "name": "MH CET Law",
+      "conductingBody": "State CET Cell, Maharashtra",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "5-year LLB in Maharashtra",
+      "eligibility": "Class 12, 45%",
+      "frequency": "Annually",
+      "officialSite": "https://cetcell.mahacet.org",
+      "note": null
+    },
+    {
+      "id": "nift",
+      "name": "NIFT entrance",
+      "conductingBody": "National Institute of Fashion Technology",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "B.Des and B.FTech at NIFT campuses",
+      "eligibility": "Class 12",
+      "frequency": "Annually",
+      "officialSite": "https://www.nift.ac.in",
+      "note": null
+    },
+    {
+      "id": "nid-dat",
+      "name": "NID DAT",
+      "conductingBody": "National Institute of Design",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "B.Des at NID campuses",
+      "eligibility": "Class 12",
+      "frequency": "Annually",
+      "officialSite": "https://admissions.nid.edu",
+      "note": null
+    },
+    {
+      "id": "uceed",
+      "name": "UCEED",
+      "conductingBody": "IIT Bombay",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "B.Des at IITs and other institutes",
+      "eligibility": "Class 12 (any stream)",
+      "frequency": "Annually (January)",
+      "officialSite": "https://www.uceed.iitb.ac.in",
+      "note": null
+    },
+    {
+      "id": "nchm-jee",
+      "name": "NCHM JEE",
+      "conductingBody": "NTA",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "B.Sc Hospitality & Hotel Administration at IHMs",
+      "eligibility": "Class 12 (any stream) with English",
+      "frequency": "Annually",
+      "officialSite": "https://nta.ac.in",
+      "note": null
+    },
+    {
+      "id": "ncet",
+      "name": "NCET (ITEP)",
+      "conductingBody": "NTA",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "4-year Integrated Teacher Education Programme",
+      "eligibility": "Class 12",
+      "frequency": "Annually",
+      "officialSite": "https://nta.ac.in",
+      "note": null
+    },
+    {
+      "id": "nda",
+      "name": "UPSC NDA & NA",
+      "conductingBody": "UPSC",
+      "type": "government-recruitment",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Army, Navy, Air Force officer training (NDA/INA)",
+      "eligibility": "Class 12 (PCM for Navy & Air Force); age 16.5-19.5; unmarried",
+      "frequency": "Twice a year",
+      "officialSite": "https://upsc.gov.in",
+      "note": null
+    },
+    {
+      "id": "army-tes",
+      "name": "Army TES (10+2 Technical Entry)",
+      "conductingBody": "Indian Army",
+      "type": "government-recruitment",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Permanent commission as Army officer with B.Tech",
+      "eligibility": "PCM 60% + JEE Main appeared",
+      "frequency": "Twice a year",
+      "officialSite": "https://joinindianarmy.nic.in",
+      "note": null
+    },
+    {
+      "id": "navy-btech",
+      "name": "Navy 10+2 B.Tech Cadet Entry",
+      "conductingBody": "Indian Navy",
+      "type": "government-recruitment",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "B.Tech at Indian Naval Academy and commission",
+      "eligibility": "PCM 70%, English 50%, JEE Main rank",
+      "frequency": "Twice a year",
+      "officialSite": "https://www.joinindiannavy.gov.in",
+      "note": null
+    },
+    {
+      "id": "agniveer-army",
+      "name": "Agniveer (Army)",
+      "conductingBody": "Indian Army",
+      "type": "government-recruitment",
+      "forLevels": [
+        "CLASS_10",
+        "CLASS_12"
+      ],
+      "purpose": "4-year Agniveer service (GD, Tradesman, Technical, Clerk)",
+      "eligibility": "GD: Class 10 with 45% aggregate & 33% per subject; Tradesman: Class 8/10; age 17.5-21",
+      "frequency": "Annually",
+      "officialSite": "https://joinindianarmy.nic.in",
+      "note": null
+    },
+    {
+      "id": "agniveer-navy",
+      "name": "Agniveer (Navy) MR / SSR",
+      "conductingBody": "Indian Navy",
+      "type": "government-recruitment",
+      "forLevels": [
+        "CLASS_10",
+        "CLASS_12"
+      ],
+      "purpose": "4-year Agniveer service",
+      "eligibility": "MR: Class 10; SSR: Class 12 PCM",
+      "frequency": "Twice a year",
+      "officialSite": "https://www.joinindiannavy.gov.in",
+      "note": null
+    },
+    {
+      "id": "agniveer-vayu",
+      "name": "Agniveer Vayu",
+      "conductingBody": "Indian Air Force",
+      "type": "government-recruitment",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "4-year Agniveer service in the IAF",
+      "eligibility": "Class 12 PCM 50% (Science) or any stream (non-science)",
+      "frequency": "Twice a year",
+      "officialSite": "https://agnipathvayu.cdac.in",
+      "note": null
+    },
+    {
+      "id": "icg-navik",
+      "name": "Coast Guard Navik (GD / DB)",
+      "conductingBody": "Indian Coast Guard",
+      "type": "government-recruitment",
+      "forLevels": [
+        "CLASS_10",
+        "CLASS_12"
+      ],
+      "purpose": "Navik General Duty (12th PCM) / Domestic Branch (10th)",
+      "eligibility": "Age 18-22",
+      "frequency": "Twice a year",
+      "officialSite": "https://joinindiancoastguard.cdac.in",
+      "note": null
+    },
+    {
+      "id": "aissee",
+      "name": "AISSEE (Sainik School entrance)",
+      "conductingBody": "NTA",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_10"
+      ],
+      "purpose": "Admission to Sainik Schools at Class 6 / 9 (NDA feeder)",
+      "eligibility": "Age-based",
+      "frequency": "Annually",
+      "officialSite": "https://nta.ac.in",
+      "note": null
+    },
+    {
+      "id": "imu-cet",
+      "name": "IMU CET",
+      "conductingBody": "Indian Maritime University",
+      "type": "entrance",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "B.Sc Nautical Science, B.Tech Marine Engineering, DNS",
+      "eligibility": "PCM 60%, English 50%",
+      "frequency": "Annually",
+      "officialSite": "https://www.imu.edu.in",
+      "note": null
+    },
+    {
+      "id": "dgca-cpl",
+      "name": "DGCA CPL exams + Class 1 medical",
+      "conductingBody": "Directorate General of Civil Aviation",
+      "type": "professional",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "purpose": "Commercial Pilot Licence (theory papers + flying hours)",
+      "eligibility": "Class 12 PCM, age 17+, Class 1 medical",
+      "frequency": "On demand",
+      "officialSite": "https://www.dgca.gov.in",
+      "note": null
+    },
+    {
+      "id": "gate",
+      "name": "GATE",
+      "conductingBody": "IISc / IITs (organising institute rotates)",
+      "type": "entrance",
+      "forLevels": [
+        "UG_ENGG",
+        "UG_OTHER"
+      ],
+      "purpose": "M.Tech/ME (COAP/CCMT), PSU recruitment, some PhDs",
+      "eligibility": "B.E./B.Tech, B.Sc (4-yr), M.Sc etc.; final-year students eligible",
+      "frequency": "Annually (February)",
+      "officialSite": null,
+      "note": "Each year's site is gateYYYY.<organising-iit>.ac.in"
+    },
+    {
+      "id": "cat",
+      "name": "CAT",
+      "conductingBody": "IIMs",
+      "type": "entrance",
+      "forLevels": [
+        "UG_ENGG",
+        "UG_OTHER",
+        "PROFESSIONAL"
+      ],
+      "purpose": "MBA/PGP at IIMs and 1,000+ B-schools",
+      "eligibility": "Graduate, 50%",
+      "frequency": "Annually (November)",
+      "officialSite": "https://iimcat.ac.in",
+      "note": null
+    },
+    {
+      "id": "xat",
+      "name": "XAT",
+      "conductingBody": "XLRI",
+      "type": "entrance",
+      "forLevels": [
+        "UG_ENGG",
+        "UG_OTHER"
+      ],
+      "purpose": "MBA/PGDM at XLRI and others",
+      "eligibility": "Graduate",
+      "frequency": "Annually (January)",
+      "officialSite": "https://xatonline.in",
+      "note": null
+    },
+    {
+      "id": "gmat",
+      "name": "GMAT",
+      "conductingBody": "GMAC",
+      "type": "entrance",
+      "forLevels": [
+        "UG_ENGG",
+        "UG_OTHER"
+      ],
+      "purpose": "MBA in India (ISB etc.) and abroad",
+      "eligibility": "Graduate",
+      "frequency": "On demand",
+      "officialSite": "https://www.mba.com",
+      "note": null
+    },
+    {
+      "id": "gre",
+      "name": "GRE (+ TOEFL/IELTS)",
+      "conductingBody": "ETS",
+      "type": "entrance",
+      "forLevels": [
+        "UG_ENGG",
+        "UG_OTHER"
+      ],
+      "purpose": "MS / PhD abroad",
+      "eligibility": "Graduate",
+      "frequency": "On demand",
+      "officialSite": "https://www.ets.org/gre",
+      "note": null
+    },
+    {
+      "id": "iit-jam",
+      "name": "IIT JAM",
+      "conductingBody": "IITs / IISc (organising institute rotates)",
+      "type": "entrance",
+      "forLevels": [
+        "UG_OTHER"
+      ],
+      "purpose": "M.Sc at IITs, IISc, NITs",
+      "eligibility": "B.Sc",
+      "frequency": "Annually (February)",
+      "officialSite": null,
+      "note": null
+    },
+    {
+      "id": "cuet-pg",
+      "name": "CUET-PG",
+      "conductingBody": "NTA",
+      "type": "entrance",
+      "forLevels": [
+        "UG_OTHER",
+        "UG_ENGG"
+      ],
+      "purpose": "PG admission at central and other universities",
+      "eligibility": "Graduate",
+      "frequency": "Annually",
+      "officialSite": "https://nta.ac.in",
+      "note": null
+    },
+    {
+      "id": "nimcet",
+      "name": "NIMCET",
+      "conductingBody": "NITs (rotating)",
+      "type": "entrance",
+      "forLevels": [
+        "UG_OTHER"
+      ],
+      "purpose": "MCA at NITs",
+      "eligibility": "Graduate with Maths",
+      "frequency": "Annually",
+      "officialSite": "https://nimcet.admissions.nic.in",
+      "note": null
+    },
+    {
+      "id": "neet-pg",
+      "name": "NEET-PG",
+      "conductingBody": "National Board of Examinations in Medical Sciences (NBEMS)",
+      "type": "entrance",
+      "forLevels": [
+        "PROFESSIONAL"
+      ],
+      "purpose": "MD / MS / DNB",
+      "eligibility": "MBBS + internship",
+      "frequency": "Annually",
+      "officialSite": "https://natboard.edu.in",
+      "note": null
+    },
+    {
+      "id": "neet-mds",
+      "name": "NEET-MDS",
+      "conductingBody": "NBEMS",
+      "type": "entrance",
+      "forLevels": [
+        "PROFESSIONAL"
+      ],
+      "purpose": "MDS",
+      "eligibility": "BDS + internship",
+      "frequency": "Annually",
+      "officialSite": "https://natboard.edu.in",
+      "note": null
+    },
+    {
+      "id": "gpat",
+      "name": "GPAT",
+      "conductingBody": "NBEMS",
+      "type": "entrance",
+      "forLevels": [
+        "PROFESSIONAL"
+      ],
+      "purpose": "M.Pharm admission and scholarship",
+      "eligibility": "B.Pharm",
+      "frequency": "Annually",
+      "officialSite": "https://natboard.edu.in",
+      "note": null
+    },
+    {
+      "id": "aiapget",
+      "name": "AIAPGET",
+      "conductingBody": "NTA",
+      "type": "entrance",
+      "forLevels": [
+        "PROFESSIONAL"
+      ],
+      "purpose": "MD/MS in AYUSH",
+      "eligibility": "BAMS/BHMS/BUMS/BSMS",
+      "frequency": "Annually",
+      "officialSite": "https://nta.ac.in",
+      "note": null
+    },
+    {
+      "id": "icar-pg",
+      "name": "ICAR AIEEA-PG / AICE-JRF/SRF",
+      "conductingBody": "NTA",
+      "type": "entrance",
+      "forLevels": [
+        "UG_OTHER"
+      ],
+      "purpose": "M.Sc / PhD in agriculture at ICAR institutes",
+      "eligibility": "B.Sc Agriculture and allied",
+      "frequency": "Annually",
+      "officialSite": "https://nta.ac.in",
+      "note": null
+    },
+    {
+      "id": "gat-b",
+      "name": "GAT-B",
+      "conductingBody": "NTA",
+      "type": "entrance",
+      "forLevels": [
+        "UG_OTHER"
+      ],
+      "purpose": "PG biotechnology programmes (DBT)",
+      "eligibility": "B.Sc / B.Tech life sciences",
+      "frequency": "Annually",
+      "officialSite": "https://nta.ac.in",
+      "note": null
+    },
+    {
+      "id": "ceed",
+      "name": "CEED",
+      "conductingBody": "IIT Bombay",
+      "type": "entrance",
+      "forLevels": [
+        "UG_OTHER"
+      ],
+      "purpose": "M.Des at IITs and IISc",
+      "eligibility": "Graduate",
+      "frequency": "Annually",
+      "officialSite": "https://www.ceed.iitb.ac.in",
+      "note": null
+    },
+    {
+      "id": "clat-pg",
+      "name": "CLAT PG",
+      "conductingBody": "Consortium of NLUs",
+      "type": "entrance",
+      "forLevels": [
+        "PROFESSIONAL"
+      ],
+      "purpose": "LLM at NLUs; also used by PSUs for legal officers",
+      "eligibility": "LLB",
+      "frequency": "Annually",
+      "officialSite": "https://consortiumofnlus.ac.in",
+      "note": null
+    },
+    {
+      "id": "aibe",
+      "name": "AIBE (All India Bar Examination)",
+      "conductingBody": "Bar Council of India",
+      "type": "professional",
+      "forLevels": [
+        "PROFESSIONAL"
+      ],
+      "purpose": "Certificate of Practice for advocates",
+      "eligibility": "LLB graduate enrolled with a State Bar Council",
+      "frequency": "Twice a year",
+      "officialSite": null,
+      "note": null
+    },
+    {
+      "id": "ugc-net",
+      "name": "UGC NET / JRF",
+      "conductingBody": "NTA",
+      "type": "eligibility-test",
+      "forLevels": [
+        "PG"
+      ],
+      "purpose": "Assistant Professor eligibility and Junior Research Fellowship",
+      "eligibility": "Postgraduate, 55% (50% reserved)",
+      "frequency": "Twice a year",
+      "officialSite": "https://nta.ac.in",
+      "note": null
+    },
+    {
+      "id": "csir-net",
+      "name": "CSIR NET",
+      "conductingBody": "NTA",
+      "type": "eligibility-test",
+      "forLevels": [
+        "PG"
+      ],
+      "purpose": "JRF / Lectureship in sciences",
+      "eligibility": "M.Sc or equivalent",
+      "frequency": "Twice a year",
+      "officialSite": "https://nta.ac.in",
+      "note": null
+    }
+  ]
+}

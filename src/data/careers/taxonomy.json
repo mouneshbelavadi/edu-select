@@ -1,0 +1,582 @@
+{
+  "meta": {
+    "dataset": "taxonomy",
+    "description": "Qualification levels, streams, RIASEC interests, filter definitions, outlook rules and aptitude fit for the Career Explorer.",
+    "version": "1.0.0",
+    "compiledOn": "2026-10-04",
+    "region": "India",
+    "currency": "INR",
+    "disclaimer": "Curated for EduSelect from official and reputable public sources (compiled 2026-10-04). Fees and private-sector salaries are estimates (isEstimate=true) and must be shown with an 'Estimate' badge. Government pay is from the 7th CPC pay matrix (basic pay, excludes DA/HRA). Exam rules, age limits and fees change every cycle - re-check the official notification before relying on any value.",
+    "sources": [
+      {
+        "id": "isr2026",
+        "title": "India Skills Report 2026 summary (InsightsIAS)",
+        "url": "https://www.insightsonindia.com/2025/11/14/the-india-skills-report-2026/"
+      },
+      {
+        "id": "wef2025",
+        "title": "WEF Future of Jobs Report 2025",
+        "url": "https://reports.weforum.org/docs/WEF_Future_of_Jobs_Report_2025.pdf"
+      },
+      {
+        "id": "wef2025-story",
+        "title": "WEF: fastest growing and declining jobs",
+        "url": "https://www.weforum.org/stories/2025/01/future-of-jobs-report-2025-the-fastest-growing-and-declining-jobs/"
+      }
+    ]
+  },
+  "qualificationLevels": [
+    {
+      "id": "CLASS_10",
+      "label": "Class 10 (SSLC / Matric)",
+      "shortLabel": "After 10th",
+      "description": "Choosing a stream for Class 11-12 / PU, or a diploma, ITI or early job route.",
+      "nextLevels": [
+        "CLASS_12",
+        "ITI",
+        "DIPLOMA"
+      ]
+    },
+    {
+      "id": "CLASS_12",
+      "label": "Class 11-12 / PU (Pre-University)",
+      "shortLabel": "After 12th / PU",
+      "description": "Choosing a degree, professional course, entrance exam or job after Class 12 / 2nd PU.",
+      "nextLevels": [
+        "UG_ENGG",
+        "UG_OTHER",
+        "PROFESSIONAL"
+      ]
+    },
+    {
+      "id": "ITI",
+      "label": "ITI (Industrial Training Institute)",
+      "shortLabel": "After ITI",
+      "description": "Apprenticeship, government technician jobs or lateral entry to diploma.",
+      "nextLevels": [
+        "DIPLOMA"
+      ]
+    },
+    {
+      "id": "DIPLOMA",
+      "label": "Diploma / Polytechnic",
+      "shortLabel": "After Diploma",
+      "description": "Junior Engineer jobs or lateral entry into B.E./B.Tech 2nd year.",
+      "nextLevels": [
+        "UG_ENGG"
+      ]
+    },
+    {
+      "id": "UG_ENGG",
+      "label": "B.E. / B.Tech (Engineering)",
+      "shortLabel": "Engineering student / graduate",
+      "description": "Jobs by branch, PSUs via GATE, government exams, higher studies and non-core careers.",
+      "nextLevels": [
+        "PG"
+      ]
+    },
+    {
+      "id": "UG_OTHER",
+      "label": "Other graduate (B.Sc, B.Com, BA, BBA, BCA, etc.)",
+      "shortLabel": "Other graduate",
+      "description": "Jobs, government exams and postgraduate options by degree.",
+      "nextLevels": [
+        "PG"
+      ]
+    },
+    {
+      "id": "PROFESSIONAL",
+      "label": "Professional degree (MBBS, LLB, B.Pharm, B.Arch, Nursing, etc.)",
+      "shortLabel": "Professional degree",
+      "description": "Licensing, practice, government posts and specialisation.",
+      "nextLevels": [
+        "PG"
+      ]
+    },
+    {
+      "id": "PG",
+      "label": "Postgraduate (M.Tech, M.Sc, MA, MBA, MCA, etc.)",
+      "shortLabel": "Postgraduate",
+      "description": "Research, teaching (UGC NET), specialist and senior roles.",
+      "nextLevels": []
+    }
+  ],
+  "streams": [
+    {
+      "id": "PCM",
+      "label": "Science - PCM (Physics, Chemistry, Maths)",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "subjects": [
+        "Physics",
+        "Chemistry",
+        "Mathematics",
+        "English"
+      ]
+    },
+    {
+      "id": "PCB",
+      "label": "Science - PCB (Physics, Chemistry, Biology)",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "subjects": [
+        "Physics",
+        "Chemistry",
+        "Biology",
+        "English"
+      ]
+    },
+    {
+      "id": "PCMB",
+      "label": "Science - PCMB (Physics, Chemistry, Maths, Biology)",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "subjects": [
+        "Physics",
+        "Chemistry",
+        "Mathematics",
+        "Biology"
+      ]
+    },
+    {
+      "id": "PCMC",
+      "label": "Science - PCMC / PCM + Computer Science",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "subjects": [
+        "Physics",
+        "Chemistry",
+        "Mathematics",
+        "Computer Science"
+      ]
+    },
+    {
+      "id": "COMMERCE_MATHS",
+      "label": "Commerce with Maths",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "subjects": [
+        "Accountancy",
+        "Business Studies",
+        "Economics",
+        "Mathematics"
+      ]
+    },
+    {
+      "id": "COMMERCE_NO_MATHS",
+      "label": "Commerce without Maths",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "subjects": [
+        "Accountancy",
+        "Business Studies",
+        "Economics"
+      ]
+    },
+    {
+      "id": "ARTS",
+      "label": "Arts / Humanities",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "subjects": [
+        "History",
+        "Political Science",
+        "Geography",
+        "Psychology",
+        "Sociology",
+        "Economics",
+        "Languages"
+      ]
+    },
+    {
+      "id": "VOCATIONAL",
+      "label": "Vocational (NSQF subject)",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "subjects": [
+        "Academic core",
+        "IT/ITeS",
+        "Retail",
+        "Healthcare",
+        "Automotive",
+        "Agriculture",
+        "Tourism"
+      ]
+    },
+    {
+      "id": "ANY",
+      "label": "Any stream",
+      "forLevels": [
+        "CLASS_12"
+      ],
+      "subjects": []
+    }
+  ],
+  "riasec": [
+    {
+      "code": "R",
+      "label": "Realistic (Doer)",
+      "description": "Hands-on work with tools, machines, outdoors, building and fixing.",
+      "examples": [
+        "Mechanical engineer",
+        "Electrician",
+        "Pilot",
+        "Agriculture officer"
+      ]
+    },
+    {
+      "code": "I",
+      "label": "Investigative (Thinker)",
+      "description": "Research, analysis, science, solving complex problems.",
+      "examples": [
+        "Doctor",
+        "Data scientist",
+        "Research scientist",
+        "Software engineer"
+      ]
+    },
+    {
+      "code": "A",
+      "label": "Artistic (Creator)",
+      "description": "Design, writing, performing, creative self-expression.",
+      "examples": [
+        "UX designer",
+        "Architect",
+        "Journalist",
+        "Animator"
+      ]
+    },
+    {
+      "code": "S",
+      "label": "Social (Helper)",
+      "description": "Teaching, caring, counselling, serving people.",
+      "examples": [
+        "Teacher",
+        "Nurse",
+        "Psychologist",
+        "Social worker"
+      ]
+    },
+    {
+      "code": "E",
+      "label": "Enterprising (Persuader)",
+      "description": "Leading, selling, managing, starting businesses.",
+      "examples": [
+        "Manager",
+        "Lawyer",
+        "Entrepreneur",
+        "Civil servant"
+      ]
+    },
+    {
+      "code": "C",
+      "label": "Conventional (Organiser)",
+      "description": "Data, records, accounts, rules and processes.",
+      "examples": [
+        "Chartered accountant",
+        "Banker",
+        "Auditor",
+        "Government clerk"
+      ]
+    }
+  ],
+  "subjectsLiked": [
+    "Mathematics",
+    "Physics",
+    "Chemistry",
+    "Biology",
+    "Computer Science",
+    "Economics",
+    "Accountancy",
+    "Languages",
+    "Social Sciences",
+    "Art & Design",
+    "Sports"
+  ],
+  "filters": {
+    "budgetTotalINR": [
+      {
+        "id": "LT_1L",
+        "label": "Under ₹1 Lakh",
+        "min": 0,
+        "max": 100000
+      },
+      {
+        "id": "1L_5L",
+        "label": "₹1-5 Lakh",
+        "min": 100000,
+        "max": 500000
+      },
+      {
+        "id": "5L_15L",
+        "label": "₹5-15 Lakh",
+        "min": 500000,
+        "max": 1500000
+      },
+      {
+        "id": "15L_50L",
+        "label": "₹15-50 Lakh",
+        "min": 1500000,
+        "max": 5000000
+      },
+      {
+        "id": "GT_50L",
+        "label": "Above ₹50 Lakh",
+        "min": 5000000,
+        "max": null
+      }
+    ],
+    "durationYears": [
+      {
+        "id": "LE_1",
+        "label": "Up to 1 year",
+        "min": 0,
+        "max": 1
+      },
+      {
+        "id": "2_3",
+        "label": "2-3 years",
+        "min": 1.01,
+        "max": 3
+      },
+      {
+        "id": "4",
+        "label": "4 years",
+        "min": 3.01,
+        "max": 4
+      },
+      {
+        "id": "5_PLUS",
+        "label": "5+ years",
+        "min": 4.01,
+        "max": null
+      }
+    ],
+    "sector": [
+      {
+        "id": "GOVT",
+        "label": "Government"
+      },
+      {
+        "id": "PSU",
+        "label": "PSU"
+      },
+      {
+        "id": "PRIVATE",
+        "label": "Private"
+      },
+      {
+        "id": "SELF",
+        "label": "Self-employed / Practice"
+      },
+      {
+        "id": "ABROAD",
+        "label": "Abroad"
+      },
+      {
+        "id": "DEFENCE",
+        "label": "Defence"
+      }
+    ],
+    "entrySalaryLPA": [
+      {
+        "id": "LT_3",
+        "label": "Below ₹3 LPA",
+        "min": 0,
+        "max": 3
+      },
+      {
+        "id": "3_6",
+        "label": "₹3-6 LPA",
+        "min": 3,
+        "max": 6
+      },
+      {
+        "id": "6_12",
+        "label": "₹6-12 LPA",
+        "min": 6,
+        "max": 12
+      },
+      {
+        "id": "12_25",
+        "label": "₹12-25 LPA",
+        "min": 12,
+        "max": 25
+      },
+      {
+        "id": "GT_25",
+        "label": "₹25 LPA+",
+        "min": 25,
+        "max": null
+      }
+    ],
+    "outlook": [
+      {
+        "id": "GROWING",
+        "label": "Growing",
+        "badge": "green"
+      },
+      {
+        "id": "STABLE",
+        "label": "Stable",
+        "badge": "blue"
+      },
+      {
+        "id": "DECLINING",
+        "label": "Declining (show warning, never hide)",
+        "badge": "amber"
+      }
+    ],
+    "location": [
+      {
+        "id": "INDIA",
+        "label": "India"
+      },
+      {
+        "id": "ABROAD_FRIENDLY",
+        "label": "Abroad-friendly"
+      }
+    ],
+    "entranceRequired": [
+      {
+        "id": "YES",
+        "label": "Entrance exam required"
+      },
+      {
+        "id": "NO",
+        "label": "No entrance / merit-based"
+      }
+    ]
+  },
+  "aptitudeFit": {
+    "Mathematics": [
+      "Engineering",
+      "Data science",
+      "Actuarial science",
+      "Chartered Accountancy",
+      "Economics",
+      "Statistics (ISI)",
+      "Architecture",
+      "Pilot",
+      "NDA"
+    ],
+    "Biology": [
+      "MBBS/BDS/AYUSH",
+      "Nursing",
+      "Pharmacy",
+      "Allied health",
+      "Biotechnology",
+      "Agriculture",
+      "Veterinary science",
+      "Forensic science",
+      "Nutrition"
+    ],
+    "Languages": [
+      "Law",
+      "Journalism",
+      "Content / UX writing",
+      "Civil services",
+      "Teaching",
+      "Translation",
+      "Public relations",
+      "Hospitality"
+    ],
+    "Art & Design": [
+      "Design (NIFT/NID/UCEED)",
+      "Architecture",
+      "Animation / VFX",
+      "Fine arts (BFA)",
+      "Film-making",
+      "Game design",
+      "Advertising"
+    ],
+    "Sports": [
+      "B.P.Ed / Physical education",
+      "Coaching",
+      "Sports science / Physiotherapy",
+      "NDA / Agniveer",
+      "Police",
+      "Sports-quota jobs"
+    ]
+  },
+  "outlookRules": {
+    "GROWING": {
+      "examples": [
+        "AI/ML",
+        "Big data",
+        "Cybersecurity",
+        "FinTech",
+        "Software development",
+        "UI/UX",
+        "IoT",
+        "EV & autonomous vehicles",
+        "Renewable energy",
+        "Nursing & care",
+        "Social work",
+        "Teaching",
+        "Semiconductors"
+      ],
+      "evidence": "WEF Future of Jobs 2025 fastest-growing roles (Big Data Specialists, FinTech Engineers, AI/ML Specialists) and largest absolute growth (frontline & care jobs); India Skills Report 2026: CS 80% / IT 78% employability.",
+      "sourceIds": [
+        "wef2025",
+        "wef2025-story",
+        "isr2026"
+      ]
+    },
+    "STABLE": {
+      "examples": [
+        "Medicine",
+        "Law",
+        "Chartered Accountancy",
+        "Civil services",
+        "Defence",
+        "PSU engineering",
+        "Core engineering"
+      ],
+      "evidence": "Licensed professions and government cadres with steady recruitment.",
+      "sourceIds": []
+    },
+    "DECLINING": {
+      "examples": [
+        "Postal service clerks",
+        "Bank tellers",
+        "Data entry clerks",
+        "Cashiers",
+        "Ticket clerks",
+        "Administrative assistants"
+      ],
+      "evidence": "WEF Future of Jobs 2025: fastest-declining roles include Postal Service Clerks, Bank Tellers and Data Entry Clerks; Cashiers and Ticket Clerks are the largest absolute declines.",
+      "uiRule": "Show an amber 'Declining demand' note with the evidence; never hide these options (many students still target government clerical exams).",
+      "sourceIds": [
+        "wef2025",
+        "wef2025-story"
+      ]
+    }
+  },
+  "marketFacts": [
+    {
+      "fact": "India Skills Report 2026: national employability 56.35% (up from 54.81% in 2025 and 46.2% in 2022).",
+      "sourceId": "isr2026"
+    },
+    {
+      "fact": "India Skills Report 2026: Computer Science (80%) and IT (78%) graduates have the highest employability; commerce rose to 62.81%.",
+      "sourceId": "isr2026"
+    },
+    {
+      "fact": "India Skills Report 2026: women (54%) overtook men (51.5%) in employability for the first time.",
+      "sourceId": "isr2026"
+    },
+    {
+      "fact": "WEF Future of Jobs 2025: 170M jobs created and 92M displaced worldwide by 2030 (net +78M).",
+      "sourceId": "wef2025"
+    }
+  ]
+}

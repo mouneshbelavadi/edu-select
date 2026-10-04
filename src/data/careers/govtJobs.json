@@ -1,0 +1,1540 @@
+{
+  "meta": {
+    "dataset": "govtJobs",
+    "description": "Government jobs mapped by minimum qualification with conducting body, posts, age limits, selection stages and 7th CPC pay level.",
+    "version": "1.0.0",
+    "compiledOn": "2026-10-04",
+    "region": "India",
+    "currency": "INR",
+    "disclaimer": "Curated for EduSelect from official and reputable public sources (compiled 2026-10-04). Fees and private-sector salaries are estimates (isEstimate=true) and must be shown with an 'Estimate' badge. Government pay is from the 7th CPC pay matrix (basic pay, excludes DA/HRA). Exam rules, age limits and fees change every cycle - re-check the official notification before relying on any value.",
+    "sources": [
+      {
+        "id": "ssc",
+        "title": "Staff Selection Commission",
+        "url": "https://ssc.gov.in"
+      },
+      {
+        "id": "ssc-age-2026",
+        "title": "SSC exams list 2026 - age limits (Examcart)",
+        "url": "https://examcart.in/blogs/central-exam/ssc-exams-list-cgl-chsl-mts-gd-constable-complete-details"
+      },
+      {
+        "id": "upsc",
+        "title": "Union Public Service Commission",
+        "url": "https://upsc.gov.in"
+      },
+      {
+        "id": "ibps",
+        "title": "Institute of Banking Personnel Selection",
+        "url": "https://www.ibps.in"
+      },
+      {
+        "id": "pay-matrix",
+        "title": "7th CPC pay matrix (Indian Pay Calculator)",
+        "url": "https://www.indianpaycalculator.in/pay-matrix"
+      },
+      {
+        "id": "pay-matrix-2",
+        "title": "7th Pay Commission pay matrix table (Tax2win)",
+        "url": "https://tax2win.in/guide/7th-pay-commission-pay-matrix-table"
+      },
+      {
+        "id": "agniveer-elig",
+        "title": "Indian Army Agniveer eligibility (Testbook)",
+        "url": "https://testbook.com/indian-army-agniveer/eligibility-criteria"
+      },
+      {
+        "id": "agniveer-2026",
+        "title": "Agniveer recruitment 2026 (Sakshi Education)",
+        "url": "https://education.sakshi.com/en/defence-jobs/education-news/agniveer-recruitment-2026-apply-now-army-navy-and-air-force-jobs-187219"
+      },
+      {
+        "id": "psu-gate-pw",
+        "title": "Top PSUs hiring through GATE 2026 (PW)",
+        "url": "https://www.pw.live/gate/exams/top-psu-hiring-through-gate-2026-salary-job-roles-explained"
+      },
+      {
+        "id": "wef2025",
+        "title": "WEF Future of Jobs Report 2025",
+        "url": "https://reports.weforum.org/docs/WEF_Future_of_Jobs_Report_2025.pdf"
+      }
+    ],
+    "ageRelaxation": {
+      "OBC": 3,
+      "SC_ST": 5,
+      "PwD": 10,
+      "note": "Years added to the General upper age limit; PwD relaxation stacks with category."
+    },
+    "payMatrixLevel1to14": {
+      "1": 18000,
+      "2": 19900,
+      "3": 21700,
+      "4": 25500,
+      "5": 29200,
+      "6": 35400,
+      "7": 44900,
+      "8": 47600,
+      "9": 53100,
+      "10": 56100,
+      "11": 67700,
+      "12": 78800,
+      "13": 118500,
+      "14": 144200
+    },
+    "minQualifications": [
+      {
+        "id": "CLASS_10",
+        "label": "10th pass"
+      },
+      {
+        "id": "ITI",
+        "label": "ITI"
+      },
+      {
+        "id": "CLASS_12",
+        "label": "12th pass"
+      },
+      {
+        "id": "DIPLOMA",
+        "label": "Diploma"
+      },
+      {
+        "id": "GRADUATE",
+        "label": "Any graduate"
+      },
+      {
+        "id": "ENGINEERING",
+        "label": "Engineering graduate"
+      },
+      {
+        "id": "PG",
+        "label": "Postgraduate"
+      },
+      {
+        "id": "MBBS",
+        "label": "MBBS"
+      },
+      {
+        "id": "LLB",
+        "label": "LLB"
+      },
+      {
+        "id": "PROFESSIONAL",
+        "label": "Other professional degree"
+      }
+    ],
+    "eligibleAlso": {
+      "CLASS_10": [
+        "CLASS_10"
+      ],
+      "ITI": [
+        "CLASS_10",
+        "ITI"
+      ],
+      "CLASS_12": [
+        "CLASS_10",
+        "CLASS_12"
+      ],
+      "DIPLOMA": [
+        "CLASS_10",
+        "CLASS_12",
+        "DIPLOMA"
+      ],
+      "GRADUATE": [
+        "CLASS_10",
+        "CLASS_12",
+        "GRADUATE"
+      ],
+      "ENGINEERING": [
+        "CLASS_10",
+        "CLASS_12",
+        "DIPLOMA",
+        "GRADUATE",
+        "ENGINEERING"
+      ],
+      "PG": [
+        "CLASS_10",
+        "CLASS_12",
+        "GRADUATE",
+        "PG"
+      ],
+      "MBBS": [
+        "CLASS_10",
+        "CLASS_12",
+        "GRADUATE",
+        "MBBS"
+      ],
+      "LLB": [
+        "CLASS_10",
+        "CLASS_12",
+        "GRADUATE",
+        "LLB"
+      ],
+      "PROFESSIONAL": [
+        "CLASS_10",
+        "CLASS_12",
+        "GRADUATE",
+        "PROFESSIONAL"
+      ]
+    },
+    "payNote": "Basic pay only (7th CPC entry pay). Gross adds DA, HRA, TA; in-hand figures are approximate."
+  },
+  "items": [
+    {
+      "id": "ssc-mts",
+      "minQualification": "CLASS_10",
+      "exam": "SSC MTS & Havaldar",
+      "conductingBody": "Staff Selection Commission",
+      "posts": [
+        "Multi-Tasking Staff",
+        "Havaldar (CBIC/CBN)"
+      ],
+      "ageLimit": {
+        "min": 18,
+        "max": 27,
+        "text": "18-25 (some posts 18-27)"
+      },
+      "selectionStages": [
+        "Computer-based exam",
+        "PET/PST (Havaldar)"
+      ],
+      "payLevels": [
+        1
+      ],
+      "basicPayINR": [
+        18000
+      ],
+      "approxInHand": "~₹25,000-32,000/month",
+      "clusterIds": [
+        "government-civil"
+      ],
+      "officialSite": "https://ssc.gov.in",
+      "note": "Clerical / support roles face declining demand per WEF 2025 - still a large recruiter.",
+      "outlook": "DECLINING",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "ssc-gd",
+      "minQualification": "CLASS_10",
+      "exam": "SSC GD Constable",
+      "conductingBody": "Staff Selection Commission",
+      "posts": [
+        "Constable (GD) in CAPFs, SSF, Assam Rifles"
+      ],
+      "ageLimit": {
+        "min": 18,
+        "max": 23,
+        "text": "18-23"
+      },
+      "selectionStages": [
+        "CBE",
+        "PET/PST",
+        "Medical"
+      ],
+      "payLevels": [
+        3
+      ],
+      "basicPayINR": [
+        21700
+      ],
+      "approxInHand": "~₹28,000-38,000/month",
+      "clusterIds": [
+        "defence-uniformed",
+        "government-civil"
+      ],
+      "officialSite": "https://ssc.gov.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "rrb-group-d",
+      "minQualification": "CLASS_10",
+      "exam": "RRB Group D (Level 1)",
+      "conductingBody": "Railway Recruitment Boards",
+      "posts": [
+        "Track maintainer",
+        "Helper",
+        "Assistant (various departments)"
+      ],
+      "ageLimit": {
+        "min": 18,
+        "max": 33,
+        "text": "18-33 (verify per notice)"
+      },
+      "selectionStages": [
+        "CBT",
+        "PET",
+        "Documents & medical"
+      ],
+      "payLevels": [
+        1
+      ],
+      "basicPayINR": [
+        18000
+      ],
+      "approxInHand": "~₹25,000-30,000/month",
+      "clusterIds": [
+        "government-civil"
+      ],
+      "officialSite": null,
+      "note": "Some posts prefer ITI.",
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "india-post-gds",
+      "minQualification": "CLASS_10",
+      "exam": "India Post Gramin Dak Sevak",
+      "conductingBody": "Department of Posts",
+      "posts": [
+        "Branch Postmaster",
+        "Assistant Branch Postmaster",
+        "Dak Sevak"
+      ],
+      "ageLimit": {
+        "min": 18,
+        "max": 40,
+        "text": "18-40"
+      },
+      "selectionStages": [
+        "Merit on Class 10 marks (no exam)"
+      ],
+      "payLevels": [],
+      "basicPayINR": [],
+      "approxInHand": "TRCA ₹10,000-29,380/month",
+      "clusterIds": [
+        "government-civil"
+      ],
+      "officialSite": null,
+      "note": "Time-Related Continuity Allowance, not a pay-matrix post.",
+      "outlook": "DECLINING",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "agniveer",
+      "minQualification": "CLASS_10",
+      "exam": "Agniveer (Army / Navy / Air Force)",
+      "conductingBody": "Ministry of Defence",
+      "posts": [
+        "Agniveer"
+      ],
+      "ageLimit": {
+        "min": 17.5,
+        "max": 21,
+        "text": "17.5-21"
+      },
+      "selectionStages": [
+        "Common Entrance Exam",
+        "Physical fitness test",
+        "Medical"
+      ],
+      "payLevels": [],
+      "basicPayINR": [],
+      "approxInHand": "₹30,000-40,000/month package (70% in hand: ₹21,000-28,000); ~₹11.71 lakh Seva Nidhi at exit",
+      "clusterIds": [
+        "defence-uniformed",
+        "government-civil"
+      ],
+      "officialSite": "https://joinindianarmy.nic.in",
+      "note": "Air Force Agniveer Vayu needs Class 12.",
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "state-police-constable",
+      "minQualification": "CLASS_10",
+      "exam": "State Police Constable",
+      "conductingBody": "State police recruitment boards",
+      "posts": [
+        "Constable"
+      ],
+      "ageLimit": {
+        "min": 18,
+        "max": 25,
+        "text": "Varies by state (≈18-25)"
+      },
+      "selectionStages": [
+        "Written test",
+        "Physical test",
+        "Medical"
+      ],
+      "payLevels": [
+        3
+      ],
+      "basicPayINR": [
+        21700
+      ],
+      "approxInHand": "Varies by state",
+      "clusterIds": [
+        "defence-uniformed",
+        "government-civil"
+      ],
+      "officialSite": null,
+      "note": "Many states now require Class 12.",
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "rrb-alp",
+      "minQualification": "ITI",
+      "exam": "RRB ALP / Technician",
+      "conductingBody": "Railway Recruitment Boards",
+      "posts": [
+        "Assistant Loco Pilot",
+        "Technician"
+      ],
+      "ageLimit": {
+        "min": 18,
+        "max": 33,
+        "text": "18-30/33"
+      },
+      "selectionStages": [
+        "CBT 1",
+        "CBT 2",
+        "CBAT (ALP)"
+      ],
+      "payLevels": [
+        2
+      ],
+      "basicPayINR": [
+        19900
+      ],
+      "approxInHand": "~₹30,000-40,000/month",
+      "clusterIds": [
+        "government-civil",
+        "skilled-trades"
+      ],
+      "officialSite": null,
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "ssc-chsl",
+      "minQualification": "CLASS_12",
+      "exam": "SSC CHSL",
+      "conductingBody": "Staff Selection Commission",
+      "posts": [
+        "Lower Division Clerk / Junior Secretariat Assistant",
+        "Data Entry Operator",
+        "Postal / Sorting Assistant"
+      ],
+      "ageLimit": {
+        "min": 18,
+        "max": 27,
+        "text": "18-27"
+      },
+      "selectionStages": [
+        "Tier 1",
+        "Tier 2 + skill / typing test"
+      ],
+      "payLevels": [
+        2,
+        4
+      ],
+      "basicPayINR": [
+        19900,
+        25500
+      ],
+      "approxInHand": "~₹28,000-40,000/month",
+      "clusterIds": [
+        "government-civil"
+      ],
+      "officialSite": "https://ssc.gov.in",
+      "note": "WEF 2025 lists data entry and postal clerks among the fastest-declining roles.",
+      "outlook": "DECLINING",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "ssc-steno",
+      "minQualification": "CLASS_12",
+      "exam": "SSC Stenographer Grade C & D",
+      "conductingBody": "Staff Selection Commission",
+      "posts": [
+        "Stenographer Grade C",
+        "Stenographer Grade D"
+      ],
+      "ageLimit": {
+        "min": 18,
+        "max": 30,
+        "text": "Grade C 18-30, Grade D 18-27"
+      },
+      "selectionStages": [
+        "CBE",
+        "Skill test (shorthand)"
+      ],
+      "payLevels": [
+        4,
+        6
+      ],
+      "basicPayINR": [
+        25500,
+        35400
+      ],
+      "approxInHand": "~₹35,000-55,000/month",
+      "clusterIds": [
+        "government-civil"
+      ],
+      "officialSite": "https://ssc.gov.in",
+      "note": null,
+      "outlook": "DECLINING",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "rrb-ntpc-ug",
+      "minQualification": "CLASS_12",
+      "exam": "RRB NTPC (Undergraduate posts)",
+      "conductingBody": "Railway Recruitment Boards",
+      "posts": [
+        "Junior Clerk cum Typist",
+        "Accounts Clerk",
+        "Trains Clerk",
+        "Commercial cum Ticket Clerk"
+      ],
+      "ageLimit": {
+        "min": 18,
+        "max": 33,
+        "text": "18-30/33"
+      },
+      "selectionStages": [
+        "CBT 1",
+        "CBT 2",
+        "Typing skill test"
+      ],
+      "payLevels": [
+        2,
+        3
+      ],
+      "basicPayINR": [
+        19900,
+        21700
+      ],
+      "approxInHand": "~₹28,000-38,000/month",
+      "clusterIds": [
+        "government-civil"
+      ],
+      "officialSite": null,
+      "note": "Ticket clerks are among the largest absolute declines (WEF 2025).",
+      "outlook": "DECLINING",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "nda",
+      "minQualification": "CLASS_12",
+      "exam": "UPSC NDA & NA",
+      "conductingBody": "UPSC",
+      "posts": [
+        "Officer cadet (Army, Navy, Air Force)"
+      ],
+      "ageLimit": {
+        "min": 16.5,
+        "max": 19.5,
+        "text": "16.5-19.5"
+      },
+      "selectionStages": [
+        "Written exam",
+        "SSB interview",
+        "Medical"
+      ],
+      "payLevels": [
+        10
+      ],
+      "basicPayINR": [
+        56100
+      ],
+      "approxInHand": "Level 10 + Military Service Pay on commission",
+      "clusterIds": [
+        "defence-uniformed",
+        "government-civil"
+      ],
+      "officialSite": "https://upsc.gov.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "ssc-je",
+      "minQualification": "DIPLOMA",
+      "exam": "SSC JE",
+      "conductingBody": "Staff Selection Commission",
+      "posts": [
+        "Junior Engineer (Civil / Mechanical / Electrical) in CPWD, MES, BRO, CWC etc."
+      ],
+      "ageLimit": {
+        "min": 18,
+        "max": 32,
+        "text": "Up to 30/32 by department"
+      },
+      "selectionStages": [
+        "CBE Paper 1",
+        "CBE Paper 2"
+      ],
+      "payLevels": [
+        6
+      ],
+      "basicPayINR": [
+        35400
+      ],
+      "approxInHand": "~₹55,000-65,000 gross",
+      "clusterIds": [
+        "government-civil",
+        "engineering-tech"
+      ],
+      "officialSite": "https://ssc.gov.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "rrb-je",
+      "minQualification": "DIPLOMA",
+      "exam": "RRB JE",
+      "conductingBody": "Railway Recruitment Boards",
+      "posts": [
+        "Junior Engineer",
+        "Depot Material Superintendent",
+        "Chemical & Metallurgical Assistant"
+      ],
+      "ageLimit": {
+        "min": 18,
+        "max": 36,
+        "text": "18-33/36"
+      },
+      "selectionStages": [
+        "CBT 1",
+        "CBT 2"
+      ],
+      "payLevels": [
+        6
+      ],
+      "basicPayINR": [
+        35400
+      ],
+      "approxInHand": "~₹55,000-65,000 gross",
+      "clusterIds": [
+        "government-civil",
+        "engineering-tech"
+      ],
+      "officialSite": null,
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "upsc-cse",
+      "minQualification": "GRADUATE",
+      "exam": "UPSC Civil Services (IAS / IPS / IFS / IRS)",
+      "conductingBody": "UPSC",
+      "posts": [
+        "IAS",
+        "IPS",
+        "IFS",
+        "IRS and other Group A services"
+      ],
+      "ageLimit": {
+        "min": 21,
+        "max": 32,
+        "text": "21-32; 6 attempts (OBC 35 / 9 attempts; SC/ST 37 / unlimited)"
+      },
+      "selectionStages": [
+        "Prelims",
+        "Mains",
+        "Interview"
+      ],
+      "payLevels": [
+        10
+      ],
+      "basicPayINR": [
+        56100
+      ],
+      "approxInHand": "Level 10 (₹56,100 basic) + DA/HRA",
+      "clusterIds": [
+        "government-civil"
+      ],
+      "officialSite": "https://upsc.gov.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "upsc-cds",
+      "minQualification": "GRADUATE",
+      "exam": "UPSC CDS",
+      "conductingBody": "UPSC",
+      "posts": [
+        "IMA",
+        "INA",
+        "AFA",
+        "OTA officer entries"
+      ],
+      "ageLimit": {
+        "min": 19,
+        "max": 24,
+        "text": "19-24 (varies by academy)"
+      },
+      "selectionStages": [
+        "Written",
+        "SSB",
+        "Medical"
+      ],
+      "payLevels": [
+        10
+      ],
+      "basicPayINR": [
+        56100
+      ],
+      "approxInHand": "Level 10 + MSP",
+      "clusterIds": [
+        "defence-uniformed",
+        "government-civil"
+      ],
+      "officialSite": "https://upsc.gov.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "upsc-capf",
+      "minQualification": "GRADUATE",
+      "exam": "UPSC CAPF Assistant Commandant",
+      "conductingBody": "UPSC",
+      "posts": [
+        "Assistant Commandant (BSF, CRPF, CISF, ITBP, SSB)"
+      ],
+      "ageLimit": {
+        "min": 20,
+        "max": 25,
+        "text": "20-25"
+      },
+      "selectionStages": [
+        "Written",
+        "PET / medical",
+        "Interview"
+      ],
+      "payLevels": [
+        10
+      ],
+      "basicPayINR": [
+        56100
+      ],
+      "approxInHand": "Level 10",
+      "clusterIds": [
+        "defence-uniformed",
+        "government-civil"
+      ],
+      "officialSite": "https://upsc.gov.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "afcat",
+      "minQualification": "GRADUATE",
+      "exam": "AFCAT",
+      "conductingBody": "Indian Air Force",
+      "posts": [
+        "Flying branch",
+        "Ground Duty (Technical)",
+        "Ground Duty (Non-technical)"
+      ],
+      "ageLimit": {
+        "min": 20,
+        "max": 26,
+        "text": "Flying 20-24; Ground duty 20-26"
+      },
+      "selectionStages": [
+        "Online test",
+        "AFSB",
+        "Medical"
+      ],
+      "payLevels": [
+        10
+      ],
+      "basicPayINR": [
+        56100
+      ],
+      "approxInHand": "Level 10 + MSP",
+      "clusterIds": [
+        "defence-uniformed",
+        "government-civil"
+      ],
+      "officialSite": "https://afcat.cdac.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "ssc-cgl",
+      "minQualification": "GRADUATE",
+      "exam": "SSC CGL",
+      "conductingBody": "Staff Selection Commission",
+      "posts": [
+        "Assistant Section Officer",
+        "Income Tax / GST / Excise Inspector",
+        "Auditor / Accountant",
+        "Sub-Inspector (CBI/NIA)"
+      ],
+      "ageLimit": {
+        "min": 18,
+        "max": 32,
+        "text": "18-32 by post"
+      },
+      "selectionStages": [
+        "Tier 1",
+        "Tier 2"
+      ],
+      "payLevels": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "basicPayINR": [
+        25500,
+        29200,
+        35400,
+        44900,
+        47600
+      ],
+      "approxInHand": "Inspector (Level 7): ~₹70,000-80,000 gross",
+      "clusterIds": [
+        "government-civil"
+      ],
+      "officialSite": "https://ssc.gov.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "ssc-cpo",
+      "minQualification": "GRADUATE",
+      "exam": "SSC CPO",
+      "conductingBody": "Staff Selection Commission",
+      "posts": [
+        "Sub-Inspector (Delhi Police, CAPFs)"
+      ],
+      "ageLimit": {
+        "min": 20,
+        "max": 25,
+        "text": "20-25"
+      },
+      "selectionStages": [
+        "Paper 1",
+        "PET / PST",
+        "Paper 2",
+        "Medical"
+      ],
+      "payLevels": [
+        6
+      ],
+      "basicPayINR": [
+        35400
+      ],
+      "approxInHand": "~₹55,000-65,000 gross",
+      "clusterIds": [
+        "defence-uniformed",
+        "government-civil"
+      ],
+      "officialSite": "https://ssc.gov.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "ssc-jht",
+      "minQualification": "GRADUATE",
+      "exam": "SSC Junior Hindi Translator",
+      "conductingBody": "Staff Selection Commission",
+      "posts": [
+        "Junior Hindi Translator",
+        "Junior Translation Officer"
+      ],
+      "ageLimit": {
+        "min": 18,
+        "max": 30,
+        "text": "18-30"
+      },
+      "selectionStages": [
+        "Paper 1",
+        "Paper 2 (descriptive)"
+      ],
+      "payLevels": [
+        6
+      ],
+      "basicPayINR": [
+        35400
+      ],
+      "approxInHand": "~₹55,000-65,000 gross",
+      "clusterIds": [
+        "government-civil",
+        "social-humanities"
+      ],
+      "officialSite": "https://ssc.gov.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "ibps-po",
+      "minQualification": "GRADUATE",
+      "exam": "IBPS PO",
+      "conductingBody": "IBPS",
+      "posts": [
+        "Probationary Officer"
+      ],
+      "ageLimit": {
+        "min": 20,
+        "max": 30,
+        "text": "20-30"
+      },
+      "selectionStages": [
+        "Prelims",
+        "Mains",
+        "Interview"
+      ],
+      "payLevels": [],
+      "basicPayINR": [],
+      "approxInHand": "JMGS-I basic ~₹48,480; ~₹80,000-90,000 gross",
+      "clusterIds": [
+        "government-civil",
+        "commerce-finance"
+      ],
+      "officialSite": "https://www.ibps.in",
+      "note": "Bank pay follows the bipartite settlement, not the 7th CPC matrix - verify current figures.",
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "sbi-po",
+      "minQualification": "GRADUATE",
+      "exam": "SBI PO",
+      "conductingBody": "State Bank of India",
+      "posts": [
+        "Probationary Officer"
+      ],
+      "ageLimit": {
+        "min": 21,
+        "max": 30,
+        "text": "21-30"
+      },
+      "selectionStages": [
+        "Prelims",
+        "Mains",
+        "Psychometric test, GD & interview"
+      ],
+      "payLevels": [],
+      "basicPayINR": [],
+      "approxInHand": "JMGS-I; ~₹80,000-90,000 gross",
+      "clusterIds": [
+        "government-civil",
+        "commerce-finance"
+      ],
+      "officialSite": "https://sbi.co.in/web/careers",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "ibps-clerk",
+      "minQualification": "GRADUATE",
+      "exam": "IBPS Clerk / SBI Clerk / IBPS RRB",
+      "conductingBody": "IBPS / SBI",
+      "posts": [
+        "Clerk / Junior Associate",
+        "Office Assistant (RRB)"
+      ],
+      "ageLimit": {
+        "min": 20,
+        "max": 28,
+        "text": "20-28"
+      },
+      "selectionStages": [
+        "Prelims",
+        "Mains"
+      ],
+      "payLevels": [],
+      "basicPayINR": [],
+      "approxInHand": "~₹40,000-45,000 gross",
+      "clusterIds": [
+        "government-civil",
+        "commerce-finance"
+      ],
+      "officialSite": "https://www.ibps.in",
+      "note": "Bank tellers are among WEF 2025's fastest-declining roles.",
+      "outlook": "DECLINING",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "ibps-so",
+      "minQualification": "GRADUATE",
+      "exam": "IBPS Specialist Officer",
+      "conductingBody": "IBPS",
+      "posts": [
+        "IT Officer",
+        "Agriculture Field Officer",
+        "Law Officer",
+        "HR / Marketing Officer"
+      ],
+      "ageLimit": {
+        "min": 20,
+        "max": 30,
+        "text": "20-30"
+      },
+      "selectionStages": [
+        "Prelims",
+        "Mains",
+        "Interview"
+      ],
+      "payLevels": [],
+      "basicPayINR": [],
+      "approxInHand": "JMGS-I; ~₹80,000-90,000 gross",
+      "clusterIds": [
+        "government-civil",
+        "commerce-finance"
+      ],
+      "officialSite": "https://www.ibps.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "rbi-grade-b",
+      "minQualification": "GRADUATE",
+      "exam": "RBI Grade B / RBI Assistant",
+      "conductingBody": "Reserve Bank of India",
+      "posts": [
+        "Grade B Officer (DR General, DEPR, DSIM)",
+        "Assistant"
+      ],
+      "ageLimit": {
+        "min": 20,
+        "max": 30,
+        "text": "Grade B 21-30; Assistant 20-28"
+      },
+      "selectionStages": [
+        "Phase 1",
+        "Phase 2",
+        "Interview (Grade B)"
+      ],
+      "payLevels": [],
+      "basicPayINR": [],
+      "approxInHand": "Grade B ~₹1.5 lakh+/month gross; Assistant ~₹45,000-50,000",
+      "clusterIds": [
+        "government-civil",
+        "commerce-finance"
+      ],
+      "officialSite": "https://www.rbi.org.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "nabard-grade-a",
+      "minQualification": "GRADUATE",
+      "exam": "NABARD / SEBI Grade A, LIC AAO",
+      "conductingBody": "NABARD / SEBI / LIC",
+      "posts": [
+        "Assistant Manager",
+        "Assistant Administrative Officer"
+      ],
+      "ageLimit": {
+        "min": 21,
+        "max": 30,
+        "text": "21-30"
+      },
+      "selectionStages": [
+        "Phase 1",
+        "Phase 2",
+        "Interview"
+      ],
+      "payLevels": [],
+      "basicPayINR": [],
+      "approxInHand": "~₹0.9-1.5 lakh+/month gross",
+      "clusterIds": [
+        "government-civil",
+        "commerce-finance"
+      ],
+      "officialSite": null,
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "lic-aao",
+      "minQualification": "GRADUATE",
+      "exam": "LIC AAO",
+      "conductingBody": "Life Insurance Corporation of India",
+      "posts": [
+        "Assistant Administrative Officer"
+      ],
+      "ageLimit": {
+        "min": 21,
+        "max": 30,
+        "text": "21-30"
+      },
+      "selectionStages": [
+        "Prelims",
+        "Mains",
+        "Interview"
+      ],
+      "payLevels": [],
+      "basicPayINR": [],
+      "approxInHand": "~₹90,000+/month gross",
+      "clusterIds": [
+        "government-civil",
+        "commerce-finance"
+      ],
+      "officialSite": "https://licindia.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "rrb-ntpc-grad",
+      "minQualification": "GRADUATE",
+      "exam": "RRB NTPC (Graduate posts)",
+      "conductingBody": "Railway Recruitment Boards",
+      "posts": [
+        "Station Master",
+        "Goods Train Manager",
+        "Senior Clerk cum Typist",
+        "Chief Commercial cum Ticket Supervisor"
+      ],
+      "ageLimit": {
+        "min": 18,
+        "max": 36,
+        "text": "18-33/36"
+      },
+      "selectionStages": [
+        "CBT 1",
+        "CBT 2",
+        "CBAT / typing"
+      ],
+      "payLevels": [
+        4,
+        5,
+        6
+      ],
+      "basicPayINR": [
+        25500,
+        29200,
+        35400
+      ],
+      "approxInHand": "~₹45,000-65,000 gross",
+      "clusterIds": [
+        "government-civil"
+      ],
+      "officialSite": null,
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "ctet-kvs-nvs",
+      "minQualification": "GRADUATE",
+      "exam": "CTET / State TET → KVS, NVS, state teacher recruitment",
+      "conductingBody": "CBSE / KVS / NVS / States",
+      "posts": [
+        "PRT",
+        "TGT",
+        "PGT"
+      ],
+      "ageLimit": {
+        "min": 18,
+        "max": 40,
+        "text": "KVS: PRT ≤30, TGT ≤35, PGT ≤40"
+      },
+      "selectionStages": [
+        "TET qualification",
+        "Recruitment exam",
+        "Interview / demo (some)"
+      ],
+      "payLevels": [
+        6,
+        7,
+        8
+      ],
+      "basicPayINR": [
+        35400,
+        44900,
+        47600
+      ],
+      "approxInHand": "TGT Level 7 (₹44,900 basic)",
+      "clusterIds": [
+        "government-civil",
+        "education-teaching"
+      ],
+      "officialSite": "https://ctet.nic.in",
+      "note": "Requires B.Ed / D.El.Ed.",
+      "outlook": "GROWING",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "upsc-ese",
+      "minQualification": "ENGINEERING",
+      "exam": "UPSC Engineering Services (ESE / IES)",
+      "conductingBody": "UPSC",
+      "posts": [
+        "Group A engineer (Railways, CPWD, CWC, MES, Telecom, etc.)"
+      ],
+      "ageLimit": {
+        "min": 21,
+        "max": 30,
+        "text": "21-30"
+      },
+      "selectionStages": [
+        "Prelims",
+        "Mains",
+        "Personality test"
+      ],
+      "payLevels": [
+        10
+      ],
+      "basicPayINR": [
+        56100
+      ],
+      "approxInHand": "Level 10 (₹56,100 basic); ~₹90,000-1,05,000 gross",
+      "clusterIds": [
+        "government-civil",
+        "engineering-tech"
+      ],
+      "officialSite": "https://upsc.gov.in",
+      "note": "Only Civil, Mechanical, Electrical and Electronics & Telecom streams.",
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "gate-psu",
+      "minQualification": "ENGINEERING",
+      "exam": "GATE → PSU Executive Trainee",
+      "conductingBody": "PSUs (ONGC, NTPC, IOCL, BHEL, POWERGRID, GAIL, etc.)",
+      "posts": [
+        "Executive Trainee / Graduate Engineer Trainee"
+      ],
+      "ageLimit": {
+        "min": 21,
+        "max": 30,
+        "text": "Typical General caps: IOCL 26, NTPC/BHEL 27, BPCL 28, ONGC 30"
+      },
+      "selectionStages": [
+        "GATE score",
+        "GD / interview",
+        "Medical"
+      ],
+      "payLevels": [],
+      "basicPayINR": [],
+      "approxInHand": "E2 IDA ₹40,000-1,40,000 basic; ~₹12-20 LPA CTC",
+      "clusterIds": [
+        "government-civil",
+        "engineering-tech"
+      ],
+      "officialSite": null,
+      "note": "See engineeringBranches.json psusViaGate for which PSUs hire each branch.",
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "army-tgc",
+      "minQualification": "ENGINEERING",
+      "exam": "Army TGC / Navy SSC (Tech) / Coast Guard Assistant Commandant",
+      "conductingBody": "Indian Army / Navy / Coast Guard",
+      "posts": [
+        "Technical officer"
+      ],
+      "ageLimit": {
+        "min": 20,
+        "max": 27,
+        "text": "20-27"
+      },
+      "selectionStages": [
+        "Shortlisting",
+        "SSB",
+        "Medical"
+      ],
+      "payLevels": [
+        10
+      ],
+      "basicPayINR": [
+        56100
+      ],
+      "approxInHand": "Level 10 + MSP",
+      "clusterIds": [
+        "defence-uniformed",
+        "engineering-tech"
+      ],
+      "officialSite": "https://joinindianarmy.nic.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "navy-ssc-tech",
+      "minQualification": "ENGINEERING",
+      "exam": "Navy SSC (Technical)",
+      "conductingBody": "Indian Navy",
+      "posts": [
+        "Short Service Commission officer (Engineering / Electrical / Naval Architecture)"
+      ],
+      "ageLimit": {
+        "min": 19,
+        "max": 25,
+        "text": "≈19.5-25 (verify per notice)"
+      },
+      "selectionStages": [
+        "Shortlisting",
+        "SSB",
+        "Medical"
+      ],
+      "payLevels": [
+        10
+      ],
+      "basicPayINR": [
+        56100
+      ],
+      "approxInHand": "Level 10 + MSP",
+      "clusterIds": [
+        "defence-uniformed",
+        "engineering-tech"
+      ],
+      "officialSite": "https://www.joinindiannavy.gov.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "icg-ac",
+      "minQualification": "ENGINEERING",
+      "exam": "Coast Guard Assistant Commandant",
+      "conductingBody": "Indian Coast Guard",
+      "posts": [
+        "Assistant Commandant (GD / Technical)"
+      ],
+      "ageLimit": {
+        "min": 21,
+        "max": 25,
+        "text": "21-25 (verify per notice)"
+      },
+      "selectionStages": [
+        "CGCAT",
+        "Final selection board",
+        "Medical"
+      ],
+      "payLevels": [
+        10
+      ],
+      "basicPayINR": [
+        56100
+      ],
+      "approxInHand": "Level 10",
+      "clusterIds": [
+        "defence-uniformed"
+      ],
+      "officialSite": "https://joinindiancoastguard.cdac.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "ugc-net-jobs",
+      "minQualification": "PG",
+      "exam": "UGC NET / JRF, CSIR NET",
+      "conductingBody": "NTA",
+      "posts": [
+        "Assistant Professor",
+        "Junior Research Fellow"
+      ],
+      "ageLimit": {
+        "min": null,
+        "max": 30,
+        "text": "JRF ≤30 (relaxations apply); no upper limit for Assistant Professor eligibility"
+      },
+      "selectionStages": [
+        "CBT"
+      ],
+      "payLevels": [
+        10
+      ],
+      "basicPayINR": [
+        56100
+      ],
+      "approxInHand": "JRF ₹37,000/month; Assistant Professor Level 10",
+      "clusterIds": [
+        "education-teaching",
+        "science-research"
+      ],
+      "officialSite": "https://nta.ac.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "upsc-cms",
+      "minQualification": "MBBS",
+      "exam": "UPSC Combined Medical Services",
+      "conductingBody": "UPSC",
+      "posts": [
+        "Medical Officer (Railways, CGHS, Ordnance Factories, municipal bodies)"
+      ],
+      "ageLimit": {
+        "min": null,
+        "max": 32,
+        "text": "Up to 32"
+      },
+      "selectionStages": [
+        "CBT",
+        "Personality test"
+      ],
+      "payLevels": [
+        10
+      ],
+      "basicPayINR": [
+        56100
+      ],
+      "approxInHand": "Level 10 + Non-Practising Allowance",
+      "clusterIds": [
+        "medicine-health",
+        "government-civil"
+      ],
+      "officialSite": "https://upsc.gov.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "aiims-norcet",
+      "minQualification": "PROFESSIONAL",
+      "exam": "AIIMS NORCET (Nursing Officer)",
+      "conductingBody": "AIIMS New Delhi",
+      "posts": [
+        "Nursing Officer at AIIMS"
+      ],
+      "ageLimit": {
+        "min": 18,
+        "max": 30,
+        "text": "18-30"
+      },
+      "selectionStages": [
+        "Prelims",
+        "Mains"
+      ],
+      "payLevels": [
+        7
+      ],
+      "basicPayINR": [
+        44900
+      ],
+      "approxInHand": "Level 7 (₹44,900 basic)",
+      "clusterIds": [
+        "medicine-health",
+        "government-civil"
+      ],
+      "officialSite": "https://www.aiimsexams.ac.in",
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "judiciary",
+      "minQualification": "LLB",
+      "exam": "Civil Judge (Junior Division)",
+      "conductingBody": "State PSC / High Court",
+      "posts": [
+        "Civil Judge (Junior Division) / Judicial Magistrate"
+      ],
+      "ageLimit": {
+        "min": 21,
+        "max": 35,
+        "text": "≈21-35 (varies by state)"
+      },
+      "selectionStages": [
+        "Prelims",
+        "Mains",
+        "Viva"
+      ],
+      "payLevels": [],
+      "basicPayINR": [],
+      "approxInHand": "~₹77,840 starting basic (SNJPC)",
+      "clusterIds": [
+        "law",
+        "government-civil"
+      ],
+      "officialSite": null,
+      "note": null,
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    },
+    {
+      "id": "state-psc",
+      "minQualification": "GRADUATE",
+      "exam": "State Civil Services & State PSC posts (KAS, MPSC, UPPSC, BPSC, TNPSC, etc.)",
+      "conductingBody": "State Public Service Commissions",
+      "posts": [
+        "Deputy Collector",
+        "DSP",
+        "Assistant Engineer",
+        "AYUSH / Drug Inspector / other state posts"
+      ],
+      "ageLimit": {
+        "min": 21,
+        "max": 40,
+        "text": "Varies by state"
+      },
+      "selectionStages": [
+        "Prelims",
+        "Mains",
+        "Interview"
+      ],
+      "payLevels": [],
+      "basicPayINR": [],
+      "approxInHand": "State pay scales",
+      "clusterIds": [
+        "government-civil"
+      ],
+      "officialSite": null,
+      "note": "Seed one row per state as you expand (KAS, MPSC, UPPSC, BPSC, TNPSC, state AE/JE, police SI, state TET).",
+      "outlook": "STABLE",
+      "isEstimate": true,
+      "asOfYear": 2026
+    }
+  ]
+}

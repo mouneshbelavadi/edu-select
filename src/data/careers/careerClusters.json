@@ -1,0 +1,280 @@
+{
+  "meta": {
+    "dataset": "careerClusters",
+    "description": "19 career clusters used to group pathways, engineering branches, graduate careers and government jobs. Membership is via clusterIds on each item.",
+    "version": "1.0.0",
+    "compiledOn": "2026-10-04",
+    "region": "India",
+    "currency": "INR",
+    "disclaimer": "Curated for EduSelect from official and reputable public sources (compiled 2026-10-04). Fees and private-sector salaries are estimates (isEstimate=true) and must be shown with an 'Estimate' badge. Government pay is from the 7th CPC pay matrix (basic pay, excludes DA/HRA). Exam rules, age limits and fees change every cycle - re-check the official notification before relying on any value.",
+    "sources": []
+  },
+  "items": [
+    {
+      "id": "engineering-tech",
+      "label": "Engineering & Technology",
+      "icon": "⚙️",
+      "description": "Design, build and maintain machines, structures, power systems and electronics.",
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "subjects": [
+        "Mathematics",
+        "Physics"
+      ]
+    },
+    {
+      "id": "computing-ai",
+      "label": "Computer Science, AI & Data",
+      "icon": "💻",
+      "description": "Software, AI/ML, data science, cybersecurity and cloud.",
+      "riasec": [
+        "I",
+        "C",
+        "R"
+      ],
+      "subjects": [
+        "Mathematics",
+        "Computer Science"
+      ]
+    },
+    {
+      "id": "medicine-health",
+      "label": "Medicine & Healthcare",
+      "icon": "🩺",
+      "description": "Doctors, dentists, nurses, pharmacists, therapists and medical technologists.",
+      "riasec": [
+        "I",
+        "S"
+      ],
+      "subjects": [
+        "Biology",
+        "Chemistry"
+      ]
+    },
+    {
+      "id": "science-research",
+      "label": "Pure Science & Research",
+      "icon": "🔬",
+      "description": "Physics, chemistry, maths, statistics, life sciences and research careers.",
+      "riasec": [
+        "I"
+      ],
+      "subjects": [
+        "Mathematics",
+        "Physics",
+        "Chemistry",
+        "Biology"
+      ]
+    },
+    {
+      "id": "commerce-finance",
+      "label": "Commerce, Finance & Accounting",
+      "icon": "📊",
+      "description": "CA, CS, CMA, banking, investment, actuarial and accounting roles.",
+      "riasec": [
+        "C",
+        "E"
+      ],
+      "subjects": [
+        "Accountancy",
+        "Economics",
+        "Mathematics"
+      ]
+    },
+    {
+      "id": "management-business",
+      "label": "Business & Management",
+      "icon": "💼",
+      "description": "BBA/MBA, sales, marketing, HR, operations and entrepreneurship.",
+      "riasec": [
+        "E",
+        "C"
+      ],
+      "subjects": [
+        "Economics"
+      ]
+    },
+    {
+      "id": "law",
+      "label": "Law & Judiciary",
+      "icon": "⚖️",
+      "description": "Advocates, corporate lawyers, judges and legal officers.",
+      "riasec": [
+        "E",
+        "I",
+        "S"
+      ],
+      "subjects": [
+        "Languages",
+        "Social Sciences"
+      ]
+    },
+    {
+      "id": "design-creative",
+      "label": "Design, Arts & Creative",
+      "icon": "🎨",
+      "description": "Fashion, product, UX, animation, fine arts, film and performing arts.",
+      "riasec": [
+        "A"
+      ],
+      "subjects": [
+        "Art & Design"
+      ]
+    },
+    {
+      "id": "media-communication",
+      "label": "Media, Journalism & Communication",
+      "icon": "📰",
+      "description": "Journalism, advertising, PR, content and digital marketing.",
+      "riasec": [
+        "A",
+        "E",
+        "S"
+      ],
+      "subjects": [
+        "Languages"
+      ]
+    },
+    {
+      "id": "hospitality-tourism",
+      "label": "Hospitality, Travel & Culinary",
+      "icon": "🏨",
+      "description": "Hotel management, culinary arts, tourism, events and cabin crew.",
+      "riasec": [
+        "S",
+        "E"
+      ],
+      "subjects": [
+        "Languages"
+      ]
+    },
+    {
+      "id": "aviation-maritime",
+      "label": "Aviation & Merchant Navy",
+      "icon": "✈️",
+      "description": "Pilots, aircraft maintenance engineers and merchant navy officers.",
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "subjects": [
+        "Mathematics",
+        "Physics"
+      ]
+    },
+    {
+      "id": "defence-uniformed",
+      "label": "Defence, Police & Uniformed Services",
+      "icon": "🎖️",
+      "description": "Army, Navy, Air Force, Coast Guard, CAPF and police.",
+      "riasec": [
+        "R",
+        "E",
+        "S"
+      ],
+      "subjects": [
+        "Sports"
+      ]
+    },
+    {
+      "id": "government-civil",
+      "label": "Government Jobs & Civil Services",
+      "icon": "🏛️",
+      "description": "UPSC, SSC, banking, railways, state PSC and other public-sector jobs.",
+      "riasec": [
+        "C",
+        "E",
+        "S"
+      ],
+      "subjects": [
+        "Social Sciences",
+        "Mathematics"
+      ]
+    },
+    {
+      "id": "education-teaching",
+      "label": "Education & Teaching",
+      "icon": "🍎",
+      "description": "School teaching, lecturing, special education and academic research.",
+      "riasec": [
+        "S",
+        "A"
+      ],
+      "subjects": [
+        "Languages",
+        "Social Sciences"
+      ]
+    },
+    {
+      "id": "agriculture-allied",
+      "label": "Agriculture, Veterinary & Food",
+      "icon": "🌾",
+      "description": "Agriculture, horticulture, forestry, fisheries, dairy, food tech and veterinary.",
+      "riasec": [
+        "R",
+        "I"
+      ],
+      "subjects": [
+        "Biology",
+        "Chemistry"
+      ]
+    },
+    {
+      "id": "skilled-trades",
+      "label": "Skilled Trades, ITI & Diploma",
+      "icon": "🛠️",
+      "description": "Electricians, fitters, welders, technicians and junior engineers.",
+      "riasec": [
+        "R"
+      ],
+      "subjects": [
+        "Physics"
+      ]
+    },
+    {
+      "id": "social-humanities",
+      "label": "Humanities, Social Work & Psychology",
+      "icon": "🤝",
+      "description": "Psychology, social work, languages, history, policy and NGOs.",
+      "riasec": [
+        "S",
+        "I",
+        "A"
+      ],
+      "subjects": [
+        "Social Sciences",
+        "Languages"
+      ]
+    },
+    {
+      "id": "sports-fitness",
+      "label": "Sports & Fitness",
+      "icon": "🏅",
+      "description": "Athletes, coaches, PE teachers, sports science and fitness.",
+      "riasec": [
+        "R",
+        "S"
+      ],
+      "subjects": [
+        "Sports"
+      ]
+    },
+    {
+      "id": "architecture-planning",
+      "label": "Architecture & Planning",
+      "icon": "🏗️",
+      "description": "Architects, urban planners and interior design.",
+      "riasec": [
+        "A",
+        "R",
+        "I"
+      ],
+      "subjects": [
+        "Mathematics",
+        "Art & Design"
+      ]
+    }
+  ]
+}

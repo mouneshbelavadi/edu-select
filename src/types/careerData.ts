@@ -126,3 +126,24 @@ export interface RealCollegeExtras {
   sourceUrls: string[];
   isRealData: true;
 }
+
+// ---------- UI Cards & Search ----------
+export interface CareerCard {
+  kind: 'pathway' | 'branch' | 'degree' | 'govtJob';
+  id: string;
+  title: string;
+  subtitle: string;
+  level: QualificationLevelId;
+  clusterIds: string[];
+  outlook: Outlook;
+  entranceRequired: boolean;
+  examNames: string[];
+  durationText: string;
+  totalCostINR: { min: number; max: number } | null;
+  entrySalaryLPA: { min: number; max: number; basis?: string } | null;
+  sectors: Sector[] | string[];
+  riasec: Riasec[];
+  abroadFriendly: boolean;
+  isEstimate: boolean;
+}
+
