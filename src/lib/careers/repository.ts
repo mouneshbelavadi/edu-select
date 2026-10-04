@@ -274,6 +274,10 @@ export function getGovtJob(id: string): GovtJob | undefined {
   return govtJobsMap.get(id);
 }
 
+export function getPathway(id: string): Pathway | undefined {
+  return pathwaysMap.get(id);
+}
+
 export function getBranchByCode(code: string): EngineeringBranch | undefined {
   return branchesCodeMap.get(code.toUpperCase());
 }
@@ -311,7 +315,17 @@ export function searchCareers(query: Partial<CareerSearchQuery> = {}) {
       ...govtJobs.map(govtJobToCard),
     ];
   } else if (level === 'CLASS_10') {
-    const matchedPathways = pathways.filter((p) => p.level === 'CLASS_10');
+    let matchedPathways = pathways.filter((p) => p.level === 'CLASS_10');
+    if (stream && stream !== 'ANY') {
+      const sUp = stream.toUpperCase();
+      const directMatches = matchedPathways.filter((p) =>
+        p.streams?.some((s) => s.toUpperCase() === sUp || (sUp === 'PCB' && s.toUpperCase() === 'PCMB') || (sUp === 'PCM' && (s.toUpperCase() === 'PCMB' || s.toUpperCase() === 'PCMC')))
+      );
+      if (directMatches.length > 0) {
+        const others = matchedPathways.filter((p) => !directMatches.includes(p));
+        matchedPathways = [...directMatches, ...others];
+      }
+    }
     const allowedGovtQuals = new Set(eligibleAlso.CLASS_10 || ['CLASS_10']);
     const matchedGovt = govtJobs.filter((g) => allowedGovtQuals.has(g.minQualification));
     candidateCards = [...matchedPathways.map(pathwayToCard), ...matchedGovt.map(govtJobToCard)];
@@ -568,9 +582,27 @@ export function searchCareers(query: Partial<CareerSearchQuery> = {}) {
       }
     }
 
+    let aStreamScore = 0;
+    let bStreamScore = 0;
+    if (stream && stream !== 'ANY') {
+      const sUp = stream.toUpperCase();
+      if (a.kind === 'pathway') {
+        const p = pathwaysMap.get(a.id);
+        if (p?.streams?.some((s) => s.toUpperCase() === sUp)) aStreamScore = 6;
+        else if (sUp === 'PCB' && p?.streams?.includes('PCMB')) aStreamScore = 5;
+        else if (sUp === 'PCM' && (p?.streams?.includes('PCMB') || p?.streams?.includes('PCMC'))) aStreamScore = 5;
+      }
+      if (b.kind === 'pathway') {
+        const p = pathwaysMap.get(b.id);
+        if (p?.streams?.some((s) => s.toUpperCase() === sUp)) bStreamScore = 6;
+        else if (sUp === 'PCB' && p?.streams?.includes('PCMB')) bStreamScore = 5;
+        else if (sUp === 'PCM' && (p?.streams?.includes('PCMB') || p?.streams?.includes('PCMC'))) bStreamScore = 5;
+      }
+    }
+
     const outlookScore = (o: Outlook) => (o === 'GROWING' ? 3 : o === 'STABLE' ? 1 : 0);
-    const aScore = aRiasecMatch * 2 + aSubMatch + outlookScore(a.outlook);
-    const bScore = bRiasecMatch * 2 + bSubMatch + outlookScore(b.outlook);
+    const aScore = aRiasecMatch * 2 + aSubMatch + aStreamScore + outlookScore(a.outlook);
+    const bScore = bRiasecMatch * 2 + bSubMatch + bStreamScore + outlookScore(b.outlook);
 
     if (bScore !== aScore) return bScore - aScore;
     return a.title.localeCompare(b.title);
