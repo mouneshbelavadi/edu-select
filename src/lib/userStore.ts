@@ -16,9 +16,6 @@ export interface UserRecord {
 const devUsersStore: UserRecord[] = [];
 
 function getDevUsers(): UserRecord[] {
-  if (process.env.NODE_ENV === 'production') {
-    return [];
-  }
   if (devUsersStore.length === 0) {
     const adminPassword = process.env.SEED_ADMIN_PASSWORD || 'Admin@123456';
     const demoPassword = process.env.SEED_DEMO_PASSWORD || 'password123';
@@ -77,13 +74,9 @@ export async function findUserByEmail(email: string): Promise<UserRecord | null>
     }
   }
 
-  // Development in-memory fallback
-  if (process.env.NODE_ENV !== 'production') {
-    const users = getDevUsers();
-    return users.find((u) => u.email.toLowerCase() === normalizedEmail) || null;
-  }
-
-  return null;
+  // Reliable demo & in-memory fallback for all environments
+  const users = getDevUsers();
+  return users.find((u) => u.email.toLowerCase() === normalizedEmail) || null;
 }
 
 /**
@@ -171,12 +164,10 @@ export async function updateLastLogin(email: string): Promise<void> {
     } catch {}
   }
 
-  if (process.env.NODE_ENV !== 'production') {
-    const users = getDevUsers();
-    const idx = users.findIndex((u) => u.email.toLowerCase() === normalizedEmail);
-    if (idx !== -1) {
-      users[idx].lastLoginAt = now.toISOString();
-    }
+  const users = getDevUsers();
+  const idx = users.findIndex((u) => u.email.toLowerCase() === normalizedEmail);
+  if (idx !== -1) {
+    users[idx].lastLoginAt = now.toISOString();
   }
 }
 
@@ -214,20 +205,16 @@ export async function listAllUsers() {
     }
   }
 
-  if (process.env.NODE_ENV !== 'production') {
-    const users = getDevUsers();
-    return users
-      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-      .map((u) => ({
-        id: u.id,
-        name: u.name,
-        email: u.email,
-        role: u.role,
-        createdAt: u.createdAt,
-        lastLoginAt: u.lastLoginAt,
-        status: u.status,
-      }));
-  }
-
-  return [];
+  const users = getDevUsers();
+  return users
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .map((u) => ({
+      id: u.id,
+      name: u.name,
+      email: u.email,
+      role: u.role,
+      createdAt: u.createdAt,
+      lastLoginAt: u.lastLoginAt,
+      status: u.status,
+    }));
 }

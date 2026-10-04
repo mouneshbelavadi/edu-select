@@ -20,8 +20,8 @@ function LoginForm() {
   const searchParams = useSearchParams();
   const explicitCallback = searchParams.get('callbackUrl');
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('aarav.sharma@example.com');
+  const [password, setPassword] = useState('password123');
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const [authError, setAuthError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -115,12 +115,29 @@ function LoginForm() {
               Sign Up
             </Link>
           </span>
-          <div className="p-2 bg-surface-50 rounded text-surface-600 text-left font-mono text-[11px] mt-1">
-            <strong>Demo Credentials:</strong>
-            <br />
-            Email: <code className="bg-surface-200 px-1 py-0.5 rounded">aarav.sharma@example.com</code>
-            <br />
-            Password: <code className="bg-surface-200 px-1 py-0.5 rounded">password123</code>
+          <div className="p-3 bg-blue-50/70 border border-blue-200/80 rounded-xl text-slate-700 text-left text-xs mt-1 flex flex-col gap-2">
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-slate-900 text-xs">Demo Credentials:</span>
+              <button
+                type="button"
+                onClick={() => {
+                  setEmail('aarav.sharma@example.com');
+                  setPassword('password123');
+                  setAuthError('');
+                }}
+                className="px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold rounded-md transition-colors cursor-pointer"
+              >
+                Auto-fill Student
+              </button>
+            </div>
+            <div className="font-mono text-[11px] text-slate-600 flex flex-col gap-0.5">
+              <div>
+                Email: <code className="bg-white px-1.5 py-0.5 rounded border border-blue-200 font-semibold text-slate-800">aarav.sharma@example.com</code>
+              </div>
+              <div>
+                Password: <code className="bg-white px-1.5 py-0.5 rounded border border-blue-200 font-semibold text-slate-800">password123</code>
+              </div>
+            </div>
           </div>
         </div>
       </Card>
