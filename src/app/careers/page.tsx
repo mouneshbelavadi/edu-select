@@ -77,13 +77,13 @@ const JOURNEY_LEVELS = [
 ];
 
 // Step 2 Options per level
-const STEP_2_OPTIONS: Record<string, { heading: string; options: { id: string; label: string; desc: string; defaultSubjects?: string[] }[] }> = {
+const STEP_2_OPTIONS: Record<string, { heading: string; options: { id: string; label: string; desc: string }[] }> = {
   '10th': {
     heading: 'What are you thinking of?',
     options: [
-      { id: 'science', label: 'Science (11th / PUC)', desc: 'Prepares for engineering, medical, and scientific research.', defaultSubjects: ['Physics', 'Chemistry', 'Mathematics'] },
-      { id: 'commerce', label: 'Commerce (11th / PUC)', desc: 'Prepares for accounting, business, finance, and economics.', defaultSubjects: ['Accountancy', 'Economics', 'Business Studies'] },
-      { id: 'arts', label: 'Humanities / Arts (11th / PUC)', desc: 'Prepares for civil services, law, journalism, and humanities.', defaultSubjects: ['History', 'Political Science', 'English'] },
+      { id: 'science', label: 'Science (11th / PUC)', desc: 'Prepares for engineering, medical, and scientific research.' },
+      { id: 'commerce', label: 'Commerce (11th / PUC)', desc: 'Prepares for accounting, business, finance, and economics.' },
+      { id: 'arts', label: 'Humanities / Arts (11th / PUC)', desc: 'Prepares for civil services, law, journalism, and humanities.' },
       { id: 'diploma', label: 'Polytechnic Diploma', desc: '3-year technical diploma with direct 2nd-year B.Tech entry.' },
       { id: 'iti', label: 'ITI Trade Course', desc: '1–2 year practical job-oriented trades for quick employment.' },
       { id: 'not_sure', label: 'Not sure / Exploring', desc: 'Browse all educational pathways eligible after 10th standard.' },
@@ -92,36 +92,36 @@ const STEP_2_OPTIONS: Record<string, { heading: string; options: { id: string; l
   '12th': {
     heading: 'Which stream are you studying?',
     options: [
-      { id: 'pcm', label: 'Science PCM', desc: 'Physics, Chemistry, and Mathematics.', defaultSubjects: ['Physics', 'Chemistry', 'Mathematics'] },
-      { id: 'pcb', label: 'Science PCB', desc: 'Physics, Chemistry, and Biology.', defaultSubjects: ['Physics', 'Chemistry', 'Biology'] },
-      { id: 'pcmb', label: 'Science PCMB', desc: 'Physics, Chemistry, Mathematics, and Biology.', defaultSubjects: ['Physics', 'Chemistry', 'Mathematics', 'Biology'] },
-      { id: 'pcmc', label: 'Science PCMC', desc: 'Physics, Chemistry, Mathematics, and Computer Science.', defaultSubjects: ['Physics', 'Chemistry', 'Mathematics', 'Computer Science'] },
-      { id: 'commerce_maths', label: 'Commerce with Maths', desc: 'Accounts, Economics, Business, and Mathematics.', defaultSubjects: ['Accountancy', 'Economics', 'Mathematics'] },
-      { id: 'commerce_no_maths', label: 'Commerce without Maths', desc: 'Accounts, Business Studies, Economics, and Statistics.', defaultSubjects: ['Accountancy', 'Economics', 'Business Studies'] },
-      { id: 'arts', label: 'Humanities / Arts', desc: 'History, Political Science, Psychology, and Literature.', defaultSubjects: ['History', 'Political Science', 'English'] },
+      { id: 'pcm', label: 'Science PCM', desc: 'Physics, Chemistry, and Mathematics.' },
+      { id: 'pcb', label: 'Science PCB', desc: 'Physics, Chemistry, and Biology.' },
+      { id: 'pcmb', label: 'Science PCMB', desc: 'Physics, Chemistry, Mathematics, and Biology.' },
+      { id: 'pcmc', label: 'Science PCMC', desc: 'Physics, Chemistry, Mathematics, and Computer Science.' },
+      { id: 'commerce_maths', label: 'Commerce with Maths', desc: 'Accounts, Economics, Business, and Mathematics.' },
+      { id: 'commerce_no_maths', label: 'Commerce without Maths', desc: 'Accounts, Business Studies, Economics, and Statistics.' },
+      { id: 'arts', label: 'Humanities / Arts', desc: 'History, Political Science, Psychology, and Literature.' },
       { id: 'vocational', label: 'Vocational / Other', desc: 'Applied technical or vocational higher secondary streams.' },
     ],
   },
   'iti': {
     heading: 'Which trade did you study?',
     options: [
-      { id: 'electrician', label: 'Electrician', desc: 'Power supply, wiring, and industrial electrical systems.', defaultSubjects: ['Electrical', 'Physics'] },
-      { id: 'fitter', label: 'Fitter', desc: 'Precision machine assembly, benchwork, and fabrication.', defaultSubjects: ['Mechanical'] },
+      { id: 'electrician', label: 'Electrician', desc: 'Power supply, wiring, and industrial electrical systems.' },
+      { id: 'fitter', label: 'Fitter', desc: 'Precision machine assembly, benchwork, and fabrication.' },
       { id: 'welder', label: 'Welder', desc: 'Arc/TIG/MIG welding, structural fabrication, and inspection.' },
       { id: 'machinist', label: 'Machinist', desc: 'Lathe, milling, CNC machining, and tool making.' },
-      { id: 'copa', label: 'COPA', desc: 'Computer Operator and Programming Assistant.', defaultSubjects: ['Computer Science'] },
-      { id: 'electronics', label: 'Electronics Mechanic', desc: 'Circuits, PCB repair, and consumer electronics.', defaultSubjects: ['Electronics'] },
+      { id: 'copa', label: 'COPA', desc: 'Computer Operator and Programming Assistant.' },
+      { id: 'electronics', label: 'Electronics Mechanic', desc: 'Circuits, PCB repair, and consumer electronics.' },
       { id: 'other', label: 'Other Approved Trade', desc: 'Other approved NCVT / SCVT technical craft trades.' },
     ],
   },
   'diploma': {
     heading: 'Which branch did you study?',
     options: [
-      { id: 'cse', label: 'Computer Science (CSE)', desc: 'Software, web development, and lateral B.Tech entry.', defaultSubjects: ['Computer Science', 'Mathematics'] },
-      { id: 'me', label: 'Mechanical Engineering', desc: 'Thermal, manufacturing, CAD, and Junior Engineer roles.', defaultSubjects: ['Mechanical', 'Mathematics'] },
-      { id: 'ce', label: 'Civil Engineering', desc: 'Surveying, structures, construction, and public works.', defaultSubjects: ['Civil', 'Mathematics'] },
-      { id: 'eee', label: 'Electrical & Electronics', desc: 'Power systems, machines, and state electricity boards.', defaultSubjects: ['Electrical', 'Mathematics'] },
-      { id: 'ece', label: 'Electronics & Comm', desc: 'Telecommunications, embedded microcontrollers, and hardware.', defaultSubjects: ['Electronics', 'Mathematics'] },
+      { id: 'cse', label: 'Computer Science (CSE)', desc: 'Software, web development, and lateral B.Tech entry.' },
+      { id: 'me', label: 'Mechanical Engineering', desc: 'Thermal, manufacturing, CAD, and Junior Engineer roles.' },
+      { id: 'ce', label: 'Civil Engineering', desc: 'Surveying, structures, construction, and public works.' },
+      { id: 'eee', label: 'Electrical & Electronics', desc: 'Power systems, machines, and state electricity boards.' },
+      { id: 'ece', label: 'Electronics & Comm', desc: 'Telecommunications, embedded microcontrollers, and hardware.' },
       { id: 'automobile', label: 'Automobile Engineering', desc: 'Vehicle dynamics, engine testing, and service management.' },
       { id: 'other', label: 'Other Engineering Branch', desc: 'Chemical, mining, commercial practice, or allied branch.' },
     ],
@@ -129,12 +129,12 @@ const STEP_2_OPTIONS: Record<string, { heading: string; options: { id: string; l
   'btech': {
     heading: 'Which branch are you in?',
     options: [
-      { id: 'cse', label: 'Computer Science (CSE)', desc: 'Software engineering, systems, algorithms, and tech placements.', defaultSubjects: ['Computer Science', 'Mathematics'] },
-      { id: 'ece', label: 'Electronics & Comm (ECE)', desc: 'VLSI, embedded hardware, wireless telecom, and GATE for PSUs.', defaultSubjects: ['Electronics', 'Mathematics'] },
-      { id: 'me', label: 'Mechanical Engineering', desc: 'Core machinery, aerospace, robotics, and central PSUs via GATE.', defaultSubjects: ['Mechanical', 'Mathematics'] },
-      { id: 'ce', label: 'Civil Engineering', desc: 'Structural engineering, infrastructure, and state PSC exams.', defaultSubjects: ['Civil', 'Mathematics'] },
-      { id: 'eee', label: 'Electrical Engineering', desc: 'Power distribution, renewable energy, and public utilities.', defaultSubjects: ['Electrical', 'Mathematics'] },
-      { id: 'ai', label: 'AI & Data Science', desc: 'Machine learning, analytics, and intelligent systems.', defaultSubjects: ['Computer Science', 'Mathematics'] },
+      { id: 'cse', label: 'Computer Science (CSE)', desc: 'Software engineering, systems, algorithms, and tech placements.' },
+      { id: 'ece', label: 'Electronics & Comm (ECE)', desc: 'VLSI, embedded hardware, wireless telecom, and GATE for PSUs.' },
+      { id: 'me', label: 'Mechanical Engineering', desc: 'Core machinery, aerospace, robotics, and central PSUs via GATE.' },
+      { id: 'ce', label: 'Civil Engineering', desc: 'Structural engineering, infrastructure, and state PSC exams.' },
+      { id: 'eee', label: 'Electrical Engineering', desc: 'Power distribution, renewable energy, and public utilities.' },
+      { id: 'ai', label: 'AI & Data Science', desc: 'Machine learning, analytics, and intelligent systems.' },
       { id: 'other', label: 'Other Branch', desc: 'Biotechnology, Chemical, Aerospace, Metallurgy, etc.' },
     ],
   },
@@ -317,12 +317,9 @@ function CareersExplorerContent() {
 
   // Stream Selection Handler
   const handleSelectStream = (streamId: string) => {
-    const streamConfig = STEP_2_OPTIONS[paramLevel]?.options.find((o) => o.id === streamId);
-    const defaultSubjs = streamConfig?.defaultSubjects || [];
-
     updateUrl({
       stream: streamId,
-      subjects: defaultSubjs.length ? defaultSubjs.join(',') : paramSubjects.join(',') || null,
+      subjects: null, // Unselected by default whenever a new user comes or chooses a stream
     });
     setActiveStep(3);
   };
