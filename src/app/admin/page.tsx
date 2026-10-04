@@ -46,6 +46,7 @@ export default function AdminPage() {
         toast.error('Invalid admin email or password');
       } else {
         toast.success('Admin authenticated successfully!');
+        window.location.reload();
       }
     } catch {
       toast.error('An error occurred during authentication');
@@ -101,15 +102,27 @@ export default function AdminPage() {
               variant="primary"
               size="md"
               isLoading={isLoading}
-              className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs py-3 rounded-xl shadow-md mt-2"
+              className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs py-3 rounded-xl shadow-md mt-2 cursor-pointer"
             >
               Sign In to Admin Dashboard →
             </Button>
           </form>
 
-          <div className="p-3 bg-amber-50 rounded-xl border border-amber-200 text-[11px] text-amber-900">
-            <span className="font-bold block mb-0.5">Default Admin Credentials:</span>
-            <span className="font-mono">admin@collegediscovery.com / Admin@123456</span>
+          <div className="p-3 bg-amber-50 rounded-xl border border-amber-200 text-[11px] text-amber-900 flex items-center justify-between">
+            <div>
+              <span className="font-bold block mb-0.5">Default Admin Credentials:</span>
+              <span className="font-mono">admin@collegediscovery.com / Admin@123456</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                setEmail('admin@collegediscovery.com');
+                setPassword('Admin@123456');
+              }}
+              className="px-2.5 py-1 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-[10px] transition-colors cursor-pointer shrink-0 ml-2 shadow-xs"
+            >
+              Auto-fill
+            </button>
           </div>
         </Card>
       </div>

@@ -21,8 +21,8 @@ function AdminLoginForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/admin';
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('admin@collegediscovery.com');
+  const [password, setPassword] = useState('Admin@123456');
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const [authError, setAuthError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -55,8 +55,7 @@ function AdminLoginForm() {
         toast.error('Admin authentication failed');
       } else {
         toast.success('Admin authentication verified!');
-        router.push(callbackUrl);
-        router.refresh();
+        window.location.href = callbackUrl;
       }
     } catch {
       setAuthError('An unexpected error occurred during admin authentication');
@@ -130,12 +129,23 @@ function AdminLoginForm() {
           </form>
 
           <div className="text-center text-xs text-slate-500 border-t border-slate-800 pt-4 flex flex-col gap-2">
-            <div className="p-3 bg-slate-950/80 rounded-lg text-slate-400 text-left font-mono text-[11px] border border-slate-800/80">
-              <strong className="text-amber-400">Default Admin Credentials:</strong>
-              <br />
-              Email: <code className="text-slate-200">admin@collegediscovery.com</code>
-              <br />
-              Password: <code className="text-slate-200">Admin@123456</code>
+            <div className="p-3 bg-slate-950/80 rounded-lg text-slate-400 text-left font-mono text-[11px] border border-slate-800/80 flex items-center justify-between">
+              <div>
+                <strong className="text-amber-400 block mb-0.5">Default Admin Credentials:</strong>
+                <div>Email: <code className="text-slate-200">admin@collegediscovery.com</code></div>
+                <div>Password: <code className="text-slate-200">Admin@123456</code></div>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setEmail('admin@collegediscovery.com');
+                  setPassword('Admin@123456');
+                  setAuthError('');
+                }}
+                className="px-2.5 py-1 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-[10px] transition-colors cursor-pointer shrink-0 ml-2 shadow-xs"
+              >
+                Auto-fill
+              </button>
             </div>
 
             <Link href="/" className="text-slate-400 hover:text-white mt-1">
