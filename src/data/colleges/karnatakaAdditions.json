@@ -1,0 +1,1014 @@
+{
+  "meta": {
+    "dataset": "karnatakaAdditions",
+    "description": "Notable Karnataka institutions missing from the existing 175 VTU records (NITK, IIT Dharwad, IIIT Bangalore, MIT Manipal, PES, UVCE, JSS STU, Christ, Jain, IIIT Dharwad, IIIT Raichur).",
+    "version": "1.0.0",
+    "compiledOn": "2026-10-04",
+    "region": "India",
+    "currency": "INR",
+    "disclaimer": "Curated for EduSelect from official and reputable public sources (compiled 2026-10-04). Fees and private-sector salaries are estimates (isEstimate=true) and must be shown with an 'Estimate' badge. Government pay is from the 7th CPC pay matrix (basic pay, excludes DA/HRA). Exam rules, age limits and fees change every cycle - re-check the official notification before relying on any value.",
+    "sources": [
+      {
+        "id": "nirf2025",
+        "title": "NIRF India Rankings 2025 - Engineering",
+        "url": "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+      },
+      {
+        "id": "nirf2025-list",
+        "title": "NIRF Engineering ranking 2025 list (College Vidya)",
+        "url": "https://collegevidya.com/blog/nirf-engineering-ranking-this-year-2025/"
+      },
+      {
+        "id": "pes-placement",
+        "title": "PES University placements (Collegedunia)",
+        "url": "https://collegedunia.com/university/28294-pes-university-pesu-bangalore/placement"
+      },
+      {
+        "id": "blr-colleges",
+        "title": "Best engineering colleges in Bangalore (CollegeAndFees)",
+        "url": "https://collegeandfees.com/engineering-colleges/best-in-bangalore"
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "rc-karnataka-1",
+      "name": "NIT Karnataka, Surathkal",
+      "slug": "nit-karnataka-surathkal-karnataka",
+      "city": "Surathkal (Mangalore)",
+      "state": "Karnataka",
+      "type": "GOVERNMENT",
+      "typeDetail": "National Institute of Technology - Institute of National Importance",
+      "institutionCategory": "NIT",
+      "rating": 4.8,
+      "ratingDisplay": "NIRF 2025 #17",
+      "ratingBasis": "Derived from NIRF 2025 Engineering rank band (≤10→4.9, ≤25→4.8, ≤50→4.6, ≤75→4.4, ≤100→4.3, 101-150→4.1, 151-200→4.0); null when not ranked",
+      "nirfRank2025": 17,
+      "nirfBand2025": "1-100",
+      "nirfNote": null,
+      "fees": 125000,
+      "feesMax": 140000,
+      "feesDisplay": "≈ ₹1.25 Lakh/year tuition (₹62,500/semester); waivers by category and family income (est. 2026-27)",
+      "feesIsEstimate": true,
+      "overview": "NIT Karnataka, Surathkal is located in Surathkal (Mangalore), Karnataka. Category: National Institute of Technology - Institute of National Importance. B.Tech admission: JEE Main (JoSAA / CSAB). NIRF 2025 Engineering rank 17.",
+      "placementText": "Official placement statistics (UG 4-year median salary, students placed) are published in the institute's NIRF Data Capturing System file on nirfindia.org - check the latest year before quoting.",
+      "placementStats": null,
+      "reviewsText": "Student reviews not yet collected on EduSelect.",
+      "entranceExams": [
+        {
+          "exam": "JEE Main (JoSAA / CSAB)",
+          "code": "Accepted"
+        }
+      ],
+      "admissionRoutes": [
+        "JM"
+      ],
+      "routeNote": null,
+      "courses": [
+        {
+          "id": "rc-karnataka-1-c1",
+          "name": "B.Tech Computer Science and Engineering",
+          "branchCode": "CSE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-1-c2",
+          "name": "B.Tech Electronics and Communication Engineering",
+          "branchCode": "ECE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-1-c3",
+          "name": "B.Tech Electrical (and Electronics) Engineering",
+          "branchCode": "EEE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-1-c4",
+          "name": "B.Tech Mechanical Engineering",
+          "branchCode": "ME",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-1-c5",
+          "name": "B.Tech Civil Engineering",
+          "branchCode": "CIVIL",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-1-c6",
+          "name": "B.Tech Chemical Engineering",
+          "branchCode": "CHE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-1-c7",
+          "name": "B.Tech Metallurgical and Materials Engineering",
+          "branchCode": "MME",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        }
+      ],
+      "coursesNote": "Typical core B.Tech branches for this type of institution - verify the exact branch list and intake on the official website before publishing.",
+      "totalBranchesOffered": 7,
+      "affiliation": "Autonomous - Institute of National Importance",
+      "approval": "Institute of National Importance (Act of Parliament)",
+      "established": null,
+      "dataSource": "NIRF India Rankings 2025 (Engineering), JoSAA and state counselling bodies - compiled by EduSelect",
+      "lastVerified": "Compiled 2026-10-04; fees, branches and placements need verification",
+      "verificationStatus": "partially-verified",
+      "imageUrl": "/images/states/karnataka.webp",
+      "sourceUrls": [
+        "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+      ],
+      "isRealData": true
+    },
+    {
+      "id": "rc-karnataka-2",
+      "name": "Manipal Institute of Technology (MAHE)",
+      "slug": "manipal-institute-of-technology-mahe-karnataka",
+      "city": "Manipal",
+      "state": "Karnataka",
+      "type": "DEEMED",
+      "typeDetail": "Deemed-to-be University",
+      "institutionCategory": "DEEMED",
+      "rating": 4.4,
+      "ratingDisplay": "NIRF 2025 #59",
+      "ratingBasis": "Derived from NIRF 2025 Engineering rank band (≤10→4.9, ≤25→4.8, ≤50→4.6, ≤75→4.4, ≤100→4.3, 101-150→4.1, 151-200→4.0); null when not ranked",
+      "nirfRank2025": 59,
+      "nirfBand2025": "1-100",
+      "nirfNote": null,
+      "fees": 350000,
+      "feesMax": 500000,
+      "feesDisplay": "≈ ₹3.5-5 Lakh/year (est.)",
+      "feesIsEstimate": true,
+      "overview": "Manipal Institute of Technology (MAHE) is located in Manipal, Karnataka. Category: Deemed-to-be University. B.Tech admission: MET. NIRF 2025 Engineering rank 59.",
+      "placementText": "Official placement statistics (UG 4-year median salary, students placed) are published in the institute's NIRF Data Capturing System file on nirfindia.org - check the latest year before quoting.",
+      "placementStats": null,
+      "reviewsText": "Student reviews not yet collected on EduSelect.",
+      "entranceExams": [
+        {
+          "exam": "MET",
+          "code": "Accepted"
+        }
+      ],
+      "admissionRoutes": [
+        "OWN:MET"
+      ],
+      "routeNote": null,
+      "courses": [
+        {
+          "id": "rc-karnataka-2-c1",
+          "name": "B.Tech Computer Science and Engineering",
+          "branchCode": "CSE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-2-c2",
+          "name": "B.Tech Artificial Intelligence and Machine Learning",
+          "branchCode": "AI",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-2-c3",
+          "name": "B.Tech Electronics and Communication Engineering",
+          "branchCode": "ECE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-2-c4",
+          "name": "B.Tech Electrical (and Electronics) Engineering",
+          "branchCode": "EEE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-2-c5",
+          "name": "B.Tech Mechanical Engineering",
+          "branchCode": "ME",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-2-c6",
+          "name": "B.Tech Civil Engineering",
+          "branchCode": "CIVIL",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-2-c7",
+          "name": "B.Tech Biotechnology",
+          "branchCode": "BT",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        }
+      ],
+      "coursesNote": "Typical core B.Tech branches for this type of institution - verify the exact branch list and intake on the official website before publishing.",
+      "totalBranchesOffered": 7,
+      "affiliation": "Deemed-to-be University (UGC)",
+      "approval": "UGC (Deemed-to-be University)",
+      "established": null,
+      "dataSource": "NIRF India Rankings 2025 (Engineering), JoSAA and state counselling bodies - compiled by EduSelect",
+      "lastVerified": "Compiled 2026-10-04; fees, branches and placements need verification",
+      "verificationStatus": "partially-verified",
+      "imageUrl": "/images/states/karnataka.webp",
+      "sourceUrls": [
+        "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+      ],
+      "isRealData": true
+    },
+    {
+      "id": "rc-karnataka-3",
+      "name": "IIIT Bangalore",
+      "slug": "iiit-bangalore-karnataka",
+      "city": "Bangalore",
+      "state": "Karnataka",
+      "type": "DEEMED",
+      "typeDetail": "Deemed-to-be University (PPP, not-for-profit)",
+      "institutionCategory": "DEEMED",
+      "rating": 4.4,
+      "ratingDisplay": "NIRF 2025 #69",
+      "ratingBasis": "Derived from NIRF 2025 Engineering rank band (≤10→4.9, ≤25→4.8, ≤50→4.6, ≤75→4.4, ≤100→4.3, 101-150→4.1, 151-200→4.0); null when not ranked",
+      "nirfRank2025": 69,
+      "nirfBand2025": "1-100",
+      "nirfNote": null,
+      "fees": 400000,
+      "feesMax": 500000,
+      "feesDisplay": "≈ ₹4-5 Lakh/year (est.)",
+      "feesIsEstimate": true,
+      "overview": "IIIT Bangalore is located in Bangalore, Karnataka. Category: Deemed-to-be University (PPP, not-for-profit). B.Tech admission: JEE Main (JoSAA / CSAB). NIRF 2025 Engineering rank 69.",
+      "placementText": "Official placement statistics (UG 4-year median salary, students placed) are published in the institute's NIRF Data Capturing System file on nirfindia.org - check the latest year before quoting.",
+      "placementStats": {
+        "year": 2025,
+        "medianLPA": 39.7,
+        "averageLPA": null,
+        "highestLPA": null,
+        "source": "Aggregator figure - verify against NIRF DCS",
+        "verified": false
+      },
+      "reviewsText": "Student reviews not yet collected on EduSelect.",
+      "entranceExams": [
+        {
+          "exam": "JEE Main (JoSAA / CSAB)",
+          "code": "Accepted"
+        }
+      ],
+      "admissionRoutes": [
+        "JM"
+      ],
+      "routeNote": null,
+      "courses": [
+        {
+          "id": "rc-karnataka-3-c1",
+          "name": "Integrated M.Tech (5-year) Computer Science & Engineering",
+          "branchCode": "CSE",
+          "duration": "5 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-3-c2",
+          "name": "Integrated M.Tech (5-year) Electronics & Communication Engineering",
+          "branchCode": "ECE",
+          "duration": "5 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        }
+      ],
+      "coursesNote": "IIIT Bangalore's undergraduate entry is the 5-year Integrated M.Tech (verify for 2026).",
+      "totalBranchesOffered": 2,
+      "affiliation": "Deemed-to-be University (UGC)",
+      "approval": "UGC (Deemed-to-be University)",
+      "established": null,
+      "dataSource": "NIRF India Rankings 2025 (Engineering), JoSAA and state counselling bodies - compiled by EduSelect",
+      "lastVerified": "Compiled 2026-10-04; fees, branches and placements need verification",
+      "verificationStatus": "partially-verified",
+      "imageUrl": "/images/states/karnataka.webp",
+      "sourceUrls": [
+        "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+      ],
+      "isRealData": true
+    },
+    {
+      "id": "rc-karnataka-4",
+      "name": "Christ University - School of Engineering & Technology",
+      "slug": "christ-university-school-of-engineering-and-technology-karnataka",
+      "city": "Bangalore",
+      "state": "Karnataka",
+      "type": "DEEMED",
+      "typeDetail": "Deemed-to-be University",
+      "institutionCategory": "DEEMED",
+      "rating": 4.3,
+      "ratingDisplay": "NIRF 2025 #76",
+      "ratingBasis": "Derived from NIRF 2025 Engineering rank band (≤10→4.9, ≤25→4.8, ≤50→4.6, ≤75→4.4, ≤100→4.3, 101-150→4.1, 151-200→4.0); null when not ranked",
+      "nirfRank2025": 76,
+      "nirfBand2025": "1-100",
+      "nirfNote": null,
+      "fees": 150000,
+      "feesMax": 500000,
+      "feesDisplay": "≈ ₹1.5-5 Lakh/year (est.)",
+      "feesIsEstimate": true,
+      "overview": "Christ University - School of Engineering & Technology is located in Bangalore, Karnataka. Category: Deemed-to-be University. B.Tech admission: Christ entrance (verify). NIRF 2025 Engineering rank 76.",
+      "placementText": "Official placement statistics (UG 4-year median salary, students placed) are published in the institute's NIRF Data Capturing System file on nirfindia.org - check the latest year before quoting.",
+      "placementStats": null,
+      "reviewsText": "Student reviews not yet collected on EduSelect.",
+      "entranceExams": [
+        {
+          "exam": "Christ entrance (verify)",
+          "code": "Accepted"
+        }
+      ],
+      "admissionRoutes": [
+        "OWN:Christ entrance (verify)"
+      ],
+      "routeNote": null,
+      "courses": [
+        {
+          "id": "rc-karnataka-4-c1",
+          "name": "B.Tech Computer Science and Engineering",
+          "branchCode": "CSE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-4-c2",
+          "name": "B.Tech Artificial Intelligence and Machine Learning",
+          "branchCode": "AI",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-4-c3",
+          "name": "B.Tech Electronics and Communication Engineering",
+          "branchCode": "ECE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-4-c4",
+          "name": "B.Tech Electrical (and Electronics) Engineering",
+          "branchCode": "EEE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-4-c5",
+          "name": "B.Tech Mechanical Engineering",
+          "branchCode": "ME",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-4-c6",
+          "name": "B.Tech Civil Engineering",
+          "branchCode": "CIVIL",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-4-c7",
+          "name": "B.Tech Biotechnology",
+          "branchCode": "BT",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        }
+      ],
+      "coursesNote": "Typical core B.Tech branches for this type of institution - verify the exact branch list and intake on the official website before publishing.",
+      "totalBranchesOffered": 7,
+      "affiliation": "Deemed-to-be University (UGC)",
+      "approval": "UGC (Deemed-to-be University)",
+      "established": null,
+      "dataSource": "NIRF India Rankings 2025 (Engineering), JoSAA and state counselling bodies - compiled by EduSelect",
+      "lastVerified": "Compiled 2026-10-04; fees, branches and placements need verification",
+      "verificationStatus": "partially-verified",
+      "imageUrl": "/images/states/karnataka.webp",
+      "sourceUrls": [
+        "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+      ],
+      "isRealData": true
+    },
+    {
+      "id": "rc-karnataka-5",
+      "name": "IIT Dharwad",
+      "slug": "iit-dharwad-karnataka",
+      "city": "Dharwad",
+      "state": "Karnataka",
+      "type": "GOVERNMENT",
+      "typeDetail": "Indian Institute of Technology - Institute of National Importance",
+      "institutionCategory": "IIT",
+      "rating": 4.3,
+      "ratingDisplay": "NIRF 2025 #77",
+      "ratingBasis": "Derived from NIRF 2025 Engineering rank band (≤10→4.9, ≤25→4.8, ≤50→4.6, ≤75→4.4, ≤100→4.3, 101-150→4.1, 151-200→4.0); null when not ranked",
+      "nirfRank2025": 77,
+      "nirfBand2025": "1-100",
+      "nirfNote": null,
+      "fees": 200000,
+      "feesMax": 220000,
+      "feesDisplay": "≈ ₹2 Lakh/year tuition (₹1 Lakh/semester); fee remission for SC/ST/PwD and by family income (est. 2026)",
+      "feesIsEstimate": true,
+      "overview": "IIT Dharwad is located in Dharwad, Karnataka. Category: Indian Institute of Technology - Institute of National Importance. B.Tech admission: JEE Advanced (JoSAA). NIRF 2025 Engineering rank 77.",
+      "placementText": "Official placement statistics (UG 4-year median salary, students placed) are published in the institute's NIRF Data Capturing System file on nirfindia.org - check the latest year before quoting.",
+      "placementStats": null,
+      "reviewsText": "Student reviews not yet collected on EduSelect.",
+      "entranceExams": [
+        {
+          "exam": "JEE Advanced (JoSAA)",
+          "code": "Accepted"
+        }
+      ],
+      "admissionRoutes": [
+        "JA"
+      ],
+      "routeNote": null,
+      "courses": [
+        {
+          "id": "rc-karnataka-5-c1",
+          "name": "B.Tech Computer Science and Engineering",
+          "branchCode": "CSE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-5-c2",
+          "name": "B.Tech Electrical (and Electronics) Engineering",
+          "branchCode": "EEE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-5-c3",
+          "name": "B.Tech Mechanical Engineering",
+          "branchCode": "ME",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-5-c4",
+          "name": "B.Tech Civil Engineering",
+          "branchCode": "CIVIL",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-5-c5",
+          "name": "B.Tech Chemical Engineering",
+          "branchCode": "CHE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        }
+      ],
+      "coursesNote": "Typical core B.Tech branches for this type of institution - verify the exact branch list and intake on the official website before publishing.",
+      "totalBranchesOffered": 5,
+      "affiliation": "Autonomous - Institute of National Importance",
+      "approval": "Institute of National Importance (Act of Parliament)",
+      "established": null,
+      "dataSource": "NIRF India Rankings 2025 (Engineering), JoSAA and state counselling bodies - compiled by EduSelect",
+      "lastVerified": "Compiled 2026-10-04; fees, branches and placements need verification",
+      "verificationStatus": "partially-verified",
+      "imageUrl": "/images/states/karnataka.webp",
+      "sourceUrls": [
+        "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+      ],
+      "isRealData": true
+    },
+    {
+      "id": "rc-karnataka-6",
+      "name": "Jain (Deemed-to-be University) - Faculty of Engineering & Technology",
+      "slug": "jain-deemed-to-be-university-faculty-of-engineering-and-technology-karnataka",
+      "city": "Bangalore",
+      "state": "Karnataka",
+      "type": "DEEMED",
+      "typeDetail": "Deemed-to-be University",
+      "institutionCategory": "DEEMED",
+      "rating": 4.3,
+      "ratingDisplay": "NIRF 2025 #84",
+      "ratingBasis": "Derived from NIRF 2025 Engineering rank band (≤10→4.9, ≤25→4.8, ≤50→4.6, ≤75→4.4, ≤100→4.3, 101-150→4.1, 151-200→4.0); null when not ranked",
+      "nirfRank2025": 84,
+      "nirfBand2025": "1-100",
+      "nirfNote": null,
+      "fees": 150000,
+      "feesMax": 500000,
+      "feesDisplay": "≈ ₹1.5-5 Lakh/year (est.)",
+      "feesIsEstimate": true,
+      "overview": "Jain (Deemed-to-be University) - Faculty of Engineering & Technology is located in Bangalore, Karnataka. Category: Deemed-to-be University. B.Tech admission: JET (verify). NIRF 2025 Engineering rank 84.",
+      "placementText": "Official placement statistics (UG 4-year median salary, students placed) are published in the institute's NIRF Data Capturing System file on nirfindia.org - check the latest year before quoting.",
+      "placementStats": null,
+      "reviewsText": "Student reviews not yet collected on EduSelect.",
+      "entranceExams": [
+        {
+          "exam": "JET (verify)",
+          "code": "Accepted"
+        }
+      ],
+      "admissionRoutes": [
+        "OWN:JET (verify)"
+      ],
+      "routeNote": null,
+      "courses": [
+        {
+          "id": "rc-karnataka-6-c1",
+          "name": "B.Tech Computer Science and Engineering",
+          "branchCode": "CSE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-6-c2",
+          "name": "B.Tech Artificial Intelligence and Machine Learning",
+          "branchCode": "AI",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-6-c3",
+          "name": "B.Tech Electronics and Communication Engineering",
+          "branchCode": "ECE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-6-c4",
+          "name": "B.Tech Electrical (and Electronics) Engineering",
+          "branchCode": "EEE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-6-c5",
+          "name": "B.Tech Mechanical Engineering",
+          "branchCode": "ME",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-6-c6",
+          "name": "B.Tech Civil Engineering",
+          "branchCode": "CIVIL",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-6-c7",
+          "name": "B.Tech Biotechnology",
+          "branchCode": "BT",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        }
+      ],
+      "coursesNote": "Typical core B.Tech branches for this type of institution - verify the exact branch list and intake on the official website before publishing.",
+      "totalBranchesOffered": 7,
+      "affiliation": "Deemed-to-be University (UGC)",
+      "approval": "UGC (Deemed-to-be University)",
+      "established": null,
+      "dataSource": "NIRF India Rankings 2025 (Engineering), JoSAA and state counselling bodies - compiled by EduSelect",
+      "lastVerified": "Compiled 2026-10-04; fees, branches and placements need verification",
+      "verificationStatus": "partially-verified",
+      "imageUrl": "/images/states/karnataka.webp",
+      "sourceUrls": [
+        "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+      ],
+      "isRealData": true
+    },
+    {
+      "id": "rc-karnataka-7",
+      "name": "PES University",
+      "slug": "pes-university-karnataka",
+      "city": "Bangalore",
+      "state": "Karnataka",
+      "type": "PRIVATE",
+      "typeDetail": "State Private University",
+      "institutionCategory": "PRIVATE_UNIV",
+      "rating": null,
+      "ratingDisplay": "Not in NIRF 2025 top 100",
+      "ratingBasis": null,
+      "nirfRank2025": null,
+      "nirfBand2025": null,
+      "nirfNote": null,
+      "fees": 350000,
+      "feesMax": 500000,
+      "feesDisplay": "≈ ₹3.5-5 Lakh/year (est.)",
+      "feesIsEstimate": true,
+      "overview": "PES University is located in Bangalore, Karnataka. Category: State Private University. B.Tech admission: PESSAT, KCET (Engineering), COMEDK (Engineering). Not in the NIRF 2025 Engineering top 100.",
+      "placementText": "Official placement statistics (UG 4-year median salary, students placed) are published in the institute's NIRF Data Capturing System file on nirfindia.org - check the latest year before quoting.",
+      "placementStats": {
+        "year": 2025,
+        "medianLPA": 12.5,
+        "averageLPA": null,
+        "highestLPA": null,
+        "source": "Collegedunia citing NIRF data",
+        "verified": false
+      },
+      "reviewsText": "Student reviews not yet collected on EduSelect.",
+      "entranceExams": [
+        {
+          "exam": "PESSAT",
+          "code": "Accepted"
+        },
+        {
+          "exam": "KCET (Engineering)",
+          "code": "Accepted"
+        },
+        {
+          "exam": "COMEDK (Engineering)",
+          "code": "Accepted"
+        }
+      ],
+      "admissionRoutes": [
+        "OWN:PESSAT",
+        "KCET",
+        "COMEDK"
+      ],
+      "routeNote": null,
+      "courses": [
+        {
+          "id": "rc-karnataka-7-c1",
+          "name": "B.Tech Computer Science and Engineering",
+          "branchCode": "CSE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-7-c2",
+          "name": "B.Tech Artificial Intelligence and Machine Learning",
+          "branchCode": "AI",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-7-c3",
+          "name": "B.Tech Electronics and Communication Engineering",
+          "branchCode": "ECE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-7-c4",
+          "name": "B.Tech Electrical (and Electronics) Engineering",
+          "branchCode": "EEE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-7-c5",
+          "name": "B.Tech Mechanical Engineering",
+          "branchCode": "ME",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-7-c6",
+          "name": "B.Tech Civil Engineering",
+          "branchCode": "CIVIL",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-7-c7",
+          "name": "B.Tech Biotechnology",
+          "branchCode": "BT",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        }
+      ],
+      "coursesNote": "Typical core B.Tech branches for this type of institution - verify the exact branch list and intake on the official website before publishing.",
+      "totalBranchesOffered": 7,
+      "affiliation": "State Private University (UGC)",
+      "approval": "UGC (State Private University)",
+      "established": null,
+      "dataSource": "NIRF India Rankings 2025 (Engineering), JoSAA and state counselling bodies - compiled by EduSelect",
+      "lastVerified": "Compiled 2026-10-04; fees, branches and placements need verification",
+      "verificationStatus": "needs-verification",
+      "imageUrl": "/images/states/karnataka.webp",
+      "sourceUrls": [
+        "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+      ],
+      "isRealData": true
+    },
+    {
+      "id": "rc-karnataka-8",
+      "name": "University of Visvesvaraya College of Engineering (UVCE)",
+      "slug": "university-of-visvesvaraya-college-of-engineering-uvce-karnataka",
+      "city": "Bangalore",
+      "state": "Karnataka",
+      "type": "GOVERNMENT",
+      "typeDetail": "State autonomous university (since 2022)",
+      "institutionCategory": "STATE_UNIV",
+      "rating": null,
+      "ratingDisplay": "Not in NIRF 2025 top 100",
+      "ratingBasis": null,
+      "nirfRank2025": null,
+      "nirfBand2025": null,
+      "nirfNote": null,
+      "fees": 10000,
+      "feesMax": 60000,
+      "feesDisplay": "Very low on government seats (est.)",
+      "feesIsEstimate": true,
+      "overview": "University of Visvesvaraya College of Engineering (UVCE) is located in Bangalore, Karnataka. Category: State autonomous university (since 2022). B.Tech admission: KCET (Engineering). Not in the NIRF 2025 Engineering top 100.",
+      "placementText": "Official placement statistics (UG 4-year median salary, students placed) are published in the institute's NIRF Data Capturing System file on nirfindia.org - check the latest year before quoting.",
+      "placementStats": null,
+      "reviewsText": "Student reviews not yet collected on EduSelect.",
+      "entranceExams": [
+        {
+          "exam": "KCET (Engineering)",
+          "code": "Accepted"
+        }
+      ],
+      "admissionRoutes": [
+        "KCET"
+      ],
+      "routeNote": null,
+      "courses": [
+        {
+          "id": "rc-karnataka-8-c1",
+          "name": "B.Tech Computer Science and Engineering",
+          "branchCode": "CSE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-8-c2",
+          "name": "B.Tech Electronics and Communication Engineering",
+          "branchCode": "ECE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-8-c3",
+          "name": "B.Tech Electrical (and Electronics) Engineering",
+          "branchCode": "EEE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-8-c4",
+          "name": "B.Tech Mechanical Engineering",
+          "branchCode": "ME",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-8-c5",
+          "name": "B.Tech Civil Engineering",
+          "branchCode": "CIVIL",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        }
+      ],
+      "coursesNote": "Typical core B.Tech branches for this type of institution - verify the exact branch list and intake on the official website before publishing.",
+      "totalBranchesOffered": 5,
+      "affiliation": "State University",
+      "approval": "UGC / AICTE (verify)",
+      "established": null,
+      "dataSource": "NIRF India Rankings 2025 (Engineering), JoSAA and state counselling bodies - compiled by EduSelect",
+      "lastVerified": "Compiled 2026-10-04; fees, branches and placements need verification",
+      "verificationStatus": "needs-verification",
+      "imageUrl": "/images/states/karnataka.webp",
+      "sourceUrls": [
+        "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+      ],
+      "isRealData": true
+    },
+    {
+      "id": "rc-karnataka-9",
+      "name": "JSS Science and Technology University (formerly SJCE)",
+      "slug": "jss-science-and-technology-university-formerly-sjce-karnataka",
+      "city": "Mysuru",
+      "state": "Karnataka",
+      "type": "PRIVATE",
+      "typeDetail": "State Private University",
+      "institutionCategory": "PRIVATE_UNIV",
+      "rating": null,
+      "ratingDisplay": "Not in NIRF 2025 top 100",
+      "ratingBasis": null,
+      "nirfRank2025": null,
+      "nirfBand2025": null,
+      "nirfNote": null,
+      "fees": 100000,
+      "feesMax": 300000,
+      "feesDisplay": "≈ ₹1-3 Lakh/year (est.)",
+      "feesIsEstimate": true,
+      "overview": "JSS Science and Technology University (formerly SJCE) is located in Mysuru, Karnataka. Category: State Private University. B.Tech admission: KCET (Engineering), COMEDK (Engineering), Own test. Not in the NIRF 2025 Engineering top 100.",
+      "placementText": "Official placement statistics (UG 4-year median salary, students placed) are published in the institute's NIRF Data Capturing System file on nirfindia.org - check the latest year before quoting.",
+      "placementStats": null,
+      "reviewsText": "Student reviews not yet collected on EduSelect.",
+      "entranceExams": [
+        {
+          "exam": "KCET (Engineering)",
+          "code": "Accepted"
+        },
+        {
+          "exam": "COMEDK (Engineering)",
+          "code": "Accepted"
+        },
+        {
+          "exam": "Own test",
+          "code": "Accepted"
+        }
+      ],
+      "admissionRoutes": [
+        "KCET",
+        "COMEDK",
+        "OWN:Own test"
+      ],
+      "routeNote": null,
+      "courses": [
+        {
+          "id": "rc-karnataka-9-c1",
+          "name": "B.Tech Computer Science and Engineering",
+          "branchCode": "CSE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-9-c2",
+          "name": "B.Tech Artificial Intelligence and Machine Learning",
+          "branchCode": "AI",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-9-c3",
+          "name": "B.Tech Electronics and Communication Engineering",
+          "branchCode": "ECE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-9-c4",
+          "name": "B.Tech Electrical (and Electronics) Engineering",
+          "branchCode": "EEE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-9-c5",
+          "name": "B.Tech Mechanical Engineering",
+          "branchCode": "ME",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-9-c6",
+          "name": "B.Tech Civil Engineering",
+          "branchCode": "CIVIL",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-9-c7",
+          "name": "B.Tech Biotechnology",
+          "branchCode": "BT",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        }
+      ],
+      "coursesNote": "Typical core B.Tech branches for this type of institution - verify the exact branch list and intake on the official website before publishing.",
+      "totalBranchesOffered": 7,
+      "affiliation": "State Private University (UGC)",
+      "approval": "UGC (State Private University)",
+      "established": null,
+      "dataSource": "NIRF India Rankings 2025 (Engineering), JoSAA and state counselling bodies - compiled by EduSelect",
+      "lastVerified": "Compiled 2026-10-04; fees, branches and placements need verification",
+      "verificationStatus": "needs-verification",
+      "imageUrl": "/images/states/karnataka.webp",
+      "sourceUrls": [
+        "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+      ],
+      "isRealData": true
+    },
+    {
+      "id": "rc-karnataka-10",
+      "name": "IIIT Dharwad",
+      "slug": "iiit-dharwad-karnataka",
+      "city": "Dharwad",
+      "state": "Karnataka",
+      "type": "GOVERNMENT",
+      "typeDetail": "IIIT (Public-Private Partnership) - Institute of National Importance",
+      "institutionCategory": "IIIT_PPP",
+      "rating": null,
+      "ratingDisplay": "Not in NIRF 2025 top 100",
+      "ratingBasis": null,
+      "nirfRank2025": null,
+      "nirfBand2025": null,
+      "nirfNote": null,
+      "fees": 150000,
+      "feesMax": 300000,
+      "feesDisplay": "≈ ₹1.5-3 Lakh/year (est.)",
+      "feesIsEstimate": true,
+      "overview": "IIIT Dharwad is located in Dharwad, Karnataka. Category: IIIT (Public-Private Partnership) - Institute of National Importance. B.Tech admission: JEE Main (JoSAA / CSAB). Not in the NIRF 2025 Engineering top 100.",
+      "placementText": "Official placement statistics (UG 4-year median salary, students placed) are published in the institute's NIRF Data Capturing System file on nirfindia.org - check the latest year before quoting.",
+      "placementStats": null,
+      "reviewsText": "Student reviews not yet collected on EduSelect.",
+      "entranceExams": [
+        {
+          "exam": "JEE Main (JoSAA / CSAB)",
+          "code": "Accepted"
+        }
+      ],
+      "admissionRoutes": [
+        "JM"
+      ],
+      "routeNote": null,
+      "courses": [
+        {
+          "id": "rc-karnataka-10-c1",
+          "name": "B.Tech Computer Science and Engineering",
+          "branchCode": "CSE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-10-c2",
+          "name": "B.Tech Electronics and Communication Engineering",
+          "branchCode": "ECE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        }
+      ],
+      "coursesNote": "Typical core B.Tech branches for this type of institution - verify the exact branch list and intake on the official website before publishing.",
+      "totalBranchesOffered": 2,
+      "affiliation": "Autonomous - Institute of National Importance (IIIT PPP Act 2017)",
+      "approval": "Institute of National Importance (Act of Parliament)",
+      "established": null,
+      "dataSource": "NIRF India Rankings 2025 (Engineering), JoSAA and state counselling bodies - compiled by EduSelect",
+      "lastVerified": "Compiled 2026-10-04; fees, branches and placements need verification",
+      "verificationStatus": "needs-verification",
+      "imageUrl": "/images/states/karnataka.webp",
+      "sourceUrls": [
+        "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+      ],
+      "isRealData": true
+    },
+    {
+      "id": "rc-karnataka-11",
+      "name": "IIIT Raichur",
+      "slug": "iiit-raichur-karnataka",
+      "city": "Raichur",
+      "state": "Karnataka",
+      "type": "GOVERNMENT",
+      "typeDetail": "IIIT (Public-Private Partnership) - Institute of National Importance",
+      "institutionCategory": "IIIT_PPP",
+      "rating": null,
+      "ratingDisplay": "Not in NIRF 2025 top 100",
+      "ratingBasis": null,
+      "nirfRank2025": null,
+      "nirfBand2025": null,
+      "nirfNote": null,
+      "fees": 150000,
+      "feesMax": 300000,
+      "feesDisplay": "≈ ₹1.5-3 Lakh/year (est.)",
+      "feesIsEstimate": true,
+      "overview": "IIIT Raichur is located in Raichur, Karnataka. Category: IIIT (Public-Private Partnership) - Institute of National Importance. B.Tech admission: JEE Main (JoSAA / CSAB). Not in the NIRF 2025 Engineering top 100.",
+      "placementText": "Official placement statistics (UG 4-year median salary, students placed) are published in the institute's NIRF Data Capturing System file on nirfindia.org - check the latest year before quoting.",
+      "placementStats": null,
+      "reviewsText": "Student reviews not yet collected on EduSelect.",
+      "entranceExams": [
+        {
+          "exam": "JEE Main (JoSAA / CSAB)",
+          "code": "Accepted"
+        }
+      ],
+      "admissionRoutes": [
+        "JM"
+      ],
+      "routeNote": null,
+      "courses": [
+        {
+          "id": "rc-karnataka-11-c1",
+          "name": "B.Tech Computer Science and Engineering",
+          "branchCode": "CSE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        },
+        {
+          "id": "rc-karnataka-11-c2",
+          "name": "B.Tech Electronics and Communication Engineering",
+          "branchCode": "ECE",
+          "duration": "4 Years",
+          "feesDisplay": "As per institute fee (see college fees)"
+        }
+      ],
+      "coursesNote": "Typical core B.Tech branches for this type of institution - verify the exact branch list and intake on the official website before publishing.",
+      "totalBranchesOffered": 2,
+      "affiliation": "Autonomous - Institute of National Importance (IIIT PPP Act 2017)",
+      "approval": "Institute of National Importance (Act of Parliament)",
+      "established": null,
+      "dataSource": "NIRF India Rankings 2025 (Engineering), JoSAA and state counselling bodies - compiled by EduSelect",
+      "lastVerified": "Compiled 2026-10-04; fees, branches and placements need verification",
+      "verificationStatus": "needs-verification",
+      "imageUrl": "/images/states/karnataka.webp",
+      "sourceUrls": [
+        "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+      ],
+      "isRealData": true
+    }
+  ]
+}

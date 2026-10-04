@@ -14,10 +14,17 @@ export interface CollegeCardData {
   slug: string;
   city: string;
   state: string;
-  type: 'GOVERNMENT' | 'PRIVATE' | 'DEEMED';
-  establishedYear: number;
+  type: string;
+  typeDetail?: string;
+  establishedYear?: number;
+  established?: number | null;
   fees: number;
-  rating: number;
+  feesDisplay?: string;
+  feesIsEstimate?: boolean;
+  rating: number | null;
+  ratingDisplay?: string;
+  nirfRank2025?: number | null;
+  nirfBand2025?: string | null;
   imageUrl?: string | null;
 }
 
@@ -58,7 +65,7 @@ export const CollegeCard: React.FC<{ college: CollegeCardData }> = ({ college })
         toast.success(`Saved ${college.name} to dashboard!`);
       } else {
         const data = await res.json();
-        toast.error(data.error?.message || 'Failed to save college');
+        toast.error(data.error?.message || data.error || 'Failed to save college');
       }
     } catch {
       toast.error('An error occurred while saving');
@@ -74,11 +81,27 @@ export const CollegeCard: React.FC<{ college: CollegeCardData }> = ({ college })
       ? 'private'
       : 'deemed';
 
-  const formattedFees = new Intl.NumberFormat('en-IN', {
-    style: 'currency',
-    currency: 'INR',
-    maximumFractionDigits: 0,
-  }).format(college.fees);
+  const formattedFees =
+    college.feesDisplay ||
+    new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0,
+    }).format(college.fees);
+
+  const nirfBadge = college.nirfRank2025 ? (
+    <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-300">
+      🏆 NIRF #{college.nirfRank2025}
+    </span>
+  ) : college.nirfBand2025 ? (
+    <span className="inline-flex items-center gap-1 text-xs font-bold text-blue-800 bg-blue-50 px-2.5 py-0.5 rounded-md border border-blue-300">
+      NIRF {college.nirfBand2025}
+    </span>
+  ) : (
+    <span className="inline-flex items-center text-xs font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200">
+      Not NIRF-ranked
+    </span>
+  );
 
   return (
     <Card hoverable className="flex flex-col h-full overflow-hidden group">
@@ -87,7 +110,7 @@ export const CollegeCard: React.FC<{ college: CollegeCardData }> = ({ college })
         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center gap-1">
           <span className="text-xs font-semibold uppercase tracking-wider text-brand-200">
-            Estd. {college.establishedYear}
+            Estd. {college.established || college.establishedYear || 'N/A'}
           </span>
           <h3 className="font-bold text-lg text-white line-clamp-2 leading-tight group-hover:text-brand-300 transition-colors">
             {college.name}
@@ -101,17 +124,27 @@ export const CollegeCard: React.FC<{ college: CollegeCardData }> = ({ college })
       {/* Body Info */}
       <div className="p-5 flex-1 flex flex-col justify-between gap-4">
         <div className="flex flex-col gap-3">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-2 flex-wrap">
             <Badge variant={badgeVariant}>{college.type}</Badge>
-            <div className="flex items-center gap-1 text-sm font-semibold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200">
-              <span>★</span>
-              <span>{college.rating.toFixed(1)}</span>
-            </div>
+            {nirfBadge}
           </div>
+
+          {college.typeDetail && (
+            <div className="text-[11px] font-medium text-slate-600 bg-slate-50 px-2.5 py-1 rounded-md border border-slate-200/70 line-clamp-1" title={college.typeDetail}>
+              🏛️ {college.typeDetail}
+            </div>
+          )}
 
           <div className="flex items-baseline justify-between border-t border-surface-100 pt-3">
             <span className="text-xs text-surface-500 font-medium">Avg Annual Fee</span>
-            <span className="text-base font-bold text-surface-900">{formattedFees}</span>
+            <div className="flex items-center gap-1.5">
+              <span className="text-sm font-bold text-surface-900">{formattedFees}</span>
+              {college.feesIsEstimate !== false && (
+                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200">
+                  Est.
+                </span>
+              )}
+            </div>
           </div>
         </div>
 

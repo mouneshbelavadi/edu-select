@@ -63,7 +63,7 @@ export default function CollegeDetailPage() {
         <div className="text-4xl">🏛️</div>
         <h1 className="text-2xl font-bold text-surface-900">College Not Found</h1>
         <p className="text-sm text-surface-500">
-          The requested institution could not be found in the 28-state database.
+          The requested institution could not be found in the database.
         </p>
         <Link
           href="/colleges"
@@ -106,10 +106,10 @@ export default function CollegeDetailPage() {
       });
 
       if (res.ok) {
-        toast.success('College saved to your dashboard!');
+        toast.success(`Saved ${college.name} to your dashboard!`);
       } else {
         const data = await res.json();
-        toast.error(data.error?.message || 'Failed to save college');
+        toast.error(data.error?.message || data.error || 'Failed to save');
       }
     } catch {
       toast.error('An error occurred while saving');
@@ -119,45 +119,38 @@ export default function CollegeDetailPage() {
   };
 
   const tabs = [
-    { id: 'overview', label: 'Overview' },
-    { id: 'courses', label: `Offered Branches (${college.courses.length})` },
-    { id: 'admissions', label: 'Fees & Admissions' },
-    { id: 'placements', label: 'Placement Information' },
+    { id: 'overview', label: 'Overview & Campus' },
+    { id: 'courses', label: `Courses (${college.courses.length})` },
+    { id: 'placements', label: 'Placements & Packages' },
     { id: 'reviews', label: 'Student Reviews' },
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 py-6 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto flex flex-col gap-6">
-        {/* 1. Breadcrumb Navigation */}
-        <nav className="flex items-center gap-2 text-xs text-slate-500">
-          <Link href="/" className="hover:text-brand-600 transition-colors">
-            Home
-          </Link>
-          <span>&gt;</span>
-          <Link href={`/colleges?state=${encodeURIComponent(college.state)}`} className="hover:text-brand-600 transition-colors">
-            {college.state}
-          </Link>
-          <span>&gt;</span>
-          <Link href={`/colleges?city=${encodeURIComponent(college.city)}`} className="hover:text-brand-600 transition-colors">
-            {college.city}
-          </Link>
-          <span>&gt;</span>
-          <span className="font-semibold text-slate-800 truncate max-w-md">{college.name}</span>
+    <div className="min-h-screen bg-slate-50/50 py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto flex flex-col gap-8">
+        {/* 1. Breadcrumbs */}
+        <nav className="flex items-center gap-2 text-xs font-medium text-slate-500">
+          <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
+          <span>/</span>
+          <Link href="/colleges" className="hover:text-blue-600 transition-colors">Colleges</Link>
+          <span>/</span>
+          <Link href={`/colleges?state=${encodeURIComponent(college.state)}`} className="hover:text-blue-600 transition-colors">{college.state}</Link>
+          <span>/</span>
+          <span className="text-slate-900 font-bold truncate max-w-[200px]">{college.name}</span>
         </nav>
 
-        {/* 2. Top Header Section matching the Reference Image */}
+        {/* 2. Hero Profile Header */}
         <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm flex flex-col lg:flex-row gap-8 items-start">
           {/* Left: Campus Photo */}
           <div className="w-full lg:w-96 h-56 sm:h-64 rounded-2xl overflow-hidden shadow-inner shrink-0 relative group">
             <img
-              src={college.imageUrl}
+              src={college.imageUrl || '/images/college-placeholder.jpg'}
               alt={college.name}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-            <span className="absolute bottom-3 left-3 text-[11px] font-semibold text-white bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-md">
-              🏛️ {college.state} Engineering Catalog
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <span className="absolute bottom-3 left-3 text-[11px] font-semibold text-white bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md">
+              🏛️ {college.state}
             </span>
           </div>
 
@@ -169,21 +162,40 @@ export default function CollegeDetailPage() {
                   <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-snug">
                     {college.name}
                   </h1>
-                  <span className="inline-flex items-center gap-1 text-xs font-bold text-indigo-700 bg-indigo-50 border border-indigo-200 px-2.5 py-0.5 rounded-full">
-                    <span>✓</span> Verified in 28-State Database
-                  </span>
                 </div>
 
+                {/* Subtitle with location and NIRF badge */}
                 <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-600 flex-wrap">
-                  <div className="flex items-center gap-1 text-amber-500 font-bold">
-                    <span>★</span>
-                    <span className="text-slate-900">{college.ratingDisplay || `${college.rating}/5`}</span>
-                  </div>
+                  {college.nirfRank2025 ? (
+                    <span className="inline-flex items-center gap-1 font-bold text-emerald-800 bg-emerald-50 border border-emerald-300 px-2.5 py-0.5 rounded-lg text-xs">
+                      🏆 NIRF 2025 #{college.nirfRank2025}
+                    </span>
+                  ) : college.nirfBand2025 ? (
+                    <span className="inline-flex items-center gap-1 font-bold text-blue-800 bg-blue-50 border border-blue-300 px-2.5 py-0.5 rounded-lg text-xs">
+                      NIRF 2025 Band {college.nirfBand2025}
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1 font-medium text-slate-600 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded-lg text-xs">
+                      Not in NIRF 2025 top 100
+                    </span>
+                  )}
                   <span>•</span>
                   <span className="flex items-center gap-1 text-slate-600">
                     📍 {college.city}, {college.state}
                   </span>
+                  {college.established && (
+                    <>
+                      <span>•</span>
+                      <span className="text-slate-500">Estd. {college.established}</span>
+                    </>
+                  )}
                 </div>
+
+                {college.nirfNote && (
+                  <p className="text-xs text-slate-500 italic mt-0.5">
+                    {college.nirfNote}
+                  </p>
+                )}
               </div>
 
               {/* Action Buttons Top Right */}
@@ -203,10 +215,10 @@ export default function CollegeDetailPage() {
                       : 'bg-white text-slate-700 border-slate-300 hover:border-slate-400 hover:bg-slate-50'
                   }`}
                 >
-                  <span>⇄</span> Compare
+                  <span>⇄</span> {isCompared ? 'Compared' : 'Compare'}
                 </button>
                 <Link
-                  href={`/kcet-2026-predictor`}
+                  href="/kcet-2026-predictor"
                   className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-indigo-600/20 transition-all"
                 >
                   Predict Cutoffs <span>⚡</span>
@@ -214,29 +226,59 @@ export default function CollegeDetailPage() {
               </div>
             </div>
 
-            {/* Accreditation & Metadata Badges Row */}
-            <div className="flex flex-wrap gap-2 pt-1">
-              <span className="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg border border-slate-200 flex items-center gap-1.5">
-                🏛️ {college.type} Institution
+            {/* Type Detail Chip & Badges */}
+            <div className="flex flex-wrap gap-2 pt-1 items-center">
+              {college.typeDetail && (
+                <span className="px-3 py-1 bg-indigo-50 text-indigo-800 text-xs font-bold rounded-lg border border-indigo-200">
+                  🏛️ {college.typeDetail}
+                </span>
+              )}
+              <span className="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg border border-slate-200">
+                🎓 {college.totalBranchesOffered || college.courses.length} Active Branches
               </span>
-              <span className="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg border border-slate-200 flex items-center gap-1.5">
-                🎓 {college.totalBranchesOffered} Active Branches
-              </span>
-              <span className="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg border border-slate-200 flex items-center gap-1.5">
-                💰 Fees: {college.feesDisplay}
-              </span>
-              <span className="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg border border-slate-200 flex items-center gap-1.5">
-                📍 {college.state}
+              <span className="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg border border-slate-200 flex items-center gap-1">
+                💰 Tuition: {college.feesDisplay}
+                {college.feesIsEstimate !== false && (
+                  <span className="ml-1 text-[10px] font-bold text-amber-700 bg-amber-100 px-1.5 py-0.2 rounded">
+                    Est.
+                  </span>
+                )}
               </span>
             </div>
 
-            {/* Real Overview Text from Excel */}
+            {/* Admission Routes */}
+            {college.admissionRoutes && college.admissionRoutes.length > 0 && (
+              <div className="flex items-center gap-2 flex-wrap pt-1 text-xs">
+                <span className="font-semibold text-slate-500">Admission Routes:</span>
+                {college.admissionRoutes.map((route, i) => (
+                  <span key={i} className="px-2.5 py-0.5 bg-blue-50 text-blue-700 font-semibold rounded-full border border-blue-200 text-[11px]">
+                    {route}
+                  </span>
+                ))}
+                {college.routeNote && (
+                  <span className="text-slate-500 text-[11px] italic">({college.routeNote})</span>
+                )}
+              </div>
+            )}
+
+            {/* Overview */}
             <p className="text-xs sm:text-sm text-slate-700 leading-relaxed mt-1 bg-slate-50 p-3.5 rounded-xl border border-slate-200/60">
               <strong className="text-slate-900 block mb-1">Official Overview:</strong>
               {college.overview}
             </p>
           </div>
         </div>
+
+        {/* Amber Notice for Courses Note */}
+        {college.coursesNote && (
+          <div className="bg-amber-50 border border-amber-300/80 rounded-2xl p-4 text-amber-900 text-xs sm:text-sm flex items-start gap-2.5">
+            <span className="text-amber-600 text-base leading-none">⚠️</span>
+            <div>
+              <strong className="font-bold">Course Verification Notice: </strong>
+              <span>{college.coursesNote}</span>
+            </div>
+          </div>
+        )}
 
         {/* 3. Horizontal Tab Navigation Bar */}
         <div className="bg-white rounded-2xl px-3 border border-slate-200/80 shadow-sm flex items-center gap-1 overflow-x-auto">
@@ -259,43 +301,15 @@ export default function CollegeDetailPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column (Main 8 Cols) */}
           <div className="lg:col-span-8 flex flex-col gap-6">
-            {/* Card 1: Real Excel Highlights */}
+            {/* Card 1: Courses */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm flex flex-col gap-6">
-              <h2 className="text-lg font-black text-slate-900">
-                Verified Institutional Highlights
-              </h2>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <div className="p-4 bg-indigo-50/60 border border-indigo-100 rounded-2xl flex flex-col items-center text-center">
-                  <span className="text-2xl">🎓</span>
-                  <span className="font-black text-base text-indigo-900 mt-1">{college.totalBranchesOffered}</span>
-                  <span className="text-[11px] text-indigo-600 font-medium">Verified Branches</span>
-                </div>
-                <div className="p-4 bg-indigo-50/60 border border-indigo-100 rounded-2xl flex flex-col items-center text-center">
-                  <span className="text-2xl">💰</span>
-                  <span className="font-black text-xs text-indigo-900 mt-1">{college.feesDisplay}</span>
-                  <span className="text-[11px] text-indigo-600 font-medium">Annual Fee Range</span>
-                </div>
-                <div className="p-4 bg-indigo-50/60 border border-indigo-100 rounded-2xl flex flex-col items-center text-center">
-                  <span className="text-2xl">⭐</span>
-                  <span className="font-black text-base text-indigo-900 mt-1">{college.ratingDisplay}</span>
-                  <span className="text-[11px] text-indigo-600 font-medium">Institutional Rating</span>
-                </div>
-                <div className="p-4 bg-indigo-50/60 border border-indigo-100 rounded-2xl flex flex-col items-center text-center">
-                  <span className="text-2xl">📍</span>
-                  <span className="font-black text-xs text-indigo-900 mt-1">{college.city}</span>
-                  <span className="text-[11px] text-indigo-600 font-medium">{college.state}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 2: Verified Engineering Branches (Extracted from Excel 'Yes' columns) */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm flex flex-col gap-6">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-4">
                 <div>
-                  <h2 className="text-lg font-black text-slate-900">Verified Branches Offered</h2>
+                  <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
+                    <span>📚</span> Academic Engineering Programs
+                  </h2>
                   <p className="text-xs text-slate-500 mt-0.5">
-                    Programs verified as available in the authoritative 28-state database
+                    Programs verified as available in the authoritative database
                   </p>
                 </div>
                 <span className="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full border border-indigo-100">
@@ -312,7 +326,7 @@ export default function CollegeDetailPage() {
                     <div className="flex flex-col gap-2">
                       <div className="flex items-center justify-between">
                         <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded">
-                          ✓ Verified Branch
+                          ✓ Branch
                         </span>
                         <span className="text-xs font-mono font-bold text-slate-500">
                           {course.branchCode}
@@ -336,7 +350,7 @@ export default function CollegeDetailPage() {
                     </div>
 
                     <Link
-                      href={`/kcet-2026-predictor`}
+                      href="/kcet-2026-predictor"
                       className="text-xs font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-1 border-t border-slate-100 pt-2"
                     >
                       Check 2026 Cutoff for this Branch →
@@ -346,43 +360,93 @@ export default function CollegeDetailPage() {
               </div>
             </div>
 
-            {/* Card 3: Real Placement Information from Excel */}
+            {/* Card 2: Placement Card */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm flex flex-col gap-4">
-              <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
-                <span>📊</span> Placement & Career Opportunities
-              </h2>
-              <div className="p-5 rounded-2xl bg-amber-50/50 border border-amber-200/60 text-slate-800 text-xs sm:text-sm leading-relaxed">
-                <strong className="text-amber-900 block mb-1.5">Official Placement Record:</strong>
-                "{college.placementText}"
+              <div className="flex items-center justify-between flex-wrap gap-2">
+                <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
+                  <span>📊</span> Placement & Career Opportunities
+                </h2>
+                {college.placementStats ? (
+                  <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
+                    college.placementStats.verified
+                      ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                      : 'bg-amber-50 text-amber-700 border border-amber-200'
+                  }`}>
+                    {college.placementStats.verified ? '✓ Verified Statistics' : '⚠️ Unverified Aggregator Data'}
+                  </span>
+                ) : (
+                  <a
+                    href="https://www.nirfindia.org"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs text-blue-600 hover:underline font-semibold"
+                  >
+                    View Official NIRF Reports ↗
+                  </a>
+                )}
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-600 pt-1">
-                <div className="flex items-center gap-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
-                  <span className="text-emerald-500 font-bold">✓</span>
-                  <span>Active Internship Support</span>
+
+              {college.placementStats ? (
+                <div className="flex flex-col gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div className="p-4 rounded-xl bg-blue-50 border border-blue-200">
+                      <span className="text-xs text-blue-700 font-semibold block">Median Package</span>
+                      <span className="text-xl font-black text-blue-900">
+                        {college.placementStats.medianLPA ? `₹${college.placementStats.medianLPA} LPA` : 'N/A'}
+                      </span>
+                      <span className="text-[10px] text-blue-600 block mt-0.5">Year {college.placementStats.year}</span>
+                    </div>
+                    <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200">
+                      <span className="text-xs text-emerald-700 font-semibold block">Average Package</span>
+                      <span className="text-xl font-black text-emerald-900">
+                        {college.placementStats.averageLPA ? `₹${college.placementStats.averageLPA} LPA` : 'NIRF Median basis'}
+                      </span>
+                      <span className="text-[10px] text-emerald-600 block mt-0.5">Year {college.placementStats.year}</span>
+                    </div>
+                    <div className="p-4 rounded-xl bg-purple-50 border border-purple-200">
+                      <span className="text-xs text-purple-700 font-semibold block">Highest Package</span>
+                      <span className="text-xl font-black text-purple-900">
+                        {college.placementStats.highestLPA ? `₹${college.placementStats.highestLPA} LPA` : 'Check DCS'}
+                      </span>
+                      <span className="text-[10px] text-purple-600 block mt-0.5">Year {college.placementStats.year}</span>
+                    </div>
+                  </div>
+
+                  <div className="text-xs text-slate-500 bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center flex-wrap gap-2">
+                    <span>Source: {college.placementStats.source}</span>
+                    {college.placementStats.sourceUrl && (
+                      <a
+                        href={college.placementStats.sourceUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-blue-600 font-semibold hover:underline"
+                      >
+                        Verification Source ↗
+                      </a>
+                    )}
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
-                  <span className="text-emerald-500 font-bold">✓</span>
-                  <span>Campus Placement Cell</span>
+              ) : (
+                <div className="p-5 rounded-2xl bg-amber-50/50 border border-amber-200/60 text-slate-800 text-xs sm:text-sm leading-relaxed">
+                  <strong className="text-amber-900 block mb-1.5">Official Placement Record:</strong>
+                  <p>{college.placementText || "Official placement statistics are published in the institute's NIRF Data Capturing System (DCS) file."}</p>
+                  <a
+                    href="https://www.nirfindia.org"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-block mt-2 font-bold text-blue-700 hover:underline"
+                  >
+                    Check official NIRF Data Capturing System (DCS) reports at nirfindia.org ↗
+                  </a>
                 </div>
-                <div className="flex items-center gap-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
-                  <span className="text-emerald-500 font-bold">✓</span>
-                  <span>Annual Recruiter Drives</span>
-                </div>
-              </div>
+              )}
             </div>
 
-            {/* Card 4: Real Student Reviews from Excel */}
+            {/* Card 3: Reviews */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm flex flex-col gap-4">
-              <div className="flex items-center justify-between">
-                <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
-                  <span>💬</span> Student Reviews & Feedback
-                </h2>
-                <div className="flex items-center gap-1.5 bg-amber-50 border border-amber-200 text-amber-700 px-3 py-1 rounded-full font-bold text-xs">
-                  <span>★</span>
-                  <span>{college.ratingDisplay}</span>
-                </div>
-              </div>
-
+              <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
+                <span>💬</span> Student Reviews & Feedback
+              </h2>
               <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-slate-800 text-xs sm:text-sm leading-relaxed">
                 <strong className="text-slate-900 block mb-1.5">Community & Academic Reviews:</strong>
                 "{college.reviewsText}"
@@ -392,7 +456,7 @@ export default function CollegeDetailPage() {
 
           {/* Right Sidebar (4 Cols) */}
           <div className="lg:col-span-4 flex flex-col gap-6">
-            {/* Sidebar Card 1: At a Glance (Real Excel Metadata) */}
+            {/* Sidebar Card 1: At a Glance */}
             <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm flex flex-col gap-4">
               <h3 className="text-base font-black text-slate-900 border-b border-slate-100 pb-3">
                 At a Glance
@@ -422,18 +486,18 @@ export default function CollegeDetailPage() {
                   <span className="text-slate-500 font-medium">Affiliation</span>
                   <span className="font-bold text-slate-900 text-right max-w-[180px]">{college.affiliation}</span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center pt-2 border-t border-slate-100">
                   <span className="text-slate-500 font-medium">Data Source</span>
                   <span className="font-bold text-slate-900">{college.dataSource}</span>
                 </div>
-                <div className="flex justify-between items-center pt-1 border-t border-slate-100">
-                  <span className="text-slate-500 font-medium">Verification Status</span>
-                  <span className="font-bold text-emerald-600">✓ {college.lastVerified}</span>
+                <div className="flex justify-between items-center">
+                  <span className="text-slate-500 font-medium">Last Verified</span>
+                  <span className="font-bold text-emerald-600">{college.lastVerified}</span>
                 </div>
               </div>
             </div>
 
-            {/* Sidebar Card 2: Entrance Exams & Codes from Excel */}
+            {/* Sidebar Card 2: Entrance Exams & Codes */}
             {college.entranceExams && college.entranceExams.length > 0 && (
               <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm flex flex-col gap-4">
                 <h3 className="text-base font-black text-slate-900 border-b border-slate-100 pb-3">
@@ -458,7 +522,7 @@ export default function CollegeDetailPage() {
                 Admissions Tools
               </h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Check eligibility, predict KCET rank, and compare with other colleges in {college.state}.
+                Check eligibility, predict cutoffs, and compare with other colleges in {college.state}.
               </p>
 
               <div className="flex flex-col gap-2.5 pt-2">
@@ -483,6 +547,11 @@ export default function CollegeDetailPage() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Footer line */}
+        <div className="border-t border-slate-200 pt-6 text-center text-xs text-slate-500">
+          Data source: {college.dataSource} · Last verified: {college.lastVerified} · Values marked Est. are curated estimates.
         </div>
       </div>
     </div>

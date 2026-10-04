@@ -1,12 +1,36 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
+import useSWR from 'swr';
 import { ALL_INDIAN_STATES } from '@/lib/constants';
 import { StateCardImage } from '@/components/features/StateCardImage';
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+const NORTH_EAST_STATES = new Set([
+  'Arunachal Pradesh',
+  'Manipur',
+  'Meghalaya',
+  'Mizoram',
+  'Nagaland',
+  'Sikkim',
+  'Tripura',
+]);
+
 export default function ExploreStatesPage() {
   const [searchQuery, setSearchQuery] = useState('');
+  const { data: statesRes } = useSWR('/api/states', fetcher);
+
+  const stateCounts = useMemo(() => {
+    const map: Record<string, number> = {};
+    if (statesRes?.data) {
+      statesRes.data.forEach((s: { name: string; collegeCount: number }) => {
+        map[s.name] = s.collegeCount;
+      });
+    }
+    return map;
+  }, [statesRes]);
 
   const stateHighlights: Record<string, { topCities: string[]; icon: string; highlight: string }> = {
     Karnataka: { topCities: ['Bengaluru', 'Mysuru', 'Hubballi', 'Mangaluru'], icon: '🏛️', highlight: 'Tech & Innovation Capital (RVCE, BMSCE, UVCE)' },
@@ -87,12 +111,25 @@ export default function ExploreStatesPage() {
                         Explore →
                       </span>
                     </div>
-                    <h3 className="font-extrabold text-base text-slate-900 group-hover:text-blue-600 transition-colors">
-                      {state}
-                    </h3>
-                    <p className="text-xs text-slate-500 line-clamp-2">
-                      {meta.highlight}
-                    </p>
+                    <div className="flex items-baseline justify-between gap-1">
+                      <h3 className="font-extrabold text-base text-slate-900 group-hover:text-blue-600 transition-colors">
+                        {state}
+                      </h3>
+                      {stateCounts[state] ? (
+                        <span className="text-[10px] font-bold text-slate-400">
+                          {stateCounts[state]} colleges
+                        </span>
+                      ) : null}
+                    </div>
+                    {NORTH_EAST_STATES.has(state) ? (
+                      <div className="text-[10px] font-medium text-emerald-800 bg-emerald-50/80 p-1.5 rounded-lg border border-emerald-200">
+                        Only {stateCounts[state] || 4} engineering colleges here — all are listed
+                      </div>
+                    ) : (
+                      <p className="text-xs text-slate-500 line-clamp-2">
+                        {meta.highlight}
+                      </p>
+                    )}
                   </div>
 
                   <div className="px-4 py-2.5 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">

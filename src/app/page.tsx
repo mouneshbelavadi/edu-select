@@ -30,16 +30,17 @@ export default function EduSelectDashboard() {
 
   // Fetch real data from API endpoints
   const { data: statesRes } = useSWR('/api/states', fetcher);
-  const { data: topCollegesRes } = useSWR('/api/colleges?limit=12&sortBy=rating&sortOrder=desc', fetcher);
+  const { data: topCollegesRes } = useSWR('/api/colleges?limit=12&sortBy=nirf&sortOrder=asc', fetcher);
 
   const defaultStatesList = ALL_STATE_CONFIGS.map((s) => ({
     name: s.name,
-    collegeCount: s.name === 'Karnataka' ? 175 : 15,
+    collegeCount: s.name === 'Karnataka' ? 185 : 10,
   }));
 
   const statesList: { name: string; collegeCount: number }[] =
     statesRes?.data && statesRes.data.length > 0 ? statesRes.data : defaultStatesList;
 
+  const totalCollegesCount = statesList.reduce((acc, s) => acc + (s.collegeCount || 0), 0);
   const popularColleges = topCollegesRes?.data || [];
 
   const handleHeroSearch = (e: React.FormEvent) => {
@@ -225,7 +226,9 @@ export default function EduSelectDashboard() {
               🏛️
             </div>
             <div>
-              <div className="text-lg font-black text-slate-900">580+</div>
+              <div className="text-lg font-black text-slate-900">
+                {totalCollegesCount > 0 ? `${totalCollegesCount}+` : '450+'}
+              </div>
               <div className="text-xs text-slate-500 font-medium">Engineering Colleges</div>
             </div>
           </div>
@@ -372,21 +375,30 @@ export default function EduSelectDashboard() {
               style={{ scrollbarWidth: 'thin' }}
             >
               {popularColleges.map((college: any) => {
-                const numericRating = typeof college.rating === 'number' ? college.rating : 4.5;
-                const starCount = Math.round(numericRating);
-
                 return (
                   <div
                     key={college.id}
                     className="shrink-0 w-[240px] sm:w-[260px] bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:border-blue-400 hover:shadow-md transition-all flex flex-col justify-between gap-4 group"
                   >
                     <div className="flex flex-col gap-3">
-                      {/* Top Header: Badge & Type */}
+                      {/* Top Header: Badge & NIRF / Type */}
                       <div className="flex items-start justify-between gap-2">
                         <CollegeLogoBadge name={college.name} size="md" />
-                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200 uppercase">
-                          {college.type || 'ENGINEERING'}
-                        </span>
+                        <div className="flex flex-col items-end gap-1">
+                          {college.nirfRank2025 ? (
+                            <span className="px-2 py-0.5 rounded text-[10px] font-black bg-emerald-50 text-emerald-800 border border-emerald-200">
+                              🏆 NIRF #{college.nirfRank2025}
+                            </span>
+                          ) : college.nirfBand2025 ? (
+                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-50 text-teal-800 border border-teal-200">
+                              NIRF {college.nirfBand2025}
+                            </span>
+                          ) : (
+                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200 uppercase">
+                              {college.typeDetail || college.institutionCategory || college.type || 'ENGINEERING'}
+                            </span>
+                          )}
+                        </div>
                       </div>
 
                       {/* College Name & Location */}
@@ -399,16 +411,18 @@ export default function EduSelectDashboard() {
                         </p>
                       </div>
 
-                      {/* Star Rating */}
-                      <div className="flex items-center gap-1.5 pt-1">
-                        <span className="text-xs font-black text-slate-900">
-                          {college.ratingDisplay || `${numericRating.toFixed(1)}/5`}
+                      {/* Sub info: Type detail & rating */}
+                      <div className="flex items-center justify-between pt-1 text-xs">
+                        <span className="font-semibold text-slate-600 truncate max-w-[130px] text-[11px]">
+                          {college.typeDetail || college.institutionCategory || college.type}
                         </span>
-                        <div className="flex text-amber-400 text-xs">
-                          {Array.from({ length: 5 }).map((_, i) => (
-                            <span key={i}>{i < starCount ? '★' : '☆'}</span>
-                          ))}
-                        </div>
+                        {college.rating !== null && college.rating !== undefined ? (
+                          <span className="font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 text-[10px]">
+                            ★ {college.ratingDisplay || `${Number(college.rating).toFixed(1)}/5`}
+                          </span>
+                        ) : (
+                          <span className="text-slate-400 text-[10px] font-medium">Verified Data</span>
+                        )}
                       </div>
                     </div>
 
@@ -416,9 +430,14 @@ export default function EduSelectDashboard() {
                     <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
                       <div className="flex items-center justify-between text-xs">
                         <span className="text-[11px] text-slate-500 font-medium">Annual Fees:</span>
-                        <span className="font-extrabold text-slate-800">
-                          {college.feesDisplay || 'Per State Quota'}
-                        </span>
+                        <div className="flex items-center gap-1 font-extrabold text-slate-800">
+                          <span>{college.feesDisplay || 'Per State Quota'}</span>
+                          {college.feesIsEstimate && (
+                            <span className="px-1 py-0.2 rounded text-[9px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
+                              Est.
+                            </span>
+                          )}
+                        </div>
                       </div>
 
                       <Link

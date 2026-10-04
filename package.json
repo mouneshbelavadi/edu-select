@@ -9,7 +9,8 @@
     "lint": "eslint",
     "postinstall": "prisma generate",
     "db:migrate": "prisma migrate deploy",
-    "db:seed": "prisma db seed"
+    "db:seed": "prisma db seed",
+    "data:colleges": "node scripts/build-colleges.cjs"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"

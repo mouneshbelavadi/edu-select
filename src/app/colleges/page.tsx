@@ -13,6 +13,36 @@ import { ALL_INDIAN_STATES } from '@/lib/constants';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
+const CATEGORIES = [
+  'IIT',
+  'NIT',
+  'IIIT',
+  'Central',
+  'State Govt',
+  'Private',
+  'Deemed',
+];
+
+const POPULAR_EXAMS = [
+  'JEE Main',
+  'JEE Advanced',
+  'KCET',
+  'COMEDK',
+  'WBJEE',
+  'MHT CET',
+  'GATE',
+];
+
+const POPULAR_BRANCHES = [
+  { label: 'Computer Science (CSE)', code: 'CSE' },
+  { label: 'Information Technology (IT)', code: 'IT' },
+  { label: 'Electronics & Comm (ECE)', code: 'ECE' },
+  { label: 'Mechanical Engg (MECH)', code: 'MECH' },
+  { label: 'Electrical Engg (EEE)', code: 'EEE' },
+  { label: 'Civil Engg (CIVIL)', code: 'CIVIL' },
+  { label: 'AI & Data Science (AI)', code: 'AI' },
+];
+
 function CollegeListingContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -20,13 +50,15 @@ function CollegeListingContent() {
   // 1. URL search params as source of truth
   const paramSearch = searchParams.get('search') || '';
   const paramState = searchParams.get('state') || '';
-  const paramCity = searchParams.get('city') || '';
   const paramType = searchParams.get('type') || '';
+  const paramCategory = searchParams.get('category') || '';
+  const paramExam = searchParams.get('exam') || '';
+  const paramBranch = searchParams.get('branch') || '';
   const paramMinFees = searchParams.get('minFees') || '';
   const paramMaxFees = searchParams.get('maxFees') || '';
   const paramMinRating = searchParams.get('minRating') || '';
-  const paramSortBy = searchParams.get('sortBy') || 'rating';
-  const paramSortOrder = searchParams.get('sortOrder') || 'desc';
+  const paramSortBy = searchParams.get('sortBy') || 'nirf';
+  const paramSortOrder = searchParams.get('sortOrder') || (paramSortBy === 'nirf' ? 'asc' : 'desc');
   const paramPage = parseInt(searchParams.get('page') || '1', 10);
 
   // Search input state + debounce
@@ -76,13 +108,13 @@ function CollegeListingContent() {
             Explore Colleges
           </h1>
           <p className="text-sm text-surface-500 mt-1">
-            Search, filter, and compare {pagination.total > 0 ? `${pagination.total} ` : ''}verified institutions across all 28 Indian states
+            Search, filter, and compare {pagination.total > 0 ? `${pagination.total} ` : ''}verified engineering institutions across India
           </p>
         </div>
 
         <div className="w-full md:w-80">
           <Input
-            placeholder="Search by college name, city or state..."
+            placeholder="Search by college, city, branch, exam..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
@@ -108,17 +140,74 @@ function CollegeListingContent() {
           {/* State Filter */}
           <div className="flex flex-col gap-2">
             <label className="text-xs font-semibold uppercase tracking-wider text-surface-500">
-              State ({ALL_INDIAN_STATES.length} States)
+              State
             </label>
             <select
               value={paramState}
               onChange={(e) => updateUrl({ state: e.target.value, page: '1' })}
               className="w-full px-3 py-2 text-sm rounded-lg border border-surface-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500"
             >
-              <option value="">All 28 States</option>
+              <option value="">All States</option>
               {ALL_INDIAN_STATES.map((s) => (
                 <option key={s} value={s}>
                   {s}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Category Filter */}
+          <div className="flex flex-col gap-2">
+            <label className="text-xs font-semibold uppercase tracking-wider text-surface-500">
+              Category
+            </label>
+            <select
+              value={paramCategory}
+              onChange={(e) => updateUrl({ category: e.target.value, page: '1' })}
+              className="w-full px-3 py-2 text-sm rounded-lg border border-surface-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500"
+            >
+              <option value="">All Categories</option>
+              {CATEGORIES.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Exam Accepted Filter */}
+          <div className="flex flex-col gap-2">
+            <label className="text-xs font-semibold uppercase tracking-wider text-surface-500">
+              Exam Accepted
+            </label>
+            <select
+              value={paramExam}
+              onChange={(e) => updateUrl({ exam: e.target.value, page: '1' })}
+              className="w-full px-3 py-2 text-sm rounded-lg border border-surface-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500"
+            >
+              <option value="">All Entrance Exams</option>
+              {POPULAR_EXAMS.map((ex) => (
+                <option key={ex} value={ex}>
+                  {ex}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Branch Filter */}
+          <div className="flex flex-col gap-2">
+            <label className="text-xs font-semibold uppercase tracking-wider text-surface-500">
+              Engineering Branch
+            </label>
+            <select
+              value={paramBranch}
+              onChange={(e) => updateUrl({ branch: e.target.value, page: '1' })}
+              className="w-full px-3 py-2 text-sm rounded-lg border border-surface-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500"
+            >
+              <option value="">All Branches</option>
+              {POPULAR_BRANCHES.map((b) => (
+                <option key={b.code} value={b.code}>
+                  {b.label}
                 </option>
               ))}
             </select>
@@ -177,7 +266,7 @@ function CollegeListingContent() {
           {/* Minimum Rating Filter */}
           <div className="flex flex-col gap-2">
             <label className="text-xs font-semibold uppercase tracking-wider text-surface-500">
-              Min Rating
+              Min Rating (Ranked Only)
             </label>
             <select
               value={paramMinRating}
@@ -196,7 +285,7 @@ function CollegeListingContent() {
         {/* College Grid Area */}
         <main className="lg:col-span-3 flex flex-col gap-6">
           {/* Controls Bar (Result Count & Sort Dropdown) */}
-          <div className="flex items-center justify-between bg-white px-4 py-3 rounded-xl border border-surface-200 text-sm">
+          <div className="flex items-center justify-between bg-white px-4 py-3 rounded-xl border border-surface-200 text-sm flex-wrap gap-2">
             <span className="text-surface-600 font-medium">
               Showing <span className="font-bold text-surface-900">{colleges.length}</span> of{' '}
               <span className="font-bold text-surface-900">{pagination.total}</span> colleges
@@ -212,6 +301,7 @@ function CollegeListingContent() {
                 }}
                 className="px-2.5 py-1.5 text-xs font-semibold rounded-lg border border-surface-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500"
               >
+                <option value="nirf-asc">Best NIRF Rank</option>
                 <option value="rating-desc">Rating: High to Low</option>
                 <option value="fees-asc">Fees: Low to High</option>
                 <option value="fees-desc">Fees: High to Low</option>

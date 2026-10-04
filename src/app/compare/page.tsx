@@ -28,10 +28,16 @@ interface CompareCollege {
   city: string;
   state: string;
   type: string;
-  rating: number;
+  typeDetail?: string;
+  institutionCategory?: string;
+  rating: number | null;
   ratingDisplay: string;
+  nirfRank2025?: number | null;
+  nirfBand2025?: string | null;
   fees: number;
   feesDisplay: string;
+  feesIsEstimate?: boolean;
+  admissionRoutes?: string[];
   overview: string;
   placementText: string;
   reviewsText: string;
@@ -41,6 +47,14 @@ interface CompareCollege {
   dataSource: string;
   lastVerified: string;
   entranceExams?: { exam: string; code: string }[];
+  placementStats?: {
+    medianPackageLpa?: number;
+    medianLPA?: number;
+    averageLPA?: number;
+    highestLPA?: number;
+    year?: number;
+    source?: string;
+  };
   courses: CompareCourse[];
 }
 
@@ -247,7 +261,27 @@ function CompareContent() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200 text-xs text-slate-700">
-              {/* Row 1: Location */}
+              {/* Row 1: NIRF Rank */}
+              <tr className="hover:bg-slate-50/50 transition-colors">
+                <td className="p-4 font-bold text-slate-900 bg-slate-50/50">NIRF 2025 Ranking</td>
+                {colleges.map((col) => (
+                  <td key={col.id} className="p-4 text-center border-l border-slate-200">
+                    {col.nirfRank2025 ? (
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-black bg-emerald-50 text-emerald-800 border border-emerald-200">
+                        🏆 NIRF #{col.nirfRank2025}
+                      </span>
+                    ) : col.nirfBand2025 ? (
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-teal-50 text-teal-800 border border-teal-200">
+                        NIRF {col.nirfBand2025} Band
+                      </span>
+                    ) : (
+                      <span className="text-slate-400 font-medium">Unranked</span>
+                    )}
+                  </td>
+                ))}
+              </tr>
+
+              {/* Row 2: Location */}
               <tr className="hover:bg-slate-50/50 transition-colors">
                 <td className="p-4 font-bold text-slate-900 bg-slate-50/50">Location</td>
                 {colleges.map((col) => (
@@ -257,41 +291,84 @@ function CompareContent() {
                 ))}
               </tr>
 
-              {/* Row 2: College Type */}
+              {/* Row 3: Institution Category & Type */}
               <tr className="hover:bg-slate-50/50 transition-colors">
-                <td className="p-4 font-bold text-slate-900 bg-slate-50/50">Institution Type</td>
+                <td className="p-4 font-bold text-slate-900 bg-slate-50/50">Institution Category</td>
                 {colleges.map((col) => (
                   <td key={col.id} className="p-4 text-center border-l border-slate-200">
                     <span className="px-2.5 py-1 rounded-full font-bold text-[11px] bg-slate-100 text-slate-800 border border-slate-200">
-                      {col.type || 'ENGINEERING'}
+                      {col.typeDetail || col.institutionCategory || col.type || 'Engineering'}
                     </span>
                   </td>
                 ))}
               </tr>
 
-              {/* Row 3: Rating */}
+              {/* Row 4: Student Rating */}
               <tr className="hover:bg-slate-50/50 transition-colors">
                 <td className="p-4 font-bold text-slate-900 bg-slate-50/50">Student Rating</td>
                 {colleges.map((col) => (
                   <td key={col.id} className="p-4 text-center border-l border-slate-200">
-                    <span className="inline-flex items-center gap-1 font-black text-sm text-amber-600 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200">
-                      ★ {col.ratingDisplay || `${Number(col.rating || 4.0).toFixed(1)}/5`}
-                    </span>
+                    {col.rating !== null && col.rating !== undefined ? (
+                      <span className="inline-flex items-center gap-1 font-black text-sm text-amber-600 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200">
+                        ★ {col.ratingDisplay || `${Number(col.rating).toFixed(1)}/5`}
+                      </span>
+                    ) : (
+                      <span className="text-slate-400 font-medium italic">Not Rated</span>
+                    )}
                   </td>
                 ))}
               </tr>
 
-              {/* Row 4: Annual Fees */}
+              {/* Row 5: Annual Fees */}
               <tr className="hover:bg-slate-50/50 transition-colors">
                 <td className="p-4 font-bold text-slate-900 bg-slate-50/50">Annual Tuition Fee</td>
                 {colleges.map((col) => (
                   <td key={col.id} className="p-4 text-center border-l border-slate-200 font-black text-indigo-700 text-sm">
-                    {col.feesDisplay || 'As per State Quota'}
+                    <div className="flex items-center justify-center gap-1.5 flex-wrap">
+                      <span>{col.feesDisplay || 'As per State Quota'}</span>
+                      {col.feesIsEstimate && (
+                        <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300">
+                          Est.
+                        </span>
+                      )}
+                    </div>
                   </td>
                 ))}
               </tr>
 
-              {/* Row 5: Total Verified Branches */}
+              {/* Row 6: Admission Routes & Exams */}
+              <tr className="hover:bg-slate-50/50 transition-colors">
+                <td className="p-4 font-bold text-slate-900 bg-slate-50/50">Accepted Exams / Routes</td>
+                {colleges.map((col) => (
+                  <td key={col.id} className="p-4 text-center border-l border-slate-200">
+                    <div className="flex flex-wrap gap-1 justify-center">
+                      {(col.admissionRoutes && col.admissionRoutes.length > 0) ? (
+                        col.admissionRoutes.map((route, i) => (
+                          <span
+                            key={i}
+                            className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200"
+                          >
+                            {route}
+                          </span>
+                        ))
+                      ) : col.entranceExams && col.entranceExams.length > 0 ? (
+                        col.entranceExams.map((ex, i) => (
+                          <span
+                            key={i}
+                            className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200"
+                          >
+                            {ex.exam}
+                          </span>
+                        ))
+                      ) : (
+                        <span className="text-slate-400 font-medium">State / Direct Quota</span>
+                      )}
+                    </div>
+                  </td>
+                ))}
+              </tr>
+
+              {/* Row 7: Total Verified Branches */}
               <tr className="hover:bg-slate-50/50 transition-colors">
                 <td className="p-4 font-bold text-slate-900 bg-slate-50/50">Active Branches</td>
                 {colleges.map((col) => (
@@ -301,7 +378,7 @@ function CompareContent() {
                 ))}
               </tr>
 
-              {/* Row 6: Affiliation */}
+              {/* Row 8: Affiliation */}
               <tr className="hover:bg-slate-50/50 transition-colors">
                 <td className="p-4 font-bold text-slate-900 bg-slate-50/50">Affiliated University</td>
                 {colleges.map((col) => (
@@ -311,19 +388,24 @@ function CompareContent() {
                 ))}
               </tr>
 
-              {/* Row 7: Placement Record */}
+              {/* Row 9: Placement Record */}
               <tr className="hover:bg-slate-50/50 transition-colors">
                 <td className="p-4 font-bold text-slate-900 bg-slate-50/50">Placement Record</td>
                 {colleges.map((col) => (
                   <td key={col.id} className="p-4 border-l border-slate-200 leading-relaxed text-slate-700 text-[11px]">
                     <div className="bg-amber-50/60 p-3 rounded-xl border border-amber-200/60">
+                      {(col.placementStats?.medianPackageLpa || col.placementStats?.medianLPA) ? (
+                        <div className="font-bold text-amber-900 mb-1">
+                          NIRF Median: ₹{col.placementStats.medianPackageLpa || col.placementStats.medianLPA} LPA ({col.placementStats.year})
+                        </div>
+                      ) : null}
                       "{col.placementText || 'Campus placement cell active.'}"
                     </div>
                   </td>
                 ))}
               </tr>
 
-              {/* Row 8: Student Reviews */}
+              {/* Row 10: Student Reviews */}
               <tr className="hover:bg-slate-50/50 transition-colors">
                 <td className="p-4 font-bold text-slate-900 bg-slate-50/50">Student Feedback</td>
                 {colleges.map((col) => (
@@ -335,13 +417,13 @@ function CompareContent() {
                 ))}
               </tr>
 
-              {/* Row 9: Verified Branches List */}
+              {/* Row 11: Verified Branches List */}
               <tr className="hover:bg-slate-50/50 transition-colors">
                 <td className="p-4 font-bold text-slate-900 bg-slate-50/50">Offered Branches</td>
                 {colleges.map((col) => (
                   <td key={col.id} className="p-4 border-l border-slate-200 text-[11px]">
                     <div className="flex flex-wrap gap-1.5 justify-center">
-                      {col.courses?.map((c) => (
+                      {col.courses?.slice(0, 10).map((c) => (
                         <span
                           key={c.id}
                           className="px-2 py-0.5 bg-indigo-50 text-indigo-800 font-medium rounded border border-indigo-100"
@@ -349,12 +431,17 @@ function CompareContent() {
                           {c.name.replace('B.E. / B.Tech ', '').replace('B.Tech ', '')}
                         </span>
                       ))}
+                      {(col.courses?.length || 0) > 10 && (
+                        <span className="text-[10px] text-slate-400 font-bold self-center">
+                          +{col.courses!.length - 10} more
+                        </span>
+                      )}
                     </div>
                   </td>
                 ))}
               </tr>
 
-              {/* Row 10: Entrance Exams & Cutoff Predictor */}
+              {/* Row 12: Entrance Exams & Cutoff Predictor */}
               <tr className="hover:bg-slate-50/50 transition-colors">
                 <td className="p-4 font-bold text-slate-900 bg-slate-50/50">Admissions & Predictor</td>
                 {colleges.map((col) => (
@@ -363,7 +450,7 @@ function CompareContent() {
                       href="/kcet-2026-predictor"
                       className="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-xl border border-indigo-200 transition-colors"
                     >
-                      ⚡ KCET Predictor &gt;
+                      ⚡ Cutoff Predictor &gt;
                     </Link>
                   </td>
                 ))}

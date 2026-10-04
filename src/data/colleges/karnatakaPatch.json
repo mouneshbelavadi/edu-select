@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "dataset": "karnatakaPatch",
+    "description": "Fixes for the existing Karnataka records in src/data/colleges28States.json: broken names, wrong cities, a probable duplicate, NIRF ranks, placement figures and type corrections. Apply by id.",
+    "version": "1.0.0",
+    "compiledOn": "2026-10-04",
+    "region": "India",
+    "currency": "INR",
+    "disclaimer": "Curated for EduSelect from official and reputable public sources (compiled 2026-10-04). Fees and private-sector salaries are estimates (isEstimate=true) and must be shown with an 'Estimate' badge. Government pay is from the 7th CPC pay matrix (basic pay, excludes DA/HRA). Exam rules, age limits and fees change every cycle - re-check the official notification before relying on any value.",
+    "sources": [
+      {
+        "id": "nirf2025",
+        "title": "NIRF India Rankings 2025 - Engineering",
+        "url": "https://www.nirfindia.org/Rankings/2025/EngineeringRanking.html"
+      },
+      {
+        "id": "rvce-placement",
+        "title": "RVCE placements (Careers360, NIRF data)",
+        "url": "https://www.careers360.com/colleges/rv-college-of-engineering-bangalore/placement"
+      },
+      {
+        "id": "bmsce-placement",
+        "title": "BMSCE (Careers360)",
+        "url": "https://www.careers360.com/colleges/bms-college-of-engineering-bangalore"
+      },
+      {
+        "id": "blr-colleges",
+        "title": "Best engineering colleges in Bangalore (CollegeAndFees)",
+        "url": "https://collegeandfees.com/engineering-colleges/best-in-bangalore"
+      }
+    ]
+  },
+  "renames": {
+    "col-162": "Sri Taralabalu Jagadguru Institute of Technology, Ranebennur",
+    "col-177": "Vidya Vikas Institute of Engineering & Technology (VVIET), Mysore",
+    "col-222": "Sahyadri College of Engineering and Management, Mangalore",
+    "col-233": "Bearys Institute of Technology, Mangalore",
+    "col-245": "ATME College of Engineering, Mysuru",
+    "col-246": "Dayananda Sagar Academy of Technology and Management, Bangalore",
+    "col-250": "Sri Vidya Vinayaka Institute of Technology, Bangalore",
+    "col-279": "G. M. Institute of Technology, Davanagere",
+    "col-305": "P. D. A. College of Engineering, Kalaburagi",
+    "col-306": "P. E. S. College of Engineering, Mandya"
+  },
+  "cityFixes": {
+    "col-168": "Bangalore",
+    "col-251": "Mysore",
+    "col-268": "Bangalore",
+    "col-323": "Tumkur"
+  },
+  "probableDuplicates": [
+    {
+      "id": "col-268",
+      "name": "Banglore Institute of Technology",
+      "duplicateOf": "col-153",
+      "action": "Review and remove if it is the same college as Bangalore Institute of Technology"
+    }
+  ],
+  "updates": [
+    {
+      "id": "col-152",
+      "name": "M. S. Ramaiah Institute of Technology, Bangalore",
+      "nirfRank2025": 75,
+      "nirfBand2025": "1-100",
+      "rating": 4.3,
+      "ratingDisplay": "NIRF 2025 #75",
+      "typeDetail": "Private autonomous college (VTU)",
+      "placementStats": {
+        "year": 2025,
+        "medianLPA": 10.5,
+        "averageLPA": null,
+        "highestLPA": null,
+        "source": "Aggregator (approx. ₹10-11 LPA UG median) - verify against NIRF DCS",
+        "verified": false
+      }
+    },
+    {
+      "id": "col-151",
+      "name": "R. V. College of Engineering, Bangalore",
+      "nirfRank2025": null,
+      "nirfBand2025": null,
+      "rating": null,
+      "ratingDisplay": "Not in NIRF 2025 top 100",
+      "typeDetail": "Private autonomous college (VTU)",
+      "placementStats": {
+        "year": 2025,
+        "medianLPA": 10.5,
+        "averageLPA": 13.76,
+        "highestLPA": 67,
+        "source": "NIRF data via Careers360",
+        "sourceUrl": "https://www.careers360.com/colleges/rv-college-of-engineering-bangalore/placement",
+        "verified": true
+      }
+    },
+    {
+      "id": "col-263",
+      "name": "B. M. S. College of Engineering, Bangalore",
+      "nirfRank2025": null,
+      "nirfBand2025": "151-200",
+      "rating": 4.0,
+      "ratingDisplay": "NIRF 2025 band 151-200",
+      "typeDetail": "Government-aided autonomous college (VTU)",
+      "fees": 100000,
+      "feesDisplay": "≈ ₹1 Lakh/year on KCET seats (est.)",
+      "placementStats": {
+        "year": 2025,
+        "medianLPA": 8.5,
+        "averageLPA": null,
+        "highestLPA": 51.5,
+        "source": "NIRF 2025 (median); 2025 placement report (highest) via Careers360",
+        "sourceUrl": "https://www.careers360.com/colleges/bms-college-of-engineering-bangalore",
+        "verified": true
+      }
+    },
+    {
+      "id": "col-303",
+      "name": "National Institute of Engineering, Mysore",
+      "type": "PRIVATE",
+      "rating": null,
+      "ratingDisplay": "Not in NIRF 2025 top 100",
+      "typeDetail": "Government-aided autonomous college (VTU)",
+      "note": "Listed as GOVERNMENT in the current dataset; NIE is a government-aided private autonomous college."
+    },
+    {
+      "id": "col-153",
+      "name": "Bangalore Institute of Technology, Bangalore",
+      "typeDetail": "Private college (VTU)",
+      "rating": null,
+      "ratingDisplay": "Not in NIRF 2025 top 100"
+    },
+    {
+      "id": "col-273",
+      "name": "Dayananda Sagar College of Engineering, Bangalore",
+      "typeDetail": "Private autonomous college (VTU)",
+      "rating": null,
+      "ratingDisplay": "Not in NIRF 2025 top 100"
+    }
+  ],
+  "legacyRatingRule": "The 'rating' values on the existing 175 Karnataka records have no documented source (416 of 580 records were a default 4.0). Recommended: set rating=null and ratingDisplay='Not in NIRF 2025 top 100' for every Karnataka record that is not in the updates list, and show NIRF rank instead of stars.",
+  "governmentEngineeringColleges": "col-219, col-220, col-223, col-224, col-240, col-281..col-285 are Karnataka Government Engineering Colleges - keep type GOVERNMENT, typeDetail 'State Government engineering college (VTU)'."
+}

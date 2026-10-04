@@ -1,6 +1,7 @@
-import collegesData from '@/data/colleges28States.json';
+import collegesData from '@/data/colleges.json';
 import { CollegeQueryInput } from './validation/college';
 import { db } from './db';
+import { PlacementStats } from '@/types/careerData';
 
 export interface CollegeDetail {
   id: string;
@@ -9,7 +10,7 @@ export interface CollegeDetail {
   city: string;
   state: string;
   type: string;
-  rating: number;
+  rating: number | null;
   ratingDisplay: string;
   fees: number;
   feesDisplay: string;
@@ -31,6 +32,24 @@ export interface CollegeDetail {
   dataSource: string;
   lastVerified: string;
   imageUrl: string;
+
+  // RealCollegeExtras optional fields
+  typeDetail?: string;
+  institutionCategory?: string;
+  ratingBasis?: string | null;
+  nirfRank2025?: number | null;
+  nirfBand2025?: string | null;
+  nirfNote?: string | null;
+  feesMax?: number;
+  feesIsEstimate?: boolean;
+  placementStats?: PlacementStats | null;
+  admissionRoutes?: string[];
+  routeNote?: string | null;
+  coursesNote?: string;
+  established?: number | null;
+  verificationStatus?: string;
+  sourceUrls?: string[];
+  isRealData?: boolean;
 }
 
 // In-memory overrides cache for development or when DB is unreachable
@@ -64,17 +83,62 @@ async function getMergedDataset(): Promise<CollegeDetail[]> {
   });
 }
 
+function matchesCategory(college: CollegeDetail, categoryFilter: string): boolean {
+  const cat = categoryFilter.trim().toLowerCase();
+  const instCat = (college.institutionCategory || '').toLowerCase();
+  const colType = (college.type || '').toLowerCase();
+  const typeDetail = (college.typeDetail || '').toLowerCase();
+  const name = college.name.toLowerCase();
+
+  switch (cat) {
+    case 'iit':
+      return instCat === 'iit' || name.startsWith('iit ') || name.includes('indian institute of technology');
+    case 'nit':
+      return instCat.includes('nit') || name.startsWith('nit ') || name.includes('national institute of technology');
+    case 'iiit':
+      return instCat.includes('iiit') || name.startsWith('iiit ') || name.includes('information technology') || typeDetail.includes('iiit');
+    case 'central':
+      return instCat.includes('central') || instCat === 'ini_central' || typeDetail.includes('central');
+    case 'state govt':
+    case 'state government':
+    case 'state':
+      return (
+        instCat.includes('state') ||
+        typeDetail.includes('state government') ||
+        (colType === 'government' && !instCat.includes('iit') && !instCat.includes('nit') && !instCat.includes('central'))
+      );
+    case 'private':
+      return instCat.includes('private') || instCat.includes('aided') || colType === 'private' || typeDetail.includes('private');
+    case 'deemed':
+      return instCat.includes('deemed') || colType === 'deemed' || typeDetail.includes('deemed');
+    default:
+      return instCat.includes(cat) || colType.includes(cat) || typeDetail.includes(cat);
+  }
+}
+
+function getNirfSortScore(college: CollegeDetail): number {
+  if (college.nirfRank2025 !== null && college.nirfRank2025 !== undefined && !isNaN(college.nirfRank2025)) {
+    return college.nirfRank2025;
+  }
+  if (college.nirfBand2025 === '101-150') return 125;
+  if (college.nirfBand2025 === '151-200') return 175;
+  return 999999;
+}
+
 export async function getColleges(params: CollegeQueryInput) {
   const {
     search,
     city,
     state,
     type,
+    category,
+    exam,
+    branch,
     minFees,
     maxFees,
     minRating,
-    sortBy = 'rating',
-    sortOrder = 'desc',
+    sortBy = 'nirf',
+    sortOrder = 'asc',
     page = 1,
     limit = 12,
   } = params;
@@ -86,14 +150,16 @@ export async function getColleges(params: CollegeQueryInput) {
     const q = search.toLowerCase();
     filtered = filtered.filter(
       (c) =>
-        c.name.toLowerCase().includes(q) ||
-        c.city.toLowerCase().includes(q) ||
-        c.state.toLowerCase().includes(q) ||
+        (c.name && c.name.toLowerCase().includes(q)) ||
+        (c.city && c.city.toLowerCase().includes(q)) ||
+        (c.state && c.state.toLowerCase().includes(q)) ||
+        (c.typeDetail && c.typeDetail.toLowerCase().includes(q)) ||
         (c.affiliation && c.affiliation.toLowerCase().includes(q)) ||
         (c.overview && c.overview.toLowerCase().includes(q)) ||
-        (c.entranceExams && c.entranceExams.some(e => e.exam?.toLowerCase().includes(q) || e.code?.toLowerCase().includes(q))) ||
-        (c.courses && c.courses.some(course => 
-          course.name.toLowerCase().includes(q) || 
+        (c.entranceExams && c.entranceExams.some((e) => e.exam?.toLowerCase().includes(q) || e.code?.toLowerCase().includes(q))) ||
+        (c.admissionRoutes && c.admissionRoutes.some((r) => r.toLowerCase().includes(q))) ||
+        (c.courses && c.courses.some((course) =>
+          course.name.toLowerCase().includes(q) ||
           (course.branchCode && course.branchCode.toLowerCase().includes(q))
         ))
     );
@@ -111,6 +177,33 @@ export async function getColleges(params: CollegeQueryInput) {
     filtered = filtered.filter((c) => c.type === type);
   }
 
+  if (category) {
+    filtered = filtered.filter((c) => matchesCategory(c, category));
+  }
+
+  if (exam) {
+    const examQ = exam.toLowerCase();
+    filtered = filtered.filter(
+      (c) =>
+        (c.entranceExams && c.entranceExams.some((e) => e.exam?.toLowerCase().includes(examQ) || e.code?.toLowerCase().includes(examQ))) ||
+        (c.admissionRoutes && c.admissionRoutes.some((r) => r.toLowerCase().includes(examQ)))
+    );
+  }
+
+  if (branch) {
+    const branchQ = branch.toLowerCase();
+    filtered = filtered.filter(
+      (c) =>
+        c.courses &&
+        c.courses.some(
+          (crs) =>
+            crs.branchCode.toLowerCase() === branchQ ||
+            crs.branchCode.toLowerCase().includes(branchQ) ||
+            crs.name.toLowerCase().includes(branchQ)
+        )
+    );
+  }
+
   if (minFees !== undefined) {
     filtered = filtered.filter((c) => c.fees >= minFees);
   }
@@ -119,13 +212,27 @@ export async function getColleges(params: CollegeQueryInput) {
     filtered = filtered.filter((c) => c.fees <= maxFees);
   }
 
+  // minRating ignores null ratings
   if (minRating !== undefined) {
-    filtered = filtered.filter((c) => c.rating >= minRating);
+    filtered = filtered.filter((c) => c.rating !== null && c.rating !== undefined && c.rating >= minRating);
   }
 
-  filtered.sort((a: any, b: any) => {
-    let valA = a[sortBy];
-    let valB = b[sortBy];
+  filtered.sort((a, b) => {
+    if (sortBy === 'nirf') {
+      const scoreA = getNirfSortScore(a);
+      const scoreB = getNirfSortScore(b);
+      return sortOrder === 'desc' ? scoreB - scoreA : scoreA - scoreB;
+    }
+
+    if (sortBy === 'rating') {
+      if (a.rating === null && b.rating === null) return 0;
+      if (a.rating === null) return 1;
+      if (b.rating === null) return -1;
+      return sortOrder === 'asc' ? a.rating - b.rating : b.rating - a.rating;
+    }
+
+    let valA = (a as any)[sortBy];
+    let valB = (b as any)[sortBy];
     if (typeof valA === 'string') {
       return sortOrder === 'asc' ? valA.localeCompare(valB) : valB.localeCompare(valA);
     }

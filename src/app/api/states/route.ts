@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { ALL_INDIAN_STATES } from '@/lib/constants';
-import collegesData from '@/data/colleges28States.json';
+import collegesData from '@/data/colleges.json';
 
 export const dynamic = 'force-dynamic';
 

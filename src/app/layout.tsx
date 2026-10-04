@@ -14,9 +14,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'EduSelect — Find Your Best Engineering College in India',
+  title: 'EduSelect — Find Your Best Engineering College & Career Path in India',
   description:
-    'Explore 580+ top engineering colleges across 28 Indian states. Compare, shortlist, predict KCET ranks, and choose the best path for your future.',
+    'Explore 450+ top engineering colleges across 28 Indian states. Discover career pathways, compare institutions, predict cutoffs, and plan your engineering future.',
 };
 
 export default function RootLayout({
