@@ -180,9 +180,10 @@ Provide recommendations strictly matching the requested JSON format:
 }`;
 
     try {
-      const { data: aiOutput, model } = await generateJson<AiResponsePayload>({
+      const { data: aiOutput } = await generateJson<AiResponsePayload>({
         systemInstruction,
         contents: userPrompt,
+        maxOutputTokens: 800,
       });
 
       // 5. Hallucination Guard: ensure recommended itemIds actually exist in the sent catalogue
@@ -195,7 +196,7 @@ Provide recommendations strictly matching the requested JSON format:
           success: true,
           data: {
             fallback: true,
-            model,
+            model: 'rule-based',
             generatedAt: new Date().toISOString(),
             ...buildFallbackResponse(candidates),
           },
@@ -206,7 +207,7 @@ Provide recommendations strictly matching the requested JSON format:
         success: true,
         data: {
           fallback: false,
-          model,
+          model: 'counsellor',
           generatedAt: new Date().toISOString(),
           summary: aiOutput.summary,
           recommendations: filteredRecommendations,

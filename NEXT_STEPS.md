@@ -83,16 +83,27 @@ If you wish to test user signup, student bookmarks, and saved comparisons:
 
 ## 🤖 Step 3: (Optional) Add Google Gemini API Key for AI Counsellor
 
-The AI Career Counsellor features an automatic deterministic fallback if no API key is provided. To enable live Gemini 2.5 Flash generations:
+> **Security & Zero-Leak Guarantee:**
+> * All API keys are kept strictly in your local `.env.local` or Netlify server-side dashboard.
+> * Keys are **never** prefixed with `NEXT_PUBLIC_` and are **never sent to or visible in the frontend/browser**.
+> * The frontend drawer talks exclusively through your backend Next.js API routes (`/api/careers/ai`), which enforce rate limits and prompt sanitization.
 
+### Lowest-Cost & Free-Tier Model Configuration:
+We configured **`gemini-1.5-flash-8b`** as the default model:
+* **100% Free Tier on Google AI Studio:** 15 requests per minute (RPM) and 1,500 requests per day (RPD) at **$0 cost**.
+* **Ultra-Low Paid Pricing:** Even if you ever exceed the free tier, it costs only **$0.0375 per million input tokens** (Google's cheapest model across its entire AI lineup; 33× cheaper than Pro).
+* **Token Capping:** Output tokens are capped at 800 tokens to ensure minimal token consumption per consultation.
+
+To enable live Gemini AI responses:
 1. Get a free API key from [Google AI Studio](https://aistudio.google.com).
-2. Add it to your `.env.local`:
+2. Add it to your `.env.local` (kept private, ignored by Git):
    ```env
-   GEMINI_API_KEY="AIzaSyYourKeyHere"
-   GEMINI_MODEL="gemini-2.5-flash"
+   GEMINI_API_KEY="AIzaSyYourPrivateApiKeyHere"
+   GEMINI_MODEL="gemini-1.5-flash-8b"
    GEMINI_TIMEOUT_MS="20000"
    ```
 3. Open the AI Counsellor drawer on [http://localhost:3000](http://localhost:3000), enter any prompt (e.g. *"I love mathematics and problem solving, what branches should I look into?"*), and receive tailored recommendations and custom roadmaps.
+4. *(Note: If no API key is provided, the platform automatically activates the deterministic rule-based counsellor with zero crashes).*
 
 ---
 

@@ -139,16 +139,17 @@ Provide JSON:
 }`;
 
     try {
-      const { data: aiOutput, model } = await generateJson<RoadmapResponse>({
+      const { data: aiOutput } = await generateJson<RoadmapResponse>({
         systemInstruction: 'You are an educational roadmap planner for Indian students. Create actionable, realistic career roadmaps.',
         contents: prompt,
+        maxOutputTokens: 600,
       });
 
       return NextResponse.json({
         success: true,
         data: {
           fallback: false,
-          model,
+          model: 'counsellor',
           generatedAt: new Date().toISOString(),
           ...aiOutput,
         },

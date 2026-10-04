@@ -20,7 +20,7 @@
   * 196 static detail pages (`/careers/[kind]/[id]`) pre-rendered via Next.js Static Site Generation (SSG).
   * Direct cross-referencing between engineering colleges and post-graduation career roadmaps.
 * **Gemini AI Career Counsellor:**
-  * Powered by Google Gemini 2.5 Flash via `@google/genai`.
+  * Powered by Google Gemini 1.5 Flash-8B (Google's most economical, free-tier eligible model) via `@google/genai`.
   * Strict server-side isolation with zero client-side secret leakage (`server-only`).
   * Structured JSON schema generation, prompt-injection guards, 20s serverless timeout, and graceful client fallbacks.
   * In-memory sliding-window rate limiting per IP address.
@@ -85,7 +85,7 @@ NEXTAUTH_URL="http://localhost:3000"
 
 # Google Gemini AI Career Counsellor
 GEMINI_API_KEY="AIzaSyYourGeminiApiKeyHere"
-GEMINI_MODEL="gemini-2.5-flash"
+GEMINI_MODEL="gemini-1.5-flash-8b"
 GEMINI_TIMEOUT_MS="20000"
 
 # Initial Seed Credentials (for npm run db:seed)
@@ -120,8 +120,8 @@ Open [http://localhost:3000](http://localhost:3000).
 | `DIRECT_URL` | **Yes** | Neon direct unpooled connection string for migrations | `postgresql://user:pass@ep-direct.neon.tech/neondb?sslmode=require` |
 | `NEXTAUTH_SECRET` | **Yes** | 32+ character random secret for JWT signing & session cookies | Run `openssl rand -base64 32` |
 | `NEXTAUTH_URL` | **Yes** | Canonical production URL of your deployment | `https://your-site.netlify.app` |
-| `GEMINI_API_KEY` | Optional | Google AI Gemini API key for AI Career Counsellor | Obtain from [Google AI Studio](https://aistudio.google.com) |
-| `GEMINI_MODEL` | No | Model name for AI career counselor calls | `gemini-2.5-flash` |
+| `GEMINI_API_KEY` | Optional | Google AI Gemini API key for AI Career Counsellor (server-side only) | Obtain from [Google AI Studio](https://aistudio.google.com) |
+| `GEMINI_MODEL` | No | Economical model (free tier eligible, lowest cost) | `gemini-1.5-flash-8b` |
 | `GEMINI_TIMEOUT_MS` | No | Serverless timeout guard in milliseconds | `20000` (20 seconds) |
 | `SEED_ADMIN_PASSWORD` | No | Password used when executing `npm run db:seed` | `AdminPassword123!` |
 | `SEED_DEMO_PASSWORD` | No | Password used for demo student when running seed | `StudentPassword123!` |

@@ -2,7 +2,8 @@ import 'server-only';
 import { GoogleGenAI } from '@google/genai';
 
 const apiKey = process.env.GEMINI_API_KEY;
-const modelName = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+// Default to Google's most economical, lowest-cost model: gemini-1.5-flash-8b (with 15 RPM / 1,500 RPD free tier)
+const modelName = process.env.GEMINI_MODEL || 'gemini-1.5-flash-8b';
 const timeoutMs = parseInt(process.env.GEMINI_TIMEOUT_MS || '20000', 10);
 
 let client: GoogleGenAI | null = null;
@@ -37,7 +38,7 @@ export async function generateJson<T>(options: GenerateJsonOptions): Promise<{ d
     systemInstruction,
     contents,
     responseJsonSchema,
-    maxOutputTokens = 1500,
+    maxOutputTokens = 800,
     temperature = 0.4,
   } = options;
 
