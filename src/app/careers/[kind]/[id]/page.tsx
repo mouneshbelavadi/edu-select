@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { getCareerDetail } from '@/lib/careers/repository';
 import { getColleges } from '@/lib/collegeRepository';
 import { CollegeCard } from '@/components/features/CollegeCard';
+import { AiCounselorDrawer } from '@/components/features/AiCounselorDrawer';
 
 // Static datasets for generateStaticParams
 import pathwaysData from '@/data/careers/pathways.json';
@@ -622,10 +623,15 @@ export default async function CareerDetailPage({ params }: CareerPageProps) {
             </div>
 
             {/* Call to action */}
-            <div className="pt-2 flex flex-col gap-2">
+            <div className="pt-2 flex flex-col gap-2.5">
+              <AiCounselorDrawer
+                initialLevel={item.level}
+                initialStream={item.streams?.[0]}
+                initialInterests={item.riasec}
+              />
               <Link
                 href="/colleges"
-                className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl text-center shadow-md transition-colors"
+                className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl text-center shadow-md transition-colors"
               >
                 Find Matching Colleges
               </Link>
@@ -633,7 +639,7 @@ export default async function CareerDetailPage({ params }: CareerPageProps) {
                 href="/kcet-2026-predictor"
                 className="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl text-center transition-colors"
               >
-                Check KCET / State Cutoffs
+                Check Cutoff Predictor
               </Link>
             </div>
           </div>

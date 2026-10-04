@@ -1,32 +1,47 @@
-// In-memory sliding window rate limiter
-// Trade-off: Resets on server restart and doesn't share state across multiple horizontal instances.
-// In production, would use Upstash Redis / Redis rate limiter.
-
 interface RateLimitRecord {
   count: number;
-  resetTime: number;
+  resetAt: number;
 }
 
-const ipStore = new Map<string, RateLimitRecord>();
+const ipRecords = new Map<string, RateLimitRecord>();
 
 export function checkRateLimit(
-  ip: string,
-  limit: number = 5,
-  windowMs: number = 10 * 60 * 1000 // 10 minutes
-): { success: boolean; limit: number; remaining: number; reset: number } {
+  key: string,
+  limit: number = 10,
+  windowMs: number = 10 * 60 * 1000
+): { allowed: boolean; success: boolean; remaining: number; resetInSec: number } {
   const now = Date.now();
-  const record = ipStore.get(ip);
+  const record = ipRecords.get(key);
 
-  if (!record || now > record.resetTime) {
-    const newRecord: RateLimitRecord = { count: 1, resetTime: now + windowMs };
-    ipStore.set(ip, newRecord);
-    return { success: true, limit, remaining: limit - 1, reset: newRecord.resetTime };
+  // Clean expired
+  if (!record || now > record.resetAt) {
+    ipRecords.set(key, { count: 1, resetAt: now + windowMs });
+    return {
+      allowed: true,
+      success: true,
+      remaining: limit - 1,
+      resetInSec: Math.ceil(windowMs / 1000),
+    };
   }
 
   if (record.count >= limit) {
-    return { success: false, limit, remaining: 0, reset: record.resetTime };
+    const resetInSec = Math.max(1, Math.ceil((record.resetAt - now) / 1000));
+    return {
+      allowed: false,
+      success: false,
+      remaining: 0,
+      resetInSec,
+    };
   }
 
   record.count += 1;
-  return { success: true, limit, remaining: limit - record.count, reset: record.resetTime };
+  const remaining = Math.max(0, limit - record.count);
+  const resetInSec = Math.max(1, Math.ceil((record.resetAt - now) / 1000));
+
+  return {
+    allowed: true,
+    success: true,
+    remaining,
+    resetInSec,
+  };
 }

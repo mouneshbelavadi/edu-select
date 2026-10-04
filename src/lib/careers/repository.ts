@@ -235,7 +235,7 @@ export function getBranchByCode(code: string): EngineeringBranch | undefined {
   return branchesCodeMap.get(code.toUpperCase());
 }
 
-export function searchCareers(query: CareerSearchQuery) {
+export function searchCareers(query: Partial<CareerSearchQuery> = {}) {
   const {
     level,
     stream,

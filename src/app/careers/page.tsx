@@ -4,6 +4,7 @@ import React, { Suspense, useState, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import useSWR from 'swr';
 import { CareerCardComponent } from '@/components/features/CareerCard';
+import { AiCounselorDrawer } from '@/components/features/AiCounselorDrawer';
 import { CareerCard, CareerCluster, Taxonomy } from '@/types/careerData';
 import { Button } from '@/components/ui/Button';
 
@@ -170,20 +171,31 @@ function CareersExplorerContent() {
     <div className="w-full min-h-screen bg-slate-50/50 pb-24">
       {/* 1. HERO HEADER */}
       <section className="bg-gradient-to-b from-blue-900 via-indigo-900 to-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8 shadow-xl">
-        <div className="max-w-7xl mx-auto flex flex-col gap-5">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-bold uppercase tracking-wider w-fit">
-            <span>🧭 India Career & Pathway Explorer</span>
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="flex flex-col gap-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-bold uppercase tracking-wider w-fit">
+              <span>🧭 India Career & Pathway Explorer</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+              What Can I Become? <br className="hidden sm:inline" />
+              <span className="text-blue-400">Explore Careers & Courses</span>
+            </h1>
+
+            <p className="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+              Discover verified pathways after Class 10th, 12th/PUC, ITI, Diploma, Engineering, or any graduate degree.
+              Filter by real salary, fees, entrance exams, 7th CPC government posts, and job outlook.
+            </p>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-            What Can I Become? <br className="hidden sm:inline" />
-            <span className="text-blue-400">Explore Careers & Courses</span>
-          </h1>
-
-          <p className="text-slate-300 text-sm sm:text-base max-w-3xl leading-relaxed">
-            Discover verified pathways after Class 10th, 12th/PUC, ITI, Diploma, Engineering, or any graduate degree.
-            Filter by real salary, fees, entrance exams, 7th CPC government posts, and job outlook.
-          </p>
+          <div className="shrink-0">
+            <AiCounselorDrawer
+              initialLevel={currentLevel}
+              initialStream={currentStream}
+              initialInterests={currentRiasec}
+              initialSubjects={currentSubjects}
+            />
+          </div>
         </div>
       </section>
 
