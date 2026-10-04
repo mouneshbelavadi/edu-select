@@ -26,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="font-sans antialiased min-h-screen flex flex-col bg-slate-50/50 text-slate-900">
+      <body className="font-sans antialiased min-h-screen flex flex-col bg-white text-[#0F172A]">
         <NextAuthProvider>
           <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
           <Navbar />

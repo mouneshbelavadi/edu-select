@@ -1,724 +1,369 @@
-'use client';
-
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import useSWR from 'swr';
-import { StateCardImage } from '@/components/features/StateCardImage';
-import { CollegeLogoBadge } from '@/components/features/CollegeLogoBadge';
-import { ALL_STATE_CONFIGS } from '@/lib/stateConfig';
+import type { Metadata } from 'next';
+import { LevelCard } from '@/components/ui/LevelCard';
 import {
-  GraduationCapIcon,
-  SparklesIcon,
-  CompassIcon,
-  BuildingLibraryIcon,
   BookOpenIcon,
-  BriefcaseIcon,
-  ScaleIcon,
-  SearchIcon,
-  ShieldCheckIcon,
+  GraduationCapIcon,
   WrenchIcon,
+  CompassIcon,
   CpuIcon,
-  ArrowRightIcon,
-  MapPinIcon,
-  TrophyIcon,
-  StarIcon,
-  LightningIcon,
-  HeartIcon,
-  UsersIcon,
+  BuildingLibraryIcon,
+  ScaleIcon,
   MicroscopeIcon,
+  BriefcaseIcon,
+  ShieldCheckIcon,
+  SparklesIcon,
+  CheckIcon,
 } from '@/components/ui/Icons';
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+export const metadata: Metadata = {
+  title: 'EduSelect — Free Career Guidance & Roadmaps for Indian Students',
+  description:
+    'Free career-guidance platform for Indian students. Pick your level (After 10th, 12th/PUC, ITI, Diploma, B.Tech, Degree) to get verified roadmaps of courses, entrance exams, colleges, and government jobs.',
+  openGraph: {
+    title: 'EduSelect — Free Career Guidance & Roadmaps for Indian Students',
+    description:
+      'Step-by-step educational roadmaps, entrance exams, verified colleges, and government jobs for Indian students.',
+    type: 'website',
+  },
+};
 
-const POPULAR_BRANCH_TAGS = [
-  { label: 'B.Tech CSE', query: 'Computer Science' },
-  { label: 'B.Tech Mechanical', query: 'Mechanical' },
-  { label: 'B.Tech ECE', query: 'Electronics' },
-  { label: 'B.Tech Civil', query: 'Civil' },
-  { label: 'AI & ML', query: 'Artificial Intelligence' },
+interface JourneyLevelConfig {
+  slug: string;
+  title: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
+const JOURNEY_LEVELS: JourneyLevelConfig[] = [
+  {
+    slug: '10th',
+    title: 'After 10th',
+    description: 'Explore 11th/12th PUC streams, Polytechnic diplomas, and ITI trade certifications.',
+    icon: BookOpenIcon,
+  },
+  {
+    slug: '12th',
+    title: 'After 12th / PUC',
+    description: 'Find degree pathways across Science (PCM/PCB), Commerce, and Arts.',
+    icon: GraduationCapIcon,
+  },
+  {
+    slug: 'iti',
+    title: 'ITI Graduate',
+    description: 'Explore lateral diploma entry, CITS instructor training, and PSU technician roles.',
+    icon: WrenchIcon,
+  },
+  {
+    slug: 'diploma',
+    title: 'Polytechnic Diploma',
+    description: 'Lateral entry into 2nd year B.Tech, Junior Engineer exams, and technical careers.',
+    icon: CompassIcon,
+  },
+  {
+    slug: 'btech',
+    title: 'B.Tech / B.E.',
+    description: 'Core engineering careers, software roles, GATE for PSUs, and master’s programs.',
+    icon: CpuIcon,
+  },
+  {
+    slug: 'degree',
+    title: 'General Degree',
+    description: 'Postgraduate programs, banking exams, civil services, and corporate roles.',
+    icon: BuildingLibraryIcon,
+  },
+  {
+    slug: 'professional',
+    title: 'Professional Degree',
+    description: 'Specialised certifications, industry licensing, and advanced professional practice.',
+    icon: ScaleIcon,
+  },
+  {
+    slug: 'pg',
+    title: 'Postgraduate',
+    description: 'Doctoral research, academia, corporate R&D, and executive leadership paths.',
+    icon: MicroscopeIcon,
+  },
 ];
 
-const QUALIFICATION_LEVELS = [
-  { id: 'CLASS_10', shortLabel: 'Class 10th', desc: 'Diploma, ITI, Polytechnic, 11th-12th', icon: BookOpenIcon, color: 'text-blue-600 bg-blue-50 border-blue-200' },
-  { id: 'CLASS_12', shortLabel: 'Class 12th / PU', desc: 'Engineering, Medical, NDA, Degrees', icon: GraduationCapIcon, color: 'text-indigo-600 bg-indigo-50 border-indigo-200' },
-  { id: 'ITI', shortLabel: 'ITI Trades', desc: 'Apprentice, Railways, PSU Technician', icon: WrenchIcon, color: 'text-amber-600 bg-amber-50 border-amber-200' },
-  { id: 'DIPLOMA', shortLabel: 'Polytechnic', desc: 'Lateral B.Tech, Junior Engineer', icon: CompassIcon, color: 'text-teal-600 bg-teal-50 border-teal-200' },
-  { id: 'UG_ENGG', shortLabel: 'B.Tech / B.E.', desc: 'Software, PSUs via GATE, Core Tech', icon: CpuIcon, color: 'text-cyan-600 bg-cyan-50 border-cyan-200' },
-  { id: 'UG_OTHER', shortLabel: 'General Degree', desc: 'B.Sc, B.Com, BCA, Banking & UPSC', icon: BuildingLibraryIcon, color: 'text-purple-600 bg-purple-50 border-purple-200' },
-  { id: 'PROFESSIONAL', shortLabel: 'Professional', desc: 'MBBS, Law, Architecture, CA', icon: ScaleIcon, color: 'text-rose-600 bg-rose-50 border-rose-200' },
-  { id: 'PG', shortLabel: 'Postgraduate', desc: 'M.Tech, MBA, Ph.D, R&D & Specialist', icon: MicroscopeIcon, color: 'text-emerald-600 bg-emerald-50 border-emerald-200' },
+const HOW_IT_WORKS_STEPS = [
+  {
+    number: '1',
+    title: 'Select level',
+    description: 'Choose your current class, diploma, or degree to view relevant options.',
+  },
+  {
+    number: '2',
+    title: 'Explore options',
+    description: 'Compare matching streams, degrees, entrance tests, and career outcomes.',
+  },
+  {
+    number: '3',
+    title: 'Get your roadmap',
+    description: 'Follow a clear year-by-year timeline with skills, projects, and milestones.',
+  },
+  {
+    number: '4',
+    title: 'Decide with confidence',
+    description: 'Review verified colleges, transparent fee estimates, and official links.',
+  },
 ];
 
-export default function EduSelectDashboard() {
-  const router = useRouter();
-  const stateScrollRef = useRef<HTMLDivElement>(null);
-  const collegeScrollRef = useRef<HTMLDivElement>(null);
+const FEATURE_TILES = [
+  {
+    title: 'Career Paths',
+    description: 'Job profiles, required skills, and long-term career growth across industries.',
+    icon: BriefcaseIcon,
+  },
+  {
+    title: 'Entrance Exams',
+    description: 'Eligibility criteria, syllabus patterns, and official portals for national and state tests.',
+    icon: ShieldCheckIcon,
+  },
+  {
+    title: 'Colleges & Courses',
+    description: 'Verified engineering colleges with NIRF rankings, estimated fees, and cutoffs.',
+    icon: BuildingLibraryIcon,
+  },
+  {
+    title: 'Government Jobs',
+    description: 'Technical and public service recruitment exams with 7th Pay Commission pay bands.',
+    icon: ScaleIcon,
+  },
+  {
+    title: 'Skill Guidance',
+    description: 'Core programming tools, domain fundamentals, and industry certifications.',
+    icon: WrenchIcon,
+  },
+  {
+    title: 'Personalised Guidance',
+    description: 'Score-based diagnostics and custom roadmaps tailored to your situation.',
+    icon: SparklesIcon,
+  },
+];
 
-  // Search State
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedState, setSelectedState] = useState('');
-  const [selectedCourse, setSelectedCourse] = useState('');
-
-  // Fetch real data from API endpoints
-  const { data: statesRes } = useSWR('/api/states', fetcher);
-  const { data: topCollegesRes } = useSWR('/api/colleges?limit=12&sortBy=nirf&sortOrder=asc', fetcher);
-
-  const defaultStatesList = ALL_STATE_CONFIGS.map((s) => ({
-    name: s.name,
-    collegeCount: s.name === 'Karnataka' ? 185 : 10,
-  }));
-
-  const statesList: { name: string; collegeCount: number }[] =
-    statesRes?.data && statesRes.data.length > 0 ? statesRes.data : defaultStatesList;
-
-  const totalCollegesCount = statesList.reduce((acc, s) => acc + (s.collegeCount || 0), 0);
-  const popularColleges = topCollegesRes?.data || [];
-
-  const handleHeroSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    const params = new URLSearchParams();
-    const queryParts = [searchTerm.trim(), selectedCourse.trim()].filter(Boolean);
-    if (queryParts.length > 0) params.set('search', queryParts.join(' '));
-    if (selectedState) params.set('state', selectedState);
-
-    router.push(`/colleges?${params.toString()}`);
-  };
-
-  const handleTagClick = (tagQuery: string) => {
-    router.push(`/colleges?search=${encodeURIComponent(tagQuery)}`);
-  };
-
-  const scrollStates = (direction: 'left' | 'right') => {
-    if (stateScrollRef.current) {
-      const scrollAmount = direction === 'left' ? -340 : 340;
-      stateScrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
-
-  const scrollColleges = (direction: 'left' | 'right') => {
-    if (collegeScrollRef.current) {
-      const scrollAmount = direction === 'left' ? -360 : 360;
-      collegeScrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
-
+export default function HomePage() {
   return (
-    <div className="w-full flex flex-col gap-12 pb-20 bg-slate-50/50">
+    <div className="w-full bg-white text-[#0F172A]">
       {/* 1. HERO SECTION */}
-      <section className="relative w-full bg-gradient-to-b from-blue-50/70 via-indigo-50/40 to-slate-50 pt-10 pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60 overflow-hidden">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          
-          {/* Left Column: Hero Copy & Search Bar */}
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-100/80 border border-blue-200 text-blue-700 text-xs font-bold w-fit">
-              <span>Your Future. Our Guidance.</span>
+      <section className="border-b border-[#E2E8F0] py-14 sm:py-20">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            {/* Left Column: Heading, Text & Primary Action */}
+            <div className="lg:col-span-7 flex flex-col items-start">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0F172A] leading-[1.18]">
+                Not sure what to pursue next?
+              </h1>
+              <p className="mt-4 text-base sm:text-lg text-[#475569] leading-relaxed max-w-xl">
+                Pick your current level to get a step-by-step roadmap of courses, entrance exams, colleges, and government jobs.
+              </p>
+
+              <div className="mt-8 flex flex-wrap items-center gap-5">
+                <a
+                  href="#levels"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-[8px] bg-[#1D4ED8] hover:bg-[#1E40AF] text-white font-semibold text-base transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8]"
+                >
+                  Choose your level
+                </a>
+                <a
+                  href="#how-it-works"
+                  className="inline-flex items-center text-base font-semibold text-[#1D4ED8] hover:text-[#1E40AF] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-[#1D4ED8]"
+                >
+                  How it works
+                </a>
+              </div>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
-              Find the Right College <br />
-              <span className="text-blue-600">— and the Career It Leads To.</span>
-            </h1>
+            {/* Right Column: Clean Screenshot-Style Roadmap Visual */}
+            <div className="lg:col-span-5 w-full">
+              <div className="bg-white rounded-[12px] border border-[#E2E8F0] shadow-sm p-5 sm:p-6">
+                {/* Header preview bar */}
+                <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-3 mb-4">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#1D4ED8]" />
+                    <span className="text-xs font-bold text-[#0F172A] uppercase tracking-wide">
+                      Roadmap Preview
+                    </span>
+                  </div>
+                  <span className="text-xs text-[#64748B] font-medium">4-Year Progression</span>
+                </div>
 
-            <p className="text-base sm:text-lg text-slate-600 max-w-xl font-normal leading-relaxed">
-              Explore 450+ verified engineering colleges across India. Connect academic branches directly with career outcomes, salaries, and recruitment exams.
+                <div className="mb-4">
+                  <span className="text-xs font-semibold text-[#1D4ED8]">Class 12th PCM Pathway</span>
+                  <h2 className="text-base font-bold text-[#0F172A]">B.Tech in Computer Science</h2>
+                </div>
+
+                {/* Vertical Step Timeline */}
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-start gap-3 p-2.5 rounded-[8px] bg-[#F8FAFC] border border-[#E2E8F0]">
+                    <div className="w-6 h-6 rounded-full bg-[#1D4ED8] text-white text-xs font-bold flex items-center justify-center shrink-0">
+                      1
+                    </div>
+                    <div className="text-xs">
+                      <span className="font-bold text-[#0F172A]">Year 1 · Foundation & Entrance</span>
+                      <p className="text-[#475569] mt-0.5">Calculus, Programming, and qualifying cutoffs (JEE / KCET).</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-2.5 rounded-[8px] bg-[#F8FAFC] border border-[#E2E8F0]">
+                    <div className="w-6 h-6 rounded-full bg-[#1D4ED8] text-white text-xs font-bold flex items-center justify-center shrink-0">
+                      2
+                    </div>
+                    <div className="text-xs">
+                      <span className="font-bold text-[#0F172A]">Years 2–3 · Core Competencies</span>
+                      <p className="text-[#475569] mt-0.5">Data Structures, Algorithms, Systems, and Summer Internship.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-2.5 rounded-[8px] bg-[#F8FAFC] border border-[#E2E8F0]">
+                    <div className="w-6 h-6 rounded-full bg-[#1D4ED8] text-white text-xs font-bold flex items-center justify-center shrink-0">
+                      3
+                    </div>
+                    <div className="text-xs">
+                      <span className="font-bold text-[#0F172A]">Year 4 · Placements & GATE</span>
+                      <p className="text-[#475569] mt-0.5">Campus recruitment drives, PSU tests, or Postgraduate applications.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-2.5 rounded-[8px] bg-[#F8FAFC] border border-[#E2E8F0]">
+                    <div className="w-6 h-6 rounded-full bg-[#0D9488] text-white flex items-center justify-center shrink-0">
+                      <CheckIcon className="w-3.5 h-3.5 text-white" />
+                    </div>
+                    <div className="text-xs">
+                      <span className="font-bold text-[#0F172A]">Career Outcome</span>
+                      <p className="text-[#475569] mt-0.5">Software Development Engineer or PSU Technical Officer.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-[#E2E8F0] text-center">
+                  <span className="text-[11px] text-[#64748B]">
+                    Verified against official syllabi and 455 real engineering colleges.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. "WHERE ARE YOU IN YOUR JOURNEY?" (MAIN SECTION) */}
+      <section id="levels" className="py-16 sm:py-20 scroll-mt-16">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+          <div className="max-w-2xl">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#0F172A]">
+              Where are you in your journey?
+            </h2>
+            <p className="mt-2 text-base text-[#475569] leading-relaxed">
+              Select your current education level to view verified roadmaps, degrees, entrance tests, and career outcomes.
             </p>
-
-            {/* Interactive Search Overlay Box */}
-            <form
-              onSubmit={handleHeroSearch}
-              className="bg-white p-3 rounded-2xl shadow-xl border border-slate-200/80 flex flex-col sm:flex-row items-center gap-2"
-            >
-              {/* Search Query Input */}
-              <div className="flex-1 flex items-center gap-2 px-3 py-2 bg-slate-50 rounded-xl w-full">
-                <SearchIcon className="w-4 h-4 text-slate-400 shrink-0" />
-                <input
-                  type="text"
-                  placeholder="Search colleges, courses, exams..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full bg-transparent text-slate-900 placeholder-slate-400 text-xs sm:text-sm font-medium focus:outline-none"
-                />
-              </div>
-
-              {/* State Dropdown */}
-              <div className="flex items-center gap-1.5 px-3 py-2 bg-slate-50 rounded-xl w-full sm:w-44 border-t sm:border-t-0 border-slate-100">
-                <MapPinIcon className="w-4 h-4 text-slate-400 shrink-0" />
-                <select
-                  value={selectedState}
-                  onChange={(e) => setSelectedState(e.target.value)}
-                  className="w-full bg-transparent text-slate-700 text-xs font-semibold focus:outline-none cursor-pointer"
-                >
-                  <option value="">Select State</option>
-                  {statesList.map((st) => (
-                    <option key={st.name} value={st.name}>
-                      {st.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Course Dropdown */}
-              <div className="flex items-center gap-1.5 px-3 py-2 bg-slate-50 rounded-xl w-full sm:w-44 border-t sm:border-t-0 border-slate-100">
-                <BookOpenIcon className="w-4 h-4 text-slate-400 shrink-0" />
-                <select
-                  value={selectedCourse}
-                  onChange={(e) => setSelectedCourse(e.target.value)}
-                  className="w-full bg-transparent text-slate-700 text-xs font-semibold focus:outline-none cursor-pointer"
-                >
-                  <option value="">Select Course</option>
-                  <option value="Computer Science">B.Tech CSE</option>
-                  <option value="Information Science">B.Tech ISE / IT</option>
-                  <option value="Electronics">B.Tech ECE</option>
-                  <option value="Electrical">B.Tech EEE</option>
-                  <option value="Mechanical">B.Tech Mechanical</option>
-                  <option value="Civil">B.Tech Civil</option>
-                  <option value="Artificial Intelligence">B.Tech AI & ML</option>
-                  <option value="Biotechnology">B.Tech Biotech</option>
-                </select>
-              </div>
-
-              {/* Search Submit Button */}
-              <button
-                type="submit"
-                className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-xl shadow-md transition-colors shrink-0"
-              >
-                Search
-              </button>
-            </form>
-
-            {/* Popular Tags Row */}
-            <div className="flex flex-wrap items-center gap-2 text-xs">
-              <span className="font-bold text-slate-500 mr-1">Popular:</span>
-              {POPULAR_BRANCH_TAGS.map((tag) => (
-                <button
-                  key={tag.label}
-                  onClick={() => handleTagClick(tag.query)}
-                  className="px-3 py-1 bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 text-slate-700 hover:text-blue-700 font-semibold rounded-full shadow-sm transition-all"
-                >
-                  {tag.label}
-                </button>
-              ))}
-            </div>
           </div>
-          {/* Right Column: Hero Visual Card */}
-          <div className="lg:col-span-5 relative flex items-center justify-center">
-            <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border border-white/60 bg-gradient-to-tr from-blue-900 to-indigo-950 p-6 sm:p-8 min-h-[380px] flex flex-col justify-between text-white">
-              {/* Background Architectural Accent */}
-              <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]" />
 
-              <div className="relative z-10 flex items-center justify-between">
-                <span className="px-3 py-1 bg-blue-500/30 border border-blue-400/40 rounded-full text-xs font-bold text-blue-200 uppercase tracking-wider flex items-center gap-1.5">
-                  <ShieldCheckIcon className="w-3.5 h-3.5 text-blue-300" /> Authoritative 28-State Data
-                </span>
-                <SparklesIcon className="w-5 h-5 text-amber-300" />
-              </div>
-
-              {/* Floating Glassmorphism Stats Card */}
-              <div className="relative z-10 bg-white/95 backdrop-blur-md text-slate-900 rounded-2xl p-5 shadow-xl border border-slate-100 flex flex-col gap-3 my-auto">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-lg shrink-0">
-                    <BuildingLibraryIcon className="w-5 h-5 text-blue-700" />
-                  </div>
-                  <div>
-                    <div className="text-lg font-black text-slate-900">580+ Engineering Colleges</div>
-                    <div className="text-xs text-slate-500 font-medium">Verified Tuition & Placements</div>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-2 border-t border-slate-100 pt-3 text-xs">
-                  <div>
-                    <span className="font-extrabold text-blue-600 text-base block">28 States</span>
-                    <span className="text-slate-500">Covered Nationwide</span>
-                  </div>
-                  <div>
-                    <span className="font-extrabold text-emerald-600 text-base block">50+ Filters</span>
-                    <span className="text-slate-500">To Find The Best</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative z-10 flex items-center justify-between text-xs text-blue-200">
-                <span>Updated Live with KEA & 28-State Datasets</span>
-                <Link href="/colleges" className="font-bold text-white hover:underline flex items-center gap-1">
-                  Browse All <ArrowRightIcon className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </div>
+          {/* 8 Level Cards Grid: 4x2 desktop, 2 cols tablet, 1 col mobile */}
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {JOURNEY_LEVELS.map((item) => (
+              <LevelCard
+                key={item.slug}
+                slug={item.slug}
+                title={item.title}
+                description={item.description}
+                icon={item.icon}
+              />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 2. STATS BAR BELOW HERO */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full -mt-6">
-        <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg border border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="flex items-center gap-3.5 p-3 rounded-xl bg-blue-50/50">
-            <div className="w-11 h-11 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0">
-              <BuildingLibraryIcon className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <div className="text-lg font-black text-slate-900">
-                {totalCollegesCount > 0 ? `${totalCollegesCount}+` : '450+'}
+      {/* 3. "HOW IT WORKS" (4 STEPS) */}
+      <section id="how-it-works" className="py-16 sm:py-20 bg-[#F8FAFC] border-y border-[#E2E8F0] scroll-mt-16">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+          <div className="max-w-2xl">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#0F172A]">
+              How it works
+            </h2>
+            <p className="mt-2 text-base text-[#475569] leading-relaxed">
+              Four straightforward steps to find clarity and plan your next educational move.
+            </p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {HOW_IT_WORKS_STEPS.map((step) => (
+              <div
+                key={step.number}
+                className="p-6 bg-white rounded-[12px] border border-[#E2E8F0] flex flex-col gap-3"
+              >
+                <div className="w-8 h-8 rounded-full bg-[#1D4ED8] text-white text-sm font-bold flex items-center justify-center">
+                  {step.number}
+                </div>
+                <h3 className="text-lg font-bold text-[#0F172A]">
+                  {step.title}
+                </h3>
+                <p className="text-base text-[#475569] leading-relaxed">
+                  {step.description}
+                </p>
               </div>
-              <div className="text-xs text-slate-500 font-medium">Engineering Colleges</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3.5 p-3 rounded-xl bg-emerald-50/50">
-            <div className="w-11 h-11 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0">
-              <MapPinIcon className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <div className="text-lg font-black text-slate-900">28</div>
-              <div className="text-xs text-slate-500 font-medium">States & UTs</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3.5 p-3 rounded-xl bg-purple-50/50">
-            <div className="w-11 h-11 rounded-xl bg-purple-600 text-white flex items-center justify-center shrink-0">
-              <BookOpenIcon className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <div className="text-lg font-black text-slate-900">50+</div>
-              <div className="text-xs text-slate-500 font-medium">Courses & Branches</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3.5 p-3 rounded-xl bg-amber-50/50">
-            <div className="w-11 h-11 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0">
-              <UsersIcon className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <div className="text-lg font-black text-slate-900">100K+</div>
-              <div className="text-xs text-slate-500 font-medium">Students Trust Us</div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 2.5 NOT SURE WHAT TO STUDY? (QUALIFICATION LEVEL CARDS + AI COUNSELLOR) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-4">
-        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm flex flex-col gap-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold w-fit mb-1.5">
-                <CompassIcon className="w-3.5 h-3.5 text-blue-600" />
-                <span>Career Pathways & Progression</span>
-              </div>
-              <h2 className="text-2xl font-black text-slate-900">Not sure what to study next?</h2>
-              <p className="text-xs text-slate-500 mt-0.5">Explore structured pathways mapped directly to your current qualification level</p>
-            </div>
-            
-            <div className="flex flex-wrap items-center gap-2.5">
-              <Link
-                href="/pathways"
-                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition-all flex items-center gap-1.5"
-              >
-                <CompassIcon className="w-3.5 h-3.5 text-slate-600" />
-                Pathways Dashboard
-              </Link>
-              <Link
-                href="/ai-counsellor"
-                className="px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-xs font-bold rounded-xl shadow-md shadow-blue-500/20 transition-all flex items-center gap-1.5 group"
-              >
-                <SparklesIcon className="w-3.5 h-3.5 text-amber-300 group-hover:rotate-12 transition-transform" />
-                <span>EduSelect AI Counsellor</span>
-                <ArrowRightIcon className="w-3.5 h-3.5 text-white/80 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-            </div>
+      {/* 4. "WHAT YOU'LL FIND ON EDUSELECT" (6 FEATURE TILES) */}
+      <section className="py-16 sm:py-20">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+          <div className="max-w-2xl">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#0F172A]">
+              What you&apos;ll find on EduSelect
+            </h2>
+            <p className="mt-2 text-base text-[#475569] leading-relaxed">
+              Practical, verified information organized for Indian students and parents.
+            </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-            {QUALIFICATION_LEVELS.map((lvl) => {
-              const IconComponent = lvl.icon;
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {FEATURE_TILES.map((tile) => {
+              const IconComponent = tile.icon;
               return (
-                <Link
-                  key={lvl.id}
-                  href={`/pathways?level=${lvl.id}`}
-                  className="p-4 rounded-2xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50/50 bg-slate-50/50 transition-all flex flex-col justify-between gap-3 group"
+                <div
+                  key={tile.title}
+                  className="p-6 bg-white rounded-[12px] border border-[#E2E8F0] flex flex-col gap-3"
                 >
-                  <div className={`w-10 h-10 rounded-xl ${lvl.color} border flex items-center justify-center`}>
-                    <IconComponent className="w-5 h-5" />
+                  <div className="w-10 h-10 rounded-[8px] bg-blue-50/80 flex items-center justify-center text-[#1D4ED8]">
+                    <IconComponent className="w-5 h-5 text-[#1D4ED8]" />
                   </div>
                   <div>
-                    <h3 className="font-extrabold text-sm text-slate-900 group-hover:text-blue-600 transition-colors">
-                      {lvl.shortLabel}
+                    <h3 className="text-lg font-bold text-[#0F172A]">
+                      {tile.title}
                     </h3>
-                    <p className="text-[11px] text-slate-500 line-clamp-2 mt-0.5">{lvl.desc}</p>
+                    <p className="mt-1 text-base text-[#475569] leading-relaxed">
+                      {tile.description}
+                    </p>
                   </div>
-                </Link>
+                </div>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* 3. EXPLORE BY STATE SECTION (HORIZONTALLY SCROLLABLE CAROUSEL FOR ALL 28 STATES) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-4">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h2 className="text-2xl font-extrabold text-slate-900">Explore by State</h2>
-            <p className="text-xs text-slate-500 mt-0.5">
-              Select any state to view all registered engineering colleges & cutoff details ({statesList.length} States)
-            </p>
-          </div>
-
-          {/* Left & Right Smooth Scroll Buttons & View All Link */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => scrollStates('left')}
-              className="w-8 h-8 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-300 transition-colors font-bold text-base select-none"
-              aria-label="Scroll Left"
-              title="Scroll Left"
-            >
-              ‹
-            </button>
-            <button
-              onClick={() => scrollStates('right')}
-              className="w-8 h-8 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-300 transition-colors font-bold text-base select-none"
-              aria-label="Scroll Right"
-              title="Scroll Right"
-            >
-              ›
-            </button>
+      {/* 5. CAREER QUIZ BANNER */}
+      <section className="pb-16 sm:pb-20">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+          <div className="p-8 sm:p-10 bg-[#F8FAFC] rounded-[12px] border border-[#E2E8F0] flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="max-w-2xl">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#0F172A]">
+                Not sure which field fits your strengths?
+              </h2>
+              <p className="mt-1.5 text-base text-[#475569] leading-relaxed">
+                Answer a few simple questions to receive personalized suggestions based on your interests and marks.
+              </p>
+            </div>
             <Link
-              href="/states"
-              className="text-xs font-bold text-blue-600 hover:text-blue-800 flex items-center gap-1 hover:underline ml-2 hidden sm:inline-flex"
+              href="/careers?step=3"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-[8px] bg-[#1D4ED8] hover:bg-[#1E40AF] text-white font-semibold text-base transition-colors shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D4ED8]"
             >
-              View all states →
+              Take the quiz
             </Link>
-          </div>
-        </div>
-
-        {/* Scrollable State Cards Row */}
-        <div
-          ref={stateScrollRef}
-          className="flex items-stretch gap-4 overflow-x-auto scroll-smooth pb-4 pt-1 px-1 select-none"
-          style={{ scrollbarWidth: 'thin' }}
-        >
-          {statesList.map((st) => (
-            <Link
-              key={st.name}
-              href={`/colleges?state=${encodeURIComponent(st.name)}`}
-              className="group shrink-0 w-[145px] sm:w-[155px] bg-white rounded-2xl border border-slate-200 overflow-hidden hover:border-blue-500 hover:shadow-md transition-all flex flex-col"
-            >
-              <StateCardImage stateName={st.name} className="h-24 w-full relative overflow-hidden" />
-              <div className="p-3 flex flex-col gap-0.5">
-                <h3 className="font-extrabold text-xs text-slate-900 group-hover:text-blue-600 transition-colors truncate" title={st.name}>
-                  {st.name}
-                </h3>
-                <span className="text-[10px] text-slate-500 font-medium">
-                  {st.collegeCount}+ Colleges
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* 4. POPULAR ENGINEERING COLLEGES (HORIZONTALLY SCROLLABLE CAROUSEL) & QUICK LINKS SIDEBAR */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-4">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
-          {/* Main 8-Col Section: Top Popular Colleges Carousel */}
-          <div className="lg:col-span-8 flex flex-col gap-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-2xl font-extrabold text-slate-900">Popular Engineering Colleges</h2>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  Top engineering institutions ranked by student satisfaction and placements
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => scrollColleges('left')}
-                  className="w-8 h-8 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-300 transition-colors font-bold text-base select-none"
-                  aria-label="Scroll Colleges Left"
-                  title="Scroll Left"
-                >
-                  ‹
-                </button>
-                <button
-                  onClick={() => scrollColleges('right')}
-                  className="w-8 h-8 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-300 transition-colors font-bold text-base select-none"
-                  aria-label="Scroll Colleges Right"
-                  title="Scroll Right"
-                >
-                  ›
-                </button>
-                <Link
-                  href="/colleges"
-                  className="text-xs font-bold text-blue-600 hover:text-blue-800 hover:underline ml-2 hidden sm:inline-flex"
-                >
-                  View all colleges →
-                </Link>
-              </div>
-            </div>
-
-            {/* Scrollable Popular Colleges Strip */}
-            <div
-              ref={collegeScrollRef}
-              className="flex items-stretch gap-4 overflow-x-auto scroll-smooth pb-4 pt-1 px-1 select-none"
-              style={{ scrollbarWidth: 'thin' }}
-            >
-              {popularColleges.map((college: any) => {
-                return (
-                  <div
-                    key={college.id}
-                    className="shrink-0 w-[240px] sm:w-[260px] bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:border-blue-400 hover:shadow-md transition-all flex flex-col justify-between gap-4 group"
-                  >
-                    <div className="flex flex-col gap-3">
-                      {/* Top Header: Badge & NIRF / Type */}
-                      <div className="flex items-start justify-between gap-2">
-                        <CollegeLogoBadge name={college.name} size="md" />
-                        <div className="flex flex-col items-end gap-1">
-                          {college.nirfRank2025 ? (
-                            <span className="px-2 py-0.5 rounded text-[10px] font-black bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1">
-                              <TrophyIcon className="w-3 h-3 text-emerald-600 shrink-0" /> NIRF #{college.nirfRank2025}
-                            </span>
-                          ) : college.nirfBand2025 ? (
-                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-50 text-teal-800 border border-teal-200">
-                              NIRF {college.nirfBand2025}
-                            </span>
-                          ) : (
-                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200 uppercase">
-                              {college.typeDetail || college.institutionCategory || college.type || 'ENGINEERING'}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* College Name & Location */}
-                      <div>
-                        <h3 className="font-extrabold text-sm text-slate-900 leading-snug group-hover:text-blue-600 transition-colors line-clamp-2" title={college.name}>
-                          {college.name}
-                        </h3>
-                        <p className="text-xs text-slate-500 font-medium mt-1 flex items-center gap-1">
-                          <MapPinIcon className="w-3.5 h-3.5 text-slate-400 shrink-0" /> {college.city}, {college.state}
-                        </p>
-                      </div>
-
-                      {/* Sub info: Type detail & rating */}
-                      <div className="flex items-center justify-between pt-1 text-xs">
-                        <span className="font-semibold text-slate-600 truncate max-w-[130px] text-[11px]">
-                          {college.typeDetail || college.institutionCategory || college.type}
-                        </span>
-                        {college.rating !== null && college.rating !== undefined ? (
-                          <span className="font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 text-[10px] flex items-center gap-1">
-                            <StarIcon className="w-3 h-3 text-amber-500 shrink-0" /> {college.ratingDisplay || `${Number(college.rating).toFixed(1)}/5`}
-                          </span>
-                        ) : (
-                          <span className="text-slate-400 text-[10px] font-medium">Verified Data</span>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Footer: Fees & Action Button */}
-                    <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="text-[11px] text-slate-500 font-medium">Annual Fees:</span>
-                        <div className="flex items-center gap-1 font-extrabold text-slate-800">
-                          <span>{college.feesDisplay || 'Per State Quota'}</span>
-                          {college.feesIsEstimate && (
-                            <span className="px-1 py-0.2 rounded text-[9px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
-                              Est.
-                            </span>
-                          )}
-                        </div>
-                      </div>
-
-                      <Link
-                        href={`/colleges/${encodeURIComponent(college.slug || college.id)}`}
-                        className="w-full py-2 bg-blue-50 hover:bg-blue-600 text-blue-700 hover:text-white text-xs font-bold rounded-xl text-center transition-colors shadow-sm flex items-center justify-center gap-1"
-                      >
-                        View Details <ArrowRightIcon className="w-3 h-3" />
-                      </Link>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Sidebar 4-Col Section: Quick Links & Tools */}
-          <div className="lg:col-span-4 flex flex-col gap-4 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
-            <h3 className="font-extrabold text-base text-slate-900 border-b border-slate-100 pb-3">
-              Quick Links & Tools
-            </h3>
-
-            <div className="flex flex-col gap-3">
-              <Link
-                href="/ai-counsellor"
-                className="p-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 rounded-xl text-white flex items-center justify-between group transition-all shadow-md shadow-blue-500/20"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-white/20 text-white flex items-center justify-center shrink-0">
-                    <SparklesIcon className="w-4 h-4 text-amber-300" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-1.5">
-                      <h4 className="font-bold text-xs text-white">
-                        EduSelect AI Counsellor
-                      </h4>
-                      <span className="px-1.5 py-0.2 rounded-full text-[9px] font-black bg-amber-400 text-slate-900">
-                        LIVE
-                      </span>
-                    </div>
-                    <p className="text-[10px] text-blue-100">Personalized marks-based guidance</p>
-                  </div>
-                </div>
-                <ArrowRightIcon className="w-4 h-4 text-white/80 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-
-              <Link
-                href="/pathways"
-                className="p-3.5 bg-indigo-50/80 hover:bg-indigo-100/90 rounded-xl border border-indigo-200 flex items-center justify-between group transition-colors shadow-xs"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center shrink-0">
-                    <CompassIcon className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-1.5">
-                      <h4 className="font-bold text-xs text-slate-900 group-hover:text-indigo-700 transition-colors">
-                        Pathways Dashboard
-                      </h4>
-                      <span className="px-1.5 py-0.2 rounded-full text-[9px] font-black bg-indigo-600 text-white">
-                        100+
-                      </span>
-                    </div>
-                    <p className="text-[10px] text-slate-500">10th, 12th, ITI, Diploma & B.Tech paths</p>
-                  </div>
-                </div>
-                <ArrowRightIcon className="w-3.5 h-3.5 text-slate-400 group-hover:text-indigo-700 transition-colors" />
-              </Link>
-
-              <Link
-                href="/kcet-2026-predictor"
-                className="p-3.5 bg-blue-50/60 hover:bg-blue-100/80 rounded-xl border border-blue-100 flex items-center justify-between group transition-colors"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0">
-                    <LightningIcon className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xs text-slate-900 group-hover:text-blue-700 transition-colors">
-                      College Predictor
-                    </h4>
-                    <p className="text-[10px] text-slate-500">Predict your best college & branch</p>
-                  </div>
-                </div>
-                <ArrowRightIcon className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-700 transition-colors" />
-              </Link>
-
-              <Link
-                href="/compare"
-                className="p-3.5 bg-emerald-50/60 hover:bg-emerald-100/80 rounded-xl border border-emerald-100 flex items-center justify-between group transition-colors"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0">
-                    <ScaleIcon className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xs text-slate-900 group-hover:text-emerald-700 transition-colors">
-                      Compare Colleges
-                    </h4>
-                    <p className="text-[10px] text-slate-500">Compare up to 3 colleges side by side</p>
-                  </div>
-                </div>
-                <ArrowRightIcon className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-700 transition-colors" />
-              </Link>
-
-              <Link
-                href="/states"
-                className="p-3.5 bg-amber-50/60 hover:bg-amber-100/80 rounded-xl border border-amber-100 flex items-center justify-between group transition-colors"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0">
-                    <BuildingLibraryIcon className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xs text-slate-900 group-hover:text-amber-800 transition-colors">
-                      28 States Dataset
-                    </h4>
-                    <p className="text-[10px] text-slate-500">Browse colleges by Indian state</p>
-                  </div>
-                </div>
-                <ArrowRightIcon className="w-3.5 h-3.5 text-slate-400 group-hover:text-amber-800 transition-colors" />
-              </Link>
-
-              <Link
-                href="/saved"
-                className="p-3.5 bg-purple-50/60 hover:bg-purple-100/80 rounded-xl border border-purple-100 flex items-center justify-between group transition-colors"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-purple-600 text-white flex items-center justify-center shrink-0">
-                    <HeartIcon className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xs text-slate-900 group-hover:text-purple-700 transition-colors">
-                      Saved Colleges
-                    </h4>
-                    <p className="text-[10px] text-slate-500">View favorites & shortlisted colleges</p>
-                  </div>
-                </div>
-                <ArrowRightIcon className="w-3.5 h-3.5 text-slate-400 group-hover:text-purple-700 transition-colors" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. VALUE PROPOSITION BAR AT BOTTOM */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-4">
-        <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
-              <BookOpenIcon className="w-5 h-5 text-blue-600" />
-            </div>
-            <div>
-              <h4 className="font-extrabold text-xs text-slate-900">Comprehensive Information</h4>
-              <p className="text-[11px] text-slate-500 leading-relaxed mt-0.5">
-                Get detailed info on colleges, fees, placements, cutoffs and more.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
-              <ScaleIcon className="w-5 h-5 text-emerald-600" />
-            </div>
-            <div>
-              <h4 className="font-extrabold text-xs text-slate-900">Smart Comparison</h4>
-              <p className="text-[11px] text-slate-500 leading-relaxed mt-0.5">
-                Compare colleges side by side and make the right choice.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center shrink-0">
-              <HeartIcon className="w-5 h-5 text-purple-600" />
-            </div>
-            <div>
-              <h4 className="font-extrabold text-xs text-slate-900">Personalized Experience</h4>
-              <p className="text-[11px] text-slate-500 leading-relaxed mt-0.5">
-                Save favorites, track history and get recommendations.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
-              <UsersIcon className="w-5 h-5 text-amber-600" />
-            </div>
-            <div>
-              <h4 className="font-extrabold text-xs text-slate-900">Trusted by Students</h4>
-              <p className="text-[11px] text-slate-500 leading-relaxed mt-0.5">
-                Join thousands of students who trust EduSelect.
-              </p>
-            </div>
           </div>
         </div>
       </section>
