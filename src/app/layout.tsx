@@ -1,23 +1,15 @@
 import type { Metadata } from 'next';
-import { Inter, Fraunces } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
 import { NextAuthProvider } from '@/components/providers/NextAuthProvider';
 import { CompareBar } from '@/components/features/CompareBar';
-import { HomeAiDrawer } from '@/components/home/HomeAiDrawer';
 import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
-  display: 'swap',
-});
-
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  variable: '--font-fraunces',
-  weight: ['600', '700'],
   display: 'swap',
 });
 
@@ -33,14 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
+    <html lang="en" className={inter.variable}>
       <body className="font-sans antialiased min-h-screen flex flex-col bg-white text-[#0F172A]">
         <NextAuthProvider>
           <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
           <Navbar />
           <main className="flex-1 w-full">{children}</main>
           <CompareBar />
-          <HomeAiDrawer />
           <Footer />
         </NextAuthProvider>
       </body>
