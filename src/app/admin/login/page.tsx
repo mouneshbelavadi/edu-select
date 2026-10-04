@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { ShieldCheckIcon } from '@/components/ui/Icons';
 import toast from 'react-hot-toast';
 import { z } from 'zod';
 
@@ -68,8 +69,8 @@ function AdminLoginForm() {
     <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center px-4 py-16 text-slate-100">
       <div className="max-w-md w-full flex flex-col gap-6">
         <div className="flex items-center justify-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 text-slate-950 flex items-center justify-center font-black text-xl shadow-lg shadow-amber-500/20">
-            ⚡
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 text-slate-950 flex items-center justify-center shadow-lg shadow-amber-500/20">
+            <ShieldCheckIcon className="w-6 h-6 text-slate-950" />
           </div>
           <span className="font-bold text-2xl tracking-tight text-white">
             College<span className="text-amber-400">Discovery</span> <span className="text-xs bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30">ADMIN</span>

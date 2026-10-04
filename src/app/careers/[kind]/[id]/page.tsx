@@ -6,6 +6,15 @@ import { getCareerDetail } from '@/lib/careers/repository';
 import { getColleges } from '@/lib/collegeRepository';
 import { CollegeCard } from '@/components/features/CollegeCard';
 import { AiCounselorDrawer } from '@/components/features/AiCounselorDrawer';
+import {
+  CompassIcon,
+  BookOpenIcon,
+  BuildingLibraryIcon,
+  SparklesIcon,
+  BriefcaseIcon,
+  BanknoteIcon,
+  LinkIcon,
+} from '@/components/ui/Icons';
 
 // Static datasets for generateStaticParams
 import pathwaysData from '@/data/careers/pathways.json';
@@ -172,7 +181,7 @@ export default async function CareerDetailPage({ params }: CareerPageProps) {
                   key={c.id}
                   className="px-3 py-1 rounded-xl text-xs font-bold bg-white/15 text-white border border-white/20 flex items-center gap-1.5"
                 >
-                  <span>{c.icon}</span>
+                  <SparklesIcon className="w-3.5 h-3.5 text-blue-300 shrink-0" />
                   <span>{c.label}</span>
                 </span>
               ))}
@@ -188,7 +197,8 @@ export default async function CareerDetailPage({ params }: CareerPageProps) {
           {/* Roadmap Progress Strip */}
           <section className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col gap-4">
             <h2 className="text-base font-black text-slate-900 flex items-center gap-2">
-              <span>🗺️</span> Progression Pathway
+              <CompassIcon className="w-5 h-5 text-indigo-600" />
+              <span>Progression Pathway</span>
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 pt-1">
               <div className="p-3 rounded-xl bg-blue-50 border border-blue-100 flex flex-col">
@@ -218,7 +228,8 @@ export default async function CareerDetailPage({ params }: CareerPageProps) {
           {item.eligibility && (
             <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col gap-3">
               <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
-                <span>📋</span> Eligibility & Prerequisites
+                <BookOpenIcon className="w-5 h-5 text-blue-600" />
+                <span>Eligibility & Prerequisites</span>
               </h2>
               <p className="text-sm text-slate-700 leading-relaxed font-medium bg-slate-50 p-4 rounded-2xl border border-slate-100">
                 {item.eligibility}
@@ -235,7 +246,8 @@ export default async function CareerDetailPage({ params }: CareerPageProps) {
           {kind === 'govtJob' && (
             <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col gap-6">
               <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
-                <span>🏛️</span> Recruitment Specifications & Pay
+                <BuildingLibraryIcon className="w-5 h-5 text-indigo-600" />
+                <span>Recruitment Specifications & Pay</span>
               </h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -306,7 +318,8 @@ export default async function CareerDetailPage({ params }: CareerPageProps) {
           {kind === 'branch' && item.roles && (
             <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col gap-4">
               <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
-                <span>💼</span> Career Roles by Experience
+                <BriefcaseIcon className="w-5 h-5 text-blue-600 shrink-0" />
+                <span>Career Roles by Experience</span>
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="p-4 rounded-2xl bg-blue-50/60 border border-blue-100 flex flex-col gap-2">
@@ -353,7 +366,8 @@ export default async function CareerDetailPage({ params }: CareerPageProps) {
             <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col gap-4">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
-                  <span>💰</span> Estimated Compensation Progression
+                  <BanknoteIcon className="w-5 h-5 text-emerald-600 shrink-0" />
+                  <span>Estimated Compensation Progression</span>
                 </h2>
                 {item.isEstimate && (
                   <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300">
@@ -415,7 +429,8 @@ export default async function CareerDetailPage({ params }: CareerPageProps) {
           {detail.resolvedEntranceExams && detail.resolvedEntranceExams.length > 0 && (
             <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col gap-4">
               <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
-                <span>📝</span> Entrance & Qualifying Exams
+                <BookOpenIcon className="w-5 h-5 text-blue-600 shrink-0" />
+                <span>Entrance & Qualifying Exams</span>
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {detail.resolvedEntranceExams.map((exam: any) => (
@@ -454,7 +469,8 @@ export default async function CareerDetailPage({ params }: CareerPageProps) {
           {kind === 'branch' && (
             <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col gap-5">
               <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
-                <span>🏢</span> Top Hiring Organizations & PSUs
+                <BuildingLibraryIcon className="w-5 h-5 text-slate-700 shrink-0" />
+                <span>Top Hiring Organizations & PSUs</span>
               </h2>
 
               {/* Private Recruiters */}
@@ -498,7 +514,8 @@ export default async function CareerDetailPage({ params }: CareerPageProps) {
           {detail.linkedItems && detail.linkedItems.length > 0 && (
             <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col gap-4">
               <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
-                <span>🔗</span> Linked Career Specializations ({detail.linkedItems.length})
+                <LinkIcon className="w-5 h-5 text-indigo-600 shrink-0" />
+                <span>Linked Career Specializations ({detail.linkedItems.length})</span>
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-96 overflow-y-auto pr-1">
                 {detail.linkedItems.map((li: any) => (
@@ -525,7 +542,8 @@ export default async function CareerDetailPage({ params }: CareerPageProps) {
               <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                 <div>
                   <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
-                    <span>🏛️</span> Top Colleges Offering {item.name}
+                    <BuildingLibraryIcon className="w-5 h-5 text-blue-600" />
+                    <span>Top Colleges Offering {item.name}</span>
                   </h2>
                   <p className="text-xs text-slate-500 mt-0.5">
                     Ranked by verified NIRF 2025 ranking and state counseling cutoffs
@@ -624,6 +642,13 @@ export default async function CareerDetailPage({ params }: CareerPageProps) {
 
             {/* Call to action */}
             <div className="pt-2 flex flex-col gap-2.5">
+              <Link
+                href={`/ai-counsellor?query=${encodeURIComponent(`I want to explore ${item.name}`)}`}
+                className="w-full py-2.5 px-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-xs rounded-xl text-center shadow-md shadow-blue-500/20 transition-all flex items-center justify-center gap-1.5"
+              >
+                <SparklesIcon className="w-3.5 h-3.5 text-amber-300" />
+                <span>Ask AI Counsellor About This Path</span>
+              </Link>
               <AiCounselorDrawer
                 initialLevel={item.level}
                 initialStream={item.streams?.[0]}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { ShieldCheckIcon, ScaleIcon } from '@/components/ui/Icons';
 
 import taxonomyData from '@/data/careers/taxonomy.json';
 import careerClustersData from '@/data/careers/careerClusters.json';
@@ -77,7 +78,8 @@ export default function AboutDataPage() {
         {/* Header */}
         <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-3xl p-8 sm:p-12 shadow-xl flex flex-col gap-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-bold uppercase tracking-wider w-fit">
-            <span>🛡️ Transparency & Methodology</span>
+            <ShieldCheckIcon className="w-4 h-4 text-blue-400 shrink-0" />
+            <span>Transparency & Methodology</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight">
             Data Sources & <span className="text-blue-400">Methodology</span>
@@ -93,7 +95,8 @@ export default function AboutDataPage() {
         {/* Data Honesty Rules */}
         <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col gap-6">
           <h2 className="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-            <span>⚖️</span> Our Core Data Quality Standards
+            <ScaleIcon className="w-6 h-6 text-blue-600 shrink-0" />
+            <span>Our Core Data Quality Standards</span>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

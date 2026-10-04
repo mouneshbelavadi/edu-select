@@ -52,7 +52,7 @@ export const CareerCardComponent: React.FC<CareerCardProps> = ({ card }) => {
           {/* Duration */}
           <div className="flex flex-col">
             <span className="text-[10px] text-slate-400 font-semibold uppercase">Duration / Age</span>
-            <span className="font-bold text-slate-800 text-xs">⏱️ {card.durationText}</span>
+            <span className="font-bold text-slate-800 text-xs">{card.durationText}</span>
           </div>
 
           {/* Salary or Cost */}

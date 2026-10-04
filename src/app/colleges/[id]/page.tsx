@@ -8,6 +8,19 @@ import { useCompareStore } from '@/lib/store/useCompareStore';
 import toast from 'react-hot-toast';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { CollegeDetail } from '@/lib/collegeRepository';
+import {
+  BuildingLibraryIcon,
+  GraduationCapIcon,
+  TrophyIcon,
+  MapPinIcon,
+  LightningIcon,
+  ScaleIcon,
+  BookOpenIcon,
+  AlertCircleIcon,
+  SparklesIcon,
+  BriefcaseIcon,
+  UsersIcon,
+} from '@/components/ui/Icons';
 import engineeringBranchesData from '@/data/careers/engineeringBranches.json';
 
 const branchCareerMap: Record<string, any> = {};
@@ -66,7 +79,7 @@ export default function CollegeDetailPage() {
   if (!college) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-20 text-center flex flex-col items-center gap-4">
-        <div className="text-4xl">🏛️</div>
+        <BuildingLibraryIcon className="w-14 h-14 text-slate-300" />
         <h1 className="text-2xl font-bold text-surface-900">College Not Found</h1>
         <p className="text-sm text-surface-500">
           The requested institution could not be found in the database.
@@ -155,8 +168,9 @@ export default function CollegeDetailPage() {
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-            <span className="absolute bottom-3 left-3 text-[11px] font-semibold text-white bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md">
-              🏛️ {college.state}
+            <span className="absolute bottom-3 left-3 text-[11px] font-semibold text-white bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-md flex items-center gap-1.5">
+              <BuildingLibraryIcon className="w-3.5 h-3.5 text-white/80" />
+              <span>{college.state}</span>
             </span>
           </div>
 
@@ -174,7 +188,8 @@ export default function CollegeDetailPage() {
                 <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-600 flex-wrap">
                   {college.nirfRank2025 ? (
                     <span className="inline-flex items-center gap-1 font-bold text-emerald-800 bg-emerald-50 border border-emerald-300 px-2.5 py-0.5 rounded-lg text-xs">
-                      🏆 NIRF 2025 #{college.nirfRank2025}
+                      <TrophyIcon className="w-3.5 h-3.5 text-emerald-700" />
+                      <span>NIRF 2025 #{college.nirfRank2025}</span>
                     </span>
                   ) : college.nirfBand2025 ? (
                     <span className="inline-flex items-center gap-1 font-bold text-blue-800 bg-blue-50 border border-blue-300 px-2.5 py-0.5 rounded-lg text-xs">
@@ -187,7 +202,8 @@ export default function CollegeDetailPage() {
                   )}
                   <span>•</span>
                   <span className="flex items-center gap-1 text-slate-600">
-                    📍 {college.city}, {college.state}
+                    <MapPinIcon className="w-3.5 h-3.5 text-slate-400" />
+                    <span>{college.city}, {college.state}</span>
                   </span>
                   {college.established && (
                     <>
@@ -211,7 +227,7 @@ export default function CollegeDetailPage() {
                   disabled={isSaving}
                   className="px-3.5 py-2 rounded-xl border border-slate-300 hover:border-slate-400 bg-white text-slate-700 font-semibold text-xs flex items-center gap-1.5 shadow-sm transition-all hover:bg-slate-50"
                 >
-                  <span>♡</span> Save
+                  Save
                 </button>
                 <button
                   onClick={handleCompare}
@@ -221,13 +237,15 @@ export default function CollegeDetailPage() {
                       : 'bg-white text-slate-700 border-slate-300 hover:border-slate-400 hover:bg-slate-50'
                   }`}
                 >
-                  <span>⇄</span> {isCompared ? 'Compared' : 'Compare'}
+                  <ScaleIcon className="w-3.5 h-3.5" />
+                  <span>{isCompared ? 'Compared' : 'Compare'}</span>
                 </button>
                 <Link
                   href="/kcet-2026-predictor"
                   className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-indigo-600/20 transition-all"
                 >
-                  Predict Cutoffs <span>⚡</span>
+                  <span>Predict Cutoffs</span>
+                  <LightningIcon className="w-3.5 h-3.5 text-amber-300" />
                 </Link>
               </div>
             </div>
@@ -235,15 +253,17 @@ export default function CollegeDetailPage() {
             {/* Type Detail Chip & Badges */}
             <div className="flex flex-wrap gap-2 pt-1 items-center">
               {college.typeDetail && (
-                <span className="px-3 py-1 bg-indigo-50 text-indigo-800 text-xs font-bold rounded-lg border border-indigo-200">
-                  🏛️ {college.typeDetail}
+                <span className="px-3 py-1 bg-indigo-50 text-indigo-800 text-xs font-bold rounded-lg border border-indigo-200 inline-flex items-center gap-1.5">
+                  <BuildingLibraryIcon className="w-3.5 h-3.5 text-indigo-700" />
+                  <span>{college.typeDetail}</span>
                 </span>
               )}
-              <span className="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg border border-slate-200">
-                🎓 {college.totalBranchesOffered || college.courses.length} Active Branches
+              <span className="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg border border-slate-200 inline-flex items-center gap-1.5">
+                <GraduationCapIcon className="w-3.5 h-3.5 text-slate-600" />
+                <span>{college.totalBranchesOffered || college.courses.length} Active Branches</span>
               </span>
               <span className="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg border border-slate-200 flex items-center gap-1">
-                💰 Tuition: {college.feesDisplay}
+                Tuition: {college.feesDisplay}
                 {college.feesIsEstimate !== false && (
                   <span className="ml-1 text-[10px] font-bold text-amber-700 bg-amber-100 px-1.5 py-0.2 rounded">
                     Est.
@@ -278,7 +298,7 @@ export default function CollegeDetailPage() {
         {/* Amber Notice for Courses Note */}
         {college.coursesNote && (
           <div className="bg-amber-50 border border-amber-300/80 rounded-2xl p-4 text-amber-900 text-xs sm:text-sm flex items-start gap-2.5">
-            <span className="text-amber-600 text-base leading-none">⚠️</span>
+            <AlertCircleIcon className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
             <div>
               <strong className="font-bold">Course Verification Notice: </strong>
               <span>{college.coursesNote}</span>
@@ -312,7 +332,8 @@ export default function CollegeDetailPage() {
               <div className="flex items-center justify-between border-b border-slate-100 pb-4">
                 <div>
                   <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
-                    <span>📚</span> Academic Engineering Programs
+                    <BookOpenIcon className="w-5 h-5 text-indigo-600" />
+                    <span>Academic Engineering Programs</span>
                   </h2>
                   <p className="text-xs text-slate-500 mt-0.5">
                     Programs verified as available in the authoritative database
@@ -380,7 +401,8 @@ export default function CollegeDetailPage() {
               <div className="flex items-center justify-between border-b border-slate-100 pb-3 flex-wrap gap-2">
                 <div>
                   <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
-                    <span>💼</span> Jobs & Placements After These Branches
+                    <BriefcaseIcon className="w-5 h-5 text-blue-600 shrink-0" />
+                    <span>Jobs & Placements After These Branches</span>
                   </h2>
                   <p className="text-xs text-slate-500 mt-0.5">
                     Verified industry entry roles and market fresher CTC from the 2026 Career Data
@@ -434,7 +456,8 @@ export default function CollegeDetailPage() {
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm flex flex-col gap-4">
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
-                  <span>📊</span> Placement & Career Opportunities
+                  <BriefcaseIcon className="w-5 h-5 text-indigo-600" />
+                  <span>Placement & Career Opportunities</span>
                 </h2>
                 {college.placementStats ? (
                   <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
@@ -442,7 +465,7 @@ export default function CollegeDetailPage() {
                       ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                       : 'bg-amber-50 text-amber-700 border border-amber-200'
                   }`}>
-                    {college.placementStats.verified ? '✓ Verified Statistics' : '⚠️ Unverified Aggregator Data'}
+                    {college.placementStats.verified ? '✓ Verified Statistics' : 'Curated Estimates'}
                   </span>
                 ) : (
                   <a
@@ -515,7 +538,8 @@ export default function CollegeDetailPage() {
             {/* Card 3: Reviews */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm flex flex-col gap-4">
               <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
-                <span>💬</span> Student Reviews & Feedback
+                <UsersIcon className="w-5 h-5 text-indigo-600 shrink-0" />
+                <span>Student Reviews & Feedback</span>
               </h2>
               <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-slate-800 text-xs sm:text-sm leading-relaxed">
                 <strong className="text-slate-900 block mb-1.5">Community & Academic Reviews:</strong>
@@ -597,16 +621,25 @@ export default function CollegeDetailPage() {
 
               <div className="flex flex-col gap-2.5 pt-2">
                 <Link
-                  href="/kcet-2026-predictor"
-                  className="w-full py-2.5 px-4 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-xl text-center shadow transition-colors"
+                  href="/ai-counsellor"
+                  className="w-full py-2.5 px-4 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold text-xs rounded-xl text-center shadow transition-all flex items-center justify-center gap-1.5"
                 >
-                  ⚡ Launch KCET 2026 Predictor
+                  <SparklesIcon className="w-3.5 h-3.5 text-amber-300" />
+                  <span>Ask AI Counsellor About This College</span>
+                </Link>
+                <Link
+                  href="/kcet-2026-predictor"
+                  className="w-full py-2.5 px-4 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-xl text-center shadow transition-colors flex items-center justify-center gap-1.5"
+                >
+                  <LightningIcon className="w-3.5 h-3.5" />
+                  <span>Launch KCET 2026 Predictor</span>
                 </Link>
                 <Link
                   href="/compare"
-                  className="w-full py-2.5 px-4 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-xl text-center border border-white/20 transition-colors"
+                  className="w-full py-2.5 px-4 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-xl text-center border border-white/20 transition-colors flex items-center justify-center gap-1.5"
                 >
-                  ⚖️ Compare with other Colleges
+                  <ScaleIcon className="w-3.5 h-3.5 text-slate-300" />
+                  <span>Compare with other Colleges</span>
                 </Link>
                 <Link
                   href={`/colleges?state=${encodeURIComponent(college.state)}`}

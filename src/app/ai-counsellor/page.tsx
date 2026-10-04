@@ -1,0 +1,706 @@
+'use client';
+
+import React, { useState } from 'react';
+import Link from 'next/link';
+import {
+  SparklesIcon,
+  GraduationCapIcon,
+  BookOpenIcon,
+  BriefcaseIcon,
+  BuildingLibraryIcon,
+  ShieldCheckIcon,
+  PrinterIcon,
+  ArrowRightIcon,
+  CheckIcon,
+  ScaleIcon,
+} from '@/components/ui/Icons';
+
+interface Recommendation {
+  itemId: string;
+  kind: string;
+  title: string;
+  whyItFits: string;
+  firstSteps: string[];
+  examsToPrepare: string[];
+  timeline: string;
+}
+
+interface AiResponseData {
+  fallback: boolean;
+  model: string;
+  generatedAt: string;
+  summary: string;
+  recommendations: Recommendation[];
+  questionsToAskCounsellor: string[];
+  caution: string;
+}
+
+interface RoadmapPhase {
+  yearOrPhase: string;
+  focus: string;
+  keyMilestones: string[];
+  skillsOrCertifications: string[];
+  tips: string;
+}
+
+interface RoadmapData {
+  careerTitle: string;
+  phases: RoadmapPhase[];
+  ultimateGoal: string;
+}
+
+const PRESET_SCENARIOS = [
+  {
+    title: 'After 10th Dilemma',
+    desc: 'Scored 75–85% in 10th: Should I pick Science (PCM/PCB), a 3-Year Polytechnic Diploma, or an ITI Trade?',
+    level: 'CLASS_10',
+    marks: '80%',
+    question: 'I just finished 10th with 80%. I enjoy practical hands-on work and machines. Should I take 11th Science, a Polytechnic Diploma, or an ITI trade for early employment?',
+  },
+  {
+    title: '12th PCM: CSE vs ECE vs AI',
+    desc: 'Confused between Computer Science, Electronics & Communication, and AI & Data Science branches.',
+    level: 'CLASS_12',
+    stream: 'PCM',
+    marks: '86%',
+    question: 'I have 86% in 12th PCM. I like programming and mathematics. Which engineering branch offers the highest career versatility between CSE, ECE, and AI/DS?',
+  },
+  {
+    title: 'Post-B.Tech: Core vs IT vs PSUs',
+    desc: 'Engineering graduate exploring PSU recruitment through GATE versus Private Tech placements.',
+    level: 'UG_ENGG',
+    branchCode: 'ME',
+    question: 'I am studying Mechanical Engineering. What are my chances in central PSUs (IOCL, BHEL, ISRO) through GATE versus transitioning to software/analytics?',
+  },
+  {
+    title: 'Government Job Pathways',
+    desc: 'Seeking secure public sector roles with 7th Pay Commission salary bands.',
+    level: 'CLASS_12',
+    question: 'What are the best central and state government jobs I can prepare for with attractive starting pay and clear promotion ladders?',
+  },
+];
+
+export default function AiCounsellorPage() {
+  // Input State
+  const [level, setLevel] = useState<string>('CLASS_12');
+  const [stream, setStream] = useState<string>('PCM');
+  const [marks10th, setMarks10th] = useState<string>('82');
+  const [marks12th, setMarks12th] = useState<string>('85');
+  const [examScore, setExamScore] = useState<string>('');
+  const [category, setCategory] = useState<string>('General');
+  const [budget, setBudget] = useState<string>('moderate');
+  const [selectedSubjects, setSelectedSubjects] = useState<string[]>(['Mathematics', 'Computer Science']);
+  const [userQuestion, setUserQuestion] = useState<string>(
+    'I scored 85% in 12th PCM and like mathematics and coding. Suggest my best engineering and career pathways with good placement and higher study options.'
+  );
+
+  // Execution State
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<AiResponseData | null>(null);
+
+  // Roadmap State
+  const [roadmapItem, setRoadmapItem] = useState<RoadmapData | null>(null);
+  const [loadingRoadmapId, setLoadingRoadmapId] = useState<string | null>(null);
+
+  const handleSubjectToggle = (subj: string) => {
+    setSelectedSubjects((prev) =>
+      prev.includes(subj) ? prev.filter((s) => s !== subj) : [...prev, subj]
+    );
+  };
+
+  const handleApplyPreset = (preset: typeof PRESET_SCENARIOS[0]) => {
+    setLevel(preset.level);
+    if (preset.stream) setStream(preset.stream);
+    setUserQuestion(preset.question);
+  };
+
+  const handleGeneratePlan = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    setIsLoading(true);
+    setError(null);
+    setRoadmapItem(null);
+
+    try {
+      const fullPrompt = `Student Profile:
+Current Qualification Level: ${level}
+Stream: ${stream}
+10th Board Marks: ${marks10th}%
+12th / Diploma Marks: ${marks12th}%
+Competitive Exam Score/Rank: ${examScore || 'Not yet appeared'}
+Category: ${category}
+Budget Preference: ${budget}
+Subjects of Interest: ${selectedSubjects.join(', ')}
+
+Student Dilemma & Goal:
+"${userQuestion.trim()}"`;
+
+      const res = await fetch('/api/careers/ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          level,
+          stream,
+          subjects: selectedSubjects,
+          budget,
+          question: fullPrompt,
+        }),
+      });
+
+      const json = await res.json();
+      if (!res.ok) {
+        throw new Error(json.error || 'Failed to generate career counselling recommendations');
+      }
+
+      setResult(json.data);
+    } catch (err: any) {
+      setError(err.message || 'Unable to connect to AI Counsellor. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleGenerateRoadmap = async (kind: string, id: string) => {
+    setLoadingRoadmapId(id);
+    try {
+      const res = await fetch('/api/careers/ai/roadmap', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ kind, id }),
+      });
+      const json = await res.json();
+      if (res.ok && json.data) {
+        setRoadmapItem(json.data);
+      }
+    } catch (err) {
+      console.error('Failed to generate roadmap:', err);
+    } finally {
+      setLoadingRoadmapId(null);
+    }
+  };
+
+  const handlePrint = () => {
+    window.print();
+  };
+
+  return (
+    <div className="w-full min-h-screen bg-slate-50/70 pb-24 text-slate-800">
+      {/* Header Banner */}
+      <section className="bg-gradient-to-r from-slate-900 via-blue-950 to-indigo-950 text-white py-12 px-4 sm:px-6 lg:px-8 border-b border-slate-800 shadow-md">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="flex flex-col gap-3 max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-bold tracking-wide w-fit">
+              <SparklesIcon className="w-3.5 h-3.5 text-blue-300" />
+              <span>EduSelect AI Guidance Engine</span>
+            </div>
+            <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+              AI Career & College <span className="text-blue-400">Counsellor Dashboard</span>
+            </h1>
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+              Personalized academic diagnostics, score-based branch matching, and year-by-year career roadmaps.
+              Enter your marks, questions, or goals to receive verified guidance aligned with 455 Indian colleges and NIRF 2025 rankings.
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 shrink-0">
+            <Link
+              href="/careers"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs transition-colors border border-white/20"
+            >
+              <BookOpenIcon className="w-4 h-4" />
+              <span>Browse All Careers</span>
+            </Link>
+            <Link
+              href="/colleges"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors shadow-md"
+            >
+              <GraduationCapIcon className="w-4 h-4" />
+              <span>Explore 455 Colleges</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Workspace */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        {/* Left Column: Student Profile & Input Form (5 Cols) */}
+        <div className="lg:col-span-5 flex flex-col gap-6">
+          
+          {/* Quick Presets */}
+          <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col gap-3">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Quick Student Dilemmas</span>
+              <span className="text-[11px] text-blue-600 font-medium">Click to load</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {PRESET_SCENARIOS.map((p, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => handleApplyPreset(p)}
+                  className="p-3 text-left rounded-xl border border-slate-200 bg-slate-50/60 hover:bg-blue-50/70 hover:border-blue-300 transition-all group"
+                >
+                  <div className="text-xs font-bold text-slate-900 group-hover:text-blue-700">{p.title}</div>
+                  <div className="text-[11px] text-slate-500 line-clamp-2 mt-1 leading-snug">{p.desc}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Form Card */}
+          <form onSubmit={handleGeneratePlan} className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm flex flex-col gap-5">
+            <div className="border-b border-slate-100 pb-4">
+              <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
+                <BriefcaseIcon className="w-5 h-5 text-blue-600" />
+                <span>Your Academic Profile & Situation</span>
+              </h2>
+              <p className="text-xs text-slate-500 mt-0.5">
+                Fill in what you know; leave optional fields blank if not decided.
+              </p>
+            </div>
+
+            {/* 1. Current Qualification Level */}
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-bold text-slate-700">Where are you right now?</label>
+              <select
+                value={level}
+                onChange={(e) => setLevel(e.target.value)}
+                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="CLASS_10">Class 10th (Matric / SSLC)</option>
+                <option value="CLASS_12">Class 12th / 2nd PU (Higher Secondary)</option>
+                <option value="ITI">ITI Trade Student / Passout</option>
+                <option value="DIPLOMA">Polytechnic Diploma Student / Passout</option>
+                <option value="UG_ENGG">B.E. / B.Tech Engineering Student / Graduate</option>
+                <option value="UG_OTHER">Other Graduate (B.Sc, B.Com, BA, BCA, BBA)</option>
+              </select>
+            </div>
+
+            {/* 2. Stream (if Class 12) */}
+            {level === 'CLASS_12' && (
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-bold text-slate-700">12th / PU Stream</label>
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { id: 'PCM', label: 'Science — PCM' },
+                    { id: 'PCB', label: 'Science — PCB' },
+                    { id: 'PCMB', label: 'Science — PCMB' },
+                    { id: 'COMMERCE_MATHS', label: 'Commerce + Maths' },
+                    { id: 'COMMERCE_NO_MATHS', label: 'Commerce' },
+                    { id: 'ARTS', label: 'Arts / Humanities' },
+                  ].map((s) => (
+                    <button
+                      key={s.id}
+                      type="button"
+                      onClick={() => setStream(s.id)}
+                      className={`px-3 py-2 rounded-xl border text-xs font-bold transition-all text-center ${
+                        stream === s.id
+                          ? 'border-blue-600 bg-blue-50 text-blue-800'
+                          : 'border-slate-200 bg-slate-50 text-slate-600 hover:border-slate-300'
+                      }`}
+                    >
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* 3. Academic Marks */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-bold text-slate-700">10th Board Marks (%)</label>
+                <input
+                  type="text"
+                  placeholder="e.g. 84"
+                  value={marks10th}
+                  onChange={(e) => setMarks10th(e.target.value)}
+                  className="px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-bold text-slate-700">12th / Diploma (%)</label>
+                <input
+                  type="text"
+                  placeholder="e.g. 88"
+                  value={marks12th}
+                  onChange={(e) => setMarks12th(e.target.value)}
+                  className="px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+            </div>
+
+            {/* 4. Entrance Score & Category */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-bold text-slate-700">Exam Rank / Percentile</label>
+                <input
+                  type="text"
+                  placeholder="e.g. KCET 12450 / JEE 92%"
+                  value={examScore}
+                  onChange={(e) => setExamScore(e.target.value)}
+                  className="px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-bold text-slate-700">Category / Reservation</label>
+                <select
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="General">General / GM</option>
+                  <option value="OBC">OBC (Non-Creamy Layer)</option>
+                  <option value="EWS">Economically Weaker Section (EWS)</option>
+                  <option value="SC">Scheduled Caste (SC)</option>
+                  <option value="ST">Scheduled Tribe (ST)</option>
+                </select>
+              </div>
+            </div>
+
+            {/* 5. Subjects Liked */}
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-bold text-slate-700">Subjects & Topics You Enjoy</label>
+              <div className="flex flex-wrap gap-1.5">
+                {[
+                  'Mathematics',
+                  'Physics',
+                  'Computer Science',
+                  'Biology',
+                  'Chemistry',
+                  'Economics',
+                  'Design / Drawing',
+                  'Law / Civic Studies',
+                ].map((s) => {
+                  const isChecked = selectedSubjects.includes(s);
+                  return (
+                    <button
+                      key={s}
+                      type="button"
+                      onClick={() => handleSubjectToggle(s)}
+                      className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-colors border ${
+                        isChecked
+                          ? 'bg-blue-600 text-white border-blue-600'
+                          : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'
+                      }`}
+                    >
+                      {isChecked ? '✓ ' : '+ '}
+                      {s}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 6. Describe Your Situation / Dilemma */}
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-bold text-slate-700">
+                Describe your situation, doubt, or goal in your own words:
+              </label>
+              <textarea
+                rows={4}
+                value={userQuestion}
+                onChange={(e) => setUserQuestion(e.target.value)}
+                placeholder="e.g. I am in 12th PCM with 82% marks. I want a career in robotics or AI, but want to know if I can also appear for government exams like ISRO. What are my best college and branch choices?"
+                className="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-xs text-slate-900 leading-relaxed focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full py-3.5 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+            >
+              {isLoading ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  <span>Analyzing Profile with EduSelect AI...</span>
+                </>
+              ) : (
+                <>
+                  <SparklesIcon className="w-4 h-4" />
+                  <span>Generate Career & College Recommendations</span>
+                </>
+              )}
+            </button>
+          </form>
+        </div>
+
+        {/* Right Column: AI Analysis & Actionable Results (7 Cols) */}
+        <div className="lg:col-span-7 flex flex-col gap-6">
+          {error && (
+            <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-medium">
+              <strong>Notice:</strong> {error}
+            </div>
+          )}
+
+          {!result && !isLoading && (
+            <div className="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-sm flex flex-col items-center text-center gap-4">
+              <div className="w-16 h-16 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-xs">
+                <SparklesIcon className="w-8 h-8" />
+              </div>
+              <div className="max-w-md flex flex-col gap-2">
+                <h3 className="text-xl font-black text-slate-900">Your Personalized Guidance Workspace</h3>
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  Enter your qualifications, marks, and dilemma on the left, or pick one of the quick scenarios above.
+                  Our AI Counsellor cross-references 455 verified colleges, 29 engineering branches, and 80 entrance exams to deliver your customized action plan.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => handleGeneratePlan()}
+                className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md transition-all cursor-pointer"
+              >
+                <span>Run Demonstration with Sample Profile</span>
+                <ArrowRightIcon className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          )}
+
+          {isLoading && (
+            <div className="bg-white rounded-3xl p-10 border border-slate-200 shadow-sm flex flex-col items-center text-center gap-4 animate-pulse">
+              <div className="w-12 h-12 rounded-full border-4 border-blue-600 border-t-transparent animate-spin" />
+              <div className="flex flex-col gap-1 max-w-sm">
+                <h3 className="font-extrabold text-base text-slate-900">Evaluating Higher Education Matrix...</h3>
+                <p className="text-xs text-slate-500">
+                  Matching your marks and preferences against cutoff archives, engineering branches, and PSU recruitment patterns.
+                </p>
+              </div>
+            </div>
+          )}
+
+          {result && (
+            <div className="flex flex-col gap-6 animate-in fade-in duration-300">
+              
+              {/* Executive Summary Card */}
+              <div className="bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900 text-white rounded-3xl p-6 sm:p-7 shadow-lg flex flex-col gap-3">
+                <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                  <div className="flex items-center gap-2">
+                    <ShieldCheckIcon className="w-5 h-5 text-blue-400" />
+                    <span className="text-xs font-bold text-blue-300 uppercase tracking-wider">
+                      Executive Diagnostic
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handlePrint}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold rounded-lg border border-white/20 transition-colors"
+                  >
+                    <PrinterIcon className="w-3.5 h-3.5" />
+                    <span>Print Action Plan</span>
+                  </button>
+                </div>
+                <p className="text-sm sm:text-base text-slate-100 leading-relaxed font-medium">
+                  {result.summary}
+                </p>
+                <div className="flex flex-wrap items-center gap-4 text-[11px] text-slate-300 pt-1">
+                  <span>Engine: Verified Indian Higher Education Data</span>
+                  <span>•</span>
+                  <span>Verified 2025–2026 Academic Standards</span>
+                </div>
+              </div>
+
+              {/* Recommended Options Header */}
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-black text-slate-900">
+                    Recommended Pathways ({result.recommendations.length})
+                  </h3>
+                  <p className="text-xs text-slate-500">
+                    Curated options matching your profile with verified colleges & recruitment data
+                  </p>
+                </div>
+              </div>
+
+              {/* Recommendation Cards */}
+              <div className="flex flex-col gap-4">
+                {result.recommendations.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:border-blue-400 transition-all flex flex-col gap-4"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-[10px] font-extrabold uppercase">
+                          <span>Option {idx + 1}</span>
+                          <span>•</span>
+                          <span>{item.kind.toUpperCase()}</span>
+                        </div>
+                        <h4 className="text-base font-black text-slate-900 mt-1">{item.title}</h4>
+                      </div>
+
+                      <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg shrink-0">
+                        {item.timeline}
+                      </span>
+                    </div>
+
+                    <p className="text-xs text-slate-600 leading-relaxed bg-slate-50/70 p-3 rounded-xl border border-slate-100">
+                      <strong>Why this fits you:</strong> {item.whyItFits}
+                    </p>
+
+                    {/* Entrance Exams Required */}
+                    {item.examsToPrepare && item.examsToPrepare.length > 0 && (
+                      <div className="flex flex-col gap-1 text-xs">
+                        <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">
+                          Entrance Examinations:
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {item.examsToPrepare.map((exam, eIdx) => (
+                            <span
+                              key={eIdx}
+                              className="px-2.5 py-0.5 rounded-md bg-indigo-50 border border-indigo-200 text-indigo-700 font-semibold text-[11px]"
+                            >
+                              {exam}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Practical Steps */}
+                    {item.firstSteps && item.firstSteps.length > 0 && (
+                      <div className="flex flex-col gap-1.5 text-xs">
+                        <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">
+                          Recommended Action Steps:
+                        </span>
+                        <ul className="flex flex-col gap-1">
+                          {item.firstSteps.map((step, sIdx) => (
+                            <li key={sIdx} className="flex items-start gap-2 text-slate-700 text-xs">
+                              <span className="text-emerald-600 font-bold shrink-0">✓</span>
+                              <span>{step}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Action Links */}
+                    <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-100">
+                      <Link
+                        href={`/colleges?search=${encodeURIComponent(item.title.replace('B.Tech in ', ''))}`}
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-800"
+                      >
+                        <BuildingLibraryIcon className="w-3.5 h-3.5" />
+                        <span>View Colleges Offering This →</span>
+                      </Link>
+
+                      <button
+                        type="button"
+                        onClick={() => handleGenerateRoadmap(item.kind, item.itemId)}
+                        disabled={loadingRoadmapId === item.itemId}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-lg shadow-xs transition-colors cursor-pointer disabled:opacity-50"
+                      >
+                        {loadingRoadmapId === item.itemId ? (
+                          <>
+                            <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                            <span>Building Roadmap...</span>
+                          </>
+                        ) : (
+                          <>
+                            <SparklesIcon className="w-3.5 h-3.5 text-blue-400" />
+                            <span>Generate 4-Year Roadmap</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* 4-Phase Progression Roadmap Modal / Panel */}
+              {roadmapItem && (
+                <div className="bg-white rounded-3xl p-6 sm:p-7 border-2 border-blue-500 shadow-md flex flex-col gap-5 animate-in slide-in-from-bottom duration-300">
+                  <div className="flex items-start justify-between border-b border-slate-100 pb-3">
+                    <div>
+                      <div className="inline-flex items-center gap-1 text-[11px] font-bold text-blue-600 uppercase">
+                        <SparklesIcon className="w-3.5 h-3.5" />
+                        <span>4-Phase Career Roadmap</span>
+                      </div>
+                      <h4 className="text-lg font-black text-slate-900 mt-0.5">
+                        Progression Plan: {roadmapItem.careerTitle}
+                      </h4>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setRoadmapItem(null)}
+                      className="text-xs font-bold text-slate-400 hover:text-slate-600 px-2 py-1"
+                    >
+                      Close ✕
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {roadmapItem.phases.map((phase, pIdx) => (
+                      <div
+                        key={pIdx}
+                        className="p-4 rounded-xl border border-slate-200 bg-slate-50/70 flex flex-col gap-2"
+                      >
+                        <div className="text-xs font-extrabold text-blue-700">{phase.yearOrPhase}</div>
+                        <div className="text-xs font-bold text-slate-800">{phase.focus}</div>
+                        
+                        <div className="flex flex-col gap-1 mt-1 text-[11px]">
+                          <span className="font-semibold text-slate-500">Key Milestones:</span>
+                          <ul className="list-disc list-inside text-slate-600 space-y-0.5">
+                            {phase.keyMilestones.map((m, mIdx) => (
+                              <li key={mIdx}>{m}</li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {phase.tips && (
+                          <div className="text-[10px] text-slate-500 italic mt-auto pt-2 border-t border-slate-200/60">
+                            Tip: {phase.tips}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="p-3 bg-blue-50 rounded-xl border border-blue-200 text-xs text-blue-900 font-semibold flex items-center gap-2">
+                    <SparklesIcon className="w-4 h-4 text-blue-600 shrink-0" />
+                    <span>Ultimate Career Culmination: {roadmapItem.ultimateGoal}</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Strategic Questions for Parents & Human Counselors */}
+              {result.questionsToAskCounsellor && result.questionsToAskCounsellor.length > 0 && (
+                <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex flex-col gap-3">
+                  <div className="flex items-center gap-2">
+                    <ScaleIcon className="w-4 h-4 text-blue-600" />
+                    <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wide">
+                      Strategic Questions to Ask Colleges & Parents
+                    </h4>
+                  </div>
+                  <ul className="flex flex-col gap-2 text-xs text-slate-700">
+                    {result.questionsToAskCounsellor.map((q, qIdx) => (
+                      <li key={qIdx} className="flex items-start gap-2 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                        <span className="font-bold text-blue-600 shrink-0">Q{qIdx + 1}.</span>
+                        <span>{q}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Caution & Institutional Disclaimer */}
+              <div className="p-4 rounded-xl bg-amber-50/80 border border-amber-200 text-amber-900 text-xs flex flex-col gap-1">
+                <span className="font-bold">Official Verification Advisory:</span>
+                <p className="text-amber-800 text-[11px] leading-relaxed">
+                  {result.caution ||
+                    'Cutoffs, seat reservations, and tuition fees are updated annually by state examination authorities (KEA, JoSAA, NTA). Always verify current year guidelines against official notifications.'}
+                </p>
+              </div>
+
+            </div>
+          )}
+        </div>
+
+      </main>
+    </div>
+  );
+}

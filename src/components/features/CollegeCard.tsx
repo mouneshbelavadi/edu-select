@@ -6,6 +6,13 @@ import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { useCompareStore } from '@/lib/store/useCompareStore';
+import {
+  BuildingLibraryIcon,
+  TrophyIcon,
+  MapPinIcon,
+  CheckIcon,
+  HeartIcon,
+} from '@/components/ui/Icons';
 import toast from 'react-hot-toast';
 
 export interface CollegeCardData {
@@ -90,8 +97,9 @@ export const CollegeCard: React.FC<{ college: CollegeCardData }> = ({ college })
     }).format(college.fees);
 
   const nirfBadge = college.nirfRank2025 ? (
-    <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-300">
-      🏆 NIRF #{college.nirfRank2025}
+    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-300">
+      <TrophyIcon className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+      <span>NIRF #{college.nirfRank2025}</span>
     </span>
   ) : college.nirfBand2025 ? (
     <span className="inline-flex items-center gap-1 text-xs font-bold text-blue-800 bg-blue-50 px-2.5 py-0.5 rounded-md border border-blue-300">
@@ -115,8 +123,9 @@ export const CollegeCard: React.FC<{ college: CollegeCardData }> = ({ college })
           <h3 className="font-bold text-lg text-white line-clamp-2 leading-tight group-hover:text-brand-300 transition-colors">
             {college.name}
           </h3>
-          <span className="text-xs text-surface-300">
-            📍 {college.city}, {college.state}
+          <span className="text-xs text-surface-300 flex items-center justify-center gap-1">
+            <MapPinIcon className="w-3.5 h-3.5 text-surface-300 shrink-0" />
+            <span>{college.city}, {college.state}</span>
           </span>
         </div>
       </Link>
@@ -130,8 +139,9 @@ export const CollegeCard: React.FC<{ college: CollegeCardData }> = ({ college })
           </div>
 
           {college.typeDetail && (
-            <div className="text-[11px] font-medium text-slate-600 bg-slate-50 px-2.5 py-1 rounded-md border border-slate-200/70 line-clamp-1" title={college.typeDetail}>
-              🏛️ {college.typeDetail}
+            <div className="text-[11px] font-medium text-slate-600 bg-slate-50 px-2.5 py-1 rounded-md border border-slate-200/70 flex items-center gap-1.5" title={college.typeDetail}>
+              <BuildingLibraryIcon className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+              <span className="truncate">{college.typeDetail}</span>
             </div>
           )}
 
@@ -155,18 +165,20 @@ export const CollegeCard: React.FC<{ college: CollegeCardData }> = ({ college })
               variant={isCompared ? 'secondary' : 'outline'}
               size="sm"
               onClick={handleCompareClick}
-              className="w-full text-xs"
+              className="w-full text-xs flex items-center justify-center gap-1"
             >
-              {isCompared ? '✓ Compared' : '+ Compare'}
+              {isCompared && <CheckIcon className="w-3.5 h-3.5 text-emerald-600 shrink-0" />}
+              <span>{isCompared ? 'Compared' : '+ Compare'}</span>
             </Button>
             <Button
               variant={isSaved ? 'secondary' : 'outline'}
               size="sm"
               onClick={handleSaveClick}
               isLoading={isSaving}
-              className={`w-full text-xs ${isSaved ? 'text-brand-700 font-bold' : ''}`}
+              className={`w-full text-xs flex items-center justify-center gap-1 ${isSaved ? 'text-brand-700 font-bold' : ''}`}
             >
-              {isSaved ? '♥ Saved' : '♥ Save'}
+              <HeartIcon className={`w-3.5 h-3.5 ${isSaved ? 'text-rose-600 fill-rose-600' : 'text-slate-500'}`} />
+              <span>{isSaved ? 'Saved' : 'Save'}</span>
             </Button>
           </div>
 

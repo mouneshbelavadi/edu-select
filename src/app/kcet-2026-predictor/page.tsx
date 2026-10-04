@@ -6,6 +6,14 @@ import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import {
+  LightningIcon,
+  AlertCircleIcon,
+  ScaleIcon,
+  BookOpenIcon,
+  SparklesIcon,
+  StarIcon,
+} from '@/components/ui/Icons';
+import {
   calculateKCET2026Prediction,
   KCETInput,
   PredictionResult,
@@ -71,7 +79,8 @@ export default function KCET2026PredictorPage() {
           <div className="absolute -right-10 -bottom-10 w-80 h-80 bg-brand-500/20 rounded-full blur-3xl pointer-events-none" />
           <div className="relative z-10 max-w-3xl flex flex-col gap-3">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-400/20 border border-brand-300/30 text-brand-200 text-xs font-semibold uppercase tracking-wider w-fit">
-              ⚡ Official KEA 50:50 Normalization Model
+              <LightningIcon className="w-3.5 h-3.5 text-brand-200" />
+              <span>Official KEA 50:50 Normalization Model</span>
             </div>
             <h1 className="text-3xl sm:text-5xl font-black tracking-tight">
               KCET 2026 <span className="text-brand-300">Rank & College Predictor</span>
@@ -85,7 +94,9 @@ export default function KCET2026PredictorPage() {
         {/* Post-Engineering Careers Banner */}
         <div className="bg-gradient-to-r from-emerald-900/90 via-teal-900/80 to-slate-900 text-white rounded-2xl p-5 border border-emerald-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
           <div className="flex items-center gap-3">
-            <span className="text-2xl p-2 bg-emerald-500/20 rounded-xl">🚀</span>
+            <div className="p-2.5 bg-emerald-500/20 rounded-xl text-emerald-400">
+              <SparklesIcon className="w-6 h-6" />
+            </div>
             <div>
               <div className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">
                 Planning Ahead for After B.Tech?
@@ -110,7 +121,8 @@ export default function KCET2026PredictorPage() {
             <div className="bg-white rounded-2xl border border-surface-200 p-6 shadow-sm flex flex-col gap-6">
               <div className="flex items-center justify-between border-b border-surface-100 pb-4">
                 <h2 className="text-lg font-bold text-surface-900 flex items-center gap-2">
-                  <span>📝</span> Enter Your Marks
+                  <BookOpenIcon className="w-5 h-5 text-brand-600 shrink-0" />
+                  <span>Enter Your Marks</span>
                 </h2>
                 <button
                   type="button"
@@ -292,7 +304,8 @@ export default function KCET2026PredictorPage() {
             {/* KEA Normalization Formula Information Card */}
             <div className="p-5 bg-brand-50/60 border border-brand-100 rounded-2xl flex flex-col gap-2 text-xs text-brand-900 leading-relaxed">
               <div className="font-bold flex items-center gap-1.5 text-brand-800">
-                <span>ℹ️</span> How KEA Calculates Your Rank:
+                <AlertCircleIcon className="w-4 h-4 text-brand-700 shrink-0" />
+                <span>How KEA Calculates Your Rank:</span>
               </div>
               <p>
                 <strong>Composite Score = (KCET % × 0.50) + (Board PCM % × 0.50)</strong>. KEA ranks all candidates strictly based on this combined score out of 100.
@@ -365,33 +378,36 @@ export default function KCET2026PredictorPage() {
                   </button>
                   <button
                     onClick={() => setSelectedChanceFilter('HIGH')}
-                    className={`px-2.5 py-1 rounded-md border font-medium ${
+                    className={`px-2.5 py-1 rounded-md border font-medium flex items-center gap-1.5 ${
                       selectedChanceFilter === 'HIGH'
                         ? 'bg-emerald-600 text-white border-emerald-600'
                         : 'bg-white text-emerald-700 border-emerald-200'
                     }`}
                   >
-                    🟢 High
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" />
+                    <span>High</span>
                   </button>
                   <button
                     onClick={() => setSelectedChanceFilter('MODERATE')}
-                    className={`px-2.5 py-1 rounded-md border font-medium ${
+                    className={`px-2.5 py-1 rounded-md border font-medium flex items-center gap-1.5 ${
                       selectedChanceFilter === 'MODERATE'
                         ? 'bg-amber-600 text-white border-amber-600'
                         : 'bg-white text-amber-700 border-amber-200'
                     }`}
                   >
-                    🟡 Moderate
+                    <span className="w-2 h-2 rounded-full bg-amber-500 inline-block" />
+                    <span>Moderate</span>
                   </button>
                   <button
                     onClick={() => setSelectedChanceFilter('DREAM')}
-                    className={`px-2.5 py-1 rounded-md border font-medium ${
+                    className={`px-2.5 py-1 rounded-md border font-medium flex items-center gap-1.5 ${
                       selectedChanceFilter === 'DREAM'
                         ? 'bg-purple-600 text-white border-purple-600'
                         : 'bg-white text-purple-700 border-purple-200'
                     }`}
                   >
-                    🟣 Dream
+                    <span className="w-2 h-2 rounded-full bg-purple-500 inline-block" />
+                    <span>Dream</span>
                   </button>
                 </div>
               </div>
@@ -427,14 +443,17 @@ export default function KCET2026PredictorPage() {
                                 {item.college.collegeName}
                               </Link>
                             </h3>
-                            <span className="text-xs text-surface-400">★ {item.college.rating}</span>
+                            <span className="text-xs text-surface-500 flex items-center gap-1">
+                              <StarIcon className="w-3 h-3 text-amber-500 fill-amber-500 shrink-0" />
+                              <span>{item.college.rating}</span>
+                            </span>
                           </div>
                           <p className="text-xs text-surface-500">{item.college.location}</p>
                         </div>
 
                         {/* Chance Pill */}
                         <span
-                          className={`self-start sm:self-auto px-3 py-1 rounded-full text-xs font-bold ${
+                          className={`self-start sm:self-auto px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 ${
                             item.chance === 'High Chance'
                               ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                               : item.chance === 'Moderate Chance'
@@ -442,11 +461,22 @@ export default function KCET2026PredictorPage() {
                               : 'bg-purple-50 text-purple-700 border border-purple-200'
                           }`}
                         >
-                          {item.chance === 'High Chance'
-                            ? '🟢 High Chance'
-                            : item.chance === 'Moderate Chance'
-                            ? '🟡 Moderate Chance'
-                            : '🟣 Dream / Ambitious'}
+                          <span
+                            className={`w-2 h-2 rounded-full ${
+                              item.chance === 'High Chance'
+                                ? 'bg-emerald-500'
+                                : item.chance === 'Moderate Chance'
+                                ? 'bg-amber-500'
+                                : 'bg-purple-500'
+                            }`}
+                          />
+                          <span>
+                            {item.chance === 'High Chance'
+                              ? 'High Chance'
+                              : item.chance === 'Moderate Chance'
+                              ? 'Moderate Chance'
+                              : 'Dream / Ambitious'}
+                          </span>
                         </span>
                       </div>
 
@@ -490,9 +520,10 @@ export default function KCET2026PredictorPage() {
                         </Link>
                         <Link
                           href={`/compare`}
-                          className="text-xs text-surface-500 hover:text-surface-800 font-medium"
+                          className="text-xs text-surface-500 hover:text-surface-800 font-medium inline-flex items-center gap-1"
                         >
-                          ⚖️ Compare College
+                          <ScaleIcon className="w-3.5 h-3.5 text-slate-500" />
+                          <span>Compare College</span>
                         </Link>
                       </div>
                     </div>

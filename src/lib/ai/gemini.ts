@@ -2,8 +2,8 @@ import 'server-only';
 import { GoogleGenAI } from '@google/genai';
 
 const apiKey = process.env.GEMINI_API_KEY;
-// Default to Google's most economical, lowest-cost model: gemini-1.5-flash-8b (with 15 RPM / 1,500 RPD free tier)
-const modelName = process.env.GEMINI_MODEL || 'gemini-1.5-flash-8b';
+// Fast, low-cost model verified working on Google Developer v1beta API with free tier: gemini-2.5-flash
+const modelName = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 const timeoutMs = parseInt(process.env.GEMINI_TIMEOUT_MS || '20000', 10);
 
 let client: GoogleGenAI | null = null;

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import useSWR from 'swr';
 import { Card } from '@/components/ui/Card';
 import { Skeleton } from '@/components/ui/Skeleton';
+import { MapPinIcon } from '@/components/ui/Icons';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -75,7 +76,7 @@ export default function AdminStatesPage() {
               <Card className="p-5 bg-white border-slate-200 hover:border-indigo-400 hover:shadow-md transition-all rounded-2xl flex flex-col justify-between h-full gap-3">
                 <div className="flex items-start justify-between">
                   <div className="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center font-bold text-xs border border-indigo-100">
-                    📍
+                    <MapPinIcon className="w-4 h-4 text-indigo-700" />
                   </div>
                   <span className="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-0.5 rounded-full border border-indigo-100">
                     {state.collegeCount} Colleges

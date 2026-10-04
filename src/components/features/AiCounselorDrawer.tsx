@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
+import { SparklesIcon, LightningIcon, AlertCircleIcon } from '@/components/ui/Icons';
 
 interface AiCounselorDrawerProps {
   initialLevel?: string;
@@ -84,7 +85,7 @@ export const AiCounselorDrawer: React.FC<AiCounselorDrawerProps> = ({
         onClick={() => setIsOpen(true)}
         className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-lg hover:shadow-xl transition-all hover:scale-102 cursor-pointer"
       >
-        <span className="text-base animate-pulse">✨</span>
+        <SparklesIcon className="w-4 h-4 text-amber-300" />
         <span>Ask EduSelect AI</span>
       </button>
 
@@ -96,7 +97,7 @@ export const AiCounselorDrawer: React.FC<AiCounselorDrawerProps> = ({
             <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white p-5 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-xl bg-blue-500/20 text-blue-300 flex items-center justify-center font-bold text-lg border border-blue-400/30">
-                  ✨
+                  <SparklesIcon className="w-4 h-4 text-amber-300" />
                 </div>
                 <div>
                   <h3 className="font-extrabold text-base leading-tight">EduSelect AI Counsellor</h3>
@@ -197,7 +198,7 @@ export const AiCounselorDrawer: React.FC<AiCounselorDrawerProps> = ({
                   {/* Fallback Banner if applicable */}
                   {response.fallback && (
                     <div className="p-3.5 rounded-xl bg-amber-50 text-amber-800 text-xs border border-amber-200 font-medium flex items-center gap-2">
-                      <span>⚡</span>
+                      <LightningIcon className="w-4 h-4 text-amber-600 shrink-0" />
                       <span>AI is busy — showing hand-curated smart matches from verified data instead.</span>
                     </div>
                   )}
@@ -227,7 +228,7 @@ export const AiCounselorDrawer: React.FC<AiCounselorDrawerProps> = ({
                           </div>
                           {rec.timeline && (
                             <span className="text-[10px] text-slate-500 font-semibold shrink-0">
-                              ⏱️ {rec.timeline}
+                              {rec.timeline}
                             </span>
                           )}
                         </div>
@@ -326,8 +327,9 @@ export const AiCounselorDrawer: React.FC<AiCounselorDrawerProps> = ({
 
                   {/* Caution advice */}
                   {response.caution && (
-                    <div className="text-[11px] text-amber-800 bg-amber-50/80 p-3 rounded-xl border border-amber-200 font-medium">
-                      ⚠️ {response.caution}
+                    <div className="text-[11px] text-amber-800 bg-amber-50/80 p-3 rounded-xl border border-amber-200 font-medium flex items-start gap-2">
+                      <AlertCircleIcon className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                      <span>{response.caution}</span>
                     </div>
                   )}
                 </div>

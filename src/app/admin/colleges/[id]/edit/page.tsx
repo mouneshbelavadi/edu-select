@@ -8,6 +8,12 @@ import { Button } from '@/components/ui/Button';
 import { Skeleton } from '@/components/ui/Skeleton';
 import toast from 'react-hot-toast';
 import { CollegeDetail } from '@/lib/collegeRepository';
+import {
+  BuildingLibraryIcon,
+  BookOpenIcon,
+  GraduationCapIcon,
+  CheckIcon,
+} from '@/components/ui/Icons';
 
 const ALL_STANDARD_BRANCHES = [
   { name: 'B.E. / B.Tech Computer Science and Engineering', code: 'CSE', duration: '4 Years' },
@@ -230,7 +236,8 @@ export default function AdminCollegeEditPage() {
         {/* Section 1: Basic Information */}
         <Card className="p-6 bg-white border-slate-200 rounded-2xl shadow-sm flex flex-col gap-4">
           <h2 className="text-base font-black text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
-            <span>🏛️</span> Basic Information
+            <BuildingLibraryIcon className="w-4 h-4 text-indigo-600 shrink-0" />
+            <span>Basic Information</span>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -332,7 +339,8 @@ export default function AdminCollegeEditPage() {
         {/* Section 2: Overview & Statements from Excel */}
         <Card className="p-6 bg-white border-slate-200 rounded-2xl shadow-sm flex flex-col gap-4">
           <h2 className="text-base font-black text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
-            <span>📝</span> Official Descriptions & Records
+            <BookOpenIcon className="w-4 h-4 text-indigo-600 shrink-0" />
+            <span>Official Descriptions & Records</span>
           </h2>
 
           <div>
@@ -377,7 +385,8 @@ export default function AdminCollegeEditPage() {
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
             <div>
               <h2 className="text-base font-black text-slate-900 flex items-center gap-2">
-                <span>🎓</span> Offered Engineering Branches ({selectedBranches.length} Selected)
+                <GraduationCapIcon className="w-4 h-4 text-indigo-600 shrink-0" />
+                <span>Offered Engineering Branches ({selectedBranches.length} Selected)</span>
               </h2>
               <p className="text-xs text-slate-500 mt-0.5">
                 Toggle active programs or add custom specialized engineering branches.
@@ -448,9 +457,10 @@ export default function AdminCollegeEditPage() {
             variant="primary"
             size="md"
             isLoading={saving}
-            className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs px-8 py-3 rounded-xl shadow-lg"
+            className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs px-8 py-3 rounded-xl shadow-lg flex items-center gap-1.5"
           >
-            💾 Save Changes & Reflect Live →
+            <CheckIcon className="w-4 h-4 text-slate-950 shrink-0" />
+            <span>Save Changes & Reflect Live →</span>
           </Button>
         </div>
       </form>

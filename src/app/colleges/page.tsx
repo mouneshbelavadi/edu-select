@@ -9,6 +9,7 @@ import { Skeleton } from '@/components/ui/Skeleton';
 import { Pagination } from '@/components/ui/Pagination';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { CompassIcon, SearchIcon } from '@/components/ui/Icons';
 import { useDebounce } from '@/lib/hooks/useDebounce';
 import { ALL_INDIAN_STATES } from '@/lib/constants';
 import engineeringBranchesData from '@/data/careers/engineeringBranches.json';
@@ -302,7 +303,7 @@ function CollegeListingContent() {
           {matchedBranch && (
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 p-4 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs shadow-xs animate-in fade-in duration-150">
               <div className="flex items-center gap-2.5">
-                <span className="text-xl">🧭</span>
+                <CompassIcon className="w-5 h-5 text-blue-600 shrink-0" />
                 <span className="text-slate-800 font-medium">
                   Looking into <strong>{matchedBranch.name}</strong>? Explore verified industry roles, CTC ranges, and GATE PSUs.
                 </span>
@@ -361,8 +362,8 @@ function CollegeListingContent() {
           ) : colleges.length === 0 ? (
             /* Empty State */
             <div className="p-16 text-center bg-white rounded-xl border border-surface-200 flex flex-col items-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-surface-100 flex items-center justify-center text-2xl">
-                🔍
+              <div className="w-16 h-16 rounded-full bg-surface-100 flex items-center justify-center text-surface-400">
+                <SearchIcon className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-bold text-surface-800">No colleges match your filters</h3>
               <p className="text-sm text-surface-500 max-w-md">

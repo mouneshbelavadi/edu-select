@@ -1,24 +1,40 @@
 'use client';
 
 import React, { Suspense, useState, useMemo } from 'react';
+import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import useSWR from 'swr';
 import { CareerCardComponent } from '@/components/features/CareerCard';
 import { AiCounselorDrawer } from '@/components/features/AiCounselorDrawer';
 import { CareerCard, CareerCluster, Taxonomy } from '@/types/careerData';
 import { Button } from '@/components/ui/Button';
+import {
+  GraduationCapIcon,
+  SparklesIcon,
+  CompassIcon,
+  BuildingLibraryIcon,
+  BookOpenIcon,
+  BriefcaseIcon,
+  ScaleIcon,
+  SearchIcon,
+  WrenchIcon,
+  CpuIcon,
+  ArrowRightIcon,
+  UsersIcon,
+  MicroscopeIcon,
+} from '@/components/ui/Icons';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const QUALIFICATION_LEVELS = [
-  { id: 'CLASS_10', shortLabel: 'Class 10th', label: 'Completed 10th Standard', icon: '🎒', desc: 'Diploma, ITI, polytechnic, defence & 11th-12th streams' },
-  { id: 'CLASS_12', shortLabel: 'Class 12th / PU', label: '12th / PUC / Intermediate', icon: '📘', desc: 'Degrees, engineering, medical, law, NDA & commerce' },
-  { id: 'ITI', shortLabel: 'ITI Graduate', label: 'ITI Certified', icon: '🔧', desc: 'Technical trades, CITS, apprentice, railway & PSU technician' },
-  { id: 'DIPLOMA', shortLabel: 'Polytechnic Diploma', label: 'Engineering Diploma', icon: '📐', desc: 'Lateral entry B.Tech, junior engineer & technical PSUs' },
-  { id: 'UG_ENGG', shortLabel: 'B.Tech / B.E.', label: 'Engineering Graduate', icon: '💻', desc: 'Software, core engineering, GATE, PSUs, IES & MS abroad' },
-  { id: 'UG_OTHER', shortLabel: 'General Degree', label: 'B.Sc / B.Com / B.A. / BBA / BCA', icon: '🎓', desc: 'Corporate jobs, banking, civil services, MBA & MCA' },
-  { id: 'PROFESSIONAL', shortLabel: 'Professional Degree', label: 'MBBS / LLB / B.Arch / CA', icon: '⚖️', desc: 'Specialized practice, judiciary, hospital administration' },
-  { id: 'PG', shortLabel: 'Postgraduate', label: 'M.Tech / M.Sc / MBA / Ph.D', icon: '🔬', desc: 'R&D, university teaching, senior executive & specialist' },
+  { id: 'CLASS_10', shortLabel: 'Class 10th', label: 'Completed 10th Standard', icon: BookOpenIcon, color: 'text-blue-600 bg-blue-50', desc: 'Diploma, ITI, polytechnic, defence & 11th-12th streams' },
+  { id: 'CLASS_12', shortLabel: 'Class 12th / PU', label: '12th / PUC / Intermediate', icon: GraduationCapIcon, color: 'text-indigo-600 bg-indigo-50', desc: 'Degrees, engineering, medical, law, NDA & commerce' },
+  { id: 'ITI', shortLabel: 'ITI Graduate', label: 'ITI Certified', icon: WrenchIcon, color: 'text-amber-600 bg-amber-50', desc: 'Technical trades, CITS, apprentice, railway & PSU technician' },
+  { id: 'DIPLOMA', shortLabel: 'Polytechnic Diploma', label: 'Engineering Diploma', icon: CompassIcon, color: 'text-teal-600 bg-teal-50', desc: 'Lateral entry B.Tech, junior engineer & technical PSUs' },
+  { id: 'UG_ENGG', shortLabel: 'B.Tech / B.E.', label: 'Engineering Graduate', icon: CpuIcon, color: 'text-cyan-600 bg-cyan-50', desc: 'Software, core engineering, GATE, PSUs, IES & MS abroad' },
+  { id: 'UG_OTHER', shortLabel: 'General Degree', label: 'B.Sc / B.Com / B.A. / BBA / BCA', icon: BuildingLibraryIcon, color: 'text-purple-600 bg-purple-50', desc: 'Corporate jobs, banking, civil services, MBA & MCA' },
+  { id: 'PROFESSIONAL', shortLabel: 'Professional Degree', label: 'MBBS / LLB / B.Arch / CA', icon: ScaleIcon, color: 'text-rose-600 bg-rose-50', desc: 'Specialized practice, judiciary, hospital administration' },
+  { id: 'PG', shortLabel: 'Postgraduate', label: 'M.Tech / M.Sc / MBA / Ph.D', icon: MicroscopeIcon, color: 'text-emerald-600 bg-emerald-50', desc: 'R&D, university teaching, senior executive & specialist' },
 ];
 
 const STREAM_OPTIONS = [
@@ -33,12 +49,12 @@ const STREAM_OPTIONS = [
 ];
 
 const RIASEC_OPTIONS = [
-  { code: 'R', label: 'Realistic (Doers)', icon: '🛠️', desc: 'Hands-on, machines, tools, practical work' },
-  { code: 'I', label: 'Investigative (Thinkers)', icon: '🔬', desc: 'Research, analysis, science, problem-solving' },
-  { code: 'A', label: 'Artistic (Creators)', icon: '🎨', desc: 'Design, writing, innovation, self-expression' },
-  { code: 'S', label: 'Social (Helpers)', icon: '🤝', desc: 'Teaching, counselling, healthcare, community' },
-  { code: 'E', label: 'Enterprising (Persuaders)', icon: '🚀', desc: 'Leadership, business, startups, management' },
-  { code: 'C', label: 'Conventional (Organizers)', icon: '📊', desc: 'Data, finance, systems, compliance, planning' },
+  { code: 'R', label: 'Realistic (Doers)', icon: WrenchIcon, desc: 'Hands-on, machines, tools, practical work' },
+  { code: 'I', label: 'Investigative (Thinkers)', icon: MicroscopeIcon, desc: 'Research, analysis, science, problem-solving' },
+  { code: 'A', label: 'Artistic (Creators)', icon: SparklesIcon, desc: 'Design, writing, innovation, self-expression' },
+  { code: 'S', label: 'Social (Helpers)', icon: UsersIcon, desc: 'Teaching, counselling, healthcare, community' },
+  { code: 'E', label: 'Enterprising (Persuaders)', icon: BriefcaseIcon, desc: 'Leadership, business, startups, management' },
+  { code: 'C', label: 'Conventional (Organizers)', icon: ScaleIcon, desc: 'Data, finance, systems, compliance, planning' },
 ];
 
 const POPULAR_SUBJECTS = [
@@ -174,7 +190,8 @@ function CareersExplorerContent() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex flex-col gap-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-bold uppercase tracking-wider w-fit">
-              <span>🧭 India Career & Pathway Explorer</span>
+              <CompassIcon className="w-3.5 h-3.5 text-blue-400" />
+              <span>India Career & Pathway Explorer</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
@@ -188,13 +205,22 @@ function CareersExplorerContent() {
             </p>
           </div>
 
-          <div className="shrink-0">
-            <AiCounselorDrawer
-              initialLevel={currentLevel}
-              initialStream={currentStream}
-              initialInterests={currentRiasec}
-              initialSubjects={currentSubjects}
-            />
+          <div className="flex flex-col sm:flex-row md:flex-col gap-2.5 shrink-0">
+            <Link
+              href="/ai-counsellor"
+              className="px-4 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-xs font-bold rounded-xl shadow-lg shadow-blue-500/20 transition-all flex items-center justify-center gap-2 group"
+            >
+              <SparklesIcon className="w-4 h-4 text-amber-300 group-hover:rotate-12 transition-transform" />
+              <span>EduSelect AI Counsellor</span>
+              <ArrowRightIcon className="w-3.5 h-3.5 text-white/80 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+            <Link
+              href="/pathways"
+              className="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white text-xs font-bold rounded-xl border border-white/20 transition-all flex items-center justify-center gap-1.5"
+            >
+              <CompassIcon className="w-4 h-4 text-blue-300" />
+              <span>Pathways Dashboard</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -213,6 +239,7 @@ function CareersExplorerContent() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             {QUALIFICATION_LEVELS.map((lvl) => {
               const isSelected = currentLevel === lvl.id;
+              const IconComp = lvl.icon;
               return (
                 <button
                   key={lvl.id}
@@ -225,7 +252,9 @@ function CareersExplorerContent() {
                   }`}
                 >
                   <div className="flex items-center justify-between w-full">
-                    <span className="text-2xl">{lvl.icon}</span>
+                    <div className={`w-10 h-10 rounded-xl ${lvl.color} flex items-center justify-center shrink-0`}>
+                      <IconComp className="w-5 h-5" />
+                    </div>
                     {isSelected && (
                       <span className="w-5 h-5 rounded-full bg-blue-600 text-white text-xs font-black flex items-center justify-center">
                         ✓
@@ -294,6 +323,7 @@ function CareersExplorerContent() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
               {RIASEC_OPTIONS.map((r) => {
                 const isSelected = currentRiasec.includes(r.code);
+                const RiasecIcon = r.icon;
                 return (
                   <button
                     key={r.code}
@@ -305,7 +335,7 @@ function CareersExplorerContent() {
                         : 'border-slate-200 bg-slate-50/60 text-slate-700 hover:border-slate-300'
                     }`}
                   >
-                    <span className="text-lg">{r.icon}</span>
+                    <RiasecIcon className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
                     <div>
                       <div className="text-xs font-extrabold">{r.label}</div>
                       <div className="text-[10px] text-slate-500 font-normal leading-tight mt-0.5">{r.desc}</div>
@@ -374,7 +404,7 @@ function CareersExplorerContent() {
             {/* Search Input & Filter Toggle */}
             <div className="flex items-center gap-2">
               <form onSubmit={handleSearchSubmit} className="flex-1 sm:w-64 flex items-center bg-slate-100 rounded-xl px-3 py-2 border border-slate-200">
-                <span className="text-slate-400 text-xs mr-2">🔍</span>
+                <SearchIcon className="w-4 h-4 text-slate-400 mr-2 shrink-0" />
                 <input
                   type="text"
                   placeholder="Search roles, degrees..."
@@ -547,7 +577,9 @@ function CareersExplorerContent() {
                 </div>
               ) : items.length === 0 ? (
                 <div className="bg-white rounded-3xl p-12 text-center border border-slate-200 flex flex-col items-center gap-4">
-                  <span className="text-4xl">🔍</span>
+                  <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center">
+                    <SearchIcon className="w-7 h-7 text-slate-400" />
+                  </div>
                   <h3 className="font-extrabold text-slate-900 text-lg">No career options match your filters</h3>
                   <p className="text-xs text-slate-500 max-w-md">
                     Try broadening your selection by resetting budget, interest or stream criteria.

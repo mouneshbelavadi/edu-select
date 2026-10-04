@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { BuildingLibraryIcon } from '@/components/ui/Icons';
 
 interface CollegeLogoBadgeProps {
   name: string;
@@ -71,7 +72,7 @@ export const CollegeLogoBadge: React.FC<CollegeLogoBadgeProps> = ({ name, size =
       className={`${sizeClasses[size]} ${colors.bg} ${colors.text} ${colors.border} rounded-2xl border-2 flex flex-col items-center justify-center font-black shadow-md shrink-0 relative overflow-hidden select-none`}
     >
       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
-      <span className="text-[10px] opacity-75 mb-0.5 leading-none">🏛️</span>
+      <BuildingLibraryIcon className="w-3.5 h-3.5 opacity-80 mb-0.5" />
       <span className="font-extrabold tracking-wider leading-tight text-center truncate max-w-[90%]">
         {acronym}
       </span>

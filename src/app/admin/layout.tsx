@@ -5,6 +5,13 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSession, signOut } from 'next-auth/react';
 
+import {
+  GraduationCapIcon,
+  BuildingLibraryIcon,
+  UsersIcon,
+  MapPinIcon,
+} from '@/components/ui/Icons';
+
 export default function AdminLayout({
   children,
 }: {
@@ -24,9 +31,9 @@ export default function AdminLayout({
   }
 
   const navItems = [
-    { href: '/admin', label: '📊 Dashboard Overview', exact: true },
-    { href: '/admin/users', label: '👥 Registered Users (Live)', exact: false },
-    { href: '/admin/states', label: '📍 28 States Dataset', exact: false },
+    { href: '/admin', label: 'Dashboard Overview', icon: BuildingLibraryIcon, exact: true },
+    { href: '/admin/users', label: 'Registered Users (Live)', icon: UsersIcon, exact: false },
+    { href: '/admin/states', label: '28 States Dataset', icon: MapPinIcon, exact: false },
   ];
 
   return (
@@ -37,7 +44,7 @@ export default function AdminLayout({
           {/* Logo & Admin Badge */}
           <Link href="/admin" className="flex items-center gap-3 group">
             <div className="w-9 h-9 rounded-xl bg-blue-600 text-white font-black flex items-center justify-center text-sm shadow-sm group-hover:scale-105 transition-transform">
-              🎓
+              <GraduationCapIcon className="w-5 h-5" />
             </div>
             <div className="flex flex-col">
               <span className="font-extrabold text-sm text-slate-900 leading-tight">Admin Console</span>
@@ -59,6 +66,7 @@ export default function AdminLayout({
               const isActive = item.exact
                 ? pathname === item.href
                 : pathname.startsWith(item.href);
+              const ItemIcon = item.icon;
 
               return (
                 <Link
@@ -70,7 +78,10 @@ export default function AdminLayout({
                       : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/80'
                   }`}
                 >
-                  <span>{item.label}</span>
+                  <div className="flex items-center gap-2">
+                    <ItemIcon className="w-4 h-4 shrink-0 text-slate-500" />
+                    <span>{item.label}</span>
+                  </div>
                   {isActive && <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />}
                 </Link>
               );

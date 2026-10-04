@@ -5,6 +5,7 @@ import Link from 'next/link';
 import useSWR from 'swr';
 import { ALL_INDIAN_STATES } from '@/lib/constants';
 import { StateCardImage } from '@/components/features/StateCardImage';
+import { MapPinIcon } from '@/components/ui/Icons';
 import collegesData from '@/data/colleges.json';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -49,16 +50,16 @@ export default function ExploreStatesPage() {
     return map;
   }, [statesRes]);
 
-  const stateHighlights: Record<string, { topCities: string[]; icon: string; highlight: string }> = {
-    Karnataka: { topCities: ['Bengaluru', 'Mysuru', 'Hubballi', 'Mangaluru'], icon: '🏛️', highlight: 'Tech & Innovation Capital (RVCE, BMSCE, UVCE)' },
-    Maharashtra: { topCities: ['Mumbai', 'Pune', 'Nagpur'], icon: '🏢', highlight: 'Financial Hub & Premier Research (COEP, VJTI)' },
-    'Tamil Nadu': { topCities: ['Chennai', 'Coimbatore', 'Trichy'], icon: '🎓', highlight: 'Engineering Excellence (Anna University, PSG)' },
-    Telangana: { topCities: ['Hyderabad', 'Warangal'], icon: '💻', highlight: 'Cyberabad & Premier Institutes (JNTU, CBIT)' },
-    'Uttar Pradesh': { topCities: ['Noida', 'Lucknow', 'Kanpur'], icon: '🏭', highlight: 'Expanding Engineering Ecosystem' },
-    Gujarat: { topCities: ['Ahmedabad', 'Surat', 'Vadodara'], icon: '⚡', highlight: 'Industrial & Technological Powerhouse' },
-    Kerala: { topCities: ['Thiruvananthapuram', 'Kochi', 'Calicut'], icon: '🌴', highlight: 'High Literacy & Quality Engineering' },
-    Rajasthan: { topCities: ['Jaipur', 'Kota', 'Jodhpur'], icon: '🏰', highlight: 'Coaching Hub & Top Universities' },
-    'West Bengal': { topCities: ['Kolkata', 'Durgapur'], icon: '📖', highlight: 'Heritage Institutions & Premier Tech' },
+  const stateHighlights: Record<string, { topCities: string[]; highlight: string }> = {
+    Karnataka: { topCities: ['Bengaluru', 'Mysuru', 'Hubballi', 'Mangaluru'], highlight: 'Tech & Innovation Capital (RVCE, BMSCE, UVCE)' },
+    Maharashtra: { topCities: ['Mumbai', 'Pune', 'Nagpur'], highlight: 'Financial Hub & Premier Research (COEP, VJTI)' },
+    'Tamil Nadu': { topCities: ['Chennai', 'Coimbatore', 'Trichy'], highlight: 'Engineering Excellence (Anna University, PSG)' },
+    Telangana: { topCities: ['Hyderabad', 'Warangal'], highlight: 'Cyberabad & Premier Institutes (JNTU, CBIT)' },
+    'Uttar Pradesh': { topCities: ['Noida', 'Lucknow', 'Kanpur'], highlight: 'Expanding Engineering Ecosystem' },
+    Gujarat: { topCities: ['Ahmedabad', 'Surat', 'Vadodara'], highlight: 'Industrial & Technological Powerhouse' },
+    Kerala: { topCities: ['Thiruvananthapuram', 'Kochi', 'Calicut'], highlight: 'High Literacy & Quality Engineering' },
+    Rajasthan: { topCities: ['Jaipur', 'Kota', 'Jodhpur'], highlight: 'Coaching Hub & Top Universities' },
+    'West Bengal': { topCities: ['Kolkata', 'Durgapur'], highlight: 'Heritage Institutions & Premier Tech' },
   };
 
   const filteredStates = ALL_INDIAN_STATES.filter((state) =>
@@ -70,8 +71,9 @@ export default function ExploreStatesPage() {
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
         {/* Header */}
         <div className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white rounded-3xl p-8 sm:p-12 shadow-xl flex flex-col gap-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-semibold uppercase tracking-wider w-fit">
-            📍 Explore Across India
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-semibold uppercase tracking-wider w-fit">
+            <MapPinIcon className="w-3.5 h-3.5 text-blue-300" />
+            <span>Explore Across India</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight">
             Explore Engineering Colleges <span className="text-blue-400">by State</span>
@@ -107,7 +109,6 @@ export default function ExploreStatesPage() {
             {filteredStates.map((state) => {
               const meta = stateHighlights[state] || {
                 topCities: ['State Capital'],
-                icon: '📍',
                 highlight: 'Government & Private Engineering Colleges',
               };
 
@@ -121,8 +122,9 @@ export default function ExploreStatesPage() {
                   
                   <div className="p-4 flex flex-col gap-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-slate-500">
-                        {meta.icon}
+                      <span className="text-xs font-bold text-slate-500 flex items-center gap-1">
+                        <MapPinIcon className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                        <span className="text-[11px] text-slate-500 font-medium">State</span>
                       </span>
                       <span className="text-[11px] font-bold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full group-hover:bg-blue-600 group-hover:text-white transition-colors">
                         Explore →

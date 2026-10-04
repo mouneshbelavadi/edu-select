@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { getStateConfig } from '@/lib/stateConfig';
+import { MapPinIcon } from '@/components/ui/Icons';
 
 interface StateCardImageProps {
   stateName: string;
@@ -20,7 +21,7 @@ export const StateCardImage: React.FC<StateCardImageProps> = ({
       <div
         className={`${className} bg-gradient-to-br ${config.accentGradient} flex flex-col items-center justify-center p-2 text-white text-center select-none`}
       >
-        <span className="text-2xl mb-1 drop-shadow-sm">{config.icon}</span>
+        <MapPinIcon className="w-6 h-6 mb-1 text-white/90 drop-shadow-sm" />
         <span className="text-[11px] font-extrabold uppercase tracking-wider opacity-90 truncate max-w-[90%] drop-shadow-sm">
           {config.name}
         </span>

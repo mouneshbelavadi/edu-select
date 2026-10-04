@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useSession, signOut } from 'next-auth/react';
 import { Button } from './Button';
+import { GraduationCapIcon, SearchIcon, SparklesIcon, StarIcon } from '@/components/ui/Icons';
 
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
@@ -23,7 +24,9 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/colleges', label: 'Colleges' },
-    { href: '/careers', label: 'Careers', pill: 'New' },
+    { href: '/ai-counsellor', label: 'AI Counsellor', pill: 'AI' },
+    { href: '/careers', label: 'Careers' },
+    { href: '/pathways', label: 'Pathways' },
     { href: '/states', label: 'Exams & States' },
     { href: '/compare', label: 'Compare' },
     { href: '/kcet-2026-predictor', label: 'Predictor', highlight: true },
@@ -45,7 +48,7 @@ export const Navbar: React.FC = () => {
           {/* Left: Brand Logo & Slogan */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
-              🎓
+              <GraduationCapIcon className="w-6 h-6 text-white" />
             </div>
             <div className="flex flex-col">
               <span className="font-extrabold text-2xl tracking-tight text-slate-900 group-hover:text-blue-600 transition-colors">
@@ -93,7 +96,7 @@ export const Navbar: React.FC = () => {
               title="Search Colleges, Courses, Exams"
               aria-label="Search"
             >
-              🔍
+              <SearchIcon className="w-4 h-4 text-slate-700" />
             </button>
 
             {/* Desktop Auth */}
@@ -190,7 +193,8 @@ export const Navbar: React.FC = () => {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="flex items-center gap-2 p-2 rounded-xl bg-slate-50 text-slate-800 text-sm font-bold"
                   >
-                    <span>★ My Dashboard</span>
+                    <StarIcon className="w-4 h-4 text-amber-500 fill-amber-500 shrink-0" />
+                    <span>My Dashboard</span>
                   </Link>
                   <Button
                     variant="outline"
@@ -233,7 +237,8 @@ export const Navbar: React.FC = () => {
           <div className="bg-white rounded-2xl p-6 w-full max-w-xl shadow-2xl border border-slate-200 flex flex-col gap-4 animate-in fade-in zoom-in duration-150">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <h3 className="font-bold text-slate-900 text-base flex items-center gap-2">
-                <span>🔍</span> Search EduSelect Database
+                <SearchIcon className="w-5 h-5 text-blue-600" />
+                <span>Search EduSelect Database</span>
               </h3>
               <button
                 onClick={() => setShowSearchModal(false)}

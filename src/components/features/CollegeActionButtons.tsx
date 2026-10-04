@@ -6,6 +6,7 @@ import { useCompareStore } from '@/lib/store/useCompareStore';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import { CheckIcon, HeartIcon } from '@/components/ui/Icons';
 
 export interface CollegeActionButtonsProps {
   collegeId: string;
@@ -70,16 +71,20 @@ export const CollegeActionButtons: React.FC<CollegeActionButtonsProps> = ({
         variant={isCompared ? 'secondary' : 'outline'}
         size="md"
         onClick={handleCompareClick}
+        className="flex items-center gap-1.5"
       >
-        {isCompared ? '✓ Added to Compare' : '+ Add to Compare'}
+        {isCompared && <CheckIcon className="w-4 h-4 text-emerald-600 shrink-0" />}
+        <span>{isCompared ? 'Added to Compare' : '+ Add to Compare'}</span>
       </Button>
       <Button
         variant="primary"
         size="md"
         onClick={handleSaveClick}
         isLoading={isSaving}
+        className="flex items-center gap-1.5"
       >
-        ♥ Save College
+        <HeartIcon className="w-4 h-4 fill-white shrink-0" />
+        <span>Save College</span>
       </Button>
     </div>
   );

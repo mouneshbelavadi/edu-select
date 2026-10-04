@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { CollegeCard, CollegeCardData } from '@/components/features/CollegeCard';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { ScaleIcon, HeartIcon } from '@/components/ui/Icons';
 import toast from 'react-hot-toast';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -93,7 +94,8 @@ export default function SavedDashboardPage() {
       <section className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-surface-900 flex items-center gap-2">
-            <span>♥ Saved Colleges</span>
+            <HeartIcon className="w-5 h-5 text-rose-500 fill-rose-500 shrink-0" />
+            <span>Saved Colleges</span>
             <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-brand-100 text-brand-700">
               {savedColleges.length}
             </span>
@@ -104,8 +106,8 @@ export default function SavedDashboardPage() {
           <div className="p-8 text-center text-surface-400">Loading saved colleges...</div>
         ) : savedColleges.length === 0 ? (
           <Card className="p-12 text-center flex flex-col items-center gap-3">
-            <div className="w-12 h-12 rounded-full bg-surface-100 flex items-center justify-center text-xl">
-              🔖
+            <div className="w-12 h-12 rounded-full bg-surface-100 flex items-center justify-center text-surface-400">
+              <HeartIcon className="w-6 h-6" />
             </div>
             <h3 className="font-bold text-lg text-surface-800">No saved colleges yet</h3>
             <p className="text-sm text-surface-500 max-w-sm">
@@ -139,7 +141,10 @@ export default function SavedDashboardPage() {
       <section className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-surface-900 flex items-center gap-2">
-            <span>⚖️ Saved Comparisons</span>
+            <span className="flex items-center gap-1.5">
+              <ScaleIcon className="w-5 h-5 text-emerald-600" />
+              Saved Comparisons
+            </span>
             <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-brand-100 text-brand-700">
               {savedComparisons.length}
             </span>
@@ -150,8 +155,8 @@ export default function SavedDashboardPage() {
           <div className="p-8 text-center text-surface-400">Loading saved comparisons...</div>
         ) : savedComparisons.length === 0 ? (
           <Card className="p-12 text-center flex flex-col items-center gap-3">
-            <div className="w-12 h-12 rounded-full bg-surface-100 flex items-center justify-center text-xl">
-              📊
+            <div className="w-12 h-12 rounded-full bg-surface-100 flex items-center justify-center">
+              <ScaleIcon className="w-6 h-6 text-slate-400" />
             </div>
             <h3 className="font-bold text-lg text-surface-800">No saved comparisons</h3>
             <p className="text-sm text-surface-500 max-w-sm">

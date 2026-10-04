@@ -6,8 +6,28 @@ import { useRouter } from 'next/navigation';
 import useSWR from 'swr';
 import { StateCardImage } from '@/components/features/StateCardImage';
 import { CollegeLogoBadge } from '@/components/features/CollegeLogoBadge';
-import { AiCounselorDrawer } from '@/components/features/AiCounselorDrawer';
 import { ALL_STATE_CONFIGS } from '@/lib/stateConfig';
+import {
+  GraduationCapIcon,
+  SparklesIcon,
+  CompassIcon,
+  BuildingLibraryIcon,
+  BookOpenIcon,
+  BriefcaseIcon,
+  ScaleIcon,
+  SearchIcon,
+  ShieldCheckIcon,
+  WrenchIcon,
+  CpuIcon,
+  ArrowRightIcon,
+  MapPinIcon,
+  TrophyIcon,
+  StarIcon,
+  LightningIcon,
+  HeartIcon,
+  UsersIcon,
+  MicroscopeIcon,
+} from '@/components/ui/Icons';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -20,14 +40,14 @@ const POPULAR_BRANCH_TAGS = [
 ];
 
 const QUALIFICATION_LEVELS = [
-  { id: 'CLASS_10', shortLabel: 'Class 10th', icon: '🎒', desc: 'Diploma, ITI, Polytechnic, 11th-12th' },
-  { id: 'CLASS_12', shortLabel: 'Class 12th / PU', icon: '📘', desc: 'Engineering, Medical, NDA, Degrees' },
-  { id: 'ITI', shortLabel: 'ITI Trades', icon: '🔧', desc: 'Apprentice, Railways, PSU Technician' },
-  { id: 'DIPLOMA', shortLabel: 'Polytechnic', icon: '📐', desc: 'Lateral B.Tech, Junior Engineer' },
-  { id: 'UG_ENGG', shortLabel: 'B.Tech / B.E.', icon: '💻', desc: 'Software, PSUs via GATE, Core Tech' },
-  { id: 'UG_OTHER', shortLabel: 'General Degree', icon: '🎓', desc: 'B.Sc, B.Com, BCA, Banking & UPSC' },
-  { id: 'PROFESSIONAL', shortLabel: 'Professional', icon: '⚖️', desc: 'MBBS, Law, Architecture, CA' },
-  { id: 'PG', shortLabel: 'Postgraduate', icon: '🔬', desc: 'M.Tech, MBA, Ph.D, R&D & Specialist' },
+  { id: 'CLASS_10', shortLabel: 'Class 10th', desc: 'Diploma, ITI, Polytechnic, 11th-12th', icon: BookOpenIcon, color: 'text-blue-600 bg-blue-50 border-blue-200' },
+  { id: 'CLASS_12', shortLabel: 'Class 12th / PU', desc: 'Engineering, Medical, NDA, Degrees', icon: GraduationCapIcon, color: 'text-indigo-600 bg-indigo-50 border-indigo-200' },
+  { id: 'ITI', shortLabel: 'ITI Trades', desc: 'Apprentice, Railways, PSU Technician', icon: WrenchIcon, color: 'text-amber-600 bg-amber-50 border-amber-200' },
+  { id: 'DIPLOMA', shortLabel: 'Polytechnic', desc: 'Lateral B.Tech, Junior Engineer', icon: CompassIcon, color: 'text-teal-600 bg-teal-50 border-teal-200' },
+  { id: 'UG_ENGG', shortLabel: 'B.Tech / B.E.', desc: 'Software, PSUs via GATE, Core Tech', icon: CpuIcon, color: 'text-cyan-600 bg-cyan-50 border-cyan-200' },
+  { id: 'UG_OTHER', shortLabel: 'General Degree', desc: 'B.Sc, B.Com, BCA, Banking & UPSC', icon: BuildingLibraryIcon, color: 'text-purple-600 bg-purple-50 border-purple-200' },
+  { id: 'PROFESSIONAL', shortLabel: 'Professional', desc: 'MBBS, Law, Architecture, CA', icon: ScaleIcon, color: 'text-rose-600 bg-rose-50 border-rose-200' },
+  { id: 'PG', shortLabel: 'Postgraduate', desc: 'M.Tech, MBA, Ph.D, R&D & Specialist', icon: MicroscopeIcon, color: 'text-emerald-600 bg-emerald-50 border-emerald-200' },
 ];
 
 export default function EduSelectDashboard() {
@@ -111,7 +131,7 @@ export default function EduSelectDashboard() {
             >
               {/* Search Query Input */}
               <div className="flex-1 flex items-center gap-2 px-3 py-2 bg-slate-50 rounded-xl w-full">
-                <span className="text-slate-400">🔍</span>
+                <SearchIcon className="w-4 h-4 text-slate-400 shrink-0" />
                 <input
                   type="text"
                   placeholder="Search colleges, courses, exams..."
@@ -122,8 +142,8 @@ export default function EduSelectDashboard() {
               </div>
 
               {/* State Dropdown */}
-              <div className="flex items-center gap-1 px-3 py-2 bg-slate-50 rounded-xl w-full sm:w-44 border-t sm:border-t-0 border-slate-100">
-                <span className="text-slate-400">📍</span>
+              <div className="flex items-center gap-1.5 px-3 py-2 bg-slate-50 rounded-xl w-full sm:w-44 border-t sm:border-t-0 border-slate-100">
+                <MapPinIcon className="w-4 h-4 text-slate-400 shrink-0" />
                 <select
                   value={selectedState}
                   onChange={(e) => setSelectedState(e.target.value)}
@@ -139,8 +159,8 @@ export default function EduSelectDashboard() {
               </div>
 
               {/* Course Dropdown */}
-              <div className="flex items-center gap-1 px-3 py-2 bg-slate-50 rounded-xl w-full sm:w-44 border-t sm:border-t-0 border-slate-100">
-                <span className="text-slate-400">📖</span>
+              <div className="flex items-center gap-1.5 px-3 py-2 bg-slate-50 rounded-xl w-full sm:w-44 border-t sm:border-t-0 border-slate-100">
+                <BookOpenIcon className="w-4 h-4 text-slate-400 shrink-0" />
                 <select
                   value={selectedCourse}
                   onChange={(e) => setSelectedCourse(e.target.value)}
@@ -181,7 +201,6 @@ export default function EduSelectDashboard() {
               ))}
             </div>
           </div>
-
           {/* Right Column: Hero Visual Card */}
           <div className="lg:col-span-5 relative flex items-center justify-center">
             <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border border-white/60 bg-gradient-to-tr from-blue-900 to-indigo-950 p-6 sm:p-8 min-h-[380px] flex flex-col justify-between text-white">
@@ -189,17 +208,17 @@ export default function EduSelectDashboard() {
               <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]" />
 
               <div className="relative z-10 flex items-center justify-between">
-                <span className="px-3 py-1 bg-blue-500/30 border border-blue-400/40 rounded-full text-xs font-bold text-blue-200 uppercase tracking-wider">
-                  🎓 Authoritative 28-State Data
+                <span className="px-3 py-1 bg-blue-500/30 border border-blue-400/40 rounded-full text-xs font-bold text-blue-200 uppercase tracking-wider flex items-center gap-1.5">
+                  <ShieldCheckIcon className="w-3.5 h-3.5 text-blue-300" /> Authoritative 28-State Data
                 </span>
-                <span className="text-xl">✨</span>
+                <SparklesIcon className="w-5 h-5 text-amber-300" />
               </div>
 
               {/* Floating Glassmorphism Stats Card */}
               <div className="relative z-10 bg-white/95 backdrop-blur-md text-slate-900 rounded-2xl p-5 shadow-xl border border-slate-100 flex flex-col gap-3 my-auto">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-lg shrink-0">
-                    🏛️
+                    <BuildingLibraryIcon className="w-5 h-5 text-blue-700" />
                   </div>
                   <div>
                     <div className="text-lg font-black text-slate-900">580+ Engineering Colleges</div>
@@ -221,8 +240,8 @@ export default function EduSelectDashboard() {
 
               <div className="relative z-10 flex items-center justify-between text-xs text-blue-200">
                 <span>Updated Live with KEA & 28-State Datasets</span>
-                <Link href="/colleges" className="font-bold text-white hover:underline">
-                  Browse All →
+                <Link href="/colleges" className="font-bold text-white hover:underline flex items-center gap-1">
+                  Browse All <ArrowRightIcon className="w-3.5 h-3.5" />
                 </Link>
               </div>
             </div>
@@ -234,8 +253,8 @@ export default function EduSelectDashboard() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full -mt-6">
         <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg border border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="flex items-center gap-3.5 p-3 rounded-xl bg-blue-50/50">
-            <div className="w-11 h-11 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xl font-bold shrink-0">
-              🏛️
+            <div className="w-11 h-11 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0">
+              <BuildingLibraryIcon className="w-5 h-5 text-white" />
             </div>
             <div>
               <div className="text-lg font-black text-slate-900">
@@ -246,8 +265,8 @@ export default function EduSelectDashboard() {
           </div>
 
           <div className="flex items-center gap-3.5 p-3 rounded-xl bg-emerald-50/50">
-            <div className="w-11 h-11 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xl font-bold shrink-0">
-              📍
+            <div className="w-11 h-11 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0">
+              <MapPinIcon className="w-5 h-5 text-white" />
             </div>
             <div>
               <div className="text-lg font-black text-slate-900">28</div>
@@ -256,8 +275,8 @@ export default function EduSelectDashboard() {
           </div>
 
           <div className="flex items-center gap-3.5 p-3 rounded-xl bg-purple-50/50">
-            <div className="w-11 h-11 rounded-xl bg-purple-600 text-white flex items-center justify-center text-xl font-bold shrink-0">
-              📚
+            <div className="w-11 h-11 rounded-xl bg-purple-600 text-white flex items-center justify-center shrink-0">
+              <BookOpenIcon className="w-5 h-5 text-white" />
             </div>
             <div>
               <div className="text-lg font-black text-slate-900">50+</div>
@@ -266,8 +285,8 @@ export default function EduSelectDashboard() {
           </div>
 
           <div className="flex items-center gap-3.5 p-3 rounded-xl bg-amber-50/50">
-            <div className="w-11 h-11 rounded-xl bg-amber-500 text-white flex items-center justify-center text-xl font-bold shrink-0">
-              👥
+            <div className="w-11 h-11 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0">
+              <UsersIcon className="w-5 h-5 text-white" />
             </div>
             <div>
               <div className="text-lg font-black text-slate-900">100K+</div>
@@ -283,30 +302,53 @@ export default function EduSelectDashboard() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold w-fit mb-1.5">
-                <span>🧭 Career Pathways</span>
+                <CompassIcon className="w-3.5 h-3.5 text-blue-600" />
+                <span>Career Pathways & Progression</span>
               </div>
               <h2 className="text-2xl font-black text-slate-900">Not sure what to study next?</h2>
               <p className="text-xs text-slate-500 mt-0.5">Explore structured pathways mapped directly to your current qualification level</p>
             </div>
-            <AiCounselorDrawer />
+            
+            <div className="flex flex-wrap items-center gap-2.5">
+              <Link
+                href="/pathways"
+                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition-all flex items-center gap-1.5"
+              >
+                <CompassIcon className="w-3.5 h-3.5 text-slate-600" />
+                Pathways Dashboard
+              </Link>
+              <Link
+                href="/ai-counsellor"
+                className="px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-xs font-bold rounded-xl shadow-md shadow-blue-500/20 transition-all flex items-center gap-1.5 group"
+              >
+                <SparklesIcon className="w-3.5 h-3.5 text-amber-300 group-hover:rotate-12 transition-transform" />
+                <span>EduSelect AI Counsellor</span>
+                <ArrowRightIcon className="w-3.5 h-3.5 text-white/80 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-            {QUALIFICATION_LEVELS.map((lvl) => (
-              <Link
-                key={lvl.id}
-                href={`/careers?level=${lvl.id}`}
-                className="p-4 rounded-2xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50/50 bg-slate-50/50 transition-all flex flex-col justify-between gap-3 group"
-              >
-                <div className="text-2xl">{lvl.icon}</div>
-                <div>
-                  <h3 className="font-extrabold text-sm text-slate-900 group-hover:text-blue-600 transition-colors">
-                    {lvl.shortLabel}
-                  </h3>
-                  <p className="text-[11px] text-slate-500 line-clamp-2 mt-0.5">{lvl.desc}</p>
-                </div>
-              </Link>
-            ))}
+            {QUALIFICATION_LEVELS.map((lvl) => {
+              const IconComponent = lvl.icon;
+              return (
+                <Link
+                  key={lvl.id}
+                  href={`/pathways?level=${lvl.id}`}
+                  className="p-4 rounded-2xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50/50 bg-slate-50/50 transition-all flex flex-col justify-between gap-3 group"
+                >
+                  <div className={`w-10 h-10 rounded-xl ${lvl.color} border flex items-center justify-center`}>
+                    <IconComponent className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-extrabold text-sm text-slate-900 group-hover:text-blue-600 transition-colors">
+                      {lvl.shortLabel}
+                    </h3>
+                    <p className="text-[11px] text-slate-500 line-clamp-2 mt-0.5">{lvl.desc}</p>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -432,8 +474,8 @@ export default function EduSelectDashboard() {
                         <CollegeLogoBadge name={college.name} size="md" />
                         <div className="flex flex-col items-end gap-1">
                           {college.nirfRank2025 ? (
-                            <span className="px-2 py-0.5 rounded text-[10px] font-black bg-emerald-50 text-emerald-800 border border-emerald-200">
-                              🏆 NIRF #{college.nirfRank2025}
+                            <span className="px-2 py-0.5 rounded text-[10px] font-black bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1">
+                              <TrophyIcon className="w-3 h-3 text-emerald-600 shrink-0" /> NIRF #{college.nirfRank2025}
                             </span>
                           ) : college.nirfBand2025 ? (
                             <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-50 text-teal-800 border border-teal-200">
@@ -452,8 +494,8 @@ export default function EduSelectDashboard() {
                         <h3 className="font-extrabold text-sm text-slate-900 leading-snug group-hover:text-blue-600 transition-colors line-clamp-2" title={college.name}>
                           {college.name}
                         </h3>
-                        <p className="text-xs text-slate-500 font-medium mt-1">
-                          📍 {college.city}, {college.state}
+                        <p className="text-xs text-slate-500 font-medium mt-1 flex items-center gap-1">
+                          <MapPinIcon className="w-3.5 h-3.5 text-slate-400 shrink-0" /> {college.city}, {college.state}
                         </p>
                       </div>
 
@@ -463,8 +505,8 @@ export default function EduSelectDashboard() {
                           {college.typeDetail || college.institutionCategory || college.type}
                         </span>
                         {college.rating !== null && college.rating !== undefined ? (
-                          <span className="font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 text-[10px]">
-                            ★ {college.ratingDisplay || `${Number(college.rating).toFixed(1)}/5`}
+                          <span className="font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 text-[10px] flex items-center gap-1">
+                            <StarIcon className="w-3 h-3 text-amber-500 shrink-0" /> {college.ratingDisplay || `${Number(college.rating).toFixed(1)}/5`}
                           </span>
                         ) : (
                           <span className="text-slate-400 text-[10px] font-medium">Verified Data</span>
@@ -488,9 +530,9 @@ export default function EduSelectDashboard() {
 
                       <Link
                         href={`/colleges/${encodeURIComponent(college.slug || college.id)}`}
-                        className="w-full py-2 bg-blue-50 hover:bg-blue-600 text-blue-700 hover:text-white text-xs font-bold rounded-xl text-center transition-colors shadow-sm"
+                        className="w-full py-2 bg-blue-50 hover:bg-blue-600 text-blue-700 hover:text-white text-xs font-bold rounded-xl text-center transition-colors shadow-sm flex items-center justify-center gap-1"
                       >
-                        View Details →
+                        View Details <ArrowRightIcon className="w-3 h-3" />
                       </Link>
                     </div>
                   </div>
@@ -507,26 +549,49 @@ export default function EduSelectDashboard() {
 
             <div className="flex flex-col gap-3">
               <Link
-                href="/careers"
+                href="/ai-counsellor"
+                className="p-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 rounded-xl text-white flex items-center justify-between group transition-all shadow-md shadow-blue-500/20"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-white/20 text-white flex items-center justify-center shrink-0">
+                    <SparklesIcon className="w-4 h-4 text-amber-300" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-1.5">
+                      <h4 className="font-bold text-xs text-white">
+                        EduSelect AI Counsellor
+                      </h4>
+                      <span className="px-1.5 py-0.2 rounded-full text-[9px] font-black bg-amber-400 text-slate-900">
+                        LIVE
+                      </span>
+                    </div>
+                    <p className="text-[10px] text-blue-100">Personalized marks-based guidance</p>
+                  </div>
+                </div>
+                <ArrowRightIcon className="w-4 h-4 text-white/80 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+
+              <Link
+                href="/pathways"
                 className="p-3.5 bg-indigo-50/80 hover:bg-indigo-100/90 rounded-xl border border-indigo-200 flex items-center justify-between group transition-colors shadow-xs"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">
-                    🧭
+                  <div className="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center shrink-0">
+                    <CompassIcon className="w-4 h-4 text-white" />
                   </div>
                   <div>
                     <div className="flex items-center gap-1.5">
                       <h4 className="font-bold text-xs text-slate-900 group-hover:text-indigo-700 transition-colors">
-                        Career Explorer
+                        Pathways Dashboard
                       </h4>
                       <span className="px-1.5 py-0.2 rounded-full text-[9px] font-black bg-indigo-600 text-white">
-                        NEW
+                        100+
                       </span>
                     </div>
-                    <p className="text-[10px] text-slate-500">Explore pathways after 10th, 12th & B.Tech</p>
+                    <p className="text-[10px] text-slate-500">10th, 12th, ITI, Diploma & B.Tech paths</p>
                   </div>
                 </div>
-                <span className="text-slate-400 group-hover:text-indigo-700 font-bold text-sm">›</span>
+                <ArrowRightIcon className="w-3.5 h-3.5 text-slate-400 group-hover:text-indigo-700 transition-colors" />
               </Link>
 
               <Link
@@ -534,8 +599,8 @@ export default function EduSelectDashboard() {
                 className="p-3.5 bg-blue-50/60 hover:bg-blue-100/80 rounded-xl border border-blue-100 flex items-center justify-between group transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-sm">
-                    🎯
+                  <div className="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0">
+                    <LightningIcon className="w-4 h-4 text-white" />
                   </div>
                   <div>
                     <h4 className="font-bold text-xs text-slate-900 group-hover:text-blue-700 transition-colors">
@@ -544,7 +609,7 @@ export default function EduSelectDashboard() {
                     <p className="text-[10px] text-slate-500">Predict your best college & branch</p>
                   </div>
                 </div>
-                <span className="text-slate-400 group-hover:text-blue-700 font-bold text-sm">›</span>
+                <ArrowRightIcon className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-700 transition-colors" />
               </Link>
 
               <Link
@@ -552,8 +617,8 @@ export default function EduSelectDashboard() {
                 className="p-3.5 bg-emerald-50/60 hover:bg-emerald-100/80 rounded-xl border border-emerald-100 flex items-center justify-between group transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-sm">
-                    ⚖️
+                  <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0">
+                    <ScaleIcon className="w-4 h-4 text-white" />
                   </div>
                   <div>
                     <h4 className="font-bold text-xs text-slate-900 group-hover:text-emerald-700 transition-colors">
@@ -562,7 +627,7 @@ export default function EduSelectDashboard() {
                     <p className="text-[10px] text-slate-500">Compare up to 3 colleges side by side</p>
                   </div>
                 </div>
-                <span className="text-slate-400 group-hover:text-emerald-700 font-bold text-sm">›</span>
+                <ArrowRightIcon className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-700 transition-colors" />
               </Link>
 
               <Link
@@ -570,8 +635,8 @@ export default function EduSelectDashboard() {
                 className="p-3.5 bg-amber-50/60 hover:bg-amber-100/80 rounded-xl border border-amber-100 flex items-center justify-between group transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-sm">
-                    🏛️
+                  <div className="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0">
+                    <BuildingLibraryIcon className="w-4 h-4 text-white" />
                   </div>
                   <div>
                     <h4 className="font-bold text-xs text-slate-900 group-hover:text-amber-800 transition-colors">
@@ -580,7 +645,7 @@ export default function EduSelectDashboard() {
                     <p className="text-[10px] text-slate-500">Browse colleges by Indian state</p>
                   </div>
                 </div>
-                <span className="text-slate-400 group-hover:text-amber-800 font-bold text-sm">›</span>
+                <ArrowRightIcon className="w-3.5 h-3.5 text-slate-400 group-hover:text-amber-800 transition-colors" />
               </Link>
 
               <Link
@@ -588,8 +653,8 @@ export default function EduSelectDashboard() {
                 className="p-3.5 bg-purple-50/60 hover:bg-purple-100/80 rounded-xl border border-purple-100 flex items-center justify-between group transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold text-sm">
-                    ♥
+                  <div className="w-9 h-9 rounded-xl bg-purple-600 text-white flex items-center justify-center shrink-0">
+                    <HeartIcon className="w-4 h-4 text-white" />
                   </div>
                   <div>
                     <h4 className="font-bold text-xs text-slate-900 group-hover:text-purple-700 transition-colors">
@@ -598,7 +663,7 @@ export default function EduSelectDashboard() {
                     <p className="text-[10px] text-slate-500">View favorites & shortlisted colleges</p>
                   </div>
                 </div>
-                <span className="text-slate-400 group-hover:text-purple-700 font-bold text-sm">›</span>
+                <ArrowRightIcon className="w-3.5 h-3.5 text-slate-400 group-hover:text-purple-700 transition-colors" />
               </Link>
             </div>
           </div>
@@ -609,8 +674,8 @@ export default function EduSelectDashboard() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-4">
         <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-base shrink-0">
-              ⚡
+            <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
+              <BookOpenIcon className="w-5 h-5 text-blue-600" />
             </div>
             <div>
               <h4 className="font-extrabold text-xs text-slate-900">Comprehensive Information</h4>
@@ -621,8 +686,8 @@ export default function EduSelectDashboard() {
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-base shrink-0">
-              ⚖️
+            <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+              <ScaleIcon className="w-5 h-5 text-emerald-600" />
             </div>
             <div>
               <h4 className="font-extrabold text-xs text-slate-900">Smart Comparison</h4>
@@ -633,8 +698,8 @@ export default function EduSelectDashboard() {
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-base shrink-0">
-              ♥
+            <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center shrink-0">
+              <HeartIcon className="w-5 h-5 text-purple-600" />
             </div>
             <div>
               <h4 className="font-extrabold text-xs text-slate-900">Personalized Experience</h4>
@@ -645,8 +710,8 @@ export default function EduSelectDashboard() {
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-base shrink-0">
-              👥
+            <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
+              <UsersIcon className="w-5 h-5 text-amber-600" />
             </div>
             <div>
               <h4 className="font-extrabold text-xs text-slate-900">Trusted by Students</h4>

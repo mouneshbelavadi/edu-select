@@ -10,6 +10,14 @@ import { Input } from '@/components/ui/Input';
 import { useSession } from 'next-auth/react';
 import toast from 'react-hot-toast';
 import Link from 'next/link';
+import {
+  ScaleIcon,
+  GraduationCapIcon,
+  LightningIcon,
+  StarIcon,
+  TrophyIcon,
+  MapPinIcon,
+} from '@/components/ui/Icons';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -149,8 +157,8 @@ function CompareContent() {
   if (selectedColleges.length < 2) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-16 text-center flex flex-col items-center gap-5">
-        <div className="w-20 h-20 rounded-3xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-4xl shadow-sm border border-indigo-100">
-          ⚖️
+        <div className="w-20 h-20 rounded-3xl bg-indigo-50 text-indigo-600 flex items-center justify-center shadow-sm border border-indigo-100">
+          <ScaleIcon className="w-10 h-10 text-indigo-600" />
         </div>
         <div className="flex flex-col gap-2 max-w-lg">
           <h1 className="text-2xl sm:text-3xl font-black text-slate-900">Compare Engineering Colleges</h1>
@@ -196,9 +204,10 @@ function CompareContent() {
               variant="outline"
               size="sm"
               onClick={() => setIsSaveModalOpen(true)}
-              className="text-xs"
+              className="text-xs flex items-center gap-1.5"
             >
-              ★ Save Comparison
+              <StarIcon className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+              <span>Save Comparison</span>
             </Button>
           )}
           <Link href="/colleges">
@@ -267,8 +276,9 @@ function CompareContent() {
                 {colleges.map((col) => (
                   <td key={col.id} className="p-4 text-center border-l border-slate-200">
                     {col.nirfRank2025 ? (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-black bg-emerald-50 text-emerald-800 border border-emerald-200">
-                        🏆 NIRF #{col.nirfRank2025}
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-black bg-emerald-50 text-emerald-800 border border-emerald-200">
+                        <TrophyIcon className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                        <span>NIRF #{col.nirfRank2025}</span>
                       </span>
                     ) : col.nirfBand2025 ? (
                       <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-teal-50 text-teal-800 border border-teal-200">
@@ -286,7 +296,10 @@ function CompareContent() {
                 <td className="p-4 font-bold text-slate-900 bg-slate-50/50">Location</td>
                 {colleges.map((col) => (
                   <td key={col.id} className="p-4 text-center border-l border-slate-200 font-medium">
-                    📍 {col.city}, {col.state}
+                    <span className="inline-flex items-center justify-center gap-1">
+                      <MapPinIcon className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      <span>{col.city}, {col.state}</span>
+                    </span>
                   </td>
                 ))}
               </tr>
@@ -310,7 +323,8 @@ function CompareContent() {
                   <td key={col.id} className="p-4 text-center border-l border-slate-200">
                     {col.rating !== null && col.rating !== undefined ? (
                       <span className="inline-flex items-center gap-1 font-black text-sm text-amber-600 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200">
-                        ★ {col.ratingDisplay || `${Number(col.rating).toFixed(1)}/5`}
+                        <StarIcon className="w-3.5 h-3.5 text-amber-500 fill-amber-500 shrink-0" />
+                        <span>{col.ratingDisplay || `${Number(col.rating).toFixed(1)}/5`}</span>
                       </span>
                     ) : (
                       <span className="text-slate-400 font-medium italic">Not Rated</span>
@@ -373,7 +387,10 @@ function CompareContent() {
                 <td className="p-4 font-bold text-slate-900 bg-slate-50/50">Active Branches</td>
                 {colleges.map((col) => (
                   <td key={col.id} className="p-4 text-center border-l border-slate-200 font-bold text-slate-900">
-                    🎓 {col.totalBranchesOffered || col.courses?.length || 0} Programs Offered
+                    <span className="inline-flex items-center justify-center gap-1.5">
+                      <GraduationCapIcon className="w-4 h-4 text-blue-600" />
+                      <span>{col.totalBranchesOffered || col.courses?.length || 0} Programs Offered</span>
+                    </span>
                   </td>
                 ))}
               </tr>
@@ -425,8 +442,8 @@ function CompareContent() {
                     <div className="flex flex-wrap gap-1.5 justify-center">
                       {col.courses?.slice(0, 10).map((c) => (
                         <span
-                          key={c.id}
-                          className="px-2 py-0.5 bg-indigo-50 text-indigo-800 font-medium rounded border border-indigo-100"
+                           key={c.id}
+                           className="px-2 py-0.5 bg-indigo-50 text-indigo-800 font-medium rounded border border-indigo-100"
                         >
                           {c.name.replace('B.E. / B.Tech ', '').replace('B.Tech ', '')}
                         </span>
@@ -448,9 +465,10 @@ function CompareContent() {
                   <td key={col.id} className="p-4 text-center border-l border-slate-200">
                     <Link
                       href="/kcet-2026-predictor"
-                      className="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-xl border border-indigo-200 transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-xl border border-indigo-200 transition-colors"
                     >
-                      ⚡ Cutoff Predictor &gt;
+                      <LightningIcon className="w-3.5 h-3.5 text-indigo-600" />
+                      <span>Cutoff Predictor &gt;</span>
                     </Link>
                   </td>
                 ))}

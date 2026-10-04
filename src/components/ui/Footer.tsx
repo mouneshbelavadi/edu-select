@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { GraduationCapIcon, SparklesIcon } from '@/components/ui/Icons';
 
 export const Footer: React.FC = () => {
   const pathname = usePathname();
@@ -17,8 +18,8 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-blue-600 text-white font-bold flex items-center justify-center text-sm">
-              🎓
+            <div className="w-8 h-8 rounded-lg bg-blue-600 text-white font-bold flex items-center justify-center text-sm shadow-md shadow-blue-500/20">
+              <GraduationCapIcon className="w-5 h-5 text-white" />
             </div>
             <span className="font-extrabold text-xl tracking-tight text-white">
               Edu<span className="text-blue-500">Select</span>
@@ -29,12 +30,19 @@ export const Footer: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-8 text-xs text-slate-400 font-medium">
+        <div className="flex flex-wrap items-center gap-6 text-xs text-slate-400 font-medium">
           <Link href="/" className="hover:text-white transition-colors">
             Home
           </Link>
           <Link href="/colleges" className="hover:text-white transition-colors">
             Engineering Colleges
+          </Link>
+          <Link href="/ai-counsellor" className="hover:text-white transition-colors text-blue-400 font-semibold flex items-center gap-1">
+            <SparklesIcon className="w-3.5 h-3.5 text-blue-400" />
+            AI Counsellor
+          </Link>
+          <Link href="/pathways" className="hover:text-white transition-colors">
+            Pathways Dashboard
           </Link>
           <Link href="/careers" className="hover:text-white transition-colors">
             Career Explorer

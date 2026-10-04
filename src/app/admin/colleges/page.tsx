@@ -5,6 +5,7 @@ import Link from 'next/link';
 import useSWR from 'swr';
 import { Card } from '@/components/ui/Card';
 import { Skeleton } from '@/components/ui/Skeleton';
+import { MapPinIcon, StarIcon, WrenchIcon } from '@/components/ui/Icons';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -45,9 +46,10 @@ export default function AdminCollegesPage() {
 
         <Link
           href="/admin/states"
-          className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-sm transition-colors"
+          className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-sm transition-colors flex items-center gap-1.5"
         >
-          📍 Browse by 28 States →
+          <MapPinIcon className="w-3.5 h-3.5" />
+          <span>Browse by 28 States →</span>
         </Link>
       </div>
 
@@ -107,7 +109,8 @@ export default function AdminCollegesPage() {
                     {college.type}
                   </span>
                   <span className="text-xs font-bold text-amber-600 flex items-center gap-1">
-                    ★ {college.ratingDisplay || `${college.rating}/5`}
+                    <StarIcon className="w-3.5 h-3.5 text-amber-500 fill-amber-500 shrink-0" />
+                    <span>{college.ratingDisplay || `${college.rating}/5`}</span>
                   </span>
                 </div>
 
@@ -115,8 +118,9 @@ export default function AdminCollegesPage() {
                   {college.name}
                 </h3>
 
-                <span className="text-xs text-slate-500">
-                  📍 {college.city}, {college.state}
+                <span className="text-xs text-slate-500 flex items-center gap-1">
+                  <MapPinIcon className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                  <span>{college.city}, {college.state}</span>
                 </span>
 
                 <div className="grid grid-cols-2 gap-2 border-t border-slate-100 pt-3 text-xs mt-1">
@@ -135,9 +139,10 @@ export default function AdminCollegesPage() {
               <div className="flex items-center gap-2 pt-2 border-t border-slate-100">
                 <Link
                   href={`/admin/colleges/${encodeURIComponent(college.slug || college.id)}/edit`}
-                  className="flex-1 py-2 px-3 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-black rounded-xl text-center shadow-sm transition-colors flex items-center justify-center gap-1"
+                  className="flex-1 py-2 px-3 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-black rounded-xl text-center shadow-sm transition-colors flex items-center justify-center gap-1.5"
                 >
-                  <span>✏️</span> Edit College
+                  <WrenchIcon className="w-3.5 h-3.5" />
+                  <span>Edit College</span>
                 </Link>
                 <Link
                   href={`/colleges/${encodeURIComponent(college.slug || college.id)}`}

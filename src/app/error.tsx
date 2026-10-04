@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
+import { AlertCircleIcon } from '@/components/ui/Icons';
 
 export default function Error({
   error,
@@ -17,8 +18,8 @@ export default function Error({
 
   return (
     <div className="max-w-xl mx-auto px-4 py-24 text-center flex flex-col items-center gap-6">
-      <div className="w-16 h-16 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-3xl font-bold">
-        ⚠️
+      <div className="w-16 h-16 rounded-full bg-red-100 text-red-600 flex items-center justify-center">
+        <AlertCircleIcon className="w-8 h-8" />
       </div>
       <h1 className="text-3xl font-extrabold text-surface-900">Something went wrong!</h1>
       <p className="text-sm text-surface-600 max-w-md">
