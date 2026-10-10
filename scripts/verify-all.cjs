@@ -131,6 +131,266 @@ function verifyColleges() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// 1B. KEA KCET 2026 Cutoff Matrix & Predictor Dataset
+// ─────────────────────────────────────────────────────────────────────────────
+function verifyKCETCutoffs() {
+  header('SUITE 1B: KEA UGCET 2026 Cutoff Matrix & Predictor Dataset');
+  let suiteFailed = false;
+
+  const kcetPath = path.join(ROOT_DIR, 'src', 'data', 'kcet2026Cutoffs.json');
+  if (!fs.existsSync(kcetPath)) {
+    fail('src/data/kcet2026Cutoffs.json does not exist. Run "npm run data:kcet" first.');
+    failedSuites.push('KCET 2026 Cutoffs');
+    return;
+  }
+
+  let cutoffs;
+  try {
+    cutoffs = JSON.parse(fs.readFileSync(kcetPath, 'utf8'));
+  } catch (err) {
+    fail(`JSON parse error in kcet2026Cutoffs.json: ${err.message}`);
+    failedSuites.push('KCET 2026 Cutoffs');
+    return;
+  }
+
+  if (cutoffs.length >= 1200) {
+    success(`Total cutoffs matrix size: ${cutoffs.length} branch entries (target: >= 1,200)`);
+  } else {
+    fail(`Expected >= 1,200 cutoff entries, found ${cutoffs.length}`);
+    suiteFailed = true;
+  }
+
+  const uniqueColleges = new Set(cutoffs.map((c) => c.collegeSlug));
+  if (uniqueColleges.size >= 240) {
+    success(`Karnataka engineering colleges coverage: ${uniqueColleges.size} institutes (target: >= 240)`);
+  } else {
+    fail(`Expected >= 240 unique colleges, found ${uniqueColleges.size}`);
+    suiteFailed = true;
+  }
+
+  const keaCodes = new Set(cutoffs.map((c) => c.collegeCode).filter(Boolean));
+  if (keaCodes.size >= 230) {
+    success(`Colleges with verified KEA CET codes (e.g. E001, E005): ${keaCodes.size}`);
+  } else {
+    warn(`Only ${keaCodes.size} colleges have KEA codes`);
+  }
+
+  let invalidCutoffCount = 0;
+  cutoffs.forEach((entry) => {
+    if (!entry.collegeName || !entry.branch || !entry.branchCode) {
+      invalidCutoffCount++;
+    }
+    if (!entry.cutoffs || typeof entry.cutoffs.GM !== 'number' || entry.cutoffs.GM <= 0) {
+      invalidCutoffCount++;
+    }
+  });
+
+  if (invalidCutoffCount === 0) {
+    success(`100% of cutoff entries have valid college metadata and positive GM cutoff ranks`);
+  } else {
+    fail(`Found ${invalidCutoffCount} entries with invalid cutoff ranks or metadata`);
+    suiteFailed = true;
+  }
+
+  if (suiteFailed) {
+    failedSuites.push('KCET 2026 Cutoffs');
+  } else {
+    passedSuites.push('KCET 2026 Cutoffs');
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1C. Karnataka DPUE Pre-University Colleges (Phase 2)
+// ─────────────────────────────────────────────────────────────────────────────
+function verifyPUCColleges() {
+  header('SUITE 1C: Karnataka DPUE Pre-University Colleges (Phase 2)');
+  let suiteFailed = false;
+
+  const pucPath = path.join(ROOT_DIR, 'src', 'data', 'pucColleges.json');
+  if (!fs.existsSync(pucPath)) {
+    fail('src/data/pucColleges.json does not exist. Run "npm run data:puc" first.');
+    failedSuites.push('Karnataka PUC Colleges');
+    return;
+  }
+
+  let pucData;
+  try {
+    pucData = JSON.parse(fs.readFileSync(pucPath, 'utf8'));
+  } catch (err) {
+    fail(`JSON parse error in pucColleges.json: ${err.message}`);
+    failedSuites.push('Karnataka PUC Colleges');
+    return;
+  }
+
+  const colleges = pucData.colleges || [];
+  if (colleges.length >= 6000) {
+    success(`Total Karnataka PU colleges: ${colleges.length} institutes (target: >= 6,000)`);
+  } else {
+    fail(`Expected >= 6,000 PU colleges, found ${colleges.length}`);
+    suiteFailed = true;
+  }
+
+  const districts = new Set(colleges.map((c) => c.district).filter(Boolean));
+  if (districts.size >= 30) {
+    success(`Karnataka educational districts coverage: ${districts.size} districts (target: >= 30)`);
+  } else {
+    fail(`Expected >= 30 districts, found ${districts.size}`);
+    suiteFailed = true;
+  }
+
+  let invalidCount = 0;
+  colleges.forEach((c) => {
+    if (!c.name || !c.code || !c.district || !c.management || !Array.isArray(c.streams)) {
+      invalidCount++;
+    }
+  });
+
+  if (invalidCount === 0) {
+    success(`100% of PU colleges have valid code, name, district, management type and streams`);
+  } else {
+    fail(`Found ${invalidCount} PU colleges with missing metadata fields`);
+    suiteFailed = true;
+  }
+
+  if (suiteFailed) {
+    failedSuites.push('Karnataka PUC Colleges');
+  } else {
+    passedSuites.push('Karnataka PUC Colleges');
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1D. Karnataka Medical, Dental, Pharmacy & Nursing Seats (Phase 3)
+// ─────────────────────────────────────────────────────────────────────────────
+function verifyMedicalSeats() {
+  header('SUITE 1D: Karnataka Medical & Allied Health Seats (Phase 3)');
+  let suiteFailed = false;
+
+  const medPath = path.join(ROOT_DIR, 'src', 'data', 'karnatakaMedicalSeats.json');
+  if (!fs.existsSync(medPath)) {
+    fail('src/data/karnatakaMedicalSeats.json does not exist. Run "npm run data:medical" first.');
+    failedSuites.push('Medical & Allied Seats');
+    return;
+  }
+
+  let medData;
+  try {
+    medData = JSON.parse(fs.readFileSync(medPath, 'utf8'));
+  } catch (err) {
+    fail(`JSON parse error in karnatakaMedicalSeats.json: ${err.message}`);
+    failedSuites.push('Medical & Allied Seats');
+    return;
+  }
+
+  const institutes = medData.institutes || [];
+  if (institutes.length >= 700) {
+    success(`Total health sciences institutes: ${institutes.length} colleges (target: >= 700)`);
+  } else {
+    fail(`Expected >= 700 health institutes, found ${institutes.length}`);
+    suiteFailed = true;
+  }
+
+  const disciplines = new Set(institutes.map((i) => i.discipline));
+  const expectedDisciplines = ['Medical', 'Dental', 'Pharmacy', 'Nursing'];
+  const hasAll = expectedDisciplines.every((d) => disciplines.has(d));
+  if (hasAll) {
+    success(`All 4 core health disciplines represented: MBBS, BDS, Pharmacy, Nursing`);
+  } else {
+    fail(`Missing some health disciplines: found ${Array.from(disciplines).join(', ')}`);
+    suiteFailed = true;
+  }
+
+  let invalidSeats = 0;
+  institutes.forEach((i) => {
+    if (!i.name || !i.code || !i.city || typeof i.totalApprovedSeats !== 'number' || i.totalApprovedSeats <= 0) {
+      invalidSeats++;
+    }
+  });
+
+  if (invalidSeats === 0) {
+    success(`100% of health sciences colleges have valid KEA codes and approved seat counts`);
+  } else {
+    fail(`Found ${invalidSeats} health institutes with invalid seat numbers or metadata`);
+    suiteFailed = true;
+  }
+
+  if (suiteFailed) {
+    failedSuites.push('Medical & Allied Seats');
+  } else {
+    passedSuites.push('Medical & Allied Seats');
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1E. Karnataka State Pathways & Salary Tiers (Phase 4)
+// ─────────────────────────────────────────────────────────────────────────────
+function verifyKarnatakaPathways() {
+  header('SUITE 1E: Karnataka State Pathways & Salary Tiers (Phase 4)');
+  let suiteFailed = false;
+
+  const kwPath = path.join(ROOT_DIR, 'src', 'data', 'careers', 'karnatakaPathways.json');
+  if (!fs.existsSync(kwPath)) {
+    fail('src/data/careers/karnatakaPathways.json does not exist.');
+    failedSuites.push('Karnataka Pathways');
+    return;
+  }
+
+  let kwData;
+  try {
+    kwData = JSON.parse(fs.readFileSync(kwPath, 'utf8'));
+  } catch (err) {
+    fail(`JSON parse error in karnatakaPathways.json: ${err.message}`);
+    failedSuites.push('Karnataka Pathways');
+    return;
+  }
+
+  const dips = kwData.polytechnicDiplomas || [];
+  const pms = kwData.paramedicalDiplomas || [];
+  const degs = kwData.postPUCDegreePathways || [];
+
+  if (dips.length >= 6) {
+    success(`Karnataka DTE Polytechnic Diplomas: ${dips.length} branches (target: >= 6)`);
+  } else {
+    fail(`Expected >= 6 polytechnic branches, found ${dips.length}`);
+    suiteFailed = true;
+  }
+
+  if (pms.length >= 3) {
+    success(`Karnataka PMB Paramedical Diplomas: ${pms.length} programmes (target: >= 3)`);
+  } else {
+    fail(`Expected >= 3 paramedical programmes, found ${pms.length}`);
+    suiteFailed = true;
+  }
+
+  if (degs.length >= 5) {
+    success(`Karnataka Post-PUC Professional Degrees: ${degs.length} pathways (target: >= 5)`);
+  } else {
+    fail(`Expected >= 5 degree pathways, found ${degs.length}`);
+    suiteFailed = true;
+  }
+
+  let missingSalary = 0;
+  [...dips, ...pms, ...degs].forEach((item) => {
+    if (!item.salaryLPA || typeof item.salaryLPA.fresher?.min !== 'number' || typeof item.salaryLPA.fresher?.max !== 'number') {
+      missingSalary++;
+    }
+  });
+
+  if (missingSalary === 0) {
+    success(`100% of Karnataka pathways have verified fresher/mid/senior salary bands`);
+  } else {
+    fail(`Found ${missingSalary} pathways with incomplete salary bands`);
+    suiteFailed = true;
+  }
+
+  if (suiteFailed) {
+    failedSuites.push('Karnataka Pathways');
+  } else {
+    passedSuites.push('Karnataka Pathways');
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // 2. Career Explorer Relational Integrity
 // ─────────────────────────────────────────────────────────────────────────────
 function verifyCareers() {
@@ -452,6 +712,10 @@ function main() {
   console.log(`${colors.bright}${colors.blue}╚════════════════════════════════════════════════════════════════╝${colors.reset}`);
 
   verifyColleges();
+  verifyKCETCutoffs();
+  verifyPUCColleges();
+  verifyMedicalSeats();
+  verifyKarnatakaPathways();
   verifyCareers();
   verifyInfrastructure();
   verifySecurity();

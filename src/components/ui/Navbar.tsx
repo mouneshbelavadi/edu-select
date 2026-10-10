@@ -76,6 +76,8 @@ export const Navbar: React.FC = () => {
   const mobileNavLinks = [
     { href: '/', label: 'Home' },
     { href: '/colleges', label: 'Colleges' },
+    { href: '/puc-colleges', label: 'PUC Colleges (6,400+)', pill: 'PUC' },
+    { href: '/medical-allied-health', label: 'Medical & Allied Seats', pill: 'NEET' },
     { href: '/careers', label: 'Careers' },
     { href: '/pathways', label: 'Pathways' },
     { href: '/states', label: 'Engineering Colleges by State' },
@@ -200,6 +202,28 @@ export const Navbar: React.FC = () => {
                       }`}
                     >
                       Engineering Colleges by State
+                    </Link>
+                    <Link
+                      href="/puc-colleges"
+                      onClick={() => setIsExploreOpen(false)}
+                      className={`block px-3.5 py-2 text-xs font-medium transition-colors ${
+                        pathname.startsWith('/puc-colleges')
+                          ? 'text-ink font-bold bg-blue-50/60'
+                          : 'text-[#475569] hover:text-[#0F172A] hover:bg-slate-50'
+                      }`}
+                    >
+                      Karnataka PUC Colleges (6,400+)
+                    </Link>
+                    <Link
+                      href="/medical-allied-health"
+                      onClick={() => setIsExploreOpen(false)}
+                      className={`block px-3.5 py-2 text-xs font-medium transition-colors ${
+                        pathname.startsWith('/medical-allied-health')
+                          ? 'text-ink font-bold bg-blue-50/60'
+                          : 'text-[#475569] hover:text-[#0F172A] hover:bg-slate-50'
+                      }`}
+                    >
+                      Medical & Allied Health Seats
                     </Link>
                   </div>
                 </div>

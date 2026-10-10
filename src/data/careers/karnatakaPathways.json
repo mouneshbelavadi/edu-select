@@ -1,0 +1,262 @@
+{
+  "meta": {
+    "title": "Karnataka Vocational, Polytechnic & Higher Education Pathways Catalogue",
+    "version": "1.0.0",
+    "academicYear": "2025-2026",
+    "state": "Karnataka",
+    "sources": [
+      {
+        "authority": "Directorate of Technical Education (DTE) Karnataka",
+        "doc": "C-20 / C-25 Diploma Curriculum & Admission Memo",
+        "url": "https://dtek.karnataka.gov.in"
+      },
+      {
+        "authority": "Karnataka Examination Authority (KEA)",
+        "doc": "KEA UGCET & DCET Lateral Entry Guidelines",
+        "url": "https://cetonline.karnataka.gov.in/kea/"
+      },
+      {
+        "authority": "Department of Pre-University Education (DPUE)",
+        "doc": "Karnataka Pre-University Stream Specifications",
+        "url": "https://pue.karnataka.gov.in"
+      }
+    ]
+  },
+  "polytechnicDiplomas": [
+    {
+      "id": "dte-cs",
+      "code": "CS",
+      "name": "Diploma in Computer Science & Engineering",
+      "duration": "3 Years (6 Semesters)",
+      "entryEligibility": "SSLC / Class 10th pass with minimum 35% marks",
+      "curriculumAuthority": "DTE Karnataka (C-25 Model)",
+      "admissionRoute": "DTE Online Centralised Allotment based on SSLC merit",
+      "lateralEntryRoute": {
+        "exam": "KEA DCET (Diploma Common Entrance Test)",
+        "progression": "Direct 3rd Semester (2nd Year) admission to B.E./B.Tech in all Karnataka engineering colleges (RVCE, BMSCE, MSRIT, PES, UVCE)",
+        "quota": "10% supernumerary seats in engineering colleges"
+      },
+      "salaryLPA": {
+        "fresher": { "min": 2.8, "max": 6.5 },
+        "mid3to5": { "min": 6.0, "max": 14.0 },
+        "senior8plus": { "min": 14.0, "max": 35.0 }
+      },
+      "karnatakaEmployers": ["Wipro", "Infosys", "TCS", "Accenture", "Bosch", "Peenya IT / Embedded Clusters", "Startups"]
+    },
+    {
+      "id": "dte-ec",
+      "code": "EC",
+      "name": "Diploma in Electronics & Communication Engineering",
+      "duration": "3 Years (6 Semesters)",
+      "entryEligibility": "SSLC / Class 10th pass",
+      "curriculumAuthority": "DTE Karnataka",
+      "admissionRoute": "DTE Online Centralised Allotment",
+      "lateralEntryRoute": {
+        "exam": "KEA DCET",
+        "progression": "Direct 3rd Semester B.E. in ECE, EEE, Telecommunication, Instrumentation"
+      },
+      "salaryLPA": {
+        "fresher": { "min": 2.5, "max": 5.5 },
+        "mid3to5": { "min": 5.5, "max": 12.0 },
+        "senior8plus": { "min": 12.0, "max": 28.0 }
+      },
+      "karnatakaEmployers": ["BEL Bengaluru", "ISRO Satellite Centre", "Bosch", "Texas Instruments", "Electronic City Hardware Park"]
+    },
+    {
+      "id": "dte-me",
+      "code": "ME",
+      "name": "Diploma in Mechanical Engineering",
+      "duration": "3 Years (6 Semesters)",
+      "entryEligibility": "SSLC / Class 10th pass",
+      "curriculumAuthority": "DTE Karnataka",
+      "admissionRoute": "DTE Online Centralised Allotment",
+      "lateralEntryRoute": {
+        "exam": "KEA DCET",
+        "progression": "Direct 3rd Semester B.E. in Mechanical, Automobile, Industrial, Manufacturing"
+      },
+      "salaryLPA": {
+        "fresher": { "min": 2.2, "max": 4.8 },
+        "mid3to5": { "min": 4.5, "max": 10.0 },
+        "senior8plus": { "min": 10.0, "max": 22.0 }
+      },
+      "karnatakaEmployers": ["Toyota Kirloskar (Bidadi)", "TVS Motor (Hosur belt)", "BEML", "HAL", "Peenya Industrial Hub", "Mahindra"]
+    },
+    {
+      "id": "dte-ce",
+      "code": "CE",
+      "name": "Diploma in Civil Engineering",
+      "duration": "3 Years (6 Semesters)",
+      "entryEligibility": "SSLC / Class 10th pass",
+      "curriculumAuthority": "DTE Karnataka",
+      "admissionRoute": "DTE Online Centralised Allotment",
+      "lateralEntryRoute": {
+        "exam": "KEA DCET",
+        "progression": "Direct 3rd Semester B.E. in Civil, Construction Tech, Environmental"
+      },
+      "salaryLPA": {
+        "fresher": { "min": 2.2, "max": 4.5 },
+        "mid3to5": { "min": 4.5, "max": 9.5 },
+        "senior8plus": { "min": 9.5, "max": 20.0 }
+      },
+      "karnatakaEmployers": ["BMRCL (Namma Metro)", "Karnataka PWD", "Water Resources Dept (WRD)", "Sobha", "Prestige", "Brigade"]
+    },
+    {
+      "id": "dte-ee",
+      "code": "EE",
+      "name": "Diploma in Electrical & Electronics Engineering",
+      "duration": "3 Years (6 Semesters)",
+      "entryEligibility": "SSLC / Class 10th pass",
+      "curriculumAuthority": "DTE Karnataka",
+      "admissionRoute": "DTE Online Centralised Allotment",
+      "lateralEntryRoute": {
+        "exam": "KEA DCET",
+        "progression": "Direct 3rd Semester B.E. in EEE"
+      },
+      "salaryLPA": {
+        "fresher": { "min": 2.4, "max": 5.0 },
+        "mid3to5": { "min": 5.0, "max": 11.0 },
+        "senior8plus": { "min": 11.0, "max": 24.0 }
+      },
+      "karnatakaEmployers": ["BESCOM", "KPTCL", "KPCL", "Schneider Electric", "ABB Bengaluru", "Siemens"]
+    },
+    {
+      "id": "dte-mt",
+      "code": "MT",
+      "name": "Diploma in Mechatronics Engineering",
+      "duration": "3 Years (6 Semesters)",
+      "entryEligibility": "SSLC / Class 10th pass",
+      "curriculumAuthority": "DTE Karnataka",
+      "admissionRoute": "DTE Online Centralised Allotment",
+      "lateralEntryRoute": {
+        "exam": "KEA DCET",
+        "progression": "Direct 3rd Semester B.E. in Mechatronics, Robotics, Mechanical, Automation"
+      },
+      "salaryLPA": {
+        "fresher": { "min": 2.6, "max": 5.8 },
+        "mid3to5": { "min": 5.8, "max": 13.0 },
+        "senior8plus": { "min": 13.0, "max": 26.0 }
+      },
+      "karnatakaEmployers": ["Fanuc India", "ABB Robotics", "Bosch Rexroth", "Continental", "Automated manufacturing lines"]
+    }
+  ],
+  "paramedicalDiplomas": [
+    {
+      "id": "pmb-dmlt",
+      "code": "DMLT",
+      "name": "Diploma in Medical Laboratory Technology",
+      "duration": "3 Years (2 Years for PUC Science graduates)",
+      "board": "Paramedical Board (PMB) Karnataka",
+      "entryEligibility": "SSLC pass or 2nd PUC Science",
+      "salaryLPA": {
+        "fresher": { "min": 2.0, "max": 3.8 },
+        "mid3to5": { "min": 3.8, "max": 7.0 },
+        "senior8plus": { "min": 7.0, "max": 14.0 }
+      },
+      "hospitals": ["Victoria Hospital", "Bowring & Lady Curzon", "Narayana Health", "Manipal Hospitals", "Anand Diagnostic"]
+    },
+    {
+      "id": "pmb-dmrt",
+      "code": "DMRT",
+      "name": "Diploma in Medical Radiography Technology (X-Ray / Imaging)",
+      "duration": "3 Years",
+      "board": "Paramedical Board (PMB) Karnataka",
+      "entryEligibility": "SSLC pass or 2nd PUC Science",
+      "salaryLPA": {
+        "fresher": { "min": 2.2, "max": 4.2 },
+        "mid3to5": { "min": 4.2, "max": 8.0 },
+        "senior8plus": { "min": 8.0, "max": 16.0 }
+      },
+      "hospitals": ["Kidwai Memorial Institute of Oncology", "Apollo Hospitals", "Fortis", "Aster CMI"]
+    },
+    {
+      "id": "pmb-ddt",
+      "code": "DDT",
+      "name": "Diploma in Dialysis Technology",
+      "duration": "3 Years",
+      "board": "Paramedical Board (PMB) Karnataka",
+      "entryEligibility": "SSLC pass or 2nd PUC Science",
+      "salaryLPA": {
+        "fresher": { "min": 2.2, "max": 4.0 },
+        "mid3to5": { "min": 4.0, "max": 7.5 },
+        "senior8plus": { "min": 7.5, "max": 15.0 }
+      },
+      "hospitals": ["Institute of Nephro Urology (INU) Bengaluru", "NU Hospitals", "Narayana Health"]
+    }
+  ],
+  "postPUCDegreePathways": [
+    {
+      "id": "kea-mbbs",
+      "degree": "MBBS",
+      "name": "Bachelor of Medicine and Bachelor of Surgery",
+      "duration": "5.5 Years (including 1-year mandatory rotating internship)",
+      "admissionExam": "NEET UG (KEA State Counselling for 85% State Quota)",
+      "eligibility": "10+2 / 2nd PUC with Physics, Chemistry, Biology & English (min 50% for GM, 40% for SC/ST/OBC)",
+      "collegesInState": "67 Medical Colleges (24 Government, 32 Private Unaided, 11 Deemed/Private Univ)",
+      "karnatakaCareerSectors": ["Government Primary Health Centres (PHCs)", "District Hospitals", "Private Super-Speciality", "MD/MS Post-Graduation"],
+      "salaryLPA": {
+        "fresher": { "min": 6.5, "max": 12.0 },
+        "mid3to5": { "min": 12.0, "max": 25.0 },
+        "senior8plus": { "min": 25.0, "max": 75.0 }
+      }
+    },
+    {
+      "id": "kea-bds",
+      "degree": "BDS",
+      "name": "Bachelor of Dental Surgery",
+      "duration": "5 Years (including 1-year internship)",
+      "admissionExam": "NEET UG (KEA State Quota Counselling)",
+      "eligibility": "10+2 / 2nd PUC with PCB",
+      "collegesInState": "28 Dental Colleges (2 Government, 26 Private)",
+      "salaryLPA": {
+        "fresher": { "min": 3.5, "max": 6.0 },
+        "mid3to5": { "min": 6.0, "max": 14.0 },
+        "senior8plus": { "min": 14.0, "max": 35.0 }
+      }
+    },
+    {
+      "id": "kea-bpharm",
+      "degree": "B.Pharm / Pharm.D",
+      "name": "Bachelor of Pharmacy (4 yrs) / Doctor of Pharmacy (6 yrs)",
+      "duration": "B.Pharm: 4 Years; Pharm.D: 6 Years",
+      "admissionExam": "KCET (KEA Pharmacy Ranking)",
+      "eligibility": "10+2 / 2nd PUC with PCM or PCB",
+      "collegesInState": "43 Pharmacy Colleges in KEA Allotment",
+      "salaryLPA": {
+        "fresher": { "min": 3.0, "max": 6.0 },
+        "mid3to5": { "min": 6.0, "max": 13.0 },
+        "senior8plus": { "min": 13.0, "max": 30.0 }
+      },
+      "karnatakaEmployers": ["Biocon", "Syngene", "AstraZeneca Bengaluru", "Micro Labs", "Strides Pharma", "Medreich"]
+    },
+    {
+      "id": "kea-nursing",
+      "degree": "B.Sc Nursing",
+      "name": "Bachelor of Science in Nursing",
+      "duration": "4 Years",
+      "admissionExam": "KCET (KEA B.Sc Nursing Ranking)",
+      "eligibility": "10+2 / 2nd PUC with PCB (min 45% aggregate)",
+      "collegesInState": "650 Nursing Colleges affiliated with RGUHS",
+      "salaryLPA": {
+        "fresher": { "min": 2.4, "max": 4.5 },
+        "mid3to5": { "min": 4.5, "max": 9.0 },
+        "senior8plus": { "min": 9.0, "max": 24.0 }
+      },
+      "globalOpportunities": "High overseas recruitment to NHS UK, Germany, USA (NCLEX-RN), and Gulf countries."
+    },
+    {
+      "id": "kea-bsc-agri",
+      "degree": "B.Sc (Hons) Agriculture",
+      "name": "Bachelor of Science (Honours) in Agriculture",
+      "duration": "4 Years",
+      "admissionExam": "KCET + Practical Agriculture Test (25% Agri Quota)",
+      "eligibility": "10+2 / 2nd PUC with PCMB or Inter Agriculture",
+      "collegesInState": "UAS Bengaluru (GKVK), UAS Dharwad, UAHS Shivamogga, UHS Bagalkote",
+      "salaryLPA": {
+        "fresher": { "min": 3.2, "max": 6.0 },
+        "mid3to5": { "min": 6.0, "max": 12.0 },
+        "senior8plus": { "min": 12.0, "max": 25.0 }
+      },
+      "karnatakaEmployers": ["Dept of Agriculture (Govt AAO / AO posts)", "NABARD", "Nationalized Banks (Agricultural Field Officer via IBPS SO)", "Seed & Agrochem firms"]
+    }
+  ]
+}

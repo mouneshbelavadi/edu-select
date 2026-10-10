@@ -946,18 +946,88 @@ export default async function CareerDetailPage({ params, searchParams }: CareerP
                 initialSubjects={itemSubjects ? itemSubjects.split(',') : (item.keySubjects || item.subjectsLiked)}
                 initialQuestion={`I want to explore ${itemTitle}. What are my next best options and preparation steps?`}
               />
-              <Link
-                href="/colleges"
-                className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl text-center shadow-md transition-colors"
-              >
-                Find Matching Colleges
-              </Link>
-              <Link
-                href="/kcet-2026-predictor"
-                className="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl text-center transition-colors"
-              >
-                Check Cutoff Predictor
-              </Link>
+              {(() => {
+                const isPuStream =
+                  item.category?.includes('PU stream') ||
+                  item.category?.includes('Class 11-12') ||
+                  item.level === 'CLASS_10' ||
+                  id.startsWith('a-pcm') ||
+                  id.startsWith('a-pcb') ||
+                  id.startsWith('a-comm') ||
+                  id.startsWith('a-arts');
+
+                const isMedical =
+                  item.clusterIds?.includes('medicine-healthcare') ||
+                  id.includes('mbbs') ||
+                  id.includes('bds') ||
+                  id.includes('nursing') ||
+                  id.includes('pharmacy') ||
+                  (item.name || '').toLowerCase().includes('medical');
+
+                if (isPuStream) {
+                  const pucStreamParam =
+                    (item.name || '').toLowerCase().includes('commerce') || id.startsWith('a-comm')
+                      ? 'Commerce'
+                      : (item.name || '').toLowerCase().includes('arts') || id.startsWith('a-arts')
+                      ? 'Arts'
+                      : 'Science';
+
+                  return (
+                    <>
+                      <Link
+                        href={`/puc-colleges?stream=${pucStreamParam}`}
+                        className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl text-center shadow-md transition-colors flex items-center justify-center gap-1.5"
+                      >
+                        <span>🏛️</span>
+                        <span>Explore 6,400+ PU Colleges ({pucStreamParam})</span>
+                      </Link>
+                      <Link
+                        href="/pathways"
+                        className="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl text-center transition-colors"
+                      >
+                        View Karnataka Polytechnic Pathways
+                      </Link>
+                    </>
+                  );
+                }
+
+                if (isMedical) {
+                  return (
+                    <>
+                      <Link
+                        href="/medical-allied-health"
+                        className="w-full py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs rounded-xl text-center shadow-md transition-colors flex items-center justify-center gap-1.5"
+                      >
+                        <span>🩺</span>
+                        <span>Explore 788 Medical & Allied Seats</span>
+                      </Link>
+                      <Link
+                        href="/kcet-2026-predictor"
+                        className="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl text-center transition-colors"
+                      >
+                        Check KCET Cutoff Predictor
+                      </Link>
+                    </>
+                  );
+                }
+
+                return (
+                  <>
+                    <Link
+                      href="/colleges"
+                      className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl text-center shadow-md transition-colors"
+                    >
+                      Find Matching Engineering Colleges
+                    </Link>
+                    <Link
+                      href="/kcet-2026-predictor"
+                      className="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl text-center transition-colors"
+                    >
+                      Check Cutoff Predictor
+                    </Link>
+                  </>
+                );
+              })()}
             </div>
           </div>
         </aside>

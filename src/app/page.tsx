@@ -260,8 +260,31 @@ export default function HomePage() {
                 </OpenAiDrawerButton>
               </div>
 
+              {/* Direct Quick Access for Karnataka Directories */}
+              <div className="mt-6 flex flex-wrap items-center gap-2">
+                <span className="text-xs font-bold text-ink-900 mr-1">Quick Access:</span>
+                <Link
+                  href="/puc-colleges"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-bold border border-blue-200 transition-colors shadow-2xs"
+                >
+                  <span>🏛️ Karnataka PUC Colleges (6,400+)</span>
+                </Link>
+                <Link
+                  href="/kcet-2026-predictor"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold border border-indigo-200 transition-colors shadow-2xs"
+                >
+                  <span>⚡ KCET 2026 Predictor</span>
+                </Link>
+                <Link
+                  href="/medical-allied-health"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-bold border border-rose-200 transition-colors shadow-2xs"
+                >
+                  <span>🩺 Medical & Allied Seats (788)</span>
+                </Link>
+              </div>
+
               {/* Real Numbers Computed at Build Time */}
-              <p className="mt-7 text-xs sm:text-sm text-[#475569] font-medium flex items-center gap-2 flex-wrap">
+              <p className="mt-6 text-xs sm:text-sm text-[#475569] font-medium flex items-center gap-2 flex-wrap">
                 <span>{totalColleges} engineering colleges</span>
                 <span className="text-slate-300" aria-hidden="true">·</span>
                 <span>{totalCareerPaths} career paths</span>

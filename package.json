@@ -11,6 +11,9 @@
     "db:migrate": "prisma migrate deploy",
     "db:seed": "prisma db seed",
     "data:colleges": "node scripts/build-colleges.cjs",
+    "data:kcet": "node scripts/build-kcet-cutoffs.cjs",
+    "data:puc": "node scripts/build-puc-colleges.cjs",
+    "data:medical": "python scripts/build-medical-colleges.py",
     "data:check": "node scripts/check-career-data.cjs",
     "verify:all": "node scripts/verify-all.cjs",
     "test:all": "node scripts/verify-all.cjs"
@@ -20,6 +23,8 @@
   },
   "dependencies": {
     "@google/genai": "^2.27.0",
+    "@neon/config": "^1.8.6",
+    "@neon/env": "^1.5.3",
     "@prisma/client": "^5.22.0",
     "bcryptjs": "^2.4.3",
     "next": "14.2.15",

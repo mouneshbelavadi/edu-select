@@ -44,3 +44,7 @@ next-env.d.ts
 
 # local presentation script
 LOOM_WALKTHROUGH_SCRIPT.md
+.neon
+.agents/
+skills-lock.json
+raw-data/

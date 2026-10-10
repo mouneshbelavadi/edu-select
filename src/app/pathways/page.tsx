@@ -16,9 +16,11 @@ import {
 import pathwaysData from '@/data/careers/pathways.json';
 import branchesData from '@/data/careers/engineeringBranches.json';
 import govtData from '@/data/careers/govtJobs.json';
+import karnatakaPathwaysData from '@/data/careers/karnatakaPathways.json';
 
 const STAGES = [
   { id: '10th', label: 'After Class 10th', subtitle: 'Streams, Polytechnic & ITI Trades', icon: BookOpenIcon },
+  { id: 'karnataka', label: 'Karnataka Pathways', subtitle: 'DTE Polytechnic, DCET & Health', icon: ShieldCheckIcon },
   { id: '12th', label: 'After Class 12th / PU', subtitle: 'Engineering, Medicine, Finance & Law', icon: GraduationCapIcon },
   { id: 'iti', label: 'After ITI', subtitle: 'Apprenticeships, Lateral Entry & PSUs', icon: WrenchIcon },
   { id: 'diploma', label: 'After Diploma', subtitle: 'Lateral B.Tech & Junior Engineer (JE)', icon: CpuIcon },
@@ -183,6 +185,169 @@ export default function PathwaysDashboardPage() {
                       <span className="text-blue-600 font-bold group-hover:underline">View Roadmap →</span>
                     </div>
                   </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* KARNATAKA STATE SPECIFIC PATHWAYS */}
+        {activeStage === 'karnataka' && (
+          <div className="flex flex-col gap-8 animate-in fade-in duration-200">
+            <div className="border-b border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <span className="text-xs font-extrabold text-blue-600 uppercase tracking-wider">Karnataka Technical & Higher Education</span>
+                <h2 className="text-2xl font-black text-slate-900 mt-1">Karnataka State Pathways & Lateral Entry Vectors</h2>
+                <p className="text-xs text-slate-500 mt-1">
+                  Official DTE C-25 Polytechnic Diplomas, KEA DCET Lateral Entry into 2nd year B.Tech, PMB Paramedical, and Health Sciences degrees.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2 shrink-0">
+                <Link
+                  href="/puc-colleges"
+                  className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-bold rounded-xl border border-blue-200 transition-all"
+                >
+                  Explore 6,400+ PU Colleges →
+                </Link>
+                <Link
+                  href="/medical-allied-health"
+                  className="px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-bold rounded-xl border border-rose-200 transition-all"
+                >
+                  Medical & Allied Seats (788) →
+                </Link>
+              </div>
+            </div>
+
+            {/* 1. DTE 3-Year Polytechnic Diplomas */}
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-black text-slate-900">1. DTE 3-Year Polytechnic Diplomas & DCET Lateral Progression</h3>
+                  <p className="text-xs text-slate-500">
+                    Admission after Class 10th via DTE online merit. Qualifies for direct 2nd-year B.E./B.Tech via KEA DCET.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {(karnatakaPathwaysData.polytechnicDiplomas || []).map((dip: any) => (
+                  <div
+                    key={dip.id}
+                    className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between gap-4 hover:border-blue-400 transition-all"
+                  >
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-black px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-mono">
+                          DTE: {dip.code}
+                        </span>
+                        <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+                          ₹{dip.salaryLPA?.fresher?.min}–₹{dip.salaryLPA?.fresher?.max} LPA
+                        </span>
+                      </div>
+                      <h4 className="text-base font-black text-slate-900 mt-1 leading-snug">{dip.name}</h4>
+                      <p className="text-xs text-slate-500">{dip.duration} • {dip.entryEligibility}</p>
+
+                      {dip.lateralEntryRoute && (
+                        <div className="mt-2 bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs flex flex-col gap-1">
+                          <span className="font-bold text-blue-700">🚀 {dip.lateralEntryRoute.exam}</span>
+                          <span className="text-slate-600 text-[11px] leading-relaxed">
+                            {dip.lateralEntryRoute.progression}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
+                      <div className="text-[11px] text-slate-500">
+                        <span className="font-semibold text-slate-700">Top Recruiters: </span>
+                        {(dip.karnatakaEmployers || []).slice(0, 4).join(', ')}
+                      </div>
+                      <Link
+                        href="/kcet-2026-predictor"
+                        className="text-xs font-bold text-blue-600 hover:text-blue-800"
+                      >
+                        Predict Engineering Colleges →
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 2. Post-PUC Professional & Health Sciences */}
+            <div className="flex flex-col gap-4 pt-4 border-t border-slate-200">
+              <div>
+                <h3 className="text-lg font-black text-slate-900">2. Post-PUC Professional Degrees & KEA Counselling</h3>
+                <p className="text-xs text-slate-500">
+                  Medical, Dental, Pharmacy, B.Sc Nursing, and Agricultural Sciences pathways via NEET UG & KCET.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {(karnatakaPathwaysData.postPUCDegreePathways || []).map((deg: any) => (
+                  <div
+                    key={deg.id}
+                    className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between gap-4 hover:border-rose-300 transition-all"
+                  >
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-black px-2 py-0.5 rounded bg-rose-50 text-rose-700 font-mono">
+                          {deg.degree}
+                        </span>
+                        <span className="text-xs font-bold text-slate-700">
+                          ₹{deg.salaryLPA?.fresher?.min}–₹{deg.salaryLPA?.fresher?.max} LPA
+                        </span>
+                      </div>
+                      <h4 className="text-base font-black text-slate-900 mt-1 leading-snug">{deg.name}</h4>
+                      <p className="text-xs text-slate-500">{deg.duration} • Exam: {deg.admissionExam}</p>
+                      <p className="text-xs text-slate-600 bg-surface-50 p-2.5 rounded-xl border border-surface-200/60 leading-relaxed">
+                        {deg.collegesInState}
+                      </p>
+                    </div>
+
+                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                      <Link
+                        href="/medical-allied-health"
+                        className="text-xs font-bold text-rose-600 hover:text-rose-800"
+                      >
+                        View KEA Seat Matrix →
+                      </Link>
+                      <span className="text-[11px] text-slate-400 font-medium">{deg.degree}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 3. Paramedical Diplomas */}
+            <div className="flex flex-col gap-4 pt-4 border-t border-slate-200">
+              <div>
+                <h3 className="text-lg font-black text-slate-900">3. Paramedical Board (PMB) Karnataka Diplomas</h3>
+                <p className="text-xs text-slate-500">
+                  Short-cycle 3-year paramedical programmes after SSLC / PUC leading to clinical technologist roles.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                {(karnatakaPathwaysData.paramedicalDiplomas || []).map((pm: any) => (
+                  <div
+                    key={pm.id}
+                    className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between gap-4"
+                  >
+                    <div className="flex flex-col gap-2">
+                      <span className="text-xs font-black text-teal-700 bg-teal-50 px-2 py-0.5 rounded w-fit">
+                        {pm.code}
+                      </span>
+                      <h4 className="text-sm font-black text-slate-900 mt-1">{pm.name}</h4>
+                      <p className="text-xs text-slate-500">{pm.duration} • {pm.board}</p>
+                      <div className="text-xs text-slate-700 font-bold mt-1">
+                        Salary: ₹{pm.salaryLPA?.fresher?.min}–₹{pm.salaryLPA?.fresher?.max} LPA (Fresher)
+                      </div>
+                    </div>
+                    <div className="text-[11px] text-slate-500 border-t border-slate-100 pt-2">
+                      Associated Teaching Hospitals: {(pm.hospitals || []).join(', ')}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>

@@ -37,6 +37,129 @@ export function formatCostInLakhs(cost?: { min: number; max: number } | null): s
   return `${minStr} – ${maxStr}`;
 }
 
+export function getCollegeDirectoryLink(card: CareerCardType) {
+  const titleLower = card.title.toLowerCase();
+  const subtitleLower = (card.subtitle || '').toLowerCase();
+  const idLower = card.id.toLowerCase();
+
+  // 1. Class 11-12 / PU streams (After 10th Science, Commerce, Arts)
+  const isPuStream =
+    subtitleLower.includes('pu stream') ||
+    subtitleLower.includes('class 11-12') ||
+    card.level === 'CLASS_10' ||
+    idLower.startsWith('a-pcm') ||
+    idLower.startsWith('a-pcb') ||
+    idLower.startsWith('a-comm') ||
+    idLower.startsWith('a-arts');
+
+  if (isPuStream) {
+    if (
+      titleLower.includes('pcmc') ||
+      titleLower.includes('computer science') ||
+      idLower === 'a-pcmc'
+    ) {
+      return {
+        href: '/puc-colleges?stream=Science',
+        label: 'Explore PU Colleges (Science / PCMC)',
+        tag: '6,417 PU Colleges',
+        icon: '🏛️',
+      };
+    }
+    if (
+      titleLower.includes('pcmb') ||
+      titleLower.includes('biology') ||
+      idLower === 'a-pcmb' ||
+      idLower === 'a-pcb'
+    ) {
+      return {
+        href: '/puc-colleges?stream=Science',
+        label: 'Explore PU Colleges (Science / PCMB)',
+        tag: '6,417 PU Colleges',
+        icon: '🏛️',
+      };
+    }
+    if (
+      titleLower.includes('pcm') ||
+      titleLower.includes('science') ||
+      idLower === 'a-pcm'
+    ) {
+      return {
+        href: '/puc-colleges?stream=Science',
+        label: 'Explore PU Colleges (Science / PCM)',
+        tag: '6,417 PU Colleges',
+        icon: '🏛️',
+      };
+    }
+    if (titleLower.includes('commerce') || idLower.startsWith('a-comm')) {
+      return {
+        href: '/puc-colleges?stream=Commerce',
+        label: 'Explore PU Colleges (Commerce)',
+        tag: '6,417 PU Colleges',
+        icon: '🏛️',
+      };
+    }
+    if (
+      titleLower.includes('arts') ||
+      titleLower.includes('humanities') ||
+      idLower.startsWith('a-arts')
+    ) {
+      return {
+        href: '/puc-colleges?stream=Arts',
+        label: 'Explore PU Colleges (Arts)',
+        tag: '6,417 PU Colleges',
+        icon: '🏛️',
+      };
+    }
+    if (
+      titleLower.includes('polytechnic') ||
+      titleLower.includes('diploma') ||
+      idLower.includes('diploma')
+    ) {
+      return {
+        href: '/pathways',
+        label: 'Explore Karnataka Polytechnic Pathways',
+        tag: 'Karnataka DTE',
+        icon: '🧭',
+      };
+    }
+  }
+
+  // 2. Medicine & Healthcare (MBBS, BDS, Nursing, Pharmacy)
+  if (
+    card.clusterIds?.includes('medicine-healthcare') ||
+    titleLower.includes('mbbs') ||
+    titleLower.includes('dental') ||
+    titleLower.includes('bds') ||
+    titleLower.includes('pharmacy') ||
+    titleLower.includes('nursing')
+  ) {
+    return {
+      href: '/medical-allied-health',
+      label: 'Explore 788 Karnataka Medical & Allied Seats',
+      tag: 'KEA Seat Matrix',
+      icon: '🩺',
+    };
+  }
+
+  // 3. Engineering Branches or Degrees
+  if (
+    card.kind === 'branch' ||
+    card.clusterIds?.includes('engineering-tech') ||
+    card.clusterIds?.includes('computing-ai') ||
+    titleLower.includes('engineering') ||
+    titleLower.includes('b.tech')
+  ) {
+    return {
+      href: '/colleges',
+      label: 'Explore 455 Engineering Colleges',
+      tag: 'NIRF & Cutoffs',
+      icon: '🎓',
+    };
+  }
+
+  return null;
+}
+
 export const CareerCardComponent: React.FC<CareerCardComponentProps> = ({
   card,
   selectedSubjects = [],
@@ -103,6 +226,7 @@ export const CareerCardComponent: React.FC<CareerCardComponentProps> = ({
   });
 
   const costFormatted = formatCostInLakhs(card.totalCostINR);
+  const collegeLink = getCollegeDirectoryLink(card);
 
   // Preserve context in URL to pass to detail page and AI counsellor
   const queryParams = new URLSearchParams();
@@ -240,6 +364,25 @@ export const CareerCardComponent: React.FC<CareerCardComponentProps> = ({
                 +{card.examNames.length - 3} more
               </span>
             )}
+          </div>
+        )}
+        {/* Quick College / Institute Directory Explore Button */}
+        {collegeLink && (
+          <div className="pt-2">
+            <Link
+              href={collegeLink.href}
+              onClick={(e) => e.stopPropagation()}
+              className="relative z-20 flex items-center justify-between px-3 py-2 rounded-xl bg-indigo-50/90 hover:bg-indigo-100 text-indigo-950 border border-indigo-200 text-xs font-semibold transition-all group/puc shadow-xs"
+              title={collegeLink.label}
+            >
+              <div className="flex items-center gap-2 truncate">
+                <span className="text-sm shrink-0">{collegeLink.icon}</span>
+                <span className="truncate font-bold text-[11.5px]">{collegeLink.label}</span>
+              </div>
+              <span className="text-indigo-600 group-hover/puc:translate-x-1 transition-transform font-bold text-xs shrink-0 ml-1">
+                →
+              </span>
+            </Link>
           </div>
         )}
       </div>

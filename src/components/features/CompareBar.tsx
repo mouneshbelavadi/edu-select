@@ -10,7 +10,7 @@ export const CompareBar: React.FC = () => {
   const pathname = usePathname();
   const { selectedColleges, removeCollege, clearColleges } = useCompareStore();
 
-  if (pathname.startsWith('/admin') || selectedColleges.length === 0) return null;
+  if (pathname.startsWith('/admin') || pathname.startsWith('/medical-allied-health') || selectedColleges.length === 0) return null;
 
   const compareUrl = `/compare?ids=${selectedColleges.map((c) => c.id).join(',')}`;
   const canCompare = selectedColleges.length >= 2;
