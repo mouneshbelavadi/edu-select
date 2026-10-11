@@ -7037,7 +7037,7 @@
       ],
       "category": "Transnational Medicine & Clinical Licensure",
       "clusterIds": [
-        "medicine-healthcare"
+        "medicine-health"
       ],
       "name": "USMLE Clinical Licensure & US Residency Pathway",
       "eligibility": "Enrolled in or graduated from an ECFMG-recognized medical school (MBBS)",
@@ -7132,7 +7132,7 @@
       ],
       "category": "Transnational Medicine & Clinical Licensure",
       "clusterIds": [
-        "medicine-healthcare"
+        "medicine-health"
       ],
       "name": "PLAB / UK MLA Pathway (General Medical Council UK)",
       "eligibility": "MBBS from recognized medical school + IELTS (7.5 overall) or OET Medicine (Grade B)",
@@ -7223,7 +7223,7 @@
       ],
       "category": "Transnational Nursing & Allied Health",
       "clusterIds": [
-        "medicine-healthcare"
+        "medicine-health"
       ],
       "name": "B.Sc Nursing International Mobility (NCLEX-RN & CGFNS VisaScreen)",
       "eligibility": "B.Sc Nursing (4-year degree) + State Nursing Council Registration in India",
@@ -7315,7 +7315,7 @@
       "clusterIds": [
         "engineering-tech",
         "skilled-trades",
-        "medicine-healthcare"
+        "medicine-health"
       ],
       "name": "Japan Specified Skilled Worker (SSW / Tokutei Ginou)",
       "eligibility": "Class 10 + ITI / Diploma / Degree; JLPT N4 or JFT-Basic language qualification (JLPT N3 preferred by employers; Nursing Care requires Nursing Care Japanese Evaluation Test 73% passing standard)",

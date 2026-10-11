@@ -106,8 +106,8 @@ export const Navbar: React.FC = () => {
             className="flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1E2A78] rounded-md shrink-0 mr-2"
             aria-label="EduSelect Home"
           >
-            <div className="w-8 h-8 rounded-[8px] bg-ink text-white flex items-center justify-center shadow-xs">
-              <GraduationCapIcon className="w-5 h-5 text-white" />
+            <div className="w-8 h-8 min-w-[32px] min-h-[32px] rounded-[8px] bg-ink text-white flex items-center justify-center shadow-xs">
+              <GraduationCapIcon className="w-5 h-5 text-white" size={20} />
             </div>
             <span className="font-bold text-xl tracking-tight text-[#0F172A]">
               Edu<span className="text-ink">Select</span>

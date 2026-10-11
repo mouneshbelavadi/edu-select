@@ -1,0 +1,142 @@
+{
+  "colleges": {
+    "total": 455,
+    "schemaErrors": [],
+    "duplicates": [
+      {
+        "id1": "col-194",
+        "name1": "B.N.M. Institute of Technology, Bangalore",
+        "id2": "col-203",
+        "name2": "R.N.S. Institute of Technology, Bangalore",
+        "issue": "Near-duplicate name"
+      },
+      {
+        "id1": "col-203",
+        "name1": "R.N.S. Institute of Technology, Bangalore",
+        "id2": "col-228",
+        "name2": "R.R. Institute of Technology, Bangalore",
+        "issue": "Near-duplicate name"
+      }
+    ],
+    "invalidValues": [],
+    "spotCheck": []
+  },
+  "puc": {
+    "total": 6417,
+    "schemaErrors": 0,
+    "duplicates": [],
+    "districtsCount": 32
+  },
+  "medical": {
+    "total": 788,
+    "schemaErrors": [],
+    "duplicates": [],
+    "invalidValues": [],
+    "spotCheck": []
+  },
+  "kcet": {
+    "total": 1218,
+    "schemaErrors": 0,
+    "invalidValues": 0,
+    "crossLinkMissesCount": 1201,
+    "sampleUnmapped": [
+      {
+        "collegeCode": "E005",
+        "collegeName": "RV College of Engineering (RVCE)",
+        "slug": "rv-college-of-engineering-rvce-e005-bengaluru"
+      },
+      {
+        "collegeCode": "E005",
+        "collegeName": "RV College of Engineering (RVCE)",
+        "slug": "rv-college-of-engineering-rvce-e005-bengaluru"
+      },
+      {
+        "collegeCode": "E005",
+        "collegeName": "RV College of Engineering (RVCE)",
+        "slug": "rv-college-of-engineering-rvce-e005-bengaluru"
+      },
+      {
+        "collegeCode": "E005",
+        "collegeName": "RV College of Engineering (RVCE)",
+        "slug": "rv-college-of-engineering-rvce-e005-bengaluru"
+      },
+      {
+        "collegeCode": "E009",
+        "collegeName": "PES University 100 Feet Ring Road",
+        "slug": "pes-university-100-feet-ring-road-e009-bengaluru"
+      },
+      {
+        "collegeCode": "E003",
+        "collegeName": "BMS College of Engineering (BMSCE)",
+        "slug": "bms-college-of-engineering-bmsce-e003-bengaluru"
+      },
+      {
+        "collegeCode": "E006",
+        "collegeName": "M S Ramaiah Institute of Technology (MSRIT)",
+        "slug": "m-s-ramaiah-institute-of-technology-msrit-e006-bengaluru"
+      },
+      {
+        "collegeCode": "E006",
+        "collegeName": "M S Ramaiah Institute of Technology (MSRIT)",
+        "slug": "m-s-ramaiah-institute-of-technology-msrit-e006-bengaluru"
+      },
+      {
+        "collegeCode": "E006",
+        "collegeName": "M S Ramaiah Institute of Technology (MSRIT)",
+        "slug": "m-s-ramaiah-institute-of-technology-msrit-e006-bengaluru"
+      },
+      {
+        "collegeCode": "E318",
+        "collegeName": "BMS UNIVERSITY BULL TEMPLE ROAD",
+        "slug": "bms-university-bull-temple-road-e318-bengaluru"
+      },
+      {
+        "collegeCode": "E048",
+        "collegeName": "BMS College of Engineering (BMSCE)",
+        "slug": "bms-college-of-engineering-bmsce-e048-bengaluru"
+      },
+      {
+        "collegeCode": "E006",
+        "collegeName": "M S Ramaiah Institute of Technology (MSRIT)",
+        "slug": "m-s-ramaiah-institute-of-technology-msrit-e006-bengaluru"
+      },
+      {
+        "collegeCode": "E048",
+        "collegeName": "BMS College of Engineering (BMSCE)",
+        "slug": "bms-college-of-engineering-bmsce-e048-bengaluru"
+      },
+      {
+        "collegeCode": "E006",
+        "collegeName": "M S Ramaiah Institute of Technology (MSRIT)",
+        "slug": "m-s-ramaiah-institute-of-technology-msrit-e006-bengaluru"
+      },
+      {
+        "collegeCode": "E005",
+        "collegeName": "RV College of Engineering (RVCE)",
+        "slug": "rv-college-of-engineering-rvce-e005-bengaluru"
+      }
+    ]
+  },
+  "careers": {
+    "totalPathways": 108,
+    "brokenLinks": [
+      {
+        "pathwayId": "p-usmle-medical",
+        "brokenClusterId": "medicine-healthcare"
+      },
+      {
+        "pathwayId": "p-plab-uk-medical",
+        "brokenClusterId": "medicine-healthcare"
+      },
+      {
+        "pathwayId": "p-nursing-usa-nclex",
+        "brokenClusterId": "medicine-healthcare"
+      },
+      {
+        "pathwayId": "p-japan-ssw-skilled",
+        "brokenClusterId": "medicine-healthcare"
+      }
+    ],
+    "schemaErrors": []
+  }
+}

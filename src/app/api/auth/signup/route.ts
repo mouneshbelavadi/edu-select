@@ -13,7 +13,7 @@ const signupSchema = z.object({
 
 export async function POST(request: NextRequest) {
   if (process.env.NODE_ENV === 'production' && !process.env.DATABASE_URL) {
-    return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+    return NextResponse.json({ error: { message: 'Database not configured' } }, { status: 503 });
   }
 
   try {
@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
       );
     } catch (err: any) {
       if (err.message === 'Database not configured' || err.statusCode === 503) {
-        return NextResponse.json({ error: 'Database not configured' }, { status: 503 });
+        return NextResponse.json({ error: { message: 'Database not configured' } }, { status: 503 });
       }
       if (err.message.includes('already exists')) {
         return NextResponse.json(

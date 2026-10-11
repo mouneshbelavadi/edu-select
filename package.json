@@ -16,7 +16,8 @@
     "data:medical": "python scripts/build-medical-colleges.py",
     "data:check": "node scripts/check-career-data.cjs",
     "verify:all": "node scripts/verify-all.cjs",
-    "test:all": "node scripts/verify-all.cjs"
+    "test:all": "node scripts/verify-all.cjs",
+    "test:500": "node scripts/run-500-tests.cjs"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"

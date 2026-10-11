@@ -54,20 +54,40 @@ export interface CollegeDetail {
 
 // In-memory overrides cache for development or when DB is unreachable
 const devOverrides = new Map<string, Partial<CollegeDetail>>();
+let cachedOverridesMap: Map<string, Partial<CollegeDetail>> | null = null;
+let lastOverridesFetchTime = 0;
+const OVERRIDES_CACHE_TTL_MS = 60 * 1000; // 1 minute cache
 
 async function getOverridesMap(): Promise<Map<string, Partial<CollegeDetail>>> {
+  const now = Date.now();
+  if (cachedOverridesMap && now - lastOverridesFetchTime < OVERRIDES_CACHE_TTL_MS) {
+    return cachedOverridesMap;
+  }
+
   const map = new Map<string, Partial<CollegeDetail>>(devOverrides);
   if (!process.env.DATABASE_URL) {
+    cachedOverridesMap = map;
+    lastOverridesFetchTime = now;
     return map;
   }
+
   try {
-    const overrides = await db.collegeOverride.findMany();
+    // 1.5s timeout protection so Neon cold starts or pool timeouts never block UI
+    const queryPromise = db.collegeOverride.findMany();
+    const timeoutPromise = new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error('CollegeOverride query timeout')), 1500)
+    );
+    const overrides = (await Promise.race([queryPromise, timeoutPromise])) as any[];
+
     for (const ov of overrides) {
       map.set(ov.collegeId, ov.data as Partial<CollegeDetail>);
     }
-  } catch (err) {
-    // Database unreachable, fall back to in-memory/static data
+  } catch {
+    // Database unreachable or timeout, gracefully fall back to verified static data
   }
+
+  cachedOverridesMap = map;
+  lastOverridesFetchTime = now;
   return map;
 }
 

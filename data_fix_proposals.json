@@ -1,0 +1,72 @@
+{
+  "version": "1.0.0",
+  "generatedDate": "2026-10-11",
+  "totalProposals": 5,
+  "proposals": [
+    {
+      "id": "FIX-PATHWAYS-001",
+      "targetFile": "src/data/careers/pathways.json",
+      "category": "RELATIONAL_INTEGRITY",
+      "severity": "HIGH",
+      "description": "Fix invalid clusterId 'medicine-healthcare' on 4 international/medical pathways",
+      "rationale": "careerClusters.json defines cluster ID as 'medicine-health'. Referencing 'medicine-healthcare' results in broken cluster lookup on career detail pages and AI counsellor filters.",
+      "affectedEntities": [
+        "p-usmle-medical",
+        "p-plab-uk-medical",
+        "p-nursing-usa-nclex",
+        "p-japan-ssw-skilled"
+      ],
+      "before": { "clusterIds": ["medicine-healthcare"] },
+      "after": { "clusterIds": ["medicine-health"] },
+      "verifiedSource": "src/data/careers/careerClusters.json line 16"
+    },
+    {
+      "id": "FIX-MEDICAL-002",
+      "targetFile": "src/data/karnatakaMedicalSeats.json",
+      "category": "REGULATORY_COMPLIANCE",
+      "severity": "CRITICAL",
+      "description": "Update entranceExam label on MBBS and BDS institutes from 'NEET UG / KCET' to 'NEET-UG'",
+      "rationale": "KCET is NOT an entrance examination for MBBS or BDS in Karnataka or India. Admission is solely through NEET-UG merit (KEA conducts state counselling). Labelling KCET as an entrance exam for medical institutes is legally and factually inaccurate.",
+      "affectedEntities": "All Medical (67) and Dental (28) records with entranceExam = 'NEET UG / KCET'",
+      "before": { "entranceExam": "NEET UG / KCET" },
+      "after": { "entranceExam": "NEET-UG (KEA State Counselling)" },
+      "verifiedSource": "National Medical Commission (NMC) Regulations & KEA UGNEET Bulletin (https://cetonline.karnataka.gov.in)"
+    },
+    {
+      "id": "FIX-PREDICTOR-003",
+      "targetFile": "src/lib/kcetPredictor.ts",
+      "category": "LOGIC_BUG",
+      "severity": "CRITICAL",
+      "description": "Remove fictitious 0.92 rank multiplier for Rural and Kannada Medium quotas",
+      "rationale": "In KEA UGCET admissions, Rural (15%) and Kannada Medium (5%) are statutory horizontal seat quotas, not rank multipliers. A candidate's merit rank never changes. Multiplying predicted rank by 0.92 gives students a false inflated rank.",
+      "affectedCodeLines": "kcetPredictor.ts lines 129-133",
+      "before": "if (input.quota === 'rural' || input.quota === 'kannada') { predictedRankMedian = Math.max(1, Math.round(predictedRankMedian * 0.92)); }",
+      "after": "// Rural (15%) and Kannada Medium (5%) are statutory horizontal reservations.\n// Rank remains identical; reservation applies at option entry during seat allotment.",
+      "verifiedSource": "KEA UGCET Admission Rules & Government of Karnataka Reservation Orders"
+    },
+    {
+      "id": "FIX-PREDICTOR-004",
+      "targetFile": "src/lib/kcetPredictor.ts",
+      "category": "SCHEMA_COMPLETENESS",
+      "severity": "HIGH",
+      "description": "Add Category-1 ('1') to KCETInput['category'] union type",
+      "rationale": "Karnataka recognizes 8 vertical backward class categories (GM, 1, 2A, 2B, 3A, 3B, SC, ST). Category-1 represents 4% statutory reservation and was omitted from the TypeScript definition.",
+      "affectedCodeLines": "kcetPredictor.ts line 10",
+      "before": "category: 'GM' | '2A' | '2B' | '3A' | '3B' | 'SC' | 'ST';",
+      "after": "category: 'GM' | '1' | '2A' | '2B' | '3A' | '3B' | 'SC' | 'ST';",
+      "verifiedSource": "Karnataka State Backward Classes Commission & KEA Category Codes"
+    },
+    {
+      "id": "FIX-DOCS-005",
+      "targetFile": "PROJECT_OVERVIEW_GUIDE.md",
+      "category": "DOCUMENTATION_ACCURACY",
+      "severity": "LOW",
+      "description": "Correct demo arithmetic error for KCET composite calculation",
+      "rationale": "KCET 143/180 = 79.44%; Board 277/300 = 92.33%; Average = (79.4444 + 92.3333)/2 = 85.89%, not 83.89%.",
+      "affectedCodeLines": "PROJECT_OVERVIEW_GUIDE.md lines 112-118",
+      "before": "composite = 83.89%",
+      "after": "composite = 85.89%",
+      "verifiedSource": "Standard Mathematical Arithmetic"
+    }
+  ]
+}

@@ -1,0 +1,634 @@
+{
+  "version": "1.0.0",
+  "generatedDate": "2026-10-11",
+  "rules": [
+    {
+      "id": "JRN-10TH",
+      "level": "10th",
+      "stream": "Other",
+      "headline": "Post-10th (SSLC) Academic & Vocational Trajectories",
+      "subheadline": "Choose Pre-University (PUC) streams in Karnataka or vocational technical tracks (Polytechnic / ITI).",
+      "primaryPathways": [
+        "p-puc-science-pcmb",
+        "p-puc-science-pcmc",
+        "p-puc-commerce",
+        "p-puc-arts",
+        "p-diploma-polytechnic",
+        "p-iti-craftsman"
+      ],
+      "entranceExams": [
+        {
+          "name": "POLYCET / DTE Karnataka Admission",
+          "code": "DTE-POLY",
+          "purpose": "State government & private polytechnic diploma admission (Direct merit based on SSLC 35%+)",
+          "url": "https://dtetech.karnataka.gov.in"
+        },
+        {
+          "name": "Karnataka DPUE PUC Admissions",
+          "code": "DPUE-PUC",
+          "purpose": "Merit-based admission into 1st PUC combinations (PCMB, PCMC, EBAC, HEBA)",
+          "url": "https://pue.karnataka.gov.in"
+        }
+      ],
+      "eligibleCollegeDatasets": [
+        {
+          "datasetId": "puc",
+          "title": "Karnataka Pre-University (PU) Colleges Directory",
+          "route": "/puc-colleges",
+          "recordCountNotice": "6,417 DPUE colleges across all 32 districts with management and streams",
+          "isAvailable": true
+        },
+        {
+          "datasetId": "pathways",
+          "title": "Karnataka DTE Polytechnic & Paramedical Pathways",
+          "route": "/pathways",
+          "recordCountNotice": "Curriculum, 3-tier salary bands, and lateral DCET roadmap",
+          "isAvailable": true
+        }
+      ],
+      "coverageHonestyNotice": {
+        "availableData": "Complete Pre-University college directory (6,417 colleges in Karnataka) and vocational pathway roadmaps.",
+        "missingDataNotice": "We do NOT yet have discrete college directories for Polytechnic (DTE) or ITI institutes (planned for future update).",
+        "recommendedExternalPortal": "Official DTE Karnataka Portal for Polytechnic admissions",
+        "externalUrl": "https://dtetech.karnataka.gov.in"
+      },
+      "recommendedTools": [
+        {
+          "title": "Explore 6,417 PU Colleges",
+          "description": "Filter by district, government/aided management, and science/commerce stream.",
+          "route": "/puc-colleges",
+          "badge": "Directory Available"
+        },
+        {
+          "title": "Karnataka Polytechnic & Paramedical Pathways",
+          "description": "Compare DTE 3-year diplomas, 3-tier salary bands, and DCET lateral routes.",
+          "route": "/pathways",
+          "badge": "Roadmap"
+        }
+      ],
+      "nextProgressionSteps": [
+        "1. Select your optimal PUC combination (PCMB for Medicine/Engg, PCMC for Software/Engg, EBAC for Commerce/Finance, HEBA for Law/Civil Services).",
+        "2. Alternatively enroll in a 3-year DTE Polytechnic diploma for early technical job eligibility and 2nd-year B.E. lateral entry.",
+        "3. Research scholarship schemes: Vidyasiri, SSP Post-Matric Karnataka, and National Scholarship Portal (NSP)."
+      ]
+    },
+    {
+      "id": "JRN-12TH-PCM",
+      "level": "12th",
+      "stream": "PCM",
+      "headline": "After 12th / PUC (Physics, Chemistry, Mathematics)",
+      "subheadline": "Target B.Tech / B.E. programs, KCET 2026 rank predictions, architecture, defence, and tech careers.",
+      "primaryPathways": [
+        "p-btech-cse",
+        "p-btech-ece",
+        "p-btech-mechanical",
+        "p-btech-civil",
+        "p-nda-defence",
+        "p-barch-architecture"
+      ],
+      "entranceExams": [
+        {
+          "name": "Karnataka UGCET (KCET)",
+          "code": "KCET",
+          "purpose": "State government & private engineering seat allotment (50% KCET + 50% Board PCM)",
+          "url": "https://cetonline.karnataka.gov.in"
+        },
+        {
+          "name": "COMEDK UGET",
+          "code": "COMEDK",
+          "purpose": "Pan-India private engineering college consortium in Karnataka",
+          "url": "https://www.comedk.org"
+        },
+        {
+          "name": "JEE Main",
+          "code": "JEE-MAIN",
+          "purpose": "National Institutes of Technology (NITs), IIITs, and CFTIs admission",
+          "url": "https://jeemain.nta.ac.in"
+        },
+        {
+          "name": "JEE Advanced",
+          "code": "JEE-ADV",
+          "purpose": "Indian Institutes of Technology (IITs) undergraduate admission",
+          "url": "https://jeeadv.ac.in"
+        }
+      ],
+      "eligibleCollegeDatasets": [
+        {
+          "datasetId": "engineering",
+          "title": "Pan-India Engineering Colleges Directory",
+          "route": "/colleges",
+          "recordCountNotice": "455 engineering institutions across 28 states with NIRF 2025 ranks & fees",
+          "isAvailable": true
+        },
+        {
+          "datasetId": "engineering",
+          "title": "KCET 2026 Rank & College Predictor",
+          "route": "/kcet-2026-predictor",
+          "recordCountNotice": "1,218 branch cutoffs across 250 Karnataka engineering colleges",
+          "isAvailable": true
+        }
+      ],
+      "coverageHonestyNotice": {
+        "availableData": "Complete Engineering directory (455 colleges pan-India) and KEA UGCET 2026 cutoffs matrix.",
+        "missingDataNotice": "Pure PCM candidates without Biology are NOT eligible for NEET-UG or MBBS/BDS admissions.",
+        "recommendedExternalPortal": "KEA UGCET Official Counselling Portal",
+        "externalUrl": "https://cetonline.karnataka.gov.in"
+      },
+      "recommendedTools": [
+        {
+          "title": "KCET 2026 Rank & College Predictor",
+          "description": "Calculate exact composite score (50:50 formula) and predict High/Moderate/Dream college matches.",
+          "route": "/kcet-2026-predictor",
+          "badge": "Predictor"
+        },
+        {
+          "title": "Explore 455 Engineering Colleges",
+          "description": "Filter by state, NIRF 2025 ranking, government/private type, and fee brackets.",
+          "route": "/colleges",
+          "badge": "455 Colleges"
+        }
+      ],
+      "nextProgressionSteps": [
+        "1. Enter your KCET and Board PCM marks in the KCET Predictor to estimate your rank.",
+        "2. Formulate your Round-1 KEA option entry list balancing High Chance and Dream colleges.",
+        "3. Review 31 Engineering Branches to compare average packages and core vs IT recruitments."
+      ]
+    },
+    {
+      "id": "JRN-12TH-PCB",
+      "level": "12th",
+      "stream": "PCB",
+      "headline": "After 12th / PUC (Physics, Chemistry, Biology)",
+      "subheadline": "Explore Medical (MBBS), Dental (BDS), Pharmacy, and Nursing admissions via NEET-UG and KEA seat matrices.",
+      "primaryPathways": [
+        "p-mbbs-medicine",
+        "p-bds-dental",
+        "p-bpharm-pharmacy",
+        "p-bsc-nursing",
+        "p-ayush-bams"
+      ],
+      "entranceExams": [
+        {
+          "name": "NEET UG",
+          "code": "NEET-UG",
+          "purpose": "Mandatory entrance exam for 100% of MBBS and BDS seats in India",
+          "url": "https://neet.nta.nic.in"
+        },
+        {
+          "name": "KCET (Allied Health / Nursing)",
+          "code": "KCET-HEALTH",
+          "purpose": "Mandatory entrance for B.Sc Nursing, B.Pharm, and Pharm.D seats in Karnataka",
+          "url": "https://cetonline.karnataka.gov.in"
+        }
+      ],
+      "eligibleCollegeDatasets": [
+        {
+          "datasetId": "medical",
+          "title": "Karnataka Medical & Allied Health Seat Matrix",
+          "route": "/medical-allied-health",
+          "recordCountNotice": "788 health sciences colleges (67 MBBS, 28 BDS, 43 Pharmacy, 650 Nursing)",
+          "isAvailable": true
+        }
+      ],
+      "coverageHonestyNotice": {
+        "availableData": "Complete Karnataka Health Sciences directory (788 colleges) with verified government quota seat counts.",
+        "missingDataNotice": "Pure PCB candidates without Mathematics are NOT eligible for Engineering (B.E./B.Tech) courses.",
+        "recommendedExternalPortal": "KEA UGNEET State Counselling Portal",
+        "externalUrl": "https://cetonline.karnataka.gov.in"
+      },
+      "recommendedTools": [
+        {
+          "title": "Medical & Allied Health Seat Matrix",
+          "description": "Explore 788 Karnataka medical, dental, pharmacy, and nursing institutes with government quota seats.",
+          "route": "/medical-allied-health",
+          "badge": "788 Colleges"
+        },
+        {
+          "title": "Isolated Medical Compare Board",
+          "description": "Compare up to 4 medical institutes side-by-side on intake, management type, and government seats.",
+          "route": "/medical-allied-health",
+          "badge": "Compare"
+        }
+      ],
+      "nextProgressionSteps": [
+        "1. Qualify in NEET-UG with minimum percentile (50th percentile for UR, 40th for reserved).",
+        "2. Register on KEA UGNEET counselling for 85% state quota and private college seats.",
+        "3. Alternatively take KCET for state-subsidized B.Sc Nursing, B.Pharm, or Pharm.D admissions."
+      ]
+    },
+    {
+      "id": "JRN-12TH-PCMB",
+      "level": "12th",
+      "stream": "PCMB",
+      "headline": "After 12th / PUC (Physics, Chemistry, Maths & Biology)",
+      "subheadline": "Dual-eligibility advantage: Compete for both Engineering (KCET/JEE) and Medical / Allied Health (NEET-UG).",
+      "primaryPathways": [
+        "p-mbbs-medicine",
+        "p-btech-cse",
+        "p-btech-biotech",
+        "p-bds-dental",
+        "p-bpharm-pharmacy"
+      ],
+      "entranceExams": [
+        {
+          "name": "NEET UG",
+          "code": "NEET-UG",
+          "purpose": "All-India entrance for MBBS & BDS admissions",
+          "url": "https://neet.nta.nic.in"
+        },
+        {
+          "name": "KCET Engineering & Health",
+          "code": "KCET",
+          "purpose": "State entrance for B.Tech, B.Sc Nursing, B.Pharm, and Veterinary courses",
+          "url": "https://cetonline.karnataka.gov.in"
+        },
+        {
+          "name": "JEE Main",
+          "code": "JEE-MAIN",
+          "purpose": "National engineering entrance for NITs/IIITs",
+          "url": "https://jeemain.nta.ac.in"
+        }
+      ],
+      "eligibleCollegeDatasets": [
+        {
+          "datasetId": "engineering",
+          "title": "Engineering Directory & KCET Predictor",
+          "route": "/kcet-2026-predictor",
+          "recordCountNotice": "455 colleges pan-India & 1,218 KCET branch cutoffs",
+          "isAvailable": true
+        },
+        {
+          "datasetId": "medical",
+          "title": "Karnataka Medical & Allied Health Seats",
+          "route": "/medical-allied-health",
+          "recordCountNotice": "788 medical, dental, pharmacy, and nursing institutes",
+          "isAvailable": true
+        }
+      ],
+      "coverageHonestyNotice": {
+        "availableData": "Full coverage across both Engineering (455 colleges) and Health Sciences (788 colleges).",
+        "missingDataNotice": "Option entry schedules for KEA KCET and KEA UGNEET may overlap; track counseling rounds closely.",
+        "recommendedExternalPortal": "KEA Centralized Portal",
+        "externalUrl": "https://cetonline.karnataka.gov.in"
+      },
+      "recommendedTools": [
+        {
+          "title": "KCET 2026 Engineering Predictor",
+          "description": "Calculate rank and match colleges based on Physics, Chemistry, and Mathematics scores.",
+          "route": "/kcet-2026-predictor",
+          "badge": "Engineering"
+        },
+        {
+          "title": "Medical & Allied Health Directory",
+          "description": "Inspect 788 health sciences colleges across Karnataka.",
+          "route": "/medical-allied-health",
+          "badge": "Medicine"
+        }
+      ],
+      "nextProgressionSteps": [
+        "1. Assess your competitive edge between NEET and KCET rank outcomes.",
+        "2. Retain options in Biotechnology, Biomedical Engineering, or Pharmacy if undecided between medicine and engineering.",
+        "3. Complete document verification at KEA for both engineering and medical verification slips."
+      ]
+    },
+    {
+      "id": "JRN-12TH-COMMERCE",
+      "level": "12th",
+      "stream": "Commerce",
+      "headline": "After 12th / PUC Commerce (EBAC, HEBA, SEBA)",
+      "subheadline": "Target Chartered Accountancy, Company Secretary, Corporate Finance, Business Management & Law.",
+      "primaryPathways": [
+        "p-ca-chartered-accountant",
+        "p-cs-company-secretary",
+        "p-cma-cost-accountant",
+        "p-bba-management",
+        "p-clat-law"
+      ],
+      "entranceExams": [
+        {
+          "name": "CA Foundation",
+          "code": "ICAI-FOUNDATION",
+          "purpose": "Entry level examination for Institute of Chartered Accountants of India (ICAI)",
+          "url": "https://www.icai.org"
+        },
+        {
+          "name": "CLAT (Common Law Admission Test)",
+          "code": "CLAT",
+          "purpose": "Admissions to 24 National Law Universities (NLUs) for 5-year B.A. LL.B / B.B.A. LL.B",
+          "url": "https://consortiumofnlus.ac.in"
+        },
+        {
+          "name": "CUET-UG",
+          "code": "CUET-UG",
+          "purpose": "Central Universities entrance for B.Com (Hons), B.A. Economics (SRCC, DU, BHU)",
+          "url": "https://cuetug.nta.online"
+        },
+        {
+          "name": "IPMAT",
+          "code": "IPMAT",
+          "purpose": "5-year Integrated Programme in Management at IIM Indore, IIM Rohtak",
+          "url": "https://www.iimidr.ac.in"
+        }
+      ],
+      "eligibleCollegeDatasets": [
+        {
+          "datasetId": "pathways",
+          "title": "Commerce & Financial Career Pathways",
+          "route": "/careers",
+          "recordCountNotice": "Roadmaps for CA, CS, CMA, Investment Banking, and Corporate Law",
+          "isAvailable": true
+        }
+      ],
+      "coverageHonestyNotice": {
+        "availableData": "Complete Career Explorer pathways, entrance examination syllabi, and salary trajectories for Commerce.",
+        "missingDataNotice": "We do NOT yet feature a standalone directory of general B.Com / BBA degree colleges.",
+        "recommendedExternalPortal": "Consortium of NLUs & ICAI Official Portal",
+        "externalUrl": "https://www.icai.org"
+      },
+      "recommendedTools": [
+        {
+          "title": "Explore Commerce Career Pathways",
+          "description": "View step-by-step qualification paths for CA, CS, CMA, and Corporate Management.",
+          "route": "/careers",
+          "badge": "Pathways"
+        },
+        {
+          "title": "Entrance Exams Portal",
+          "description": "Check eligibility, conducting bodies, and exam frequency for CLAT, CUET, and IPMAT.",
+          "route": "/careers",
+          "badge": "Exams"
+        }
+      ],
+      "nextProgressionSteps": [
+        "1. Register for CA Foundation with ICAI before the cutoff date for the upcoming session.",
+        "2. Prepare for CUET-UG if targeting premier central university commerce programs like Delhi University.",
+        "3. Consider 5-year integrated law programs (CLAT) if interested in corporate governance or litigation."
+      ]
+    },
+    {
+      "id": "JRN-12TH-ARTS",
+      "level": "12th",
+      "stream": "Arts",
+      "headline": "After 12th / PUC Arts & Humanities (HEPS, HEPK)",
+      "subheadline": "Target Civil Services foundation, Integrated Law, Design, Journalism, Psychology, and Public Policy.",
+      "primaryPathways": [
+        "p-civil-services-upsc",
+        "p-clat-law",
+        "p-design-nift-nid",
+        "p-journalism-media",
+        "p-psychology-clinical"
+      ],
+      "entranceExams": [
+        {
+          "name": "CLAT",
+          "code": "CLAT",
+          "purpose": "Admission to National Law Universities for 5-year B.A. LL.B",
+          "url": "https://consortiumofnlus.ac.in"
+        },
+        {
+          "name": "UCEED / NID DAT",
+          "code": "NID-DAT",
+          "purpose": "Undergraduate design admissions (IIT Bombay, NID Ahmedabad)",
+          "url": "https://admissions.nid.edu"
+        },
+        {
+          "name": "CUET-UG",
+          "code": "CUET-UG",
+          "purpose": "Top central universities for Political Science, History, Psychology",
+          "url": "https://cuetug.nta.online"
+        }
+      ],
+      "eligibleCollegeDatasets": [
+        {
+          "datasetId": "pathways",
+          "title": "Humanities, Law & Creative Careers",
+          "route": "/careers",
+          "recordCountNotice": "Detailed progression milestones, RIASEC personality fit, and public sector routes",
+          "isAvailable": true
+        }
+      ],
+      "coverageHonestyNotice": {
+        "availableData": "Complete Career Explorer pathways, exam requirements, and government job linkages.",
+        "missingDataNotice": "We do NOT currently maintain a directory of B.A. degree colleges.",
+        "recommendedExternalPortal": "National Testing Agency (CUET-UG)",
+        "externalUrl": "https://cuetug.nta.online"
+      },
+      "recommendedTools": [
+        {
+          "title": "Explore Humanities & Design Careers",
+          "description": "Examine pathways in Law, Civil Services, Design, and Journalism.",
+          "route": "/careers",
+          "badge": "Roadmap"
+        }
+      ],
+      "nextProgressionSteps": [
+        "1. Identify whether your trajectory targets Professional Practice (Law, Design) or Academic/Civil Service foundation.",
+        "2. Appear for CLAT or CUET-UG for admission to premier national institutions.",
+        "3. Review government job cadres (UPSC, State PSC, SSC) linked to graduation degrees."
+      ]
+    },
+    {
+      "id": "JRN-DIPLOMA",
+      "level": "diploma",
+      "stream": "Other",
+      "headline": "After Polytechnic Diploma (DTE)",
+      "subheadline": "Lateral Entry into 2nd-year B.E./B.Tech via DCET or Junior Engineer (JE) public sector careers.",
+      "primaryPathways": [
+        "p-dcet-lateral-engineering",
+        "p-ssc-je-engineering",
+        "p-rrb-je-railways",
+        "p-psu-diploma-trainee"
+      ],
+      "entranceExams": [
+        {
+          "name": "Karnataka DCET (Diploma Common Entrance Test)",
+          "code": "DCET",
+          "purpose": "Lateral entry into 3rd semester (2nd year) B.E./B.Tech across Karnataka engineering colleges",
+          "url": "https://cetonline.karnataka.gov.in/kea"
+        },
+        {
+          "name": "SSC Junior Engineer (JE)",
+          "code": "SSC-JE",
+          "purpose": "Central government recruitment (CPWD, MES, CWC) for Civil, Mech, Electrical diploma holders",
+          "url": "https://ssc.gov.in"
+        },
+        {
+          "name": "RRB Junior Engineer (JE)",
+          "code": "RRB-JE",
+          "purpose": "Indian Railways technical cadres recruitment for engineering diploma holders",
+          "url": "https://indianrailways.gov.in"
+        }
+      ],
+      "eligibleCollegeDatasets": [
+        {
+          "datasetId": "engineering",
+          "title": "Karnataka Engineering Colleges (DCET Lateral Seats)",
+          "route": "/colleges",
+          "recordCountNotice": "VTU affiliated & autonomous colleges offering 2nd-year lateral intake",
+          "isAvailable": true
+        },
+        {
+          "datasetId": "pathways",
+          "title": "Karnataka DTE & Lateral Entry Pathways",
+          "route": "/pathways",
+          "recordCountNotice": "DTE polytechnic curricula, DCET eligibility (45% aggregate), and salary tiers",
+          "isAvailable": true
+        }
+      ],
+      "coverageHonestyNotice": {
+        "availableData": "Full lateral entry roadmap and engineering colleges directory with verified VTU/autonomous institutions.",
+        "missingDataNotice": "Lateral entry admissions are subject to AICTE 10% supernumerary quota per branch.",
+        "recommendedExternalPortal": "KEA DCET Official Information Portal",
+        "externalUrl": "https://cetonline.karnataka.gov.in/kea"
+      },
+      "recommendedTools": [
+        {
+          "title": "Karnataka Pathways & DCET Rules",
+          "description": "View 6 core DTE diploma branches, lateral engineering routes, and fresher/senior salary bands.",
+          "route": "/pathways",
+          "badge": "DTE & DCET"
+        },
+        {
+          "title": "Explore Engineering Colleges",
+          "description": "Search colleges offering engineering degrees for lateral intake.",
+          "route": "/colleges",
+          "badge": "Colleges"
+        }
+      ],
+      "nextProgressionSteps": [
+        "1. Secure minimum 45% aggregate (40% for SC/ST/OBC) in final year of diploma to qualify for DCET.",
+        "2. Register for KEA DCET for centralized lateral option entry into 2nd year B.E.",
+        "3. Alternatively apply for SSC JE, RRB JE, or PSU Diploma Technician Trainee recruitment."
+      ]
+    },
+    {
+      "id": "JRN-ITI",
+      "level": "iti",
+      "stream": "Other",
+      "headline": "After ITI (Industrial Training Institute)",
+      "subheadline": "Target Apprenticeship training under NAPS, lateral polytechnic entry, or public sector technician roles.",
+      "primaryPathways": [
+        "p-apprenticeship-naps",
+        "p-railway-alp-technician",
+        "p-isro-drdo-technician",
+        "p-diploma-lateral-from-iti"
+      ],
+      "entranceExams": [
+        {
+          "name": "All India Trade Test (AITT) / NCVT",
+          "code": "AITT",
+          "purpose": "Award of National Trade Certificate (NTC) / National Apprenticeship Certificate (NAC)",
+          "url": "https://ncvtmis.gov.in"
+        },
+        {
+          "name": "RRB Assistant Loco Pilot & Technician",
+          "code": "RRB-ALP",
+          "purpose": "Indian Railways Group C technical posts for ITI certificate holders",
+          "url": "https://indianrailways.gov.in"
+        }
+      ],
+      "eligibleCollegeDatasets": [
+        {
+          "datasetId": "pathways",
+          "title": "Skilled Trades & ITI Progression Pathways",
+          "route": "/pathways",
+          "recordCountNotice": "Curriculum, apprenticeship avenues, and public sector salary tiers",
+          "isAvailable": true
+        }
+      ],
+      "coverageHonestyNotice": {
+        "availableData": "Complete apprenticeship, government recruitment, and polytechnic lateral progression data.",
+        "missingDataNotice": "We do NOT maintain a directory of individual ITI centers.",
+        "recommendedExternalPortal": "National Apprenticeship Promotion Scheme (NAPS)",
+        "externalUrl": "https://www.apprenticeshipindia.gov.in"
+      },
+      "recommendedTools": [
+        {
+          "title": "Progression Dashboard for ITI",
+          "description": "Examine lateral diploma entry, apprenticeship opportunities, and public sector technician cadres.",
+          "route": "/pathways",
+          "badge": "ITI Pathways"
+        }
+      ],
+      "nextProgressionSteps": [
+        "1. Register on the NAPS Apprenticeship Portal (apprenticeshipindia.gov.in) with your NTC number.",
+        "2. Complete one year of industrial apprenticeship to obtain the National Apprenticeship Certificate (NAC).",
+        "3. Apply for central public sector recruitment: Indian Railways (ALP/Technician), ISRO, DRDO, BEL, BHEL."
+      ]
+    },
+    {
+      "id": "JRN-BTECH",
+      "level": "btech",
+      "stream": "Other",
+      "headline": "After B.Tech / B.E. (Engineering Degree)",
+      "subheadline": "Target GATE for PSU recruitment & M.Tech, UPSC Engineering Services (ESE), corporate tech, or MBA.",
+      "primaryPathways": [
+        "p-gate-mtech-psu",
+        "p-upsc-ese-ies",
+        "p-mba-cat-management",
+        "p-tech-corporate-swe",
+        "p-higher-studies-ms-abroad"
+      ],
+      "entranceExams": [
+        {
+          "name": "GATE (Graduate Aptitude Test in Engineering)",
+          "code": "GATE",
+          "purpose": "M.Tech admissions at IITs/IISc and Executive Trainee recruitment across 40+ Maharatna/Navratna PSUs",
+          "url": "https://gate2025.iitr.ac.in"
+        },
+        {
+          "name": "UPSC Engineering Services Examination (ESE)",
+          "code": "ESE",
+          "purpose": "Class-1 Gazetted officer recruitment in Central Engineering Services (Railways, CPWD, Defence)",
+          "url": "https://upsc.gov.in"
+        },
+        {
+          "name": "CAT (Common Admission Test)",
+          "code": "CAT",
+          "purpose": "Admissions to Indian Institutes of Management (IIMs) and top business schools",
+          "url": "https://iimcat.ac.in"
+        },
+        {
+          "name": "Karnataka PGCET",
+          "code": "PGCET",
+          "purpose": "State government-subsidized M.Tech and MBA seats in Karnataka",
+          "url": "https://cetonline.karnataka.gov.in"
+        }
+      ],
+      "eligibleCollegeDatasets": [
+        {
+          "datasetId": "pathways",
+          "title": "31 Engineering Branches & Placement Outcomes",
+          "route": "/careers",
+          "recordCountNotice": "Specialization career paths, GATE papers, and recruiter matrices",
+          "isAvailable": true
+        }
+      ],
+      "coverageHonestyNotice": {
+        "availableData": "Comprehensive career paths across 31 engineering branches, 44 government jobs, and GATE/ESE exam guides.",
+        "missingDataNotice": "We do not currently host standalone directories for postgraduate M.Tech or MBA institutes.",
+        "recommendedExternalPortal": "Official IIT GATE Portal",
+        "externalUrl": "https://gate2025.iitr.ac.in"
+      },
+      "recommendedTools": [
+        {
+          "title": "31 Engineering Branches & GATE Mapping",
+          "description": "View roles, top recruiters, GATE papers, and PSU eligibility by engineering branch.",
+          "route": "/careers",
+          "badge": "Branches"
+        },
+        {
+          "title": "Public Sector Job Cadres (44 Options)",
+          "description": "Explore UPSC, PSU, and state PSC job profiles with pay level and eligibility.",
+          "route": "/careers",
+          "badge": "Govt Jobs"
+        }
+      ],
+      "nextProgressionSteps": [
+        "1. Identify your primary career pillar: Core Engineering / PSU (GATE), Corporate Tech (DSA & System Design), Management (CAT), or Civil Services (UPSC).",
+        "2. Review your branch-specific GATE code and PSU recruitment cutoffs.",
+        "3. Explore graduate career roadmaps and entry salary bands."
+      ]
+    }
+  ]
+}

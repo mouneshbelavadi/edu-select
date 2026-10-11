@@ -19,7 +19,14 @@ import {
   MapPinIcon,
 } from '@/components/ui/Icons';
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = async (url: string) => {
+  const res = await fetch(url);
+  const json = await res.json();
+  if (!res.ok || json.error) {
+    throw new Error(json.error?.message || 'Failed to load comparison data');
+  }
+  return json;
+};
 
 interface CompareCourse {
   id: string;
@@ -79,37 +86,52 @@ function CompareContent() {
   // Sync store with URL parameter ?ids=
   const idsFromUrl = searchParams.get('ids');
 
+  // Immediately resolve effective IDs from either URL or store without waiting for an extra render cycle
+  const effectiveIds = idsFromUrl || selectedColleges.map((c) => c.id).join(',');
+  const apiUrl = effectiveIds.trim().length > 0 ? `/api/colleges/compare?ids=${encodeURIComponent(effectiveIds)}` : null;
+
   useEffect(() => {
     if (idsFromUrl) {
       const idsArray = idsFromUrl.split(',').map((id) => id.trim()).filter(Boolean);
       if (idsArray.length > 0) {
-        const synced = idsArray.map((id) => {
-          const existing = selectedColleges.find((c) => c.id === id);
-          return { id, name: existing?.name || id };
-        });
-        setSelectedColleges(synced);
+        const isDifferent =
+          idsArray.length !== selectedColleges.length ||
+          idsArray.some((id, idx) => selectedColleges[idx]?.id !== id);
+
+        if (isDifferent) {
+          const synced = idsArray.map((id) => {
+            const existing = selectedColleges.find((c) => c.id === id);
+            return { id, name: existing?.name || id };
+          });
+          setSelectedColleges(synced);
+        }
       }
     } else if (selectedColleges.length >= 2) {
       const urlIds = selectedColleges.map((c) => c.id).join(',');
       router.replace(`/compare?ids=${encodeURIComponent(urlIds)}`);
     }
-  }, [idsFromUrl]);
-
-  const activeIds = selectedColleges.map((c) => c.id).join(',');
-  const apiUrl = activeIds.length > 0 ? `/api/colleges/compare?ids=${encodeURIComponent(activeIds)}` : null;
+  }, [idsFromUrl, selectedColleges.length]);
 
   const { data, error, isLoading } = useSWR(apiUrl, fetcher, {
     revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    dedupingInterval: 60000,
   });
 
   const colleges: CompareCollege[] = data?.data || [];
 
-  // Update store names once full data is fetched
+  // Update store names once full data is fetched only if placeholder names exist
   useEffect(() => {
     if (colleges.length > 0) {
-      setSelectedColleges(colleges.map((c) => ({ id: c.id, name: c.name })));
+      const hasNameless = selectedColleges.some((sc) => {
+        const match = colleges.find((c) => c.id === sc.id);
+        return match && sc.name === sc.id && match.name !== sc.id;
+      });
+      if (hasNameless) {
+        setSelectedColleges(colleges.map((c) => ({ id: c.id, name: c.name })));
+      }
     }
-  }, [data]);
+  }, [colleges]);
 
   const handleRemove = (id: string) => {
     removeCollege(id);

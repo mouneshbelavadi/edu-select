@@ -1,5 +1,10 @@
+import dns from 'node:dns';
 import { db } from '@/lib/db';
 import bcrypt from 'bcryptjs';
+
+try {
+  dns.setDefaultResultOrder('ipv4first');
+} catch {}
 
 export interface UserRecord {
   id: string;

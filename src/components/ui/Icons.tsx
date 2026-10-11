@@ -14,8 +14,8 @@ export const GraduationCapIcon: React.FC<IconProps> = ({ className = 'w-5 h-5', 
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
-    width={size}
-    height={size}
+    width={size ?? 20}
+    height={size ?? 20}
     className={className}
     {...props}
   >

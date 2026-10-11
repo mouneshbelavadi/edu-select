@@ -718,7 +718,7 @@ Step 4: Karnataka Medical & Allied Seats (http://localhost:3000/medical-allied-h
 Step 5: KCET 2026 Cutoff Predictor (http://localhost:3000/kcet-2026-predictor)
   • Enter Marks: KCET Physics: 45, Chemistry: 48, Maths: 50 | Board PCM: 90, 92, 95.
   • Select Category: "2A" | Quota: "Rural".
-  • Click "Predict Rank & College Chances": Observe composite score (83.89%), median rank, and
+  • Click "Predict Rank & College Chances": Observe composite score (85.89%), median rank, and
     color-coded admission zones (High Chance 🟢, Moderate 🟡, Dream 🟣) across 250 colleges.
         │
         ▼

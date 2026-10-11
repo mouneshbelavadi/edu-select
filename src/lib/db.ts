@@ -1,4 +1,10 @@
+import dns from 'node:dns';
 import { PrismaClient } from '@prisma/client';
+
+// Ensure IPv4 resolution takes precedence for cloud database connections (Neon) across all local/server networks
+try {
+  dns.setDefaultResultOrder('ipv4first');
+} catch {}
 
 const prismaClientSingleton = () => {
   return new PrismaClient();

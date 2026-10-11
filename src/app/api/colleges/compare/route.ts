@@ -16,9 +16,10 @@ export async function GET(request: NextRequest) {
       .map((id) => id.trim())
       .filter(Boolean);
 
+    const idList = ids.slice(0, 4);
+    const results = await Promise.all(idList.map((id) => getCollegeByIdOrSlug(id)));
     const colleges: CollegeDetail[] = [];
-    for (const id of ids.slice(0, 4)) {
-      const college = await getCollegeByIdOrSlug(id);
+    for (const college of results) {
       if (college && !colleges.some((c) => c.id === college.id)) {
         colleges.push(college);
       }

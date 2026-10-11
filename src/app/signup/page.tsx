@@ -55,7 +55,8 @@ export default function SignupPage() {
         if (res.status === 409) {
           setErrors({ email: 'An account with this email address already exists' });
         } else {
-          toast.error(data.error?.message || 'Registration failed');
+          const errorMsg = typeof data.error === 'string' ? data.error : (data.error?.message || 'Registration failed');
+          toast.error(errorMsg);
         }
         return;
       }

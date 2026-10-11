@@ -446,16 +446,103 @@ export function searchCareers(query: Partial<CareerSearchQuery> = {}) {
     candidateCards = candidateCards.filter((c) => c.riasec.some((r) => rSet.has(r)));
   }
 
-  // 6. Subjects filter
+  // 6. Subjects filter with prerequisite & stream domain integrity
   const subjectsArray = Array.isArray(subjects) ? subjects : subjects ? [subjects] : [];
   if (subjectsArray.length > 0) {
     const sSet = new Set(subjectsArray.map((s) => s.toLowerCase()));
+    const userHasMaths = sSet.has('mathematics') || sSet.has('maths') || sSet.has('math');
+    const userHasBiology = sSet.has('biology') || sSet.has('bio');
+    const userHasCommerce = sSet.has('accountancy') || sSet.has('business studies') || sSet.has('accounts') || sSet.has('economics');
+    const userHasArts = sSet.has('history') || sSet.has('political science') || sSet.has('sociology');
+
     candidateCards = candidateCards.filter((c) => {
+      // Rule A: Pure Biology aspirant (Biology selected, Mathematics NOT selected)
+      // Must NOT be shown pure Mathematics-dependent pathways or engineering branches
+      if (userHasBiology && !userHasMaths) {
+        if (c.kind === 'branch') return false; // All engineering branches require Mathematics
+
+        // Exclude engineering-tech and computing-ai clusters unless also in health/agri
+        if (
+          (c.clusterIds.includes('engineering-tech') || c.clusterIds.includes('computing-ai')) &&
+          !c.clusterIds.includes('medicine-health') &&
+          !c.clusterIds.includes('agriculture-allied')
+        ) {
+          return false;
+        }
+
+        if (c.kind === 'pathway') {
+          const p = pathwaysMap.get(c.id);
+          if (['a-pcm', 'a-pcmc', 'a-pcmb', 'b-btech', 'b-bsc-pcm'].includes(p?.id || '')) return false;
+
+          if (p?.streams && p.streams.length > 0) {
+            const isStrictlyMathStream = p.streams.every((st) =>
+              ['PCM', 'PCMC', 'COMMERCE_MATHS'].includes(st.toUpperCase())
+            );
+            if (isStrictlyMathStream) return false;
+          }
+
+          const titleLower = c.title.toLowerCase();
+          if ((titleLower.includes('pcm') || titleLower.includes('maths)')) && !titleLower.includes('biology')) {
+            return false;
+          }
+        }
+      }
+
+      // Rule B: Pure Mathematics aspirant (Mathematics selected, Biology NOT selected)
+      // Must NOT be shown pure Biology-dependent pathways or medical degrees
+      if (userHasMaths && !userHasBiology) {
+        if (c.kind === 'pathway') {
+          const p = pathwaysMap.get(c.id);
+          if (['a-pcb', 'a-pcmb', 'b-mbbs', 'b-bds', 'b-nursing'].includes(p?.id || '')) return false;
+
+          if (p?.streams && p.streams.length > 0) {
+            const isStrictlyBioStream = p.streams.every((st) => ['PCB'].includes(st.toUpperCase()));
+            if (isStrictlyBioStream) return false;
+          }
+
+          const titleLower = c.title.toLowerCase();
+          if (titleLower.includes('pcb') || (titleLower.includes('biology)') && !titleLower.includes('math'))) {
+            return false;
+          }
+        }
+
+        if (c.clusterIds.includes('medicine-health') && !c.clusterIds.includes('engineering-tech')) {
+          return false;
+        }
+      }
+
+      // Rule C: Positive subject alignment check
       if (c.kind === 'pathway') {
         const p = pathwaysMap.get(c.id);
-        return p?.subjectsLiked?.some((s) => sSet.has(s.toLowerCase()));
+        const matchesSubject =
+          p?.subjectsLiked?.some((s) => sSet.has(s.toLowerCase())) ||
+          p?.keySubjects?.some((s) => sSet.has(s.toLowerCase()));
+
+        const matchesStream = p?.streams?.some((st) => {
+          const stUp = st.toUpperCase();
+          if (stUp === 'PCB' && userHasBiology) return true;
+          if (stUp === 'PCM' && userHasMaths) return true;
+          if (stUp === 'PCMB' && (userHasMaths || userHasBiology)) return true;
+          if ((stUp === 'COMMERCE_MATHS' || stUp === 'COMMERCE_NO_MATHS') && userHasCommerce) return true;
+          if (stUp === 'ARTS' && userHasArts) return true;
+          return false;
+        });
+
+        return Boolean(matchesSubject || matchesStream);
       }
-      // For branches, degrees, govt jobs: match through cluster subjects
+
+      if (c.kind === 'branch') {
+        if (!userHasMaths && !sSet.has('computer science')) return false;
+        const b = branchesMap.get(c.id);
+        const branchSubjects = [
+          'mathematics',
+          'physics',
+          ...(b?.clusterIds || []).flatMap((cid) => clustersMap.get(cid)?.subjects?.map((s) => s.toLowerCase()) || []),
+        ];
+        return branchSubjects.some((s) => sSet.has(s));
+      }
+
+      // For degrees & govt jobs: match through cluster subjects
       return c.clusterIds.some((cid) => {
         const cl = clustersMap.get(cid);
         return cl?.subjects?.some((s) => sSet.has(s.toLowerCase()));

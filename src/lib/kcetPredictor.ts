@@ -7,7 +7,7 @@ export interface KCETInput {
   physicsBoard: number; // 0 - 100
   chemistryBoard: number; // 0 - 100
   mathsBoard: number; // 0 - 100
-  category: 'GM' | '2A' | '2B' | '3A' | '3B' | 'SC' | 'ST';
+  category: 'GM' | '1' | '2A' | '2B' | '3A' | '3B' | 'SC' | 'ST';
   quota?: 'general' | 'rural' | 'kannada';
   preferredBranches?: string[];
 }
@@ -25,6 +25,7 @@ export interface CollegeCutoff {
   branchCode: string;
   cutoffs: {
     GM: number;
+    '1'?: number;
     '2A': number;
     '2B': number;
     '3A': number;
@@ -125,14 +126,11 @@ export function calculateKCET2026Prediction(input: KCETInput): PredictionResult 
     predictedRankMedian = Math.round(92001 + ((48 - Math.max(20, compositeScore)) / 28) * 52999);
   }
 
-  // Quota adjustments (Rural / Kannada Medium give statistical percentile boost)
-  if (input.quota === 'rural' || input.quota === 'kannada') {
-    predictedRankMedian = Math.max(1, Math.round(predictedRankMedian * 0.92));
-    estimatedRankMin = Math.max(1, Math.round(estimatedRankMin * 0.92));
-    estimatedRankMax = Math.max(1, Math.round(estimatedRankMax * 0.95));
-  }
-
   // 5. Match Colleges and Branches based on Category Cutoff
+  // Note: Rural (15%) and Kannada Medium (5%) are statutory horizontal reservations on seats.
+  // Merit rank is never altered; instead, candidates access dedicated horizontal seat pools.
+  const isHorizontalQuota = input.quota === 'rural' || input.quota === 'kannada';
+  const quotaLabel = input.quota === 'rural' ? ' (Rural Quota 15%)' : input.quota === 'kannada' ? ' (Kannada Medium Quota 5%)' : '';
   const categoryKey = input.category || 'GM';
   const hasPreferredBranches = input.preferredBranches && input.preferredBranches.length > 0;
 
@@ -142,31 +140,34 @@ export function calculateKCET2026Prediction(input: KCETInput): PredictionResult 
       return input.preferredBranches!.includes(college.branchCode);
     })
     .map((college) => {
-      const cutoff = college.cutoffs[categoryKey] || college.cutoffs.GM;
+      // Category-1 fallback to 2A/GM if specific CAT-1 cutoff column not present in older record
+      const rawCutoff = college.cutoffs[categoryKey] ?? (categoryKey === '1' ? college.cutoffs['2A'] : undefined) ?? college.cutoffs.GM;
+      // In KEA allotment, horizontal quota candidates typically see a 5-8% more lenient effective cutoff threshold
+      const effectiveCutoff = isHorizontalQuota ? Math.round(rawCutoff * 1.08) : rawCutoff;
 
       let chance: 'High Chance' | 'Moderate Chance' | 'Dream / Ambitious';
       let chanceColor: 'green' | 'amber' | 'purple';
       let matchReason = '';
 
-      if (predictedRankMedian <= cutoff * 0.85) {
+      if (predictedRankMedian <= effectiveCutoff * 0.85) {
         chance = 'High Chance';
         chanceColor = 'green';
-        matchReason = `Your estimated rank (~${predictedRankMedian.toLocaleString()}) is comfortably within the previous year ${categoryKey} cutoff (${cutoff.toLocaleString()}).`;
-      } else if (predictedRankMedian <= cutoff * 1.12) {
+        matchReason = `Your estimated rank (~${predictedRankMedian.toLocaleString()}) is comfortably within the previous year ${categoryKey} closing cutoff (${rawCutoff.toLocaleString()})${quotaLabel}.`;
+      } else if (predictedRankMedian <= effectiveCutoff * 1.12) {
         chance = 'Moderate Chance';
         chanceColor = 'amber';
-        matchReason = `Your estimated rank (~${predictedRankMedian.toLocaleString()}) is competitive with the ${categoryKey} cutoff (${cutoff.toLocaleString()}). High chance in Round 2 or Extended Round.`;
-      } else if (predictedRankMedian <= cutoff * 1.35) {
+        matchReason = `Your estimated rank (~${predictedRankMedian.toLocaleString()}) is competitive with the ${categoryKey} cutoff (${rawCutoff.toLocaleString()})${quotaLabel}. High chance in Round 2 or Extended Round.`;
+      } else if (predictedRankMedian <= effectiveCutoff * 1.35) {
         chance = 'Dream / Ambitious';
         chanceColor = 'purple';
-        matchReason = `Your estimated rank is ambitious compared to the closing rank (${cutoff.toLocaleString()}). Worth adding in Round 1 option entry.`;
+        matchReason = `Your estimated rank is ambitious compared to the closing rank (${rawCutoff.toLocaleString()})${quotaLabel}. Worth adding in Round 1 option entry.`;
       } else {
         return null;
       }
 
       return {
         college,
-        cutoff,
+        cutoff: rawCutoff,
         chance,
         chanceColor,
         matchReason,
