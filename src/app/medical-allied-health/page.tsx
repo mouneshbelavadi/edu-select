@@ -14,11 +14,18 @@ import {
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const DISCIPLINES = [
-  { id: 'All', label: 'All Health Sciences' },
-  { id: 'Medical', label: 'MBBS Medical (67)' },
-  { id: 'Dental', label: 'BDS Dental (28)' },
-  { id: 'Pharmacy', label: 'Pharmacy (43)' },
-  { id: 'Nursing', label: 'B.Sc Nursing (650)' },
+  { id: 'All', label: 'All Disciplines' },
+  { id: 'Medical', label: 'MBBS Medical (70)' },
+  { id: 'Dental', label: 'BDS Dental (39)' },
+  { id: 'Pharmacy', label: 'Pharmacy (274)' },
+  { id: 'Nursing', label: 'B.Sc Nursing (681)' },
+  { id: 'Physiotherapy', label: 'Physiotherapy / BPT (118)' },
+  { id: 'AYUSH', label: 'AYUSH / BAMS (122)' },
+  { id: 'Allied Health', label: 'Allied Health / AHS (231)' },
+  { id: 'Naturopathy & Yoga', label: 'Naturopathy / BNYS (16)' },
+  { id: 'Agriculture', label: 'Agriculture & Food (47)' },
+  { id: 'Veterinary', label: 'Veterinary (6)' },
+  { id: 'Architecture', label: 'Architecture (34)' },
 ];
 
 const MANAGEMENT_TYPES = [
@@ -186,20 +193,29 @@ function MedicalSeatsContent() {
               Karnataka <span className="text-rose-300">Medical & Allied Health</span> Seats
             </h1>
             <p className="text-surface-200 text-sm sm:text-base leading-relaxed">
-              Explore <strong>788 Health Sciences Colleges</strong> across Karnataka. Check verified KEA seat matrices, Government vs Private quota seats, approved intake, and entrance exam requirements for MBBS, BDS, Pharmacy, and B.Sc Nursing.
+              Explore <strong>1,638 Health Sciences & Professional Colleges</strong> across Karnataka. Check verified KEA seat matrices, Government vs Private quota seats, approved intake, and entrance exam requirements for MBBS, BDS, Pharmacy, B.Sc Nursing, AYUSH, Physiotherapy, Allied Health Sciences, and Architecture.
             </p>
-            <div className="flex flex-wrap gap-3 pt-2 text-xs text-rose-200 font-medium">
+            <div className="flex flex-wrap gap-2 pt-2 text-xs text-rose-200 font-medium">
               <span className="bg-white/10 px-3 py-1 rounded-lg backdrop-blur-sm">
-                🩺 <strong>{metadata.disciplineCounts?.Medical || 67}</strong> MBBS Colleges
+                🩺 <strong>{metadata.disciplineCounts?.Medical || 70}</strong> MBBS Colleges
               </span>
               <span className="bg-white/10 px-3 py-1 rounded-lg backdrop-blur-sm">
-                🦷 <strong>{metadata.disciplineCounts?.Dental || 28}</strong> Dental (BDS) Colleges
+                🦷 <strong>{metadata.disciplineCounts?.Dental || 39}</strong> Dental (BDS)
               </span>
               <span className="bg-white/10 px-3 py-1 rounded-lg backdrop-blur-sm">
-                💊 <strong>{metadata.disciplineCounts?.Pharmacy || 43}</strong> Pharmacy Institutes
+                💊 <strong>{metadata.disciplineCounts?.Pharmacy || 274}</strong> Pharmacy (B/D/Pharm.D)
               </span>
               <span className="bg-white/10 px-3 py-1 rounded-lg backdrop-blur-sm">
-                💉 <strong>{metadata.disciplineCounts?.Nursing || 650}</strong> Nursing Colleges
+                💉 <strong>{metadata.disciplineCounts?.Nursing || 681}</strong> Nursing Colleges
+              </span>
+              <span className="bg-white/10 px-3 py-1 rounded-lg backdrop-blur-sm">
+                🌿 <strong>{metadata.disciplineCounts?.AYUSH || 122}</strong> AYUSH (BAMS/BHMS)
+              </span>
+              <span className="bg-white/10 px-3 py-1 rounded-lg backdrop-blur-sm">
+                🏃 <strong>{metadata.disciplineCounts?.Physiotherapy || 118}</strong> Physiotherapy (BPT)
+              </span>
+              <span className="bg-white/10 px-3 py-1 rounded-lg backdrop-blur-sm">
+                🔬 <strong>{metadata.disciplineCounts?.['Allied Health'] || 231}</strong> Allied Health (AHS)
               </span>
             </div>
           </div>

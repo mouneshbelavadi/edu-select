@@ -93,7 +93,13 @@ class UniversalSearchEngine {
           ? 'Aided'
           : 'Private',
         seats: med.totalApprovedSeats,
-        tags: [med.discipline, med.course, med.city, med.entranceExam],
+        tags: [
+          med.discipline,
+          med.course,
+          med.city,
+          med.entranceExam,
+          ...(med.coursesOffered || []),
+        ],
         metadata: {
           govQuotaSeats: med.govQuotaSeats,
           totalApprovedSeats: med.totalApprovedSeats,
