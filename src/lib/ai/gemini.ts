@@ -94,5 +94,66 @@ export async function generateJson<T>(options: GenerateJsonOptions): Promise<{ d
     }
   }
 
-  throw lastError || new Error('Failed to generate structured JSON from Gemini');
+export interface GenerateTextOptions {
+  systemInstruction?: string;
+  contents: string | Array<{ role: string; parts: Array<{ text: string }> }>;
+  maxOutputTokens?: number;
+  temperature?: number;
+  thinkingBudget?: number;
+}
+
+export async function generateText(options: GenerateTextOptions): Promise<{ text: string; model: string }> {
+  const ai = getAiClient();
+  if (!ai) {
+    throw new Error('GEMINI_API_KEY is not configured');
+  }
+
+  const {
+    systemInstruction,
+    contents,
+    maxOutputTokens = 2500,
+    temperature = 0.5,
+    thinkingBudget = 0,
+  } = options;
+
+  let attempt = 0;
+  let lastError: Error | null = null;
+
+  while (attempt < 2) {
+    attempt++;
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+
+    try {
+      const response = await ai.models.generateContent({
+        model: modelName,
+        contents,
+        config: {
+          ...(systemInstruction ? { systemInstruction } : {}),
+          temperature,
+          maxOutputTokens,
+          thinkingConfig: {
+            thinkingBudget,
+          },
+        },
+      });
+
+      clearTimeout(timer);
+
+      const text = response.text;
+      if (!text) {
+        throw new Error('Empty response received from Gemini model');
+      }
+
+      return { text: text.trim(), model: modelName };
+    } catch (err: any) {
+      clearTimeout(timer);
+      lastError = err;
+      if (err.name === 'AbortError') {
+        throw new Error(`Gemini request timed out after ${timeoutMs}ms`);
+      }
+    }
+  }
+
+  throw lastError || new Error('Failed to generate response from Gemini');
 }

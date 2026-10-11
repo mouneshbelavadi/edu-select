@@ -102,8 +102,11 @@ export default async function CareerDetailPage({ params, searchParams }: CareerP
   counsellorParams.set('query', `I want to explore ${itemTitle}. What are my next best options, entrance exams, and college pathways?`);
   const counsellorUrl = `/ai-counsellor?${counsellorParams.toString()}`;
 
-  // If engineering branch, fetch colleges offering it
+  // Fetch colleges offering this course / branch / pathway
   let branchColleges: any[] = [];
+  let collegesSearchUrl = '/colleges';
+  let collegesHeading = `Top Colleges Offering ${itemTitle}`;
+
   if (kind === 'branch') {
     try {
       const collegeResult = await getColleges({
@@ -114,8 +117,30 @@ export default async function CareerDetailPage({ params, searchParams }: CareerP
         branch: item.code,
       });
       branchColleges = collegeResult.data || [];
+      collegesSearchUrl = `/colleges?branch=${encodeURIComponent(item.code)}`;
+      collegesHeading = `Top Colleges Offering B.Tech in ${item.name}`;
     } catch (err) {
       console.error('Error fetching colleges for branch:', err);
+    }
+  } else if (
+    kind === 'pathway' &&
+    (item.category === 'Engineering' ||
+      item.clusterIds?.includes('engineering-tech') ||
+      item.clusterIds?.includes('computing-ai') ||
+      item.id === 'b-btech')
+  ) {
+    try {
+      const collegeResult = await getColleges({
+        page: 1,
+        limit: 6,
+        sortBy: 'nirf',
+        sortOrder: 'asc',
+      });
+      branchColleges = collegeResult.data || [];
+      collegesSearchUrl = '/colleges';
+      collegesHeading = 'Top Verified Engineering Colleges';
+    } catch (err) {
+      console.error('Error fetching colleges for pathway:', err);
     }
   }
 
@@ -826,21 +851,21 @@ export default async function CareerDetailPage({ params, searchParams }: CareerP
             </section>
           )}
 
-          {/* Section: Colleges Offering This Branch */}
-          {kind === 'branch' && branchColleges.length > 0 && (
+          {/* Section: Colleges Offering This Course */}
+          {branchColleges.length > 0 && (
             <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col gap-6">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                 <div>
                   <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
                     <BuildingLibraryIcon className="w-5 h-5 text-blue-600" />
-                    <span>Top Colleges Offering {item.name}</span>
+                    <span>{collegesHeading}</span>
                   </h2>
                   <p className="text-xs text-slate-500 mt-0.5">
                     Ranked by verified NIRF 2025 ranking and state counseling cutoffs
                   </p>
                 </div>
                 <Link
-                  href={`/colleges?branch=${item.code}`}
+                  href={collegesSearchUrl}
                   className="text-xs font-bold text-blue-600 hover:underline shrink-0"
                 >
                   View All Colleges →
@@ -852,6 +877,44 @@ export default async function CareerDetailPage({ params, searchParams }: CareerP
                   <CollegeCard key={college.id} college={college} />
                 ))}
               </div>
+            </section>
+          )}
+
+          {/* Section: Medical Seats Directory */}
+          {(item.clusterIds?.includes('medicine-health') || item.clusterIds?.includes('medicine-healthcare') || ['b-mbbs', 'b-bds', 'b-nursing', 'b-pharmacy', 'b-ayush', 'a-paramedical'].includes(item.id)) && (
+            <section className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-3xl p-6 border border-emerald-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <span className="text-3xl shrink-0">🩺</span>
+                <div>
+                  <h3 className="font-bold text-slate-900 text-sm">Karnataka Medical & Allied Health Seats Directory</h3>
+                  <p className="text-xs text-slate-600 mt-0.5">Explore 788 approved MBBS, BDS, Nursing & Pharmacy seats with verified KEA counseling matrices</p>
+                </div>
+              </div>
+              <Link
+                href="/medical-allied-health"
+                className="px-4 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs rounded-xl shadow-xs shrink-0 transition-colors"
+              >
+                View Medical Colleges & Seats →
+              </Link>
+            </section>
+          )}
+
+          {/* Section: Pre-University Colleges Directory */}
+          {item.level === 'CLASS_10' && (item.category?.includes('PU stream') || id.startsWith('a-pc') || id.startsWith('a-com') || id.startsWith('a-art')) && (
+            <section className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-3xl p-6 border border-blue-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <span className="text-3xl shrink-0">🏛️</span>
+                <div>
+                  <h3 className="font-bold text-slate-900 text-sm">Karnataka Pre-University (PU) Colleges Directory</h3>
+                  <p className="text-xs text-slate-600 mt-0.5">Explore 6,400+ Government, Aided and Private PU Colleges across all 32 districts</p>
+                </div>
+              </div>
+              <Link
+                href={`/puc-colleges?stream=${item.streams?.[0]?.includes('COMMERCE') ? 'Commerce' : item.streams?.[0] === 'ARTS' ? 'Arts' : 'Science'}`}
+                className="px-4 py-2.5 bg-[#1E2A78] hover:bg-blue-900 text-white font-bold text-xs rounded-xl shadow-xs shrink-0 transition-colors"
+              >
+                View PU Colleges →
+              </Link>
             </section>
           )}
 

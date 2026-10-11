@@ -315,43 +315,269 @@ export function searchCareers(query: Partial<CareerSearchQuery> = {}) {
       ...govtJobs.map(govtJobToCard),
     ];
   } else if (level === 'CLASS_10') {
+    const sLower = (stream || '').toLowerCase().trim();
     let matchedPathways = pathways.filter((p) => p.level === 'CLASS_10');
-    if (stream && stream !== 'ANY') {
-      const sUp = stream.toUpperCase();
-      const directMatches = matchedPathways.filter((p) =>
-        p.streams?.some((s) => s.toUpperCase() === sUp || (sUp === 'PCB' && s.toUpperCase() === 'PCMB') || (sUp === 'PCM' && (s.toUpperCase() === 'PCMB' || s.toUpperCase() === 'PCMC')))
+    let includeGovt = !stream || stream === 'not_sure' || kind === 'govtJob';
+
+    if (sLower === 'science') {
+      matchedPathways = matchedPathways.filter((p) =>
+        p.streams?.some((s) => ['PCM', 'PCB', 'PCMB', 'PCMC'].includes(s.toUpperCase())) ||
+        p.id === 'a-paramedical'
       );
-      if (directMatches.length > 0) {
-        const others = matchedPathways.filter((p) => !directMatches.includes(p));
-        matchedPathways = [...directMatches, ...others];
-      }
+    } else if (sLower === 'commerce') {
+      matchedPathways = matchedPathways.filter((p) =>
+        p.streams?.some((s) => ['COMMERCE_MATHS', 'COMMERCE_NO_MATHS'].includes(s.toUpperCase()))
+      );
+    } else if (sLower === 'arts') {
+      matchedPathways = matchedPathways.filter((p) =>
+        p.streams?.some((s) => ['ARTS', 'VOCATIONAL'].includes(s.toUpperCase())) ||
+        ['a-arts', 'a-vocational', 'a-arts-sports', 'a-nios'].includes(p.id)
+      );
+    } else if (sLower === 'diploma') {
+      matchedPathways = matchedPathways.filter((p) =>
+        p.id === 'a-diploma' ||
+        p.category?.toLowerCase().includes('diploma') ||
+        p.category?.toLowerCase().includes('polytechnic')
+      );
+    } else if (sLower === 'iti') {
+      matchedPathways = matchedPathways.filter((p) =>
+        p.id === 'a-iti' ||
+        p.id.startsWith('iti-') ||
+        p.category?.toLowerCase().includes('iti')
+      );
+    } else if (sLower === 'not_sure' || !sLower) {
+      // Balanced overview: core streams first
+      const priority10thIds = [
+        'a-pcm',
+        'a-pcb',
+        'a-pcmb',
+        'a-pcmc',
+        'a-com-maths',
+        'a-com',
+        'a-arts',
+        'a-diploma',
+        'a-iti',
+        'a-paramedical',
+        'a-vocational',
+        'a-sainik',
+        'a-agniveer-gd',
+      ];
+      const primary = priority10thIds.map((id) => matchedPathways.find((p) => p.id === id)).filter(Boolean) as Pathway[];
+      const rest = matchedPathways.filter((p) => !priority10thIds.includes(p.id));
+      matchedPathways = [...primary, ...rest];
     }
+
     const allowedGovtQuals = new Set(eligibleAlso.CLASS_10 || ['CLASS_10']);
-    const matchedGovt = govtJobs.filter((g) => allowedGovtQuals.has(g.minQualification));
+    const matchedGovt = includeGovt ? govtJobs.filter((g) => allowedGovtQuals.has(g.minQualification)) : [];
     candidateCards = [...matchedPathways.map(pathwayToCard), ...matchedGovt.map(govtJobToCard)];
   } else if (level === 'CLASS_12') {
-    const matchedPathways = pathways.filter((p) => {
-      if (p.level !== 'CLASS_12') return false;
-      if (!stream || stream === 'ANY') return true;
-      return p.streams?.includes(stream as any) || p.streams?.includes('ANY');
-    });
+    const sLower = (stream || '').toLowerCase().trim();
+    let matchedPathways: Pathway[] = [];
+    let matchedBranches: EngineeringBranch[] = [];
+    let matchedGrad: GraduateCareer[] = [];
+
+    if (sLower === 'pcm') {
+      matchedPathways = pathways.filter(
+        (p) =>
+          p.level === 'CLASS_12' &&
+          (p.streams?.some((s) => ['PCM', 'PCMC'].includes(s.toUpperCase())) ||
+            ['b-nda', 'b-tes', 'b-agniveer-12', 'b-cpl', 'b-ame', 'b-merchant-navy'].includes(p.id))
+      );
+      matchedBranches = engineeringBranches;
+      matchedGrad = graduateCareers.filter((g) =>
+        ['grad-bsc-pcm', 'grad-bsc-stats', 'grad-bsc-cs-bca'].includes(g.id)
+      );
+    } else if (sLower === 'pcb') {
+      matchedPathways = pathways.filter(
+        (p) =>
+          p.level === 'CLASS_12' &&
+          p.streams?.some((s) => s.toUpperCase() === 'PCB') &&
+          !p.streams?.every((s) => ['PCM', 'PCMC'].includes(s.toUpperCase()))
+      );
+      matchedGrad = graduateCareers.filter((g) =>
+        [
+          'grad-mbbs',
+          'grad-bds',
+          'grad-ayush',
+          'grad-bpharm',
+          'grad-nursing',
+          'grad-allied',
+          'grad-bsc-life',
+          'grad-bsc-agri',
+        ].includes(g.id)
+      );
+      matchedBranches = []; // Pure PCB cannot take general B.Tech
+    } else if (sLower === 'pcmb') {
+      matchedPathways = pathways.filter(
+        (p) =>
+          p.level === 'CLASS_12' &&
+          p.streams?.some((s) => ['PCM', 'PCB', 'PCMB', 'PCMC'].includes(s.toUpperCase()))
+      );
+      matchedBranches = engineeringBranches;
+      matchedGrad = graduateCareers.filter((g) =>
+        [
+          'grad-mbbs',
+          'grad-bds',
+          'grad-ayush',
+          'grad-bpharm',
+          'grad-nursing',
+          'grad-allied',
+          'grad-bsc-life',
+          'grad-bsc-pcm',
+          'grad-bsc-stats',
+          'grad-bsc-cs-bca',
+          'grad-bsc-agri',
+        ].includes(g.id)
+      );
+    } else if (sLower === 'pcmc') {
+      matchedPathways = pathways.filter(
+        (p) =>
+          p.level === 'CLASS_12' &&
+          (p.streams?.some((s) => ['PCM', 'PCMC', 'PCMB'].includes(s.toUpperCase())) ||
+            ['b-bca', 'b-btech', 'b-bsc-pcm'].includes(p.id))
+      );
+      // Prioritize CSE/IT/AI branches for PCMC
+      const techCodes = ['CSE', 'AI', 'DS', 'IT', 'CY', 'ISE', 'IOT', 'ECM'];
+      matchedBranches = [
+        ...engineeringBranches.filter((b) => techCodes.includes(b.code.toUpperCase())),
+        ...engineeringBranches.filter((b) => !techCodes.includes(b.code.toUpperCase())),
+      ];
+      matchedGrad = graduateCareers.filter((g) =>
+        ['grad-bsc-cs-bca', 'grad-bsc-pcm', 'grad-bsc-stats'].includes(g.id)
+      );
+    } else if (sLower === 'commerce_maths') {
+      matchedPathways = pathways.filter(
+        (p) =>
+          p.level === 'CLASS_12' &&
+          (p.streams?.some((s) => s.toUpperCase() === 'COMMERCE_MATHS') ||
+            (p.streams?.some((s) => s.toUpperCase() === 'ANY') &&
+              ['b-ipm', 'b-law', 'b-hotel'].includes(p.id)))
+      );
+      matchedGrad = graduateCareers.filter((g) =>
+        ['grad-bcom', 'grad-ba-economics', 'grad-bba'].includes(g.id)
+      );
+    } else if (sLower === 'commerce_no_maths') {
+      matchedPathways = pathways.filter(
+        (p) =>
+          p.level === 'CLASS_12' &&
+          (p.streams?.some((s) => s.toUpperCase() === 'COMMERCE_NO_MATHS') ||
+            (p.streams?.some((s) => s.toUpperCase() === 'ANY') &&
+              ['b-law', 'b-design', 'b-hotel', 'b-bjmc'].includes(p.id)))
+      );
+      matchedGrad = graduateCareers.filter((g) => ['grad-bcom', 'grad-bba'].includes(g.id));
+    } else if (sLower === 'arts') {
+      matchedPathways = pathways.filter(
+        (p) =>
+          p.level === 'CLASS_12' &&
+          (p.streams?.some((s) => s.toUpperCase() === 'ARTS') ||
+            (p.streams?.some((s) => s.toUpperCase() === 'ANY') &&
+              [
+                'b-law',
+                'b-design',
+                'b-fine-arts',
+                'b-bjmc',
+                'b-hotel',
+                'b-liberal-arts',
+                'b-bsw',
+                'b-teaching',
+                'b-languages',
+              ].includes(p.id)))
+      );
+      matchedGrad = graduateCareers.filter((g) =>
+        [
+          'grad-ba-economics',
+          'grad-ba-english',
+          'grad-ba-social',
+          'grad-psychology',
+          'grad-languages',
+          'grad-bdes',
+          'grad-bfa',
+          'grad-bjmc',
+        ].includes(g.id)
+      );
+    } else if (sLower === 'vocational') {
+      matchedPathways = pathways.filter(
+        (p) =>
+          p.level === 'CLASS_12' &&
+          (p.streams?.some((s) => s.toUpperCase() === 'VOCATIONAL') || p.id === 'b-library-voc')
+      );
+    } else {
+      matchedPathways = pathways.filter((p) => p.level === 'CLASS_12');
+      matchedBranches = engineeringBranches;
+      matchedGrad = graduateCareers.filter((g) => g.level === 'UG_OTHER' || g.level === 'PROFESSIONAL');
+    }
+
     const allowedGovtQuals = new Set(eligibleAlso.CLASS_12 || ['CLASS_10', 'CLASS_12']);
     const matchedGovt = govtJobs.filter((g) => allowedGovtQuals.has(g.minQualification));
-    candidateCards = [...matchedPathways.map(pathwayToCard), ...matchedGovt.map(govtJobToCard)];
+    candidateCards = [
+      ...matchedPathways.map(pathwayToCard),
+      ...matchedBranches.map(branchToCard),
+      ...matchedGrad.map(degreeToCard),
+      ...matchedGovt.map(govtJobToCard),
+    ];
   } else if (level === 'ITI') {
+    const tradeLower = (stream || '').toLowerCase().trim();
+    let specificTrade: Pathway | undefined;
+    if (tradeLower && tradeLower !== 'other') {
+      specificTrade = pathways.find(
+        (p) =>
+          p.id === `iti-${tradeLower}` ||
+          (tradeLower === 'electronics' && p.id === 'iti-electronics-mechanic') ||
+          p.name.toLowerCase().includes(tradeLower)
+      );
+    }
     const matchedPathways = pathways.filter((p) => p.level === 'ITI');
     const allowedGovtQuals = new Set(eligibleAlso.ITI || ['CLASS_10', 'ITI']);
     const matchedGovt = govtJobs.filter((g) => allowedGovtQuals.has(g.minQualification));
-    candidateCards = [...matchedPathways.map(pathwayToCard), ...matchedGovt.map(govtJobToCard)];
+    candidateCards = [
+      ...(specificTrade ? [pathwayToCard(specificTrade)] : []),
+      ...matchedPathways.map(pathwayToCard),
+      ...matchedGovt.map(govtJobToCard),
+    ];
   } else if (level === 'DIPLOMA') {
+    const branchLower = (stream || '').toLowerCase().trim();
     const matchedPathways = pathways.filter((p) => p.level === 'DIPLOMA');
+    let lateralBranches: EngineeringBranch[] = [];
+    if (branchLower && branchLower !== 'other') {
+      const codeMap: Record<string, string[]> = {
+        cse: ['CSE', 'IT', 'AI', 'DS'],
+        me: ['ME', 'AUTO', 'IPE', 'RAI'],
+        ce: ['CIVIL', 'ENV'],
+        eee: ['EEE', 'EIE'],
+        ece: ['ECE', 'ECM', 'VLSI'],
+        automobile: ['AUTO', 'ME'],
+      };
+      const targetCodes = codeMap[branchLower] || [branchLower.toUpperCase()];
+      lateralBranches = engineeringBranches.filter((b) =>
+        targetCodes.includes(b.code.toUpperCase())
+      );
+    } else {
+      lateralBranches = engineeringBranches;
+    }
     const allowedGovtQuals = new Set(eligibleAlso.DIPLOMA || ['CLASS_10', 'CLASS_12', 'DIPLOMA']);
     const matchedGovt = govtJobs.filter((g) => allowedGovtQuals.has(g.minQualification));
-    candidateCards = [...matchedPathways.map(pathwayToCard), ...matchedGovt.map(govtJobToCard)];
+    candidateCards = [
+      ...matchedPathways.map(pathwayToCard),
+      ...lateralBranches.map(branchToCard),
+      ...matchedGovt.map(govtJobToCard),
+    ];
   } else if (level === 'UG_ENGG') {
+    const enggBranch = (branch || stream || '').toLowerCase().trim();
     let branches = engineeringBranches;
-    if (branch) {
-      branches = branches.filter((b) => b.code.toUpperCase() === branch.toUpperCase());
+    if (enggBranch && enggBranch !== 'other') {
+      const bMap: Record<string, string[]> = {
+        cse: ['CSE', 'IT', 'AI', 'DS', 'CY', 'ISE'],
+        ece: ['ECE', 'ECM', 'VLSI', 'IOT'],
+        me: ['ME', 'AUTO', 'RAI', 'AERO'],
+        ce: ['CIVIL', 'ENV'],
+        eee: ['EEE', 'EIE'],
+        ai: ['AI', 'DS', 'CSE'],
+      };
+      const allowedCodes = bMap[enggBranch] || [enggBranch.toUpperCase()];
+      branches = [
+        ...engineeringBranches.filter((b) => allowedCodes.includes(b.code.toUpperCase())),
+        ...engineeringBranches.filter((b) => !allowedCodes.includes(b.code.toUpperCase())),
+      ];
     }
     const matchedPathways = pathways.filter((p) => p.level === 'UG_ENGG');
     const allowedGovtQuals = new Set(
@@ -364,8 +590,25 @@ export function searchCareers(query: Partial<CareerSearchQuery> = {}) {
       ...matchedGovt.map(govtJobToCard),
     ];
   } else if (level === 'UG_OTHER') {
-    const matchedGrad = graduateCareers.filter((g) => g.level === 'UG_OTHER');
-    const matchedPathways = pathways.filter((p) => p.level === 'UG_OTHER');
+    const degLower = (stream || '').toLowerCase().trim();
+    let matchedGrad = graduateCareers.filter((g) => g.level === 'UG_OTHER');
+    if (degLower && degLower !== 'other') {
+      const degreeIdMap: Record<string, string[]> = {
+        bsc: ['grad-bsc-pcm', 'grad-bsc-stats', 'grad-bsc-life', 'grad-bsc-cs-bca', 'grad-bsc-agri', 'grad-psychology'],
+        bcom: ['grad-bcom', 'grad-ba-economics', 'grad-bba'],
+        bca: ['grad-bsc-cs-bca'],
+        bba: ['grad-bba', 'grad-bcom'],
+        ba: ['grad-ba-economics', 'grad-ba-english', 'grad-ba-social', 'grad-languages', 'grad-psychology'],
+      };
+      const targetIds = degreeIdMap[degLower];
+      if (targetIds) {
+        matchedGrad = [
+          ...graduateCareers.filter((g) => targetIds.includes(g.id)),
+          ...graduateCareers.filter((g) => g.level === 'UG_OTHER' && !targetIds.includes(g.id)),
+        ];
+      }
+    }
+    const matchedPathways = pathways.filter((p) => p.level === 'UG_OTHER' || p.level === 'PG');
     const allowedGovtQuals = new Set(eligibleAlso.GRADUATE || ['CLASS_10', 'CLASS_12', 'GRADUATE']);
     const matchedGovt = govtJobs.filter((g) => allowedGovtQuals.has(g.minQualification));
     candidateCards = [
@@ -374,7 +617,24 @@ export function searchCareers(query: Partial<CareerSearchQuery> = {}) {
       ...matchedGovt.map(govtJobToCard),
     ];
   } else if (level === 'PROFESSIONAL') {
-    const matchedGrad = graduateCareers.filter((g) => g.level === 'PROFESSIONAL');
+    const profLower = (stream || '').toLowerCase().trim();
+    let matchedGrad = graduateCareers.filter((g) => g.level === 'PROFESSIONAL');
+    if (profLower && profLower !== 'other') {
+      const profMap: Record<string, string[]> = {
+        mbbs: ['grad-mbbs', 'grad-bds', 'grad-ayush'],
+        law: ['grad-llb'],
+        pharmacy: ['grad-bpharm'],
+        architecture: ['grad-barch'],
+        ca: ['grad-bcom'],
+      };
+      const targets = profMap[profLower];
+      if (targets) {
+        matchedGrad = [
+          ...graduateCareers.filter((g) => targets.includes(g.id)),
+          ...graduateCareers.filter((g) => g.level === 'PROFESSIONAL' && !targets.includes(g.id)),
+        ];
+      }
+    }
     const matchedPathways = pathways.filter((p) => p.level === 'PROFESSIONAL');
     const allowedGovtQuals = new Set(['MBBS', 'LLB', 'PROFESSIONAL', 'GRADUATE', 'CLASS_12', 'CLASS_10']);
     const matchedGovt = govtJobs.filter((g) => allowedGovtQuals.has(g.minQualification));
@@ -384,7 +644,23 @@ export function searchCareers(query: Partial<CareerSearchQuery> = {}) {
       ...matchedGovt.map(govtJobToCard),
     ];
   } else if (level === 'PG') {
-    const matchedGrad = graduateCareers.filter((g) => g.level === 'PG');
+    const pgLower = (stream || '').toLowerCase().trim();
+    let matchedGrad = graduateCareers.filter((g) => g.level === 'PG');
+    if (pgLower && pgLower !== 'other') {
+      const pgMap: Record<string, string[]> = {
+        mtech: ['grad-any-pg'],
+        mba: ['grad-mba'],
+        msc: ['grad-any-pg'],
+        mca: ['grad-mca'],
+      };
+      const targets = pgMap[pgLower];
+      if (targets) {
+        matchedGrad = [
+          ...graduateCareers.filter((g) => targets.includes(g.id)),
+          ...graduateCareers.filter((g) => g.level === 'PG' && !targets.includes(g.id)),
+        ];
+      }
+    }
     const matchedPathways = pathways.filter((p) => p.level === 'PG');
     const allowedGovtQuals = new Set(eligibleAlso.PG || ['CLASS_10', 'CLASS_12', 'GRADUATE', 'PG']);
     const matchedGovt = govtJobs.filter((g) => allowedGovtQuals.has(g.minQualification));

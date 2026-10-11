@@ -42,7 +42,23 @@ export function getCollegeDirectoryLink(card: CareerCardType) {
   const subtitleLower = (card.subtitle || '').toLowerCase();
   const idLower = card.id.toLowerCase();
 
-  // 1. Class 11-12 / PU streams (After 10th Science, Commerce, Arts)
+  // 1. Engineering Branches (always prioritize engineering branch code for college directory)
+  if (card.kind === 'branch') {
+    let branchCode = '';
+    if (card.id.startsWith('branch-')) {
+      branchCode = card.id.replace('branch-', '').toUpperCase();
+    }
+    const branchParam = branchCode ? `?branch=${encodeURIComponent(branchCode)}` : '';
+    const cleanBranchName = card.title.replace(/^B\.Tech in\s+/i, '');
+    return {
+      href: `/colleges${branchParam}`,
+      label: branchCode ? `Explore Colleges for ${cleanBranchName}` : 'Explore 455 Engineering Colleges',
+      tag: 'NIRF & Cutoffs',
+      icon: '🎓',
+    };
+  }
+
+  // 2. Class 11-12 / PU streams (After 10th Science, Commerce, Arts)
   const isPuStream =
     subtitleLower.includes('pu stream') ||
     subtitleLower.includes('class 11-12') ||
@@ -124,14 +140,22 @@ export function getCollegeDirectoryLink(card: CareerCardType) {
     }
   }
 
-  // 2. Medicine & Healthcare (MBBS, BDS, Nursing, Pharmacy)
+  // 3. Medicine & Healthcare (MBBS, BDS, Nursing, Pharmacy)
   if (
+    card.clusterIds?.includes('medicine-health') ||
     card.clusterIds?.includes('medicine-healthcare') ||
     titleLower.includes('mbbs') ||
     titleLower.includes('dental') ||
     titleLower.includes('bds') ||
-    titleLower.includes('pharmacy') ||
-    titleLower.includes('nursing')
+    titleLower.includes('pharm') ||
+    titleLower.includes('ayush') ||
+    titleLower.includes('bams') ||
+    titleLower.includes('bhms') ||
+    titleLower.includes('bums') ||
+    titleLower.includes('nursing') ||
+    idLower === 'b-pharmacy' ||
+    idLower === 'b-ayush' ||
+    idLower === 'a-paramedical'
   ) {
     return {
       href: '/medical-allied-health',
@@ -141,9 +165,8 @@ export function getCollegeDirectoryLink(card: CareerCardType) {
     };
   }
 
-  // 3. Engineering Branches or Degrees
+  // 4. Engineering Tech Clusters or generic B.Tech Pathways
   if (
-    card.kind === 'branch' ||
     card.clusterIds?.includes('engineering-tech') ||
     card.clusterIds?.includes('computing-ai') ||
     titleLower.includes('engineering') ||
