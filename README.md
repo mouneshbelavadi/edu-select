@@ -199,4 +199,4 @@ For complete documentation on the 8 underlying datasets, government gazette cita
 
 ## 📄 License & Attribution
 
-Designed and maintained for Indian students and educators. All college data is sourced from public institutional disclosures, AICTE, KEA, and NIRF 2025.
+Designed and maintained for Indian students and educators. All college data is sourced from public institutional disclosures, AICTE, KEA, and NIRF 2025
