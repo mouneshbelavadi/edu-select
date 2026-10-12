@@ -1,4 +1,4 @@
-# EduSelect — Higher Education & Career Exploration Platform
+see# EduSelect — Higher Education & Career Exploration Platform
 
 [![Netlify Ready](https://img.shields.io/badge/Deployment-Netlify_Serverless-00C7B7?style=flat-square&logo=netlify)](https://www.netlify.com)
 [![Next.js 14](https://img.shields.io/badge/Next.js-14_App_Router-black?style=flat-square&logo=next.js)](https://nextjs.org)
@@ -199,4 +199,4 @@ For complete documentation on the 8 underlying datasets, government gazette cita
 
 ## 📄 License & Attribution
 
-Designed and maintained for Indian students and educators. All college data is sourced from public institutional disclosures, AICTE, KEA, and NIRF 2025
+Designed and maintained for Indian students and educators. All college data is sourced from public institutional disclosures, AICTE, KEA, and NIRF 2025.
