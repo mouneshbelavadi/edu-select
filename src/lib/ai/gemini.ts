@@ -9,9 +9,9 @@ const timeoutMs = parseInt(process.env.GEMINI_TIMEOUT_MS || '20000', 10);
 let client: GoogleGenAI | null = null;
 
 function getAiClient(): GoogleGenAI | null {
-  if (!apiKey) return null;
+  if (!apiKey || apiKey.trim().length === 0) return null;
   if (!client) {
-    client = new GoogleGenAI({ apiKey });
+    client = new GoogleGenAI({ apiKey: apiKey.trim() });
   }
   return client;
 }

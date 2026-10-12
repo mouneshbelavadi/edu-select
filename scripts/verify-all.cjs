@@ -653,7 +653,8 @@ function verifyEnvironment() {
     const localContent = fs.readFileSync(localEnvPath, 'utf8');
     const localHasDb = localContent.includes('DATABASE_URL');
     const localHasAuth = localContent.includes('NEXTAUTH_SECRET');
-    const localHasGemini = localContent.includes('GEMINI_API_KEY');
+    const geminiMatch = localContent.match(/GEMINI_API_KEY\s*=\s*["']?([^"'\r\n]+)/);
+    const localHasGemini = Boolean(geminiMatch && geminiMatch[1].trim().length > 0);
 
     success(`Local config audit: DB configured: ${localHasDb ? 'YES' : 'NO'}, Auth configured: ${localHasAuth ? 'YES' : 'NO'}, Gemini configured: ${localHasGemini ? 'YES' : 'NO (AI fallback active)'}`);
   } else {
