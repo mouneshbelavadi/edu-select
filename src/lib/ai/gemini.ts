@@ -94,6 +94,9 @@ export async function generateJson<T>(options: GenerateJsonOptions): Promise<{ d
     }
   }
 
+  throw lastError || new Error('Failed to generate response after retries');
+}
+
 export interface GenerateTextOptions {
   systemInstruction?: string;
   contents: string | Array<{ role: string; parts: Array<{ text: string }> }>;

@@ -27,6 +27,46 @@ interface ChatMessage {
   content: string;
 }
 
+const SCOPE_RESTRICTION_REPLY = `### 🎓 EduSelect Career Counsellor
+
+I am EduSelect's specialized **AI Career & College Counsellor**. I am dedicated exclusively to helping students, parents, and aspirants navigate:
+- **Educational Pathways:** What to choose after Class 10th, 12th / PUC, ITI, or Polytechnic Diplomas
+- **Degrees & Programs:** Engineering (31 branches), Medicine (MBBS, BDS, AYUSH, Nursing), Commerce (CA, CS, B.Com, BBA), Humanities & Law
+- **Colleges & Admissions:** Verified KCET / NEET / JEE cutoffs, tuition fees, and NIRF rankings across India
+- **Career Planning:** Salary progressions, job profiles, entrance exams, and industry outlooks
+
+*I do not write computer code, debug software, or answer non-educational topics.*
+
+Please ask me any question about your **education, college options, entrance exams, or career choices!**`;
+
+// Detect coding or non-educational queries to enforce student-only counseling scope
+function isNonEducationalQuery(query: string): boolean {
+  const q = query.toLowerCase().trim();
+
+  // If the query asks about career, admission, branch, college, degree, or exam, it's definitely educational
+  const isEducationContext = /\b(career|job|salary|course|college|degree|branch|b\.?tech|engineering|bca|mca|syllabus|admission|cutoff|placement|scope|future|after\s*10|after\s*12|student|school|study|learn|curriculum|eligible|eligibility|prerequisite)\b/i.test(q);
+
+  // 1. Explicit code generation or debugging requests
+  const isCodeGeneration =
+    /\b(write|generate|give\s*me|create|debug|fix)\s+(a\s+)?(code|script|program|function|class|regex|query|leetcode\s*solution)\b/i.test(q) ||
+    /\b(write\s+(python|javascript|typescript|c\+\+|java|c#|sql|html|css|react)\s+(code|script|program))\b/i.test(q) ||
+    /^(def\s+|function\s+|class\s+|SELECT\s+|#include\s+|import\s+react)/i.test(q);
+
+  if (isCodeGeneration && (!isEducationContext || /\b(code\s+for|solve\s+this|fix\s+my|debug\s+my)\b/i.test(q))) {
+    return true;
+  }
+
+  // 2. Unrelated non-educational topics (cooking, sports scores, entertainment gossip, politics)
+  const isUnrelatedTopic =
+    /\b(recipe|how\s+to\s+cook|ingredients\s+for|bake\s+a\s+cake|who\s+won\s+the\s+(ipl|match|world\s*cup)|movie\s+box\s+office|celebrity\s+gossip)\b/i.test(q);
+
+  if (isUnrelatedTopic && !isEducationContext) {
+    return true;
+  }
+
+  return false;
+}
+
 // Helper to retrieve verified context items from our datasets
 function retrieveRelevantData(query: string) {
   const q = query.toLowerCase();
@@ -114,7 +154,38 @@ function retrieveRelevantData(query: string) {
       url: `/careers/branch/${b.id}`,
       type: 'Branch',
     });
+    if (b.code) {
+      sources.push({
+        title: `Colleges offering ${b.name} (${b.code})`,
+        url: `/colleges?branch=${b.code}`,
+        type: 'Colleges',
+      });
+    }
   });
+
+  if (/\b(doctor|mbbs|bds|neet|medical|ayush|biology|nursing|pharmacy)\b/.test(q)) {
+    sources.push({
+      title: 'Medical & Allied Health Directory (1,638+ Colleges)',
+      url: '/medical-allied-health',
+      type: 'Colleges',
+    });
+  }
+
+  if (/\b(10th|puc|pu\s*college|sslc|class\s*10)\b/.test(q)) {
+    sources.push({
+      title: 'Karnataka PU Colleges Directory (6,417 Colleges)',
+      url: '/puc-colleges',
+      type: 'Colleges',
+    });
+  }
+
+  if (/\b(diploma|polytechnic|dcet)\b/.test(q)) {
+    sources.push({
+      title: 'Technical Pathways Matrix',
+      url: '/pathways',
+      type: 'Pathway',
+    });
+  }
 
   matchedColleges.slice(0, 3).forEach((c) => {
     sources.push({
@@ -298,6 +369,109 @@ Merchant Navy offers one of the most lucrative and high-liquidity global careers
    - **Captain / Master Mariner / Chief Engineer (8+ yrs):** Commands international container/tanker vessels. **Tax-free monthly salary of ₹8 Lakhs to ₹12 Lakhs ($10,000–$15,000/month)**.`;
   }
 
+  // Engineering Branches Comparison (CSE vs ECE vs AI/DS vs Mechanical)
+  if (/\b(cse\s*vs\s*ece|ece\s*vs\s*cse|branch\s*comparison|which\s*engineering\s*branch|best\s*engineering\s*branch|cse\s*or\s*ece|ai\s*vs\s*cse)\b/.test(q)) {
+    return `### 💻 Branch Comparison: CSE vs ECE vs AI & Data Science
+
+Here is a side-by-side breakdown based on 2024–2025 placement trends, curriculum depth, and long-term career agility:
+
+| Dimension | Computer Science (CSE) | Electronics & Comm (ECE) | AI & Data Science (AI/DS) |
+| :--- | :--- | :--- | :--- |
+| **Core Curriculum** | Data Structures, Algorithms, OS, Cloud, Web/Mobile | Analog/Digital Circuits, VLSI, Embedded Systems, DSP | Machine Learning, Deep Learning, Statistics, Python/R |
+| **Fresher Starting CTC** | **₹6.5 – ₹18.0 LPA** | **₹5.5 – ₹14.0 LPA** | **₹7.0 – ₹19.0 LPA** |
+| **Top Recruiters** | Microsoft, Amazon, Google, Atlassian, Infosys | Qualcomm, Texas Instruments, Intel, Apple, Cisco | OpenAI ecosystem, NVIDIA, Fractal Analytics, Target |
+| **PSU / Govt Opportunities** | Moderate (NIC, ISRO, DRDO) | **Very High** (ISRO, BEL, BHEL, DRDO, ECIL via GATE) | Moderate to Growing |
+| **Long-Term Agility** | Pure Software, Product Management, System Architecture | Hardware + Software versatility (Semiconductor fab + Tech) | Machine Learning Engineer, Data Scientist, GenAI architect |
+
+#### Strategic Advice:
+1. **Choose CSE:** If you love pure programming, software problem-solving, algorithms, and desire the broadest campus placement volume.
+2. **Choose ECE:** If you want dual versatility—qualifying for IT campus placements *while also* possessing hardware, VLSI chip-design, and central government PSU GATE opportunities.
+3. **Choose AI/DS:** If you have strong mathematical and statistical aptitude and want to focus specifically on predictive intelligence, generative AI, and data analytics.`;
+  }
+
+  // Polytechnic Diploma vs 11th Science / Lateral Entry
+  if (/\b(polytechnic|diploma\s*lateral|dcet|lateral\s*entry|diploma\s*vs\s*11th|polytechnic\s*vs\s*pu|polytechnic\s*vs\s*science)\b/.test(q)) {
+    return `### ⚡ Polytechnic Diploma vs. 11th/12th Science & Lateral Entry
+
+Choosing between a 3-Year Polytechnic Diploma and 11th/12th PUC Science depends on your preferred learning style and goals:
+
+#### 1. The Polytechnic Diploma Route (3 Years post-10th)
+- **Hands-On Practical Training:** Focuses 70% on laboratory work, workshop practice, and machinery right from day one.
+- **Direct 2nd-Year B.Tech Admission (Lateral Entry):**
+  - In Karnataka, candidates write the **DCET (Diploma Common Entrance Test)** conducted by KEA.
+  - You gain admission directly into the **3rd semester (2nd year)** of B.Tech / B.E., saving one full year of foundation science!
+- **Instant Job Readiness:** Immediately eligible for **Junior Engineer (JE)** posts:
+  - SSC JE (Central Public Works, MES)
+  - Railway RRB JE
+  - State Electricity Supply Companies (BESCOM, KPTCL)
+  - Private manufacturing CTC: ~₹3.0 – ₹5.0 LPA.
+
+#### 2. The 11th/12th Science Route (2 Years post-10th)
+- **Theoretical Foundation:** Emphasizes Physics, Chemistry, and Advanced Mathematics.
+- **Wider Exam Portability:** Mandatory if you plan to write **JEE Main / Advanced (IITs/NITs)**, **NEET-UG (Medical)**, or **NDA (Armed Forces Officer entry)**.
+
+#### Summary Verdict:
+- Choose **Polytechnic** if you want hands-on technical skills, early financial independence, or an assured lateral route into engineering without intense 2-year competitive exam pressure.
+- Choose **11th/12th Science** if your dream is an IIT, NIT, NDA officer entry, or Medicine.`;
+  }
+
+  // Government Jobs After 10th and 12th
+  if (/\b(govt\s*jobs|government\s*jobs|jobs\s*after\s*10th|jobs\s*after\s*12th|ssc\s*chsl|nda|agniveer|railway\s*jobs)\b/.test(q)) {
+    return `### 🏛️ Prestigious Government Jobs After 10th & 12th Pass
+
+Central and state government bodies offer excellent permanent career pathways with high job security, medical benefits, and structured pension schemes:
+
+#### A. Central Govt Jobs After Class 12th Pass:
+1. **National Defence Academy (NDA & NA - UPSC):**
+   - **Role:** Commissioned Officer in Indian Army, Navy, or Air Force.
+   - **Eligibility:** 12th pass (PCM for Air Force/Navy; any stream for Army). Age: 16.5–19.5 years.
+   - **Pay Scale:** Starting basic pay ₹56,100/month (Level 10) + allowances.
+2. **SSC CHSL (Combined Higher Secondary Level):**
+   - **Roles:** Lower Division Clerk (LDC), Junior Secretariat Assistant (JSA), Data Entry Operator (DEO).
+   - **Eligibility:** 12th pass from any stream. Age: 18–27 years.
+   - **Salary:** ~₹32,000 to ₹45,000/month in Central Ministries.
+3. **Railway RRB NTPC (Undergraduate Posts):**
+   - **Roles:** Junior Clerk cum Typist, Accounts Clerk, Commercial cum Ticket Clerk.
+   - **Salary:** Pay Level 2 & 3 (~₹28,000 to ₹38,000/month).
+4. **State Police Constable:**
+   - **Eligibility:** 12th pass + Physical Endurance Test. Age: 19–25 years.
+
+#### B. Central Govt Jobs After Class 10th Pass:
+1. **SSC MTS & Havaldar:**
+   - Multi-Tasking Staff in central government secretariats. Age: 18–25/27 years.
+2. **Indian Army Agniveer (General Duty / Tradesmen):**
+   - Direct soldier recruitment. Age: 17.5–21 years.
+3. **Railway RRB Group D:**
+   - Track Maintainer, Assistant Pointsman, Workshop assistant.
+4. **India Post GDS (Gramin Dak Sevak):**
+   - Merit-based selection on 10th percentage marks (no written exam).`;
+  }
+
+  // ITI Trades & Technician Opportunities
+  if (/\b(iti|trade|fitter|electrician|copa|machinist|turner|technician)\b/.test(q)) {
+    return `### ⚡ ITI Trades: Craftsman Training & Public Sector Careers
+
+Industrial Training Institutes (ITI) provide structured 1- to 2-year technical craft certifications under NCVT (National Council for Vocational Training):
+
+#### Top In-Demand ITI Trades:
+1. **Electrician (2 Years):**
+   - Domestic & industrial wiring, motor windings, solar power installations, switchgear.
+   - Top employers: State Electricity Boards (BESCOM, KPTCL), Indian Railways, Metro Rail.
+2. **Fitter (2 Years):**
+   - Precision mechanical assembly, machine repair, fabrication, blueprint reading.
+   - Top employers: BHEL, HAL, DRDO, Ordnance Factories, Tata Motors.
+3. **COPA (Computer Operator and Programming Assistant - 1 Year):**
+   - Office automation, database management, network basics, Python/HTML essentials.
+   - Immediate openings in government secretariats and data processing centers.
+4. **Machinist & Turner (2 Years):**
+   - Lathe operations, milling machines, CNC programming, precision manufacturing.
+
+#### Career Progression:
+- **Starting CTC:** ₹2.5 – ₹4.0 LPA in manufacturing / ₹30,000–₹40,000/month in Indian Railways.
+- **Lateral Pathway:** ITI certificate holders are eligible for direct admission into the **2nd year of Polytechnic Diploma**.
+- **Instructor Route:** Pursue **CITS (Craft Instructor Training Scheme)** to become a permanent ITI training instructor.`;
+  }
+
   // Default helpful counselling answer with matched data
   let reply = `### 🎓 EduSelect Career & Higher Education Guidance\n\n`;
   reply += `Thank you for your question. Here is verified information from EduSelect's database:\n\n`;
@@ -370,10 +544,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 3. Retrieve Verified Context from Our Datasets
+    // 3. Strict Scope Restriction: Answer ONLY student & career guidance questions; refuse coding or unrelated queries
+    if (isNonEducationalQuery(message)) {
+      return NextResponse.json({
+        success: true,
+        reply: SCOPE_RESTRICTION_REPLY,
+        model: 'guardrail',
+        sources: [],
+      });
+    }
+
+    // 4. Retrieve Verified Context from Our Datasets
     const retrieved = retrieveRelevantData(message);
 
-    // 4. If Gemini is not configured, return rule-based reply
+    // 5. If Gemini is not configured, return rule-based reply
     if (!isGeminiConfigured()) {
       const fallbackReply = buildRuleBasedReply(message, retrieved);
       return NextResponse.json({
@@ -384,11 +568,17 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // 5. Construct AI Prompt with Real Dataset Context
+    // 6. Construct AI Prompt with Real Dataset Context
     const systemInstruction = `You are EduSelect's expert AI Career & College Counsellor for Indian students and parents.
 Your mission is to provide accurate, empathetic, structured, and insightful educational guidance.
 
-CRITICAL RULES:
+CRITICAL SCOPE RESTRICTIONS:
+- You are STRICTLY a student career and college counsellor.
+- Answer ONLY questions related to educational pathways, admissions, degrees, careers, courses, cutoffs, entrance exams, and syllabus in India.
+- REFUSE all coding/programming requests, debugging, general software implementation, unrelated trivia, politics, recipes, or general creative writing.
+- If asked for code or an unrelated topic, politely refuse and remind the student that you specialize only in higher education, admissions, and career counseling.
+
+FACTUAL GROUNDING IN INDIAN HIGHER EDUCATION:
 1. Ground your advice strictly in authentic Indian education facts:
    - To become a licensed Doctor (MBBS/BDS/AYUSH): Under NMC regulations, Biology is MANDATORY in Class 11-12 (PCB or PCMB). Pure PCM without Biology cannot qualify for NEET-UG or MBBS admission.
    - After Class 10: Choices are 11th-12th Streams (Science, Commerce, Arts), 3-Year Polytechnic Diplomas (with 2nd-year B.Tech lateral entry), ITI Trades, or Direct 10th Defence/Govt exams.
@@ -397,6 +587,7 @@ CRITICAL RULES:
 2. Structure your replies using clear, clean Markdown:
    - Use headings (###), bold key terms, bullet points, and numbered lists for steps.
    - Include realistic salary expectations, duration, fees, and entrance exams.
+   - Provide concrete recommendations of courses and colleges drawn from our verified data.
    - Keep answers comprehensive yet easy to read.
 3. Use the VERIFIED DATA below to enrich your response. If relevant colleges, pathways, or exams are provided, mention them naturally.
 4. Never invent nonexistent exams, fees, or cutoffs. If something is not certain, advise the student to check official counselling notifications.`;

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef, useMemo, Suspense } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import {
@@ -26,42 +26,213 @@ interface ChatMessage {
   sources?: MessageSource[];
 }
 
-const STARTER_PROMPTS = [
+interface QuickTopic {
+  id: string;
+  category: string;
+  icon: string;
+  title: string;
+  prompt: string;
+  badge: string;
+}
+
+const CAREER_TOPIC_CATEGORIES = [
+  { id: 'all', label: '🌟 All Questions' },
+  { id: '10th', label: '🧭 After 10th' },
+  { id: '12th_science', label: '🔬 12th Science & Tech' },
+  { id: 'medical', label: '🩺 Medical & NEET' },
+  { id: 'btech', label: '💻 Engineering Branches' },
+  { id: 'colleges', label: '🏛️ Top Colleges & Cutoffs' },
+  { id: 'commerce', label: '📊 Commerce & CA' },
+  { id: 'arts', label: '🎨 Arts & Law' },
+  { id: 'diploma', label: '⚡ Polytechnic & ITI' },
+  { id: 'govt', label: '📜 Govt Jobs & Exams' },
+];
+
+const PRE_FILLED_QUESTIONS: QuickTopic[] = [
+  // After 10th
   {
+    id: 'c10-1',
+    category: '10th',
     icon: '🧭',
-    title: 'After 10th Choices',
-    prompt: 'What are my best options after 10th if I enjoy science and practical machines?',
-    tag: 'Class 10',
+    title: 'Top pathways after Class 10',
+    prompt: 'What are all my educational options after 10th standard (PUC Science, Commerce, Arts, Polytechnic, ITI)?',
+    badge: 'After 10th',
   },
   {
-    icon: '🩺',
-    title: 'Can I do MBBS with PCM?',
-    prompt: 'Can I become a doctor if I take PCM in 11th and 12th? What are the NMC rules?',
-    tag: 'Medical',
-  },
-  {
-    icon: '💻',
-    title: 'CSE vs ECE vs AI Engineering',
-    prompt: 'Which engineering branch offers the best placements and versatility: CSE, ECE, or AI/DS?',
-    tag: 'B.Tech',
-  },
-  {
-    icon: '🏛️',
-    title: 'Top Karnataka Colleges & Fees',
-    prompt: 'What are the top NIRF engineering colleges in Karnataka with low tuition fees?',
-    tag: 'Colleges',
-  },
-  {
-    icon: '💼',
-    title: 'Government Jobs After 12th',
-    prompt: 'Which central and state government jobs can I apply for directly after 12th pass?',
-    tag: 'Govt Jobs',
-  },
-  {
+    id: 'c10-2',
+    category: '10th',
     icon: '⚡',
-    title: 'Polytechnic vs 11th Science',
-    prompt: 'Should I choose a 3-year Polytechnic Diploma or 11th/12th Science for engineering?',
-    tag: 'Diploma',
+    title: 'Polytechnic Diploma vs 11th Science',
+    prompt: 'Should I choose a 3-year Polytechnic Diploma or 11th/12th Science if my goal is Engineering?',
+    badge: 'Diploma',
+  },
+  {
+    id: 'c10-3',
+    category: '10th',
+    icon: '🔧',
+    title: 'ITI Trades & Public Sector Careers',
+    prompt: 'What are the top ITI trades (Electrician, Fitter, COPA) and what jobs can I get in Indian Railways or PSUs?',
+    badge: 'ITI Trades',
+  },
+
+  // 12th Science & Tech
+  {
+    id: 'sci-1',
+    category: '12th_science',
+    icon: '🔬',
+    title: 'Best Careers with Science PCM',
+    prompt: 'What are the best degree options after 12th PCM besides mainstream engineering?',
+    badge: '12th PCM',
+  },
+  {
+    id: 'sci-2',
+    category: '12th_science',
+    icon: '⚓',
+    title: 'Merchant Navy & Marine Careers',
+    prompt: 'How can I join the Merchant Navy after 12th PCM? What are the salaries and eligibility for B.Sc Nautical Science?',
+    badge: 'Merchant Navy',
+  },
+  {
+    id: 'sci-3',
+    category: '12th_science',
+    icon: '🔭',
+    title: 'Pure Science & Research at IISc / IISER',
+    prompt: 'How can I get into IISc Bangalore or IISERs for scientific research after 12th?',
+    badge: 'Research',
+  },
+
+  // Medical & NEET
+  {
+    id: 'med-1',
+    category: 'medical',
+    icon: '🩺',
+    title: 'Can I do MBBS with PCM without Biology?',
+    prompt: 'Can I become a doctor if I take PCM in 11th and 12th? What are the NMC regulations for NEET-UG?',
+    badge: 'NMC / NEET',
+  },
+  {
+    id: 'med-2',
+    category: 'medical',
+    icon: '🏥',
+    title: 'Medical Rural Bonds & USMLE Mobility',
+    prompt: 'What are the rural service bond requirements in government medical colleges, and can Indian MBBS doctors practice abroad (USMLE / WFME)?',
+    badge: 'MBBS Bonds',
+  },
+  {
+    id: 'med-3',
+    category: 'medical',
+    icon: '💊',
+    title: 'High-Demand Allied Health & Nursing',
+    prompt: 'What are the top medical options without NEET (B.Sc Nursing, BPT Physiotherapy, B.Pharm, Radiology)?',
+    badge: 'Allied Health',
+  },
+
+  // Engineering Branches
+  {
+    id: 'eng-1',
+    category: 'btech',
+    icon: '💻',
+    title: 'CSE vs ECE vs AI/DS Comparison',
+    prompt: 'Which engineering branch offers the best placements and long-term versatility: CSE, ECE, or AI & Data Science?',
+    badge: 'Branch Comparison',
+  },
+  {
+    id: 'eng-2',
+    category: 'btech',
+    icon: '⚙️',
+    title: 'Mechanical & Civil Engineering Scope',
+    prompt: 'What are the career prospects, PSU jobs via GATE, and salary trends for Mechanical and Civil Engineering?',
+    badge: 'Core Engg',
+  },
+  {
+    id: 'eng-3',
+    category: 'btech',
+    icon: '🌐',
+    title: 'Washington Accord & Tier-1 NBA Value',
+    prompt: 'What is the Washington Accord and how does Tier-1 NBA accreditation help Indian engineering graduates work abroad?',
+    badge: 'Global Licensure',
+  },
+
+  // Colleges & Cutoffs
+  {
+    id: 'col-1',
+    category: 'colleges',
+    icon: '🏛️',
+    title: 'Compare Top Bangalore Engineering Colleges',
+    prompt: 'Compare RVCE, BMSCE, MSRIT, PES University, and UVCE in terms of KCET cutoffs, median placements, and fees.',
+    badge: 'KCET Cutoffs',
+  },
+  {
+    id: 'col-2',
+    category: 'colleges',
+    icon: '💰',
+    title: 'Low-Fee Government Engineering Colleges',
+    prompt: 'Which are the top government engineering colleges in Karnataka with low fees and good placements like UVCE or NITK?',
+    badge: 'Govt Colleges',
+  },
+
+  // Commerce & CA
+  {
+    id: 'com-1',
+    category: 'commerce',
+    icon: '📊',
+    title: 'Chartered Accountancy (ICAI New 2-Year Scheme)',
+    prompt: 'Explain the ICAI new scheme for CA: Foundation, Inter, 2-year articleship stipend, and career salary progression.',
+    badge: 'CA / Finance',
+  },
+  {
+    id: 'com-2',
+    category: 'commerce',
+    icon: '📈',
+    title: 'B.Com vs BBA vs Corporate Finance',
+    prompt: 'Which degree has better scope for corporate careers: B.Com (with ACCA/CMA) or BBA (leading to MBA)?',
+    badge: 'B.Com / BBA',
+  },
+
+  // Arts & Law
+  {
+    id: 'art-1',
+    category: 'arts',
+    icon: '⚖️',
+    title: '5-Year Integrated Law via CLAT (NLUs)',
+    prompt: 'How do I prepare for CLAT to get into top NLUs like NLSIU Bangalore for 5-year BA LLB / BBA LLB?',
+    badge: 'Law / CLAT',
+  },
+  {
+    id: 'art-2',
+    category: 'arts',
+    icon: '🏛️',
+    title: 'Humanities & UPSC Civil Services',
+    prompt: 'Which subjects in Arts / Humanities provide the strongest foundation for the UPSC Civil Services (IAS/IPS)?',
+    badge: 'UPSC / Civils',
+  },
+
+  // Polytechnic & Lateral Entry
+  {
+    id: 'dip-1',
+    category: 'diploma',
+    icon: '⚡',
+    title: 'Polytechnic Lateral Entry (DCET to 2nd Year B.Tech)',
+    prompt: 'How does lateral entry work for diploma students writing Karnataka DCET to join 2nd year B.Tech directly?',
+    badge: 'DCET Lateral',
+  },
+
+  // Govt Jobs
+  {
+    id: 'gov-1',
+    category: 'govt',
+    icon: '📜',
+    title: 'Central Government Jobs After 12th Pass',
+    prompt: 'Which central government jobs can I apply for directly after 12th (SSC CHSL, NDA Defence, Railway RRB)?',
+    badge: 'Govt Jobs 12th',
+  },
+  {
+    id: 'gov-2',
+    category: 'govt',
+    icon: '🎖️',
+    title: 'Armed Forces Officer Entry (NDA & Agniveer)',
+    prompt: 'What are the eligibility criteria, physical requirements, and exam pattern for NDA and Indian Army/Navy Agniveer?',
+    badge: 'Defence Entry',
   },
 ];
 
@@ -148,7 +319,6 @@ function MarkdownRenderer({ content }: { content: string }) {
       // Table line
       if (line.startsWith('|') && line.endsWith('|')) {
         flushList();
-        // Skip separator row like |---|---|
         if (/^\|[-|\s]+\|$/.test(line)) {
           continue;
         }
@@ -244,6 +414,7 @@ function AiCounsellorChat() {
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>('all');
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -266,68 +437,70 @@ function AiCounsellorChat() {
     }
   }, [inputText]);
 
-  // Send message function
-  const sendMessage = async (textToSend?: string) => {
-    const text = (textToSend || inputText).trim();
-    if (!text || isLoading) return;
+  // Send message function wrapped in useCallback for stable reference
+  const sendMessage = useCallback(
+    async (textToSend?: string) => {
+      const text = (textToSend || inputText).trim();
+      if (!text || isLoading) return;
 
-    const userMessage: ChatMessage = {
-      id: `user-${Date.now()}`,
-      role: 'user',
-      content: text,
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-    };
-
-    setMessages((prev) => [...prev, userMessage]);
-    setInputText('');
-    setIsLoading(true);
-
-    try {
-      // Build history for multi-turn context
-      const history = messages.map((m) => ({
-        role: m.role,
-        content: m.content,
-      }));
-
-      const res = await fetch('/api/ai/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text, history }),
-      });
-
-      const data = await res.json();
-
-      if (data.success && data.reply) {
-        const assistantMessage: ChatMessage = {
-          id: `assistant-${Date.now()}`,
-          role: 'assistant',
-          content: data.reply,
-          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          sources: data.sources || [],
-        };
-        setMessages((prev) => [...prev, assistantMessage]);
-      } else {
-        const errorMsg = data.error || 'Unable to receive advice right now. Please try again.';
-        const assistantMessage: ChatMessage = {
-          id: `assistant-${Date.now()}`,
-          role: 'assistant',
-          content: `⚠️ **Notice:** ${errorMsg}`,
-          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        };
-        setMessages((prev) => [...prev, assistantMessage]);
-      }
-    } catch (err: any) {
-      const assistantMessage: ChatMessage = {
-        id: `assistant-${Date.now()}`,
-        role: 'assistant',
-        content: `⚠️ **Network Issue:** Could not reach the counsellor service. Please check your connection and try again.`,
+      const userMessage: ChatMessage = {
+        id: `user-${Date.now()}`,
+        role: 'user',
+        content: text,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
-      setMessages((prev) => [...prev, assistantMessage]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+
+      setMessages((prev) => [...prev, userMessage]);
+      setInputText('');
+      setIsLoading(true);
+
+      try {
+        const history = messages.map((m) => ({
+          role: m.role,
+          content: m.content,
+        }));
+
+        const res = await fetch('/api/ai/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text, history }),
+        });
+
+        const data = await res.json();
+
+        if (data.success && data.reply) {
+          const assistantMessage: ChatMessage = {
+            id: `assistant-${Date.now()}`,
+            role: 'assistant',
+            content: data.reply,
+            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            sources: data.sources || [],
+          };
+          setMessages((prev) => [...prev, assistantMessage]);
+        } else {
+          const errorMsg = data.error || 'Unable to receive advice right now. Please try again.';
+          const assistantMessage: ChatMessage = {
+            id: `assistant-${Date.now()}`,
+            role: 'assistant',
+            content: `⚠️ **Notice:** ${errorMsg}`,
+            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          };
+          setMessages((prev) => [...prev, assistantMessage]);
+        }
+      } catch {
+        const assistantMessage: ChatMessage = {
+          id: `assistant-${Date.now()}`,
+          role: 'assistant',
+          content: `⚠️ **Network Issue:** Could not reach the counsellor service. Please check your connection and try again.`,
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        };
+        setMessages((prev) => [...prev, assistantMessage]);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [inputText, isLoading, messages]
+  );
 
   // Handle initial query from URL
   useEffect(() => {
@@ -335,7 +508,7 @@ function AiCounsellorChat() {
       initialSentRef.current = true;
       sendMessage(initialQuery);
     }
-  }, [initialQuery]);
+  }, [initialQuery, sendMessage]);
 
   // Handle Enter key (Shift+Enter for newline)
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -358,6 +531,12 @@ function AiCounsellorChat() {
     setInputText('');
   };
 
+  // Filtered pre-filled questions based on selected category
+  const filteredQuestions = useMemo(() => {
+    if (activeCategory === 'all') return PRE_FILLED_QUESTIONS;
+    return PRE_FILLED_QUESTIONS.filter((q) => q.category === activeCategory);
+  }, [activeCategory]);
+
   return (
     <div className="flex flex-col h-[calc(100vh-64px)] bg-[#F8FAFC]">
       {/* 1. TOP CHAT HEADER */}
@@ -374,11 +553,11 @@ function AiCounsellorChat() {
                 </h1>
                 <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  Live AI
+                  Live Career Guide
                 </span>
               </div>
               <p className="text-xs text-slate-500 hidden sm:block">
-                Trained on 455 Colleges, 100+ Pathways, 29 Engineering Branches & Official Entrance Exams
+                Mapped to 455 Colleges, 100+ Pathways, 31 Engineering Branches & Official Entrance Exams
               </p>
             </div>
           </div>
@@ -388,7 +567,7 @@ function AiCounsellorChat() {
               <button
                 type="button"
                 onClick={handleClearChat}
-                className="px-3 py-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors border border-slate-200"
+                className="px-3 py-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors border border-slate-200 cursor-pointer"
                 title="Start a new conversation"
               >
                 Clear Chat
@@ -408,9 +587,9 @@ function AiCounsellorChat() {
       {/* 2. CHAT MESSAGES CONTAINER */}
       <main className="flex-1 overflow-y-auto px-4 sm:px-6 py-6" role="log" aria-live="polite">
         <div className="max-w-4xl mx-auto space-y-6">
-          {/* EMPTY STATE / WELCOME SCREEN */}
+          {/* EMPTY STATE / PURE CHATBOT LANDING WITH PRE-FILLED DATA SELECTOR */}
           {messages.length === 0 && (
-            <div className="flex flex-col items-center justify-center py-6 sm:py-10 text-center">
+            <div className="flex flex-col items-center justify-center py-4 sm:py-8 text-center">
               <div className="w-16 h-16 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center mb-4 shadow-sm">
                 <SparklesIcon className="w-8 h-8 text-blue-600" />
               </div>
@@ -418,33 +597,48 @@ function AiCounsellorChat() {
                 Ask EduSelect Anything
               </h2>
               <p className="mt-2 text-sm text-slate-600 max-w-lg leading-relaxed">
-                I am your pure AI career counsellor. No complicated forms or filters required—just ask your question and get verified, factual answers grounded in our data.
+                Your dedicated AI career counsellor. Select any pre-filled topic below or type your own question to receive verified advice mapped to our database.
               </p>
 
-              {/* STARTER PROMPTS GRID */}
-              <div className="mt-8 w-full max-w-3xl">
-                <div className="flex items-center justify-between mb-3 px-1">
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    Suggested Questions
-                  </span>
-                  <span className="text-xs text-slate-500">Click any prompt to ask</span>
+              {/* CATEGORY SELECTOR PILLS */}
+              <div className="mt-6 w-full max-w-3xl">
+                <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none justify-start sm:justify-center">
+                  {CAREER_TOPIC_CATEGORIES.map((cat) => {
+                    const isActive = activeCategory === cat.id;
+                    return (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        onClick={() => setActiveCategory(cat.id)}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                          isActive
+                            ? 'bg-[#1E2A78] text-white shadow-xs'
+                            : 'bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200'
+                        }`}
+                      >
+                        {cat.label}
+                      </button>
+                    );
+                  })}
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {STARTER_PROMPTS.map((item, idx) => (
+
+                {/* PRE-FILLED QUESTIONS GRID */}
+                <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-left">
+                  {filteredQuestions.map((item) => (
                     <button
-                      key={idx}
+                      key={item.id}
                       type="button"
                       onClick={() => sendMessage(item.prompt)}
-                      className="p-3.5 bg-white border border-slate-200 hover:border-blue-300 hover:bg-blue-50/30 rounded-xl text-left transition-all duration-150 group flex flex-col justify-between shadow-xs hover:shadow-sm"
+                      className="p-3.5 bg-white border border-slate-200 hover:border-blue-300 hover:bg-blue-50/30 rounded-xl text-left transition-all duration-150 group flex flex-col justify-between shadow-xs hover:shadow-sm cursor-pointer"
                     >
                       <div className="flex items-start justify-between gap-2">
                         <span className="text-xl">{item.icon}</span>
                         <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 group-hover:bg-blue-100 group-hover:text-blue-700">
-                          {item.tag}
+                          {item.badge}
                         </span>
                       </div>
                       <div className="mt-2.5">
-                        <h3 className="text-xs font-bold text-slate-900 group-hover:text-blue-700">
+                        <h3 className="text-xs font-bold text-slate-900 group-hover:text-blue-700 leading-snug">
                           {item.title}
                         </h3>
                         <p className="mt-1 text-[11px] text-slate-500 line-clamp-2 leading-relaxed">
@@ -458,7 +652,7 @@ function AiCounsellorChat() {
             </div>
           )}
 
-          {/* ACTIVE MESSAGES LIST */}
+          {/* ACTIVE MESSAGES STREAM */}
           {messages.map((message) => {
             const isUser = message.role === 'user';
             return (
@@ -493,7 +687,7 @@ function AiCounsellorChat() {
                       {message.sources && message.sources.length > 0 && (
                         <div className="mt-4 pt-3 border-t border-slate-100">
                           <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-2">
-                            Verified EduSelect Database Sources:
+                            Verified EduSelect Database Sources & Directories:
                           </span>
                           <div className="flex flex-wrap gap-1.5">
                             {message.sources.map((src, sIdx) => (
@@ -502,7 +696,7 @@ function AiCounsellorChat() {
                                 href={src.url}
                                 className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200 hover:border-blue-200 transition-colors"
                               >
-                                {src.type === 'College' ? (
+                                {src.type === 'College' || src.type === 'Colleges' ? (
                                   <BuildingLibraryIcon className="w-3 h-3 text-slate-400" />
                                 ) : src.type === 'Branch' ? (
                                   <GraduationCapIcon className="w-3 h-3 text-slate-400" />
@@ -523,7 +717,7 @@ function AiCounsellorChat() {
                         <button
                           type="button"
                           onClick={() => handleCopy(message.id, message.content)}
-                          className="hover:text-slate-700 transition-colors flex items-center gap-1 font-medium"
+                          className="hover:text-slate-700 transition-colors flex items-center gap-1 font-medium cursor-pointer"
                           title="Copy answer"
                         >
                           {copiedId === message.id ? (
@@ -569,7 +763,7 @@ function AiCounsellorChat() {
                   <span className="w-2 h-2 rounded-full bg-blue-600 animate-bounce" />
                 </div>
                 <span className="text-xs font-medium text-slate-500">
-                  Checking EduSelect database & generating advice...
+                  Checking EduSelect database & generating recommendations...
                 </span>
               </div>
             </div>
@@ -579,9 +773,28 @@ function AiCounsellorChat() {
         </div>
       </main>
 
-      {/* 3. STICKY BOTTOM INPUT BAR */}
+      {/* 3. STICKY BOTTOM INPUT BAR WITH PRE-FILLED TOPIC PILLS */}
       <footer className="bg-white border-t border-slate-200 p-3 sm:p-4 shrink-0 shadow-lg">
         <div className="max-w-4xl mx-auto">
+          {/* PERSISTENT QUICK SELECTOR PILLS STRIP */}
+          <div className="mb-2.5 flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 shrink-0 mr-1 hidden sm:inline">
+              Suggested:
+            </span>
+            {PRE_FILLED_QUESTIONS.slice(0, 8).map((q) => (
+              <button
+                key={q.id}
+                type="button"
+                onClick={() => sendMessage(q.prompt)}
+                disabled={isLoading}
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-600 text-[11px] font-medium whitespace-nowrap transition-colors border border-slate-200 hover:border-blue-200 cursor-pointer disabled:opacity-50 shrink-0"
+              >
+                <span>{q.icon}</span>
+                <span>{q.title}</span>
+              </button>
+            ))}
+          </div>
+
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -595,7 +808,7 @@ function AiCounsellorChat() {
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Ask anything about careers, courses, colleges, cutoffs, or entrance exams..."
+              placeholder="Ask anything about careers, courses, colleges, cutoffs, or select a pre-filled topic above..."
               className="flex-1 bg-transparent border-0 resize-none px-2 py-1.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-0 max-h-40 leading-relaxed"
               disabled={isLoading}
             />
@@ -611,8 +824,11 @@ function AiCounsellorChat() {
           </form>
 
           <div className="mt-2 flex items-center justify-between text-[11px] text-slate-400 px-1">
-            <span>Press <kbd className="font-mono bg-slate-100 px-1 py-0.5 rounded text-[10px]">Enter</kbd> to send, <kbd className="font-mono bg-slate-100 px-1 py-0.5 rounded text-[10px]">Shift + Enter</kbd> for newline</span>
-            <span className="hidden sm:inline">Grounded in NIRF 2025, KEA KCET & Verified Curricula</span>
+            <span>
+              Press <kbd className="font-mono bg-slate-100 px-1 py-0.5 rounded text-[10px]">Enter</kbd> to send,{' '}
+              <kbd className="font-mono bg-slate-100 px-1 py-0.5 rounded text-[10px]">Shift + Enter</kbd> for newline
+            </span>
+            <span className="hidden sm:inline">Strictly Educational & Career Guidance • Grounded in NIRF 2025 & KEA KCET Data</span>
           </div>
         </div>
       </footer>
